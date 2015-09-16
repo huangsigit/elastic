@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Elastic-job by dangdangdotcom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Elastic-job</h1>
+      <h2 class="project-tagline">Elastic-Job is a distributed scheduled job framework, based on Quartz and Curator.</h2>
+      <a href="https://github.com/dangdangdotcom/elastic-job" class="btn">View on GitHub</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+<h2>
+<a id="运维平台" class="anchor" href="#%E8%BF%90%E7%BB%B4%E5%B9%B3%E5%8F%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>运维平台</h2>
+
+<ul>
+<li>
+<p><strong>登录</strong></p>
+
+<p>默认用户名和密码是<strong>root/root</strong>，可以通过修改conf\auth.properties文件修改默认登录用户名和密码。</p>
+</li>
+<li>
+<p><strong>主要功能</strong></p>
+
+<p>登录安全控制</p>
+
+<p>注册中心管理</p>
+
+<p>作业维度状态查看</p>
+
+<p>服务器维度状态查看</p>
+
+<p>快捷修改作业设置</p>
+
+<p>控制作业暂停和恢复运行</p>
+</li>
+<li>
+<p><strong>设计理念</strong></p>
+
+<p>运维平台和elastic-job并无直接关系，是通过读取作业注册中心数据展现作业状态，或更新注册中心数据修改全局配置。</p>
+
+<p>控制台只能控制作业本身是否运行，但不能控制作业进程的启停，因为控制台和作业本身服务器是完全分布式的，控制台并不能控制作业服务器。</p>
+</li>
+<li>
+<p><strong>不支持项</strong></p>
+
+<p>添加作业。因为作业都是在首次运行时自动添加，使用运维平台添加作业并无必要。</p>
+
+<p>停止作业。即使删除了Zookeeper信息也不能真正停止作业的运行，还会导致运行中的作业出问题。</p>
+
+<p>删除作业服务器。由于直接删除服务器节点风险较大，暂时不考虑在运维平台增加此功能。</p>
+</li>
+<li>
+<p><strong>主要界面</strong></p>
+
+<p>总览页</p>
+
+<p><img src="http://static.oschina.net/uploads/space/2015/0914/215139_rVBi_719192.png" alt="总览页"></p>
+
+<p>注册中心管理页</p>
+
+<p><img src="http://static.oschina.net/uploads/space/2015/0914/215159_mbew_719192.png" alt="注册中心管理页"></p>
+
+<p>作业详细信息页</p>
+
+<p><img src="http://static.oschina.net/uploads/space/2015/0914/215232_Lj4d_719192.png" alt="作业详细信息页"></p>
+
+<p>服务器详细信息页</p>
+
+<p><img src="http://static.oschina.net/uploads/space/2015/0914/215302_d3iw_719192.png" alt="服务器详细信息页"></p>
+</li>
+</ul>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dangdangdotcom/elastic-job">Elastic-job</a> is maintained by <a href="https://github.com/dangdangdotcom">dangdangdotcom</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("elastic-job");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>

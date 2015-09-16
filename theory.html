@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Elastic-job by dangdangdotcom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Elastic-job</h1>
+      <h2 class="project-tagline">Elastic-Job is a distributed scheduled job framework, based on Quartz and Curator.</h2>
+      <a href="https://github.com/dangdangdotcom/elastic-job" class="btn">View on GitHub</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+<h2>
+<a id="实现原理" class="anchor" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86" aria-hidden="true"><span class="octicon octicon-link"></span></a>实现原理</h2>
+
+<ul>
+<li>
+<p><strong>弹性分布式实现</strong></p>
+
+<ol>
+<li><p>第一台服务器上线触发主服务器选举。主服务器一旦下线，则重新触发选举，选举过程中阻塞，只有主服务器选举完成，才会执行其他任务。</p></li>
+<li><p>某作业服务器上线时会自动将服务器信息注册到注册中心，下线时会自动更新服务器状态。</p></li>
+<li><p>主节点选举，服务器上下线，分片总数变更均更新重新分片标记。</p></li>
+<li><p>定时任务触发时，如需重新分片，则通过主服务器分片，分片过程中阻塞，分片结束后才可执行任务。如分片过程中主服务器下线，则先选举主服务器，再分片。</p></li>
+<li><p>通过4可知，为了维持作业运行时的稳定性，运行过程中只会标记分片状态，不会重新分片。分片仅可能发生在下次任务触发前。</p></li>
+<li><p>每次分片都会按服务器IP排序，保证分片结果不会产生较大波动。</p></li>
+<li><p>实现失效转移功能，在某台服务器执行完毕后主动抓取未分配的分片，并且在某台服务器下线后主动寻找可用的服务器执行任务。</p></li>
+</ol>
+</li>
+<li>
+<p><strong>注册中心数据结构</strong></p>
+
+<p>注册中心在定义的命名空间下，创建作业名称节点，用于区分不同作业，所以作业一旦创建则不能修改作业名称，如果修改名称将视为新的作业。作业名称节点下又包含4个数据子节点，分别是config, servers, execution和leader。</p>
+
+<p><strong>概览</strong></p>
+</li>
+</ul>
+
+<p><img src="http://static.oschina.net/uploads/space/2015/0914/171533_1BOb_719192.png" alt="注册中心数据结构"></p>
+
+<p><strong>config节点</strong></p>
+
+<p>作业全局配置信息</p>
+
+<table>
+<tbody>
+<tr>
+<td><em>子节点名</em></td>
+<td><em>临时节点</em></td>
+<td><em>描述</em></td>
+</tr>
+<tr>
+<td>jobClass</td>
+<td>否</td>
+<td>作业实现类名称</td>
+</tr>
+<tr>
+<td>shardingTotalCount</td>
+<td>否</td>
+<td>作业分片总数</td>
+</tr>
+<tr>
+<td>cron</td>
+<td>否</td>
+<td>作业启动时间的cron表达式</td>
+</tr>
+<tr>
+<td>shardingItemParameters</td>
+<td>否</td>
+<td>分片序列号和个性化参数对照表</td>
+</tr>
+<tr>
+<td>jobParameter</td>
+<td>否</td>
+<td>作业自定义参数</td>
+</tr>
+<tr>
+<td>monitorExecution</td>
+<td>否</td>
+<td>监控作业执行时状态</td>
+</tr>
+<tr>
+<td>processCountIntervalSeconds</td>
+<td>否</td>
+<td>统计作业处理数据数量的间隔时间</td>
+</tr>
+<tr>
+<td>concurrentDataProcessThreadCount</td>
+<td>否</td>
+<td>同时处理数据的并发线程数</td>
+</tr>
+<tr>
+<td>fetchDataCount</td>
+<td>否</td>
+<td>每次抓取的数据量</td>
+</tr>
+<tr>
+<td>failover</td>
+<td>否</td>
+<td>是否开启失效转移</td>
+</tr>
+<tr>
+<td>description</td>
+<td>否</td>
+<td>作业描述信息</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>servers节点</strong></p>
+
+<p>作业服务器信息，子节点是作业服务器的IP地址。IP地址节点的子节点存储详细信息。同一台作业服务器只能运行一个相同的作业实例，因为作业运行时是按照IP注册和管理的。</p>
+
+<table>
+<tbody>
+<tr>
+<td><em>子节点名</em></td>
+<td><em>临时节点</em></td>
+<td><em>描述</em></td>
+</tr>
+<tr>
+<td>hostName</td>
+<td>否</td>
+<td>作业服务器名称</td>
+</tr>
+<tr>
+<td>status</td>
+<td>是</td>
+<td>作业服务器状态，分为READY和RUNNING<br>用于表示服务器在等待执行作业还是正在执行作业<br>如果status节点不存在则表示作业服务器未上线</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>否</td>
+<td>作业服务器状态是否禁用<br>可用于部署作业时，先禁止启动，部署结束后统一启动</td>
+</tr>
+<tr>
+<td>sharding</td>
+<td>否</td>
+<td>该作业服务器分到的作业分片项<br>多个分片项用逗号分隔<br>如：0,1,2代表该服务器执行第1，2，3片分片</td>
+</tr>
+<tr>
+<td>processSuccessCount</td>
+<td>否</td>
+<td>统计一段时间内处理数据成功的数量<br>统计间隔可通过config\processCountIntervalSeconds配置</td>
+</tr>
+<tr>
+<td>processFailureCount</td>
+<td>否</td>
+<td>统计一段时间内处理数据失败的数量<br>统计间隔可通过config\processCountIntervalSeconds配置</td>
+</tr>
+<tr>
+<td>stoped</td>
+<td>否</td>
+<td>停止作业的标记</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>execution节点</strong></p>
+
+<p>执行时信息，子节点是分片项序号，从零开始，至分片总数减一。分片项序号的子节点存储详细信息。可通过配置config\monitorExecution为false关闭记录作业执行时信息。</p>
+
+<table>
+<tbody>
+<tr>
+<td><em>子节点名</em></td>
+<td><em>临时节点</em></td>
+<td><em>描述</em></td>
+</tr>
+<tr>
+<td>running</td>
+<td>是</td>
+<td>分片项正在运行的状态<br>如果没有此节点，并且没有completed节点，表示该分片未运行</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>否</td>
+<td>分片项运行完成的状态<br>下次作业开始执行时会清理</td>
+</tr>
+<tr>
+<td>failover</td>
+<td>是</td>
+<td>如果该分片项被失效转移分配给其他作业服务器，则此节点值记录执行此分片的作业服务器IP</td>
+</tr>
+<tr>
+<td>lastBeginTime</td>
+<td>否</td>
+<td>该分片项最近一次的开始执行时间</td>
+</tr>
+<tr>
+<td>nextFireTime</td>
+<td>否</td>
+<td>该分片项下次作业触发时间</td>
+</tr>
+<tr>
+<td>lastCompleteTime</td>
+<td>否</td>
+<td>该分片项最近一次的结束执行时间</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>leader节点</strong></p>
+
+<p>作业服务器主节点信息，分为election，sharding和execution三个子节点。分别用于主节点选举，分片和作业执行时处理。</p>
+
+<p>leader节点是内部使用的节点，如果对作业框架原理不感兴趣，可不关注此节点。</p>
+
+<table>
+<tbody>
+<tr>
+<td><em>子节点名</em></td>
+<td><em>临时节点</em></td>
+<td><em>描述</em></td>
+</tr>
+<tr>
+<td>election\host</td>
+<td>是</td>
+<td>主节点服务器IP地址<br>一旦该节点被删除将会触发重新选举<br>重新选举的过程中一切主节点相关的操作都将阻塞</td>
+</tr>
+<tr>
+<td>election\latch</td>
+<td>否</td>
+<td>主节点选举的分布式锁<br>为curator的分布式锁使用</td>
+</tr>
+<tr>
+<td>sharding\necessary</td>
+<td>否</td>
+<td>是否需要重新分片的标记<br>如果分片总数变化，或作业服务器节点上下线或启用/禁用，以及主节点选举，会触发设置重分片标记<br>作业在下次执行时使用主节点重新分片，且中间不会被打断<br>作业执行时不会触发分片</td>
+</tr>
+<tr>
+<td>sharding\processing</td>
+<td>是</td>
+<td>主节点在分片时持有的节点<br>如果有此节点，所有的作业执行都将阻塞，直至分片结束<br>主节点分片结束或主节点崩溃会删除此临时节点</td>
+</tr>
+<tr>
+<td>execution\necessary</td>
+<td>否</td>
+<td>是否需要修正作业执行时分片项信息的标记<br>如果分片总数变化，会触发设置修正分片项信息标记<br>作业在下次执行时会增加或减少分片项数量</td>
+</tr>
+<tr>
+<td>execution\cleaning</td>
+<td>是</td>
+<td>主节点在清理上次作业运行时状态时所持有的节点<br>每次开始新作业都需要清理上次运行完成的作业信息<br>如果有此节点，所有的作业执行都将阻塞，直至清理结束<br>主节点分片结束或主节点崩溃会删除此临时节点</td>
+</tr>
+<tr>
+<td>failover\items\分片项</td>
+<td>否</td>
+<td>一旦有作业崩溃，则会向此节点记录<br>当有空闲作业服务器时，会从此节点抓取需失效转移的作业项</td>
+</tr>
+<tr>
+<td>failover\items\latch</td>
+<td>否</td>
+<td>分配失效转移分片项时占用的分布式锁<br>为curator的分布式锁使用</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>
+<p><strong>流程图</strong></p>
+
+<p>作业启动</p>
+
+<p><img src="http://static.oschina.net/uploads/space/2015/0914/181007_yQ7b_719192.jpg" alt="作业启动"></p>
+
+<p>作业执行</p>
+
+<p><img src="http://static.oschina.net/uploads/space/2015/0914/181025_OSzr_719192.png" alt="作业执行"></p>
+</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dangdangdotcom/elastic-job">Elastic-job</a> is maintained by <a href="https://github.com/dangdangdotcom">dangdangdotcom</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("elastic-job");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
