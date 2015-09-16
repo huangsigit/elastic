@@ -26,6 +26,10 @@
 
 <p>ddframe其他模块也有可独立开源的部分，之前当当曾开源过dd-soa的基石模块DubboX。</p>
 
+<p>elastic-job和ddframe关系见下图</p>
+
+<p><img src="http://static.oschina.net/uploads/space/2015/0915/181703_2fxp_719192.jpg" alt="ddframe演进图"></p>
+
 <h2>
 <a id="主要贡献者" class="anchor" href="#%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE%E8%80%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>主要贡献者</h2>
 
@@ -149,16 +153,16 @@
 </li>
 </ul>
 
-<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyElasticJob</span> <span class="pl-k">extends</span> <span class="pl-e">AbstractSequencePerpetualElasticJob&lt;<span class="pl-smi">Foo</span>&gt;</span> {
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyElasticJob</span> <span class="pl-k">extends</span> <span class="pl-e">AbstractPerpetualElasticJob&lt;<span class="pl-smi">Foo</span>&gt;</span> {
 
     <span class="pl-k">@Override</span>
-    <span class="pl-k">protected</span> <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> <span class="pl-en">fetchData</span>(<span class="pl-smi">JobExecutionSingleShardingContext</span> <span class="pl-v">context</span>) {
+    <span class="pl-k">protected</span> <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> <span class="pl-en">fetchData</span>(<span class="pl-smi">JobExecutionMultipleShardingContext</span> <span class="pl-v">context</span>) {
         <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> result <span class="pl-k">=</span> <span class="pl-c">// get data from database by sharding items</span>
         <span class="pl-k">return</span> result;
     }
 
     <span class="pl-k">@Override</span>
-    <span class="pl-k">protected</span> <span class="pl-k">boolean</span> <span class="pl-en">processData</span>(<span class="pl-smi">JobExecutionSingleShardingContext</span> <span class="pl-v">context</span>, <span class="pl-smi">Foo</span> <span class="pl-v">data</span>) {
+    <span class="pl-k">protected</span> <span class="pl-k">boolean</span> <span class="pl-en">processData</span>(<span class="pl-smi">JobExecutionMultipleShardingContext</span> <span class="pl-v">context</span>, <span class="pl-smi">Foo</span> <span class="pl-v">data</span>) {
         <span class="pl-c">// process data</span>
         <span class="pl-k">return</span> <span class="pl-c1">true</span>;
     }
@@ -172,16 +176,16 @@
 </li>
 </ul>
 
-<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyElasticJob</span> <span class="pl-k">extends</span> <span class="pl-e">AbstractPerpetualElasticJob&lt;<span class="pl-smi">Foo</span>&gt;</span> {
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyElasticJob</span> <span class="pl-k">extends</span> <span class="pl-e">AbstractSequencePerpetualElasticJob&lt;<span class="pl-smi">Foo</span>&gt;</span> {
 
     <span class="pl-k">@Override</span>
-    <span class="pl-k">protected</span> <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> <span class="pl-en">fetchData</span>(<span class="pl-smi">JobExecutionMultipleShardingContext</span> <span class="pl-v">context</span>) {
+    <span class="pl-k">protected</span> <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> <span class="pl-en">fetchData</span>(<span class="pl-smi">JobExecutionSingleShardingContext</span> <span class="pl-v">context</span>) {
         <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> result <span class="pl-k">=</span> <span class="pl-c">// get data from database by sharding items</span>
         <span class="pl-k">return</span> result;
     }
 
     <span class="pl-k">@Override</span>
-    <span class="pl-k">protected</span> <span class="pl-k">boolean</span> <span class="pl-en">processData</span>(<span class="pl-smi">JobExecutionMultipleShardingContext</span> <span class="pl-v">context</span>, <span class="pl-smi">Foo</span> <span class="pl-v">data</span>) {
+    <span class="pl-k">protected</span> <span class="pl-k">boolean</span> <span class="pl-en">processData</span>(<span class="pl-smi">JobExecutionSingleShardingContext</span> <span class="pl-v">context</span>, <span class="pl-smi">Foo</span> <span class="pl-v">data</span>) {
         <span class="pl-c">// process data</span>
         <span class="pl-k">return</span> <span class="pl-c1">true</span>;
     }
@@ -460,10 +464,10 @@
 
 <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">JobDemo</span> {
 
-      <span class="pl-c">// 声明Zookeeper注册中心配置对象</span>
+    <span class="pl-c">// 声明Zookeeper注册中心配置对象</span>
     <span class="pl-k">private</span> <span class="pl-k">final</span> <span class="pl-smi">ZookeeperConfiguration</span> zkConfig <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">ZookeeperConfiguration</span>(<span class="pl-s"><span class="pl-pds">"</span>yourhost:2181<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>zkRegTestCenter<span class="pl-pds">"</span></span>, <span class="pl-c1">1000</span>, <span class="pl-c1">3000</span>, <span class="pl-c1">3</span>);
 
-      <span class="pl-c">// 定义Zookeeper注册中心</span>
+    <span class="pl-c">// 定义Zookeeper注册中心</span>
     <span class="pl-k">private</span> <span class="pl-k">final</span> <span class="pl-smi">CoordinatorRegistryCenter</span> regCenter <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">ZookeeperRegistryCenter</span>(zkConfig);
 
     <span class="pl-c">// 声明作业配置对象</span>
@@ -478,13 +482,13 @@
         regCenter<span class="pl-k">.</span>init();
         <span class="pl-c">// 声明作业启动器</span>
         <span class="pl-smi">JobInitializer</span> jobInitializer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">JobInitializer</span>(regCenter, jobConfig);
-            <span class="pl-c">// 启动作业，主要是注册作业的信息</span>
+        <span class="pl-c">// 启动作业，主要是注册作业的信息</span>
         jobInitializer<span class="pl-k">.</span>init();
-            <span class="pl-c">// 获取作业调度器实例</span>
+        <span class="pl-c">// 获取作业调度器实例</span>
         <span class="pl-smi">JobScheduler</span> jobScheduler <span class="pl-k">=</span> <span class="pl-smi">JobScheduler</span><span class="pl-k">.</span>getInstance();
-            <span class="pl-c">// 添加作业到调度器</span>
+        <span class="pl-c">// 添加作业到调度器</span>
         jobScheduler<span class="pl-k">.</span>addJob(<span class="pl-s"><span class="pl-pds">"</span>demoJob<span class="pl-pds">"</span></span>, jobInitializer);
-            <span class="pl-c">// 启动所有作业</span>
+        <span class="pl-c">// 启动所有作业</span>
         jobScheduler<span class="pl-k">.</span>scheduleAllJobs();
     }
 }</pre></div>
