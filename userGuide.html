@@ -94,7 +94,7 @@
 <h2>
 <a id="作业配置" class="anchor" href="#%E4%BD%9C%E4%B8%9A%E9%85%8D%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>作业配置</h2>
 
-<p>与Spring容器配合使用作业，可以将作业Bean配置为Spring Bean， 可在作业中通过依赖注入使用Spring容器管理的数据源等对象。可用placeholder占位符从属性文件中取值。</p>
+<p>与Spring容器配合使用作业，可以将作业Bean配置为Spring Bean，可在作业中通过依赖注入使用Spring容器管理的数据源等对象。可用placeholder占位符从属性文件中取值。</p>
 
 <ul>
 <li><strong>Spring命名空间配置</strong></li>
@@ -382,7 +382,7 @@
         regCenter<span class="pl-k">.</span>init();
         <span class="pl-c">// 声明作业启动器</span>
         <span class="pl-smi">JobInitializer</span> jobInitializer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">JobInitializer</span>(regCenter, jobConfig);
-        <span class="pl-c">// 启动作业，主要是注册作业的信息</span>
+        <span class="pl-c">// 注册作业信息</span>
         jobInitializer<span class="pl-k">.</span>init();
         <span class="pl-c">// 获取作业调度器实例</span>
         <span class="pl-smi">JobScheduler</span> jobScheduler <span class="pl-k">=</span> <span class="pl-smi">JobScheduler</span><span class="pl-k">.</span>getInstance();
