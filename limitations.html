@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Elastic-job by dangdangdotcom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Elastic-job</h1>
+      <h2 class="project-tagline">Elastic-Job is a distributed scheduled job framework, based on Quartz and Curator.</h2>
+      <a href="https://github.com/dangdangdotcom/elastic-job" class="btn">View on GitHub</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+<h2>
+<a id="使用限制" class="anchor" href="#%E4%BD%BF%E7%94%A8%E9%99%90%E5%88%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用限制</h2>
+
+<ul>
+<li>作业一旦启动成功后不能修改作业名称，如果修改名称则视为新的作业。</li>
+<li>同一台作业服务器只能运行一个相同的作业实例，因为作业运行时是按照IP注册和管理的。</li>
+<li>作业根据/etc/hosts文件获取IP地址，如果获取的IP地址是127.0.0.1而非真实IP地址，应正确配置此文件。</li>
+<li>一旦有服务器波动，或者修改分片项，将会触发重新分片；触发重新分片将会导致运行中的Perpetual以及SequencePerpetual作业再执行完本次作业后不再继续执行，等待分片结束后再恢复正常。</li>
+<li>开启monitorExecution才能实现分布式作业幂等性（即不会在多个作业服务器运行同一个分片）的功能，但monitorExecution对短时间内执行的作业（如每5秒一触发）性能影响较大，建议关闭并自行实现幂等性。</li>
+<li>elastic-job没有自动删除作业服务器的功能，因为无法区分是服务器崩溃还是正常下线。所以如果要下线服务器，需要手工删除zookeeper中相关的服务器节点。由于直接删除服务器节点风险较大，暂时不考虑在运维平台增加此功能。</li>
+</ul>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dangdangdotcom/elastic-job">Elastic-job</a> is maintained by <a href="https://github.com/dangdangdotcom">dangdangdotcom</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("elastic-job");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>

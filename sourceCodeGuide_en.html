@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Elastic-job by dangdangdotcom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Elastic-job</h1>
+      <h2 class="project-tagline">Elastic-Job is a distributed scheduled job framework, based on Quartz and Curator.</h2>
+      <a href="https://github.com/dangdangdotcom/elastic-job" class="btn">View on GitHub</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+<h1>Source codes compile problems</h1>
+<p>Because of focus extremely simple code, elastic-job use Lombok. If you read source codes meet the problem for @Getter, @Setter annotation cannot compile, please install Lombok to your IDE following next steps. Use release jar only please ignore.</p>
+<h2>
+<a id="lombok_install_guild" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lombok install guild</h2>
+
+<ul>
+<li>
+<p>Eclipse</p>
+<p>Double click <a id="lombokJar" href="https://projectlombok.org/downloads/lombok.jar">lombok.jar</a> file.</p>
+<img src="images/lombok-eclipse.jpg"/>
+<p>Confirm installation directory for Eclipse, click install/update button and restart Eclipse. Finish!</p>
+<p>
+<strong>How to confirm installation success?</strong><br/>
+Confirm Eclipse directory has lombok.jar file, and file eclipse.ini has content: <br/>
+<strong>-javaagent:lombok.jar  -Xbootclasspath/a:lombok.jar</strong>
+</p>
+<p>
+Then you can use annotation to let your POJO simple. Example: 
+<img src="images/lombok-pojo.jpg"/>
+</p>
+</li>
+<li>
+<p>
+    Other IDE please reference Lombok website: <a href="https://projectlombok.org/download.html">https://projectlombok.org/download.html</a>.<br/>
+</p>
+</li>
+</ul>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dangdangdotcom/elastic-job">Elastic-job</a> is maintained by <a href="https://github.com/dangdangdotcom">dangdangdotcom</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("elastic-job");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
