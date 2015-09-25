@@ -355,41 +355,45 @@
 
 <p>If you don't want use spring framework, can use pure java code to start elastic-job.</p>
 
-<div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">com.dangdang.ddframe.job.api.JobConfiguration</span>;
-<span class="pl-k">import</span> <span class="pl-smi">com.dangdang.ddframe.job.schedule.JobInitializer</span>;
-<span class="pl-k">import</span> <span class="pl-smi">com.dangdang.ddframe.job.schedule.JobScheduler</span>;
-<span class="pl-k">import</span> <span class="pl-smi">com.dangdang.ddframe.reg.base.CoordinatorRegistryCenter</span>;
-<span class="pl-k">import</span> <span class="pl-smi">com.dangdang.ddframe.reg.zookeeper.ZookeeperConfiguration</span>;
-<span class="pl-k">import</span> <span class="pl-smi">com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter</span>;
+<pre class="rich-diff-level-zero"><span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.job.api.JobConfiguration</span>;
+<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.job.schedule.JobController</span>;
+<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.reg.base.CoordinatorRegistryCenter</span>;
+<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.reg.zookeeper.ZookeeperConfiguration</span>;
+<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter</span>;
+<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.example.elasticjob.core.job.OneOffElasticDemoJob</span>;
+<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.example.elasticjob.core.job.PerpetualElasticDemoJob</span>;
+<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.example.elasticjob.core.job.SequencePerpetualElasticDemoJob</span>;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">JobDemo</span> {
+<span class="pl-k rich-diff-level-one">public</span> <span class="pl-k rich-diff-level-one">class</span> <span class="pl-en rich-diff-level-one">JobDemo</span> {
 
-    <span class="pl-c">// Define Zookeeper registry center configuration object</span>
-    <span class="pl-k">private</span> <span class="pl-k">final</span> <span class="pl-smi">ZookeeperConfiguration</span> zkConfig <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">ZookeeperConfiguration</span>(<span class="pl-s"><span class="pl-pds">"</span>yourhost:2181<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>zkRegTestCenter<span class="pl-pds">"</span></span>, <span class="pl-c1">1000</span>, <span class="pl-c1">3000</span>, <span class="pl-c1">3</span>);
+    <span class="pl-c rich-diff-level-one">// Define Zookeeper registry center configuration object</span>
+    <span class="pl-k rich-diff-level-one">private</span> <span class="pl-smi rich-diff-level-one">ZookeeperConfiguration</span> zkConfig <span class="pl-k rich-diff-level-one">=</span> <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">ZookeeperConfiguration</span>(<span class="pl-s rich-diff-level-one"><span class="pl-pds">"</span>localhost:2181<span class="pl-pds">"</span></span>, <span class="pl-s rich-diff-level-one"><span class="pl-pds">"</span>elastic-job-example<span class="pl-pds">"</span></span>, <span class="pl-c1 rich-diff-level-one">1000</span>, <span class="pl-c1 rich-diff-level-one">3000</span>, <span class="pl-c1 rich-diff-level-one">3</span>);
 
-    <span class="pl-c">// Define Zookeeper registry center</span>
-    <span class="pl-k">private</span> <span class="pl-k">final</span> <span class="pl-smi">CoordinatorRegistryCenter</span> regCenter <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">ZookeeperRegistryCenter</span>(zkConfig);
+    <span class="pl-c rich-diff-level-one">// Define Zookeeper registry center</span>
+    <span class="pl-k rich-diff-level-one">private</span> <span class="pl-smi rich-diff-level-one">CoordinatorRegistryCenter</span> regCenter <span class="pl-k rich-diff-level-one">=</span> <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">ZookeeperRegistryCenter</span>(zkConfig);
 
-    <span class="pl-c">// Define job configuration object</span>
-    <span class="pl-k">private</span> <span class="pl-k">final</span> <span class="pl-smi">JobConfiguration</span> jobConfig <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">JobConfiguration</span>(<span class="pl-s"><span class="pl-pds">"</span>demoJob<span class="pl-pds">"</span></span>, <span class="pl-smi">DemoJob</span><span class="pl-k">.</span>class, <span class="pl-c1">3</span>, <span class="pl-s"><span class="pl-pds">"</span>0/1 * * * * ?<span class="pl-pds">"</span></span>);
+    <span class="pl-c rich-diff-level-one">// Define Job 1 configuration object</span>
+    <span class="pl-k rich-diff-level-one">private</span> <span class="pl-smi rich-diff-level-one">JobConfiguration</span> jobConfig1 <span class="pl-k rich-diff-level-one">=</span> <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobConfiguration</span>(<span class="pl-s rich-diff-level-one"><span class="pl-pds">"</span>oneOffElasticDemoJob<span class="pl-pds">"</span></span>, <span class="pl-smi rich-diff-level-one">OneOffElasticDemoJob</span><span class="pl-k rich-diff-level-one">.</span>class, <span class="pl-c1 rich-diff-level-one">10</span>, <span class="pl-s rich-diff-level-one"><span class="pl-pds">"</span>0/5 * * * * ?<span class="pl-pds">"</span></span>);
 
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">final</span> <span class="pl-k">String</span>[] <span class="pl-v">args</span>) {
-        <span class="pl-k">new</span> <span class="pl-smi">JobDemo</span>()<span class="pl-k">.</span>init();
+    <span class="pl-c rich-diff-level-one">// Define Job 2 configuration object</span>
+    <span class="pl-k rich-diff-level-one">private</span> <span class="pl-smi rich-diff-level-one">JobConfiguration</span> jobConfig2 <span class="pl-k rich-diff-level-one">=</span> <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobConfiguration</span>(<span class="pl-s rich-diff-level-one"><span class="pl-pds">"</span>perpetualElasticDemoJob<span class="pl-pds">"</span></span>, <span class="pl-smi rich-diff-level-one">PerpetualElasticDemoJob</span><span class="pl-k rich-diff-level-one">.</span>class, <span class="pl-c1 rich-diff-level-one">10</span>, <span class="pl-s rich-diff-level-one"><span class="pl-pds">"</span>0/5 * * * * ?<span class="pl-pds">"</span></span>);
+
+    <span class="pl-c rich-diff-level-one">// Define Job 3 configuration object</span>
+    <span class="pl-k rich-diff-level-one">private</span> <span class="pl-smi rich-diff-level-one">JobConfiguration</span> jobConfig3 <span class="pl-k rich-diff-level-one">=</span> <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobConfiguration</span>(<span class="pl-s rich-diff-level-one"><span class="pl-pds">"</span>sequencePerpetualElasticDemoJob<span class="pl-pds">"</span></span>, <span class="pl-smi rich-diff-level-one">SequencePerpetualElasticDemoJob</span><span class="pl-k rich-diff-level-one">.</span>class, <span class="pl-c1 rich-diff-level-one">10</span>, <span class="pl-s rich-diff-level-one"><span class="pl-pds">"</span>0/5 * * * * ?<span class="pl-pds">"</span></span>);
+
+    <span class="pl-k rich-diff-level-one">public</span> <span class="pl-k rich-diff-level-one">static</span> <span class="pl-k rich-diff-level-one">void</span> <span class="pl-en rich-diff-level-one">main</span>(<span class="pl-k rich-diff-level-one">final</span> <span class="pl-k rich-diff-level-one">String</span>[] <span class="pl-v rich-diff-level-one">args</span>) {
+        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobMain</span>()<span class="pl-k rich-diff-level-one">.</span>init();
     }
 
-    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">init</span>() {
-        <span class="pl-c">// Connect registry center</span>
-        regCenter<span class="pl-k">.</span>init();
-        <span class="pl-c">// Define job initializer</span>
-        <span class="pl-smi">JobInitializer</span> jobInitializer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">JobInitializer</span>(regCenter, jobConfig);
-        <span class="pl-c">// Register job info</span>
-        jobInitializer<span class="pl-k">.</span>init();
-        <span class="pl-c">// Get instance for job scheduler</span>
-        <span class="pl-smi">JobScheduler</span> jobScheduler <span class="pl-k">=</span> <span class="pl-smi">JobScheduler</span><span class="pl-k">.</span>getInstance();
-        <span class="pl-c">// Add job into scheduler</span>
-        jobScheduler<span class="pl-k">.</span>addJob(<span class="pl-s"><span class="pl-pds">"</span>demoJob<span class="pl-pds">"</span></span>, jobInitializer);
-        <span class="pl-c">// Start all jobs</span>
-        jobScheduler<span class="pl-k">.</span>scheduleAllJobs();
+    <span class="pl-k rich-diff-level-one">private</span> <span class="pl-k rich-diff-level-one">void</span> <span class="pl-en rich-diff-level-one">init</span>() {
+        <span class="pl-c rich-diff-level-one">// Connect registry center</span>
+        regCenter<span class="pl-k rich-diff-level-one">.</span>init();
+        <span class="pl-c rich-diff-level-one">// Start job 1</span>
+        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobController</span>(regCenter, jobConfig1)<span class="pl-k rich-diff-level-one">.</span>init();
+        <span class="pl-c rich-diff-level-one">// Start job 2</span>
+        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobController</span>(regCenter, jobConfig2)<span class="pl-k rich-diff-level-one">.</span>init();
+        <span class="pl-c rich-diff-level-one">// Start job 3</span>
+        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobController</span>(regCenter, jobConfig3)<span class="pl-k rich-diff-level-one">.</span>init();
     }
 }</pre></div>
       <footer class="site-footer">
