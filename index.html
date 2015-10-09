@@ -73,6 +73,8 @@
 <li>
 <strong>容错处理：</strong>作业服务器与作业注册中心通信失败则立即停止作业运行，防止作业注册中心将失效的分片项分配给其他作业服务器，而当前作业服务器仍在执行任务，导致重复执行。</li>
 <li>
+<strong>数据处理偏移量存储：</strong>可将上次处理数据的位置储入Zookeeper。</li>
+<li>
 <strong>Spring支持：</strong>支持spring容器，自定义命名空间，占位符等。</li>
 <li>
 <strong>运维平台：</strong>提供运维界面，用于管理作业和注册中心。</li>
@@ -132,13 +134,20 @@
 
     <span class="pl-k">@Override</span>
     <span class="pl-k">protected</span> <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> <span class="pl-en">fetchData</span>(<span class="pl-smi">JobExecutionMultipleShardingContext</span> <span class="pl-v">context</span>) {
-        <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> result <span class="pl-k">=</span> <span class="pl-c">// get data from database by sharding items</span>
+        <span class="pl-k">Map&lt;<span class="pl-smi">Integer</span>, <span class="pl-smi">String</span>&gt;</span> offset <span class="pl-k">=</span> context<span class="pl-k">.</span>getOffsets();
+        <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> result <span class="pl-k">=</span> <span class="pl-c">// get data from database by sharding items and by offset</span>
         <span class="pl-k">return</span> result;
     }
 
     <span class="pl-k">@Override</span>
     <span class="pl-k">protected</span> <span class="pl-k">boolean</span> <span class="pl-en">processData</span>(<span class="pl-smi">JobExecutionMultipleShardingContext</span> <span class="pl-v">context</span>, <span class="pl-smi">Foo</span> <span class="pl-v">data</span>) {
         <span class="pl-c">// process data</span>
+        <span class="pl-c">// ...</span>
+
+        <span class="pl-c">// store offset</span>
+        <span class="pl-k">for</span> (<span class="pl-k">int</span> each <span class="pl-k">:</span> context<span class="pl-k">.</span>getShardingItems()) {
+            updateOffset(each, <span class="pl-s"><span class="pl-pds">"</span>your offset, maybe id<span class="pl-pds">"</span></span>);
+        }
         <span class="pl-k">return</span> <span class="pl-c1">true</span>;
     }
 }</pre></div>
