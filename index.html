@@ -49,21 +49,21 @@
 
 <ul>
 <li>
-<strong>定时任务：</strong> 基于成熟的定时任务作业框架Quartz cron表达式执行定时任务。</li>
+<strong>定时任务：</strong> 基于成熟的定时任务作业框架Quartz CRON表达式执行定时任务。</li>
 <li>
-<strong>作业注册中心：</strong> 基于Zookeeper和其客户端Curator实现的全局作业注册控制中心。用于注册，控制和协调分布式作业执行。</li>
+<strong>作业注册中心：</strong> 基于Zookeeper及其客户端Curator实现的全局注册中心。用于注册，控制和协调分布式作业执行。</li>
 <li>
-<strong>作业分片：</strong> 将一个任务分片成为多个小任务项在多服务器上同时执行。</li>
+<strong>作业分片：</strong> 将单一任务分片为多个小任务项并在多服务器并行执行。</li>
 <li>
-<strong>弹性扩容缩容：</strong> 运行中的作业服务器崩溃，或新增加n台作业服务器，作业框架将在下次作业执行前重新分片，不影响当前作业执行。</li>
+<strong>弹性扩容缩容：</strong> 运行中的作业服务器崩溃或新增，作业框架将在下次作业执行前重分片，不影响当前作业执行。</li>
 <li>
 <strong>支持多种作业执行模式：</strong> 支持OneOff，Perpetual和SequencePerpetual三种作业模式。</li>
 <li>
-<strong>失效转移：</strong> 运行中的作业服务器崩溃不会导致重新分片，只会在下次作业启动时分片。启用失效转移功能可以在本次作业执行过程中，监测其他作业服务器空闲，抓取未完成的孤儿分片项执行。</li>
+<strong>失效转移：</strong> 运行中的作业服务器崩溃不会导致重分片，只会在下次作业启动时分片。启用失效转移功能可以在本次作业执行过程中，监测其他作业服务器空闲，抓取未完成的孤儿分片项执行。</li>
 <li>
 <strong>运行时状态收集：</strong> 监控作业运行时状态，统计最近一段时间处理的数据成功和失败数量，记录作业上次运行开始时间，结束时间和下次运行时间。</li>
 <li>
-<strong>作业停止，恢复和禁用：</strong>用于操作作业启停，并可以禁止某作业运行（上线时常用）。</li>
+<strong>作业停止，恢复和禁用：</strong>用于作业启停，并可禁止某作业运行（上线时常用）。</li>
 <li>
 <strong>被错过执行的作业重触发：</strong>自动记录错过执行的作业，并在上次作业完成后自动触发。可参考Quartz的misfire。</li>
 <li>
@@ -71,15 +71,17 @@
 <li>
 <strong>幂等性：</strong>重复作业任务项判定，不重复执行已运行的作业任务项。由于开启幂等性需要监听作业运行状态，对瞬时反复运行的作业对性能有较大影响。</li>
 <li>
-<strong>容错处理：</strong>作业服务器与Zookeeper服务器通信失败则立即停止作业运行，防止作业注册中心将失效的分片分项配给其他作业服务器，而当前作业服务器仍在执行任务，导致重复执行。</li>
+<strong>容错处理：</strong>作业服务器与作业注册中心通信失败则立即停止作业运行，防止作业注册中心将失效的分片项分配给其他作业服务器，而当前作业服务器仍在执行任务，导致重复执行。</li>
 <li>
-<strong>Spring支持：</strong>支持spring容器，自定义命名空间，支持占位符。</li>
+<strong>Spring支持：</strong>支持spring容器，自定义命名空间，占位符等。</li>
 <li>
-<strong>运维平台：</strong>提供运维界面，可以管理作业和注册中心。</li>
+<strong>运维平台：</strong>提供运维界面，用于管理作业和注册中心。</li>
 </ul>
 
 <h2>
 <a id="相关文档" class="anchor" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3" aria-hidden="true"><span class="octicon octicon-link"></span></a>相关文档</h2>
+
+<p><a href="http://dangdangdotcom.github.io/elastic-job/releaseNotes.html">Release Notes</a></p>
 
 <p><a href="http://dangdangdotcom.github.io/elastic-job/directoryStructure.html">目录结构说明</a></p>
 
@@ -96,6 +98,8 @@
 <p><a href="http://dangdangdotcom.github.io/elastic-job/theory.html">实现原理</a></p>
 
 <p><a href="http://www.infoq.com/cn/news/2015/09/dangdang-elastic-job">InfoQ新闻</a></p>
+
+<p><a href="https://github.com/dangdangdotcom/elastic-job/wiki">Elastic-Job Wiki</a> （由社区志愿者自由编辑的）</p>
 
 <h2>
 <a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Start</h2>
