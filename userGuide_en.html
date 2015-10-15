@@ -212,6 +212,13 @@
 <td>Data fetch count for per fetch process.</td>
 </tr>
 <tr>
+<td>maxTimeDiffSeconds</td>
+<td>int</td>
+<td>N</td>
+<td>-1</td>
+<td>Max seconds of time diff between job servers and register center.<br>If exceed will throw an exception and disable job start.<br>Set -1 means never verify time diff.</td>
+</tr>
+<tr>
 <td>failover</td>
 <td>boolean</td>
 <td>N</td>

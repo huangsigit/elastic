@@ -224,6 +224,13 @@
 <td>每次抓取的数据量</td>
 </tr>
 <tr>
+<td>maxTimeDiffSeconds</td>
+<td>int</td>
+<td>否</td>
+<td>-1</td>
+<td>最大允许的本机与注册中心的时间误差秒数<br>如果时间误差超过配置秒数则作业启动时将抛异常<br>配置为-1表示不校验时间误差</td>
+</tr>
+<tr>
 <td>failover</td>
 <td>boolean</td>
 <td>否</td>
