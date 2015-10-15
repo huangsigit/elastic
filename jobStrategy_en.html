@@ -53,6 +53,13 @@
 	<p>If there are 3 servers, sharding to 9 items, hash code of job name odd, result is: 1=[0], 2=[1], 3=[]</p>
 	<p>If there are 3 servers, sharding to 9 items, hash code of job name even, result is: 3=[0], 2=[1], 1=[]</p>
 </li>
+<li>
+	<p><strong>RotateServerByNameJobShardingStrategy</strong></p>
+	<p><strong>Qualified class name:</strong></p>
+	<p>com.dangdang.ddframe.job.plugin.sharding.strategy.RotateServerByNameJobShardingStrategy</p>
+	<p><strong>Details:</strong></p>
+	<p>Use offset of job name's hash code to assign server IP addresses rotatably.</p>
+</li>
 </ol>
 </li>
 <li>
