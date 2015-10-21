@@ -25,7 +25,6 @@
 <ul>
 <li>Cannot modify job name after job started, if modify job name will be recognized as a new job.</li>
 <li>Same job server only can run one same job instance, because job will register to zookeeper by server IP.</li>
-<li>Elastic-Job use /etc/hosts to retrieve IP address, if retrieved IP address is 127.0.0.1 but not real IP address, please configure this file correctly.</li>
 <li>If job servers crashed, add new one or modify sharding total count，will trigger re-sharding. Trigger re-sharding will cause running perpetual and sequencePerpetual jobs finish current trun and then stop, resume running after re-sharding.</li>
 <li>Only enable "monitorExecution" can make sure job idempotency, but will affect performance, recommend disable "monitorExecution" for instantaneous jobs (for example: trigger per 5 seconds) and implement idempotency by yourself.</li>
 <li>Elastic-Job cannot remove job servers automatically, because it cannot judge server is crashed or remove normally. So if you want remove job servers, please remove znode from zookeeper manually.</li>
