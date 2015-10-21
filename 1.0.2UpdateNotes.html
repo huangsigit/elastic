@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Elastic-job by dangdangdotcom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Elastic-job</h1>
+      <h2 class="project-tagline">Elastic-Job is a distributed scheduled job framework, based on Quartz and Curator.</h2>
+      <a href="https://github.com/dangdangdotcom/elastic-job" class="btn">View on GitHub</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+<h2>
+<a class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>elastic-job 1.0.2升级说明</h2>
+为了扩展性和概念明晰，elastic-job 1.0.2重新定义了作业类型。
+<ul>
+<li>为了扩展方便，将作业类型由api包挪入plugin包，欢迎大家贡献自己的作业类型到plugin。</li>
+<li>重新定义并明晰作业类型。</li>
+<ul>
+<li>原OneOff更名为Simple类型，意为简单实现，未经任何封装的类型。</li>
+<li>提炼抽象出DataFlow类型用于处理数据流。</li>
+<li>原Perpetual更名为ThroughputDataFlow类型，意为高吞吐的数据流作业。</li>
+<li>原SequencePerpetual更名为SequenceDataFlow类型，意为顺序性数据流作业。</li>
+<li>DataFlow父接口增加isStreamingProcess接口，意为数据流类型作业是否使用流式处理（即，有数据则一直不停止作业的处理 -- 对应原Perpetual概念，还是任务中只执行一次抓取/处理 -- 对应原OneOff概念）。</li>
+</ul>
+<li>兼容性问题。</li>
+<ul>
+<li>将原抽象类升级为接口，所以如果之前使用protected实现fetchData，processData等方法，需要改为public。</li>
+<li>其余改动的接口，包括AbstractOneOffElasticJob，AbstractPerpetualElasticJob和AbstractSequencePerpetualElasticJob均将以@Deprecated的形式继续存在一段时间，不会导致升级版本产生兼容问题。</li>
+</ul>
+</ul>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dangdangdotcom/elastic-job">Elastic-job</a> is maintained by <a href="https://github.com/dangdangdotcom">dangdangdotcom</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("elastic-job");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
