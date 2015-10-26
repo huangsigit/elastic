@@ -367,7 +367,7 @@
         &lt;/<span class="pl-ent">constructor-arg</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
     <span class="pl-c">&lt;!-- configure job--&gt;</span>
-    &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>xxxJob<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>com.dangdang.ddframe.job.spring.schedule.SpringJobController<span class="pl-pds">"</span></span> <span class="pl-e">init-method</span>=<span class="pl-s"><span class="pl-pds">"</span>init<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>xxxJob<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>com.dangdang.ddframe.job.spring.schedule.SpringJobScheduler<span class="pl-pds">"</span></span> <span class="pl-e">init-method</span>=<span class="pl-s"><span class="pl-pds">"</span>init<span class="pl-pds">"</span></span>&gt;
         &lt;<span class="pl-ent">constructor-arg</span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">"</span>regCenter<span class="pl-pds">"</span></span> /&gt;
         &lt;<span class="pl-ent">constructor-arg</span>&gt;
             &lt;<span class="pl-ent">bean</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>com.dangdang.ddframe.job.api.JobConfiguration<span class="pl-pds">"</span></span>&gt;
@@ -387,7 +387,7 @@
 <p>If you don't want use spring framework, can use pure java code to start elastic-job.</p>
 
 <pre class="rich-diff-level-zero"><span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.job.api.JobConfiguration</span>;
-<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.job.schedule.JobController</span>;
+<span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.job.api.JobScheduler</span>;
 <span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.reg.base.CoordinatorRegistryCenter</span>;
 <span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.reg.zookeeper.ZookeeperConfiguration</span>;
 <span class="pl-k rich-diff-level-one">import</span> <span class="pl-smi rich-diff-level-one">com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter</span>;
@@ -420,11 +420,11 @@
         <span class="pl-c rich-diff-level-one">// Connect registry center</span>
         regCenter<span class="pl-k rich-diff-level-one">.</span>init();
         <span class="pl-c rich-diff-level-one">// Start job 1</span>
-        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobController</span>(regCenter, jobConfig1)<span class="pl-k rich-diff-level-one">.</span>init();
+        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobScheduler</span>(regCenter, jobConfig1)<span class="pl-k rich-diff-level-one">.</span>init();
         <span class="pl-c rich-diff-level-one">// Start job 2</span>
-        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobController</span>(regCenter, jobConfig2)<span class="pl-k rich-diff-level-one">.</span>init();
+        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobScheduler</span>(regCenter, jobConfig2)<span class="pl-k rich-diff-level-one">.</span>init();
         <span class="pl-c rich-diff-level-one">// Start job 3</span>
-        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobController</span>(regCenter, jobConfig3)<span class="pl-k rich-diff-level-one">.</span>init();
+        <span class="pl-k rich-diff-level-one">new</span> <span class="pl-smi rich-diff-level-one">JobScheduler</span>(regCenter, jobConfig3)<span class="pl-k rich-diff-level-one">.</span>init();
     }
 }</pre></div>
       <footer class="site-footer">
