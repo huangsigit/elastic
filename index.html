@@ -59,7 +59,7 @@
 <li>
 <strong>弹性扩容缩容：</strong> 运行中的作业服务器崩溃或新增，作业框架将在下次作业执行前重分片，不影响当前作业执行。</li>
 <li>
-<strong>支持多种作业执行模式：</strong> 支持OneOff，Perpetual和SequencePerpetual三种作业模式。</li>
+<strong>支持多种作业执行模式：</strong> 支持Simple，ThroughputDataFlow和SequenceDataFlow三种作业模式。</li>
 <li>
 <strong>失效转移：</strong> 运行中的作业服务器崩溃不会导致重分片，只会在下次作业启动时分片。启用失效转移功能可以在本次作业执行过程中，监测其他作业服务器空闲，抓取未完成的孤儿分片项执行。</li>
 <li>
@@ -85,7 +85,13 @@
 <h2>
 <a id="相关文档" class="anchor" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3" aria-hidden="true"><span class="octicon octicon-link"></span></a>相关文档</h2>
 
+<p><a href="http://dangdangdotcom.github.io/elastic-job/downloads.html">下载</a></p>
+
 <p><a href="http://dangdangdotcom.github.io/elastic-job/releaseNotes.html">Release Notes</a></p>
+
+<p><a href="http://dangdangdotcom.github.io/elastic-job/1.0.2UpdateNotes.html">1.0.2接口变更声明</a></p>
+
+<p><a href="http://dangdangdotcom.github.io/elastic-job/distribution.html">何为分布式作业？</a></p>
 
 <p><a href="http://dangdangdotcom.github.io/elastic-job/directoryStructure.html">目录结构说明</a></p>
 
@@ -120,21 +126,21 @@
 &lt;<span class="pl-ent">dependency</span>&gt;
     &lt;<span class="pl-ent">groupId</span>&gt;com.dangdang&lt;/<span class="pl-ent">groupId</span>&gt;
     &lt;<span class="pl-ent">artifactId</span>&gt;elastic-job-core&lt;/<span class="pl-ent">artifactId</span>&gt;
-    &lt;<span class="pl-ent">version</span>&gt;1.0.1&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;1.0.2&lt;/<span class="pl-ent">version</span>&gt;
 &lt;/<span class="pl-ent">dependency</span>&gt;
 
 <span class="pl-c">&lt;!-- 使用springframework自定义命名空间时引入 --&gt;</span>
 &lt;<span class="pl-ent">dependency</span>&gt;
     &lt;<span class="pl-ent">groupId</span>&gt;com.dangdang&lt;/<span class="pl-ent">groupId</span>&gt;
     &lt;<span class="pl-ent">artifactId</span>&gt;elastic-job-spring&lt;/<span class="pl-ent">artifactId</span>&gt;
-    &lt;<span class="pl-ent">version</span>&gt;1.0.1&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;1.0.2&lt;/<span class="pl-ent">version</span>&gt;
 &lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
 
 <ul>
 <li><strong>作业开发</strong></li>
 </ul>
 
-<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyElasticJob</span> <span class="pl-k">extends</span> <span class="pl-e">AbstractPerpetualElasticJob&lt;<span class="pl-smi">Foo</span>&gt;</span> {
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyElasticJob</span> <span class="pl-k">extends</span> <span class="pl-e">AbstractThroughputDataFlowElasticJob&lt;<span class="pl-smi">Foo</span>&gt;</span> {
 
     <span class="pl-k">@Override</span>
     <span class="pl-k">protected</span> <span class="pl-k">List&lt;<span class="pl-smi">Foo</span>&gt;</span> <span class="pl-en">fetchData</span>(<span class="pl-smi">JobExecutionMultipleShardingContext</span> <span class="pl-v">context</span>) {
