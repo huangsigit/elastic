@@ -32,6 +32,12 @@
 <li>原SequencePerpetual更名为SequenceDataFlow类型，意为顺序性数据流作业。</li>
 <li>DataFlow父接口增加isStreamingProcess接口，意为数据流类型作业是否使用流式处理（即，有数据则一直不停止作业的处理 -- 对应原Perpetual概念，还是任务中只执行一次抓取/处理 -- 对应原OneOff概念）。</li>
 </ul>
+<li>迁移作业调度器类。</li>
+<ul>
+<li>迁移意义不明的schedule包，将其拆分至api和internal。</li>
+<li>com.dangdang.ddframe.job.schedule.JobController更名为com.dangdang.ddframe.job.api.JobScheduler，如果使用原生类启动作业，请更新。</li>
+<li>com.dangdang.ddframe.job.spring.schedule.SpringJobController更名为com.dangdang.ddframe.job.spring.schedule.SpringJobScheduler，如果使用非Spring命名空间启动作业，请更新。</li>
+</ul>
 <li>兼容性问题。</li>
 <ul>
 <li>将原抽象类升级为接口，所以如果之前使用protected实现fetchData，processData等方法，需要改为public。</li>
