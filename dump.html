@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Elastic-job by dangdangdotcom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Elastic-job</h1>
+      <h2 class="project-tagline">Elastic-Job is a distributed scheduled job framework, based on Quartz and Curator.</h2>
+      <a href="https://github.com/dangdangdotcom/elastic-job" class="btn">View on GitHub</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+<h2>
+<a class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>dump作业运行信息（便于开发者debug）</h2>
+<p>由于在使用elastic-job中可能会碰到一些分布式问题，导致作业运行不稳定。由于无法在生产环境调试，通过dump命令可以把作业内部相关信息dump出来，方便开发者debug分析；另外为了不泄露隐私，已经把相关信息中的ip地址以ip1,ip2...的形式过滤掉了，可以在互联网上公开传输环境信息，便于进一步完善elastic-job。</p>
+<ul>
+<li>
+<p><strong>如何使用</strong></p>
+<p>1.配置监听端口(两种配置方式)</p>
+<p>
+Spring方式
+<div class="highlight highlight-text-xml"><pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>UTF-8<span class="pl-pds">"</span></span>?&gt;
+&lt;<span class="pl-ent">beans</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.springframework.org/schema/beans<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">reg</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.dangdang.com/schema/ddframe/reg<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">job</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.dangdang.com/schema/ddframe/job<span class="pl-pds">"</span></span>
+    <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">schemaLocation</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.springframework.org/schema/beans </span>
+<span class="pl-s">                        http://www.springframework.org/schema/beans/spring-beans.xsd </span>
+<span class="pl-s">                        http://www.dangdang.com/schema/ddframe/reg </span>
+<span class="pl-s">                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd </span>
+<span class="pl-s">                        http://www.dangdang.com/schema/ddframe/job </span>
+<span class="pl-s">                        http://www.dangdang.com/schema/ddframe/job/job.xsd </span>
+<span class="pl-s">                        <span class="pl-pds">"</span></span>&gt;
+    <span class="pl-c">&lt;!--配置作业注册中心 --&gt;</span>
+    &lt;<span class="pl-ent">reg</span><span class="pl-ent">:</span><span class="pl-ent">zookeeper</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>regCenter<span class="pl-pds">"</span></span> <span class="pl-e">serverLists</span>=<span class="pl-s"><span class="pl-pds">"</span> yourhost:2181<span class="pl-pds">"</span></span> <span class="pl-e">namespace</span>=<span class="pl-s"><span class="pl-pds">"</span>dd-job<span class="pl-pds">"</span></span> <span class="pl-e">baseSleepTimeMilliseconds</span>=<span class="pl-s"><span class="pl-pds">"</span>1000<span class="pl-pds">"</span></span> <span class="pl-e">maxSleepTimeMilliseconds</span>=<span class="pl-s"><span class="pl-pds">"</span>3000<span class="pl-pds">"</span></span> <span class="pl-e">maxRetries</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> /&gt;
+
+    <span class="pl-c">&lt;!-- 配置作业--&gt;</span>
+    &lt;<span class="pl-ent">job</span><span class="pl-ent">:</span><span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>oneOffElasticJob<span class="pl-pds">"</span></span> <span class="pl-e"><font color="red">monitorPort="9888"</font> </span><span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>xxx.MyElasticJob<span class="pl-pds">"</span></span> <span class="pl-e">regCenter</span>=<span class="pl-s"><span class="pl-pds">"</span>regCenter<span class="pl-pds">"</span></span> <span class="pl-e">cron</span>=<span class="pl-s"><span class="pl-pds">"</span>0/10 * * * * ?<span class="pl-pds">"</span></span>   <span class="pl-e">shardingTotalCount</span>=<span class="pl-s"><span class="pl-pds">"</span>3<span class="pl-pds">"</span></span> <span class="pl-e">shardingItemParameters</span>=<span class="pl-s"><span class="pl-pds">"</span>0=A,1=B,2=C<span class="pl-pds">"</span></span> /&gt;
+&lt;/<span class="pl-ent">beans</span>&gt;</pre></div></p>
+<p>
+Java方式
+</p>
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">JobMain</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">final</span> <span class="pl-smi">String[]</span> <span class="pl-v">args</span>) {
+        ZookeeperConfiguration <span class="pl-pds">zkConfig</span> = <span class="pl-k">new</span> ZookeeperConfiguration(<span class="pl-pds">"localhost:2181"</span>, <span class="pl-pds">"elasticjob-example"</span>, 1000, 3000, 3);</span>
+        <span class="pl-pds"><font color="red">zkConfig</span>.setMonitorPort(9888);</font>
+        <span class="pl-c">// ...</span>
+    }
+}</pre></div>
+<p>2.启动作业</p>
+<p>3.执行dump命令</p>
+<p>dump命令完全参照Zookeeper的四字命令的理念</p>
+<p>echo "dump" | nc <font color="red"><任意一台作业服务器IP></font> 9888</p>
+<p><img src="images/dump.jpg"></p>
+<p>导出到文件</p>
+echo "dump" | nc <font color="red"><任意一台作业服务器IP></font> 9888 > job_debug.txt</p>
+</li>
+<li>
+<p><strong>使用注意事项</strong></p>
+<p>务必更新到1.0.3-snapshot版本</strong></p>
+</li>
+</ul>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dangdangdotcom/elastic-job">Elastic-job</a> is maintained by <a href="https://github.com/dangdangdotcom">dangdangdotcom</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("elastic-job");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>

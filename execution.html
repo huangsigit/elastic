@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Elastic-job by dangdangdotcom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Elastic-job</h1>
+      <h2 class="project-tagline">Elastic-Job is a distributed scheduled job framework, based on Quartz and Curator.</h2>
+      <a href="https://github.com/dangdangdotcom/elastic-job" class="btn">View on GitHub</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/dangdangdotcom/elastic-job/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+<h2>
+<a class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>作业运行状态监控</h2>
+<p>通过监听elastic-job的zookeeper注册中心的几个关键节点即可完成作业运行状态监控功能。</p>
+<ul>
+<li>
+<p><strong>监听作业服务器存活</strong></p>
+<p>监听job_name\<strong>servers</strong>\ip_address\<strong>status</strong>节点是否存在。该节点为临时节点，如果作业服务器下线，该节点将删除。</p>
+</li>
+<li>
+<p><strong>数据流类型作业，可通过监听近期数据处理成功数判断作业流量是否正常</strong></p>
+<p>监听job_name\<strong>servers</strong>\ip_address\<strong>processSuccessCount</strong>节点的值。如果小于作业正常处理的阀值，可选择报警。</p>
+</li>
+<li>
+<p><strong>数据流类型作业，可通过监听近期数据处理失败数判断作业处理结果</strong></p>
+<p>监听job_name\<strong>servers</strong>\ip_address\<strong>processFailureCount</strong>节点的值。如果大于0，可选择报警。</p>
+</li>
+</ul>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dangdangdotcom/elastic-job">Elastic-job</a> is maintained by <a href="https://github.com/dangdangdotcom">dangdangdotcom</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("elastic-job");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>

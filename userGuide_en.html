@@ -66,7 +66,7 @@
         <span class="pl-c">// process data</span>
         <span class="pl-k">return</span> <span class="pl-c1">true</span>;
     }
-	
+
     <span class="pl-k">@Override</span>
     <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">isStreamingProcess</span>() {
         <span class="pl-k">return</span> <span class="pl-c1">true</span>;
@@ -94,7 +94,7 @@
         <span class="pl-c">// process data</span>
         <span class="pl-k">return</span> <span class="pl-c1">true</span>;
     }
-	
+
     <span class="pl-k">@Override</span>
     <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">isStreamingProcess</span>() {
         <span class="pl-k">return</span> <span class="pl-c1">true</span>;
@@ -198,6 +198,14 @@
 <td>N</td>
 <td>true</td>
 <td>Monitor execution status.<br>For instantaneous job (like fire per 5 seconds), recommend disable monitor execution to improve performance. Because of instantaneous job don't need know status exactly, the status you see maybe changed soon. Developer can monitor data accumulate. Disabled this cannot guarantee duplicate data fetch, please check duplicate data by yourself. <br>For long time job, enable this is an good idea.
+</td>
+</tr>
+<tr>
+<td>monitorPort</td>
+<td>int</td>
+<td>否</td>
+<td>-1</td>
+<td>Monitor port.<br>Dump job running informations.<br>Example:echo "dump" | nc 127.0.0.1 9001
 </td>
 </tr>
 <tr>
