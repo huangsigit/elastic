@@ -51,8 +51,8 @@ Java方式
 </p>
 <div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">JobMain</span> {
     <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">final</span> <span class="pl-smi">String[]</span> <span class="pl-v">args</span>) {
-        ZookeeperConfiguration <span class="pl-pds">zkConfig</span> = <span class="pl-k">new</span> ZookeeperConfiguration(<span class="pl-pds">"localhost:2181"</span>, <span class="pl-pds">"elasticjob-example"</span>, 1000, 3000, 3);</span>
-        <span class="pl-pds"><font color="red">zkConfig</span>.setMonitorPort(9888);</font>
+        JobConfiguration <span class="pl-pds">jobConfig</span> = <span class="pl-k">new</span> JobConfiguration(<span class="pl-pds">"simpleElasticDemoJob"</span>, SimpleJobDemo<span class="pl-k">.class</span>, 10, <span class="pl-pds">"0/5 * * * * ?"</span>);</span>
+        <span class="pl-pds"><font color="red">jobConfig</span>.setMonitorPort(9888);</font>
         <span class="pl-c">// ...</span>
     }
 }</pre></div>
