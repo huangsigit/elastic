@@ -18,7 +18,7 @@
 
 &lt;h1 id=&#34;elastic-job-distributed-scheduled-job-solution:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Elastic-Job - distributed scheduled job solution&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.apache.org/licenses/LICENSE-2.0.html&#34;&gt;&lt;img src=&#34;http://dangdangdotcom.github.io/elastic-job/images/license.svg&#34; alt=&#34;Hex.pm&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.apache.org/licenses/LICENSE-2.0.html&#34;&gt;&lt;img src=&#34;img/license.svg&#34; alt=&#34;Hex.pm&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Elastic-Job&lt;/code&gt;是&lt;code&gt;ddframe&lt;/code&gt;中&lt;code&gt;dd-job&lt;/code&gt;的作业模块中分离出来的分布式弹性作业框架。去掉了和&lt;code&gt;dd-job&lt;/code&gt;中的监控和&lt;code&gt;ddframe&lt;/code&gt;接入规范部分。该项目基于成熟的开源产品&lt;code&gt;Quartz&lt;/code&gt;和&lt;code&gt;Zookeeper&lt;/code&gt;及其客户端&lt;code&gt;Curator&lt;/code&gt;进行二次开发。&lt;/p&gt;
 
