@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Elastic-JOB</title>
+    <title></title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -60,6 +60,11 @@ body {
 </head>
 <body>
 
+<style>
+    .container {
+        width: 95%;
+    }
+</style>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -92,38 +97,16 @@ body {
     
 </nav>
 
-<section id="intro">
-    
-    <div class="intro-header">
-        <div class="container header-container">
-            <div class="row">
-                <div class="intro-image col-md-4"></div>
-                <div class="intro-message col-md-6">
-                    <h1>Elastic-JOB</h1>
-                    <h3>Elastic-Job - distributed scheduled job solution</h3>
-                    
-                    
-                    
-                    <iframe class="github-btn" src="https://ghbtns.com/github-btn.html?user=dangdangdotcom&repo=Elastic-JOB&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
-                    
-                    <hr class="intro-divider">
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    
-</section>
 
 <section id="services">
+   <div class="content-section-a">
 
-
- 
-        <div class="container">
-            <div class="row">
-                <div>
-                    <div class="clearfix"></div>
-                    
+      <div class="container">
+        <div class="clearfix"></div>
+        <div class="row">
+	
+              <div class="col-sm-8">
+		 
 
 <h1 id="elastic-job-distributed-scheduled-job-solution:d680e8a854a7cbad6d490c445cba2eba">Elastic-Job - distributed scheduled job solution</h1>
 
@@ -263,60 +246,36 @@ body {
 &lt;/beans&gt;
 </code></pre>
 
-                </div>
-            </div>
-        </div>
-        
-
-
-<div class="container">
-    <div class="row">
-        <div>
-            <div class="clearfix"></div>
-             <h2>相关文档</h2>
-             <ul>
-              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/release_notes/" target="_blank">Release Notes</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.0.2/" target="_blank">elastic-job 1.0.2升级说明</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/distribution/" target="_blank">何为分布式作业？</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/directory_structure/" target="_blank">目录结构说明</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/usage/" target="_blank">使用步骤</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/" target="_blank">开发指南</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/limitations/" target="_blank">使用限制</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/web_console/" target="_blank">运维平台</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/source_code_guide/" target="_blank">阅读源码编译问题说明</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/theory/" target="_blank">实现原理</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/job_strategy/" target="_blank">作业分片策略</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/execution_monitor/" target="_blank">作业运行状态监控</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/dump/" target="_blank">dump作业运行信息（便于开发者debug）</a></li>
-             
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/quick_start/" target="_blank">快速上手</a></li>
-             
-             </ul>
+	</div>
+	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
+		 <nav id="TableOfContents">
+<ul>
+<li><a href="#elastic-job-distributed-scheduled-job-solution:d680e8a854a7cbad6d490c445cba2eba">Elastic-Job - distributed scheduled job solution</a>
+<ul>
+<li><a href="#主要贡献者:d680e8a854a7cbad6d490c445cba2eba">主要贡献者</a></li>
+<li><a href="#elastic-job主要功能:d680e8a854a7cbad6d490c445cba2eba">Elastic-Job主要功能</a>
+<ul>
+<li><a href="#主要功能:d680e8a854a7cbad6d490c445cba2eba">主要功能</a></li>
+<li><a href="#其他功能:d680e8a854a7cbad6d490c445cba2eba">其他功能</a></li>
+<li><a href="#非功能需求:d680e8a854a7cbad6d490c445cba2eba">非功能需求</a></li>
+</ul></li>
+<li><a href="#quick-start:d680e8a854a7cbad6d490c445cba2eba">Quick Start</a></li>
+</ul></li>
+</ul>
+</nav>
+	</div>
         </div>
     </div>
 </div>
+</div>
 
 </section>
-
 
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Elastic-JOB All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy;  All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>

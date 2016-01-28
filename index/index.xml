@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Indexes on Elastic-JOB</title>
+    <link>http://dangdangdotcom.github.io/elastic-job/index/</link>
+    <description>Recent content in Indexes on Elastic-JOB</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://dangdangdotcom.github.io/elastic-job/index/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title></title>
+      <link>http://dangdangdotcom.github.io/elastic-job/index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/index/</guid>
+      <description>
+
+&lt;h1 id=&#34;elastic-job-distributed-scheduled-job-solution:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Elastic-Job - distributed scheduled job solution&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.apache.org/licenses/LICENSE-2.0.html&#34;&gt;&lt;img src=&#34;http://dangdangdotcom.github.io/elastic-job/images/license.svg&#34; alt=&#34;Hex.pm&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Elastic-Job&lt;/code&gt;是&lt;code&gt;ddframe&lt;/code&gt;中&lt;code&gt;dd-job&lt;/code&gt;的作业模块中分离出来的分布式弹性作业框架。去掉了和&lt;code&gt;dd-job&lt;/code&gt;中的监控和&lt;code&gt;ddframe&lt;/code&gt;接入规范部分。该项目基于成熟的开源产品&lt;code&gt;Quartz&lt;/code&gt;和&lt;code&gt;Zookeeper&lt;/code&gt;及其客户端&lt;code&gt;Curator&lt;/code&gt;进行二次开发。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ddframe&lt;/code&gt;其他模块也有可独立开源的部分，之前当当曾开源过&lt;code&gt;dd-soa&lt;/code&gt;的基石模块&lt;code&gt;DubboX&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;和&lt;code&gt;ddframe&lt;/code&gt;关系见下图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/ddframe.jpg&#34; alt=&#34;ddframe演进图&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;主要贡献者:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;主要贡献者&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;张亮&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&#34;http://www.dangdang.com/&#34;&gt;当当网&lt;/a&gt; zhangliang@dangdang.com&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;曹昊&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&#34;http://www.dangdang.com/&#34;&gt;当当网&lt;/a&gt; caohao@dangdang.com&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;江树建 &lt;a href=&#34;http://www.dangdang.com/&#34;&gt;当当网&lt;/a&gt; jiangshujian@dangdang.com&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;讨论QQ群：&lt;/strong&gt;430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流）&lt;/p&gt;
+
+&lt;h2 id=&#34;elastic-job主要功能:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Elastic-Job主要功能&lt;/h2&gt;
+
+&lt;h3 id=&#34;主要功能:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;主要功能&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;分布式：&lt;/strong&gt; 重写&lt;code&gt;Quartz&lt;/code&gt;基于数据库的分布式功能，改用&lt;code&gt;Zookeeper&lt;/code&gt;实现注册中心。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;并行调度：&lt;/strong&gt; 采用任务分片方式实现。将一个任务拆分为n个独立的任务项，由分布式的服务器并行执行各自分配到的分片项。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;弹性扩容缩容：&lt;/strong&gt; 将任务拆分为n个任务项后，各个服务器分别执行各自分配到的任务项。一旦有新的服务器加入集群，或现有服务器下线，&lt;code&gt;elastic-job&lt;/code&gt;将在保留本次任务执行不变的情况下，下次任务开始前触发任务重分片。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;集中管理：&lt;/strong&gt; 采用基于&lt;code&gt;Zookeeper&lt;/code&gt;的注册中心，集中管理和协调分布式作业的状态，分配和监听。外部系统可直接根据&lt;code&gt;Zookeeper&lt;/code&gt;的数据管理和监控&lt;code&gt;elastic-job&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;定制化流程型任务：&lt;/strong&gt; 作业可分为简单和数据流处理两种模式，数据流又分为高吞吐处理模式和顺序性处理模式，其中高吞吐处理模式可以开启足够多的线程快速的处理数据，而顺序性处理模式将每个分片项分配到一个独立线程，用于保证同一分片的顺序性，这点类似于&lt;code&gt;kafka&lt;/code&gt;的分区顺序性。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;其他功能:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;其他功能&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;失效转移：&lt;/strong&gt; 弹性扩容缩容在下次作业运行前重分片，但本次作业执行的过程中，下线的服务器所分配的作业将不会重新被分配。失效转移功能可以在本次作业运行中用空闲服务器抓取孤儿作业分片执行。同样失效转移功能也会牺牲部分性能。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Spring命名空间支持：&lt;/strong&gt; &lt;code&gt;elastic-job&lt;/code&gt;可以不依赖于&lt;code&gt;spring&lt;/code&gt;直接运行，但是也提供了自定义的命名空间方便与&lt;code&gt;spring&lt;/code&gt;集成。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;运维平台：&lt;/strong&gt; 提供&lt;code&gt;web&lt;/code&gt;控制台用于管理作业。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;非功能需求:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;非功能需求&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;稳定性：&lt;/strong&gt; 在服务器无波动的情况下，并不会重新分片；即使服务器有波动，下次分片的结果也会根据服务器IP和作业名称哈希值算出稳定的分片顺序，尽量不做大的变动。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;高性能：&lt;/strong&gt; 同一服务器的批量数据处理采用自动切割并多线程并行处理。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;灵活性：&lt;/strong&gt; 所有在功能和性能之间的权衡，都可通过配置开启/关闭。如：&lt;code&gt;elastic-job&lt;/code&gt;会将作业运行状态的必要信息更新到注册中心。如果作业执行频度很高，会造成大量&lt;code&gt;Zookeeper&lt;/code&gt;写操作，而分布式&lt;code&gt;Zookeeper&lt;/code&gt;同步数据可能引起网络风暴。因此为了考虑性能问题，可以牺牲一些功能，而换取性能的提升。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;一致性：&lt;/strong&gt; &lt;code&gt;elastic-job&lt;/code&gt;可牺牲部分性能用以保证同一分片项不会同时在两个服务器上运行。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;容错性：&lt;/strong&gt; 作业服务器和&lt;code&gt;Zookeeper&lt;/code&gt;断开连接则立即停止作业运行，用于防止分片已经重新分配，而脑裂的服务器仍在继续执行，导致重复执行。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;quick-start:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Quick Start&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;引入maven依赖&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;已经发布到中央仓库，可以在&lt;code&gt;pom.xml&lt;/code&gt;文件中直接引入&lt;code&gt;maven&lt;/code&gt;坐标。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;!-- 引入elastic-job核心模块 --&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;elastic-job-core&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.0.2&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+
+&amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;elastic-job-spring&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.0.2&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;作业开发&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob extends AbstractThroughputDataFlowElasticJob&amp;lt;Foo&amp;gt; {
+
+    @Override
+    protected List&amp;lt;Foo&amp;gt; fetchData(JobExecutionMultipleShardingContext context) {
+        Map&amp;lt;Integer, String&amp;gt; offset = context.getOffsets();
+        List&amp;lt;Foo&amp;gt; result = // get data from database by sharding items and by offset
+        return result;
+    }
+
+    @Override
+    protected boolean processData(JobExecutionMultipleShardingContext context, Foo data) {
+        // process data
+        // ...
+
+        // store offset
+        for (int each : context.getShardingItems()) {
+            updateOffset(each, &amp;quot;your offset, maybe id&amp;quot;);
+        }
+        return true;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;作业配置&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
+    xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+    xmlns:reg=&amp;quot;http://www.dangdang.com/schema/ddframe/reg&amp;quot;
+    xmlns:job=&amp;quot;http://www.dangdang.com/schema/ddframe/job&amp;quot;
+    xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd
+                        &amp;quot;&amp;gt;
+    &amp;lt;!--配置作业注册中心 --&amp;gt;
+    &amp;lt;reg:zookeeper id=&amp;quot;regCenter&amp;quot; serverLists=&amp;quot; yourhost:2181&amp;quot; namespace=&amp;quot;dd-job&amp;quot; baseSleepTimeMilliseconds=&amp;quot;1000&amp;quot; maxSleepTimeMilliseconds=&amp;quot;3000&amp;quot; maxRetries=&amp;quot;3&amp;quot; /&amp;gt;
+
+    &amp;lt;!-- 配置作业--&amp;gt;
+    &amp;lt;job:bean id=&amp;quot;oneOffElasticJob&amp;quot; class=&amp;quot;xxx.MyElasticJob&amp;quot; regCenter=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; shardingTotalCount=&amp;quot;3&amp;quot; shardingItemParameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
