@@ -495,7 +495,23 @@ body {
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left">无验证</td>
-<td align="left">连接Zookeeper的权限令牌<br />缺省为不需要权限验证</td>
+<td align="left">连接<code>Zookeeper</code>的权限令牌<br />缺省为不需要权限验证</td>
+</tr>
+
+<tr>
+<td>nestedPort</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">-1</td>
+<td align="left">内嵌<code>Zookeeper</code>的端口号<br />-1表示不开启内嵌<code>Zookeeper</code></td>
+</tr>
+
+<tr>
+<td>nestedDataDir</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">内嵌<code>Zookeeper</code>的数据存储路径<br />为空表示不开启内嵌<code>Zookeeper</code></td>
 </tr>
 </tbody>
 </table>
