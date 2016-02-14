@@ -115,6 +115,9 @@ body {
 <ol>
 <li>精简项目模块，移除elastic-job-test模块</li>
 <li>功能提升Issuse#16，提供内嵌zookeeper，简化开发环境</li>
+<li>功能提升Issuse#28，DataFlow类型作业增加processData批量处理数据的方法。
+由于功能提升导致之前的数据流作业接口由2个变为4个，原AbstractThroughputDataFlowElasticJob和AbstractSequenceDataFlowElasticJob改变为AbstractIndividualThroughputDataFlowElasticJob、AbstractIndividualSequenceDataFlowElasticJob，并增加两种作业类型：AbstractBatchThroughputDataFlowElasticJob、AbstractBatchSequenceDataFlowElasticJob</li>
+<li>接口变更，便于分类清晰，将com.dangdang.ddframe.job.plugin.job.type.AbstractSimpleElasticJob移动至com.dangdang.ddframe.job.plugin.job.type.simple.AbstractSimpleElasticJob，数据流作业类型移动至com.dangdang.ddframe.job.plugin.job.type.dataflow包</li>
 </ol>
 
 <h2 id="1-0-3:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.3</h2>

@@ -137,7 +137,7 @@ body {
 
 <p>作业执行时会将<code>fetchData</code>的数据传递给<code>processData</code>处理，其中<code>processData</code>得到的数据是通过多线程（线程池大小可配）拆分的。如果采用流式作业处理方式，建议<code>processData</code>处理数据后更新其状态，避免<code>fetchData</code>再次抓取到，从而使得作业永远不会停止。<code>processData</code>的返回值用于表示数据是否处理成功，抛出异常或者返回<code>false</code>将会在统计信息中归入失败次数，返回<code>true</code>则归入成功次数。</p>
 
-<pre><code class="language-java">public class MyElasticJob extends AbstractThroughputDataFlowElasticJob&lt;Foo&gt; {
+<pre><code class="language-java">public class MyElasticJob extends AbstractIndividualSequenceDataFlowElasticJob&lt;Foo&gt; {
     
     @Override
     public List&lt;Foo&gt; fetchData(JobExecutionMultipleShardingContext context) {
@@ -169,7 +169,7 @@ body {
 
 <p><code>SequenceDataFlow</code>类型作业和<code>ThroughputDataFlow</code>作业类型极为相似，所不同的是<code>ThroughputDataFlow</code>作业类型可以将获取到的数据多线程处理，但不会保证多线程处理数据的顺序。如：从<code>2</code>个分片共获取到<code>100</code>条数据，第<code>1</code>个分片<code>40</code>条，第<code>2</code>个分片<code>60</code>条，配置为两个线程处理，则第<code>1</code>个线程处理前<code>50</code>条数据，第<code>2</code>个线程处理后<code>50</code>条数据，无视分片项；<code>SequenceDataFlow</code>类型作业则根据当前服务器所分配的分片项数量进行多线程处理，每个分片项使用同一线程处理，防止了同一分片的数据被多线程处理，从而导致的顺序问题。如：从<code>2</code>个分片共获取到<code>100</code>条数据，第<code>1</code>个分片<code>40</code>条，第<code>2</code>个分片<code>60</code>条，则系统自动分配两个线程处理，第<code>1</code>个线程处理第<code>1</code>个分片的<code>40</code>条数据，第<code>2</code>个线程处理第<code>2</code>个分片的<code>60</code>条数据。由于<code>ThroughputDataFlow</code>作业可以使用多于分片项的任意线程数处理，所以性能调优的可能会优于<code>SequenceDataFlow</code>作业。</p>
 
-<pre><code class="language-java">public class MyElasticJob extends AbstractSequenceDataFlowElasticJob&lt;Foo&gt; {
+<pre><code class="language-java">public class MyElasticJob extends AbstractIndividualSequenceDataFlowElasticJob&lt;Foo&gt; {
     
     @Override
     public List&lt;Foo&gt; fetchData(JobExecutionSingleShardingContext context) {
@@ -194,6 +194,10 @@ body {
     }
 }
 </code></pre>
+
+<h3 id="批量处理:74c632aa9613b8dd6b95bfab1ba313e2">批量处理</h3>
+
+<p>为了提高数据处理效率，数据流类型作业提供了批量处理数据的功能。之前逐条处理数据的两个抽象类分别是<code>AbstractIndividualSequenceDataFlowElasticJob</code>和<code>AbstractIndividualSequenceDataFlowElasticJob</code>，批量处理则使用另外两个接口<code>AbstractBatchSequenceDataFlowElasticJob</code>和<code>AbstractBatchSequenceDataFlowElasticJob</code>。不同之处在于<code>processData</code>方法的返回值从<code>boolean</code>类型变为<code>int</code>类型，用于表示一批数据处理的成功数量，第二个入参则转变为<code>List</code>数据集合。</p>
 
 <h3 id="异常处理:74c632aa9613b8dd6b95bfab1ba313e2">异常处理</h3>
 
@@ -606,6 +610,7 @@ public class JobDemo {
 <li><a href="#throughputdataflow类型作业:74c632aa9613b8dd6b95bfab1ba313e2">ThroughputDataFlow类型作业</a></li>
 <li><a href="#sequencedataflow类型作业:74c632aa9613b8dd6b95bfab1ba313e2">SequenceDataFlow类型作业</a></li>
 </ul></li>
+<li><a href="#批量处理:74c632aa9613b8dd6b95bfab1ba313e2">批量处理</a></li>
 <li><a href="#异常处理:74c632aa9613b8dd6b95bfab1ba313e2">异常处理</a></li>
 </ul></li>
 <li><a href="#作业配置:74c632aa9613b8dd6b95bfab1ba313e2">作业配置</a>
