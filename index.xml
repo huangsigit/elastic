@@ -92,14 +92,14 @@
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;elastic-job-core&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.0.3&amp;lt;/version&amp;gt;
+    &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 
 &amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt;
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;elastic-job-spring&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.0.3&amp;lt;/version&amp;gt;
+    &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -166,12 +166,13 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;1-0-4-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.4-snapshot&lt;/h2&gt;
+&lt;h2 id=&#34;1-0-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.4&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;精简项目模块，移除elastic-job-test模块&lt;/li&gt;
+&lt;li&gt;功能提升，作业自定义参数设置功能，可通过JobScheduler的setField方法完成&lt;/li&gt;
 &lt;li&gt;功能提升Issuse#16，提供内嵌zookeeper，简化开发环境&lt;/li&gt;
-&lt;li&gt;功能提升Issuse#28，DataFlow类型作业增加processData批量处理数据的方法。
+&lt;li&gt;功能提升Issuse#28，DataFlow类型作业增加processData批量处理数据的方法
 由于功能提升导致之前的数据流作业接口由2个变为4个，原AbstractThroughputDataFlowElasticJob和AbstractSequenceDataFlowElasticJob改变为AbstractIndividualThroughputDataFlowElasticJob、AbstractIndividualSequenceDataFlowElasticJob，并增加两种作业类型：AbstractBatchThroughputDataFlowElasticJob、AbstractBatchSequenceDataFlowElasticJob&lt;/li&gt;
 &lt;li&gt;接口变更，便于分类清晰，将com.dangdang.ddframe.job.plugin.job.type.AbstractSimpleElasticJob移动至com.dangdang.ddframe.job.plugin.job.type.simple.AbstractSimpleElasticJob，数据流作业类型移动至com.dangdang.ddframe.job.plugin.job.type.dataflow包&lt;/li&gt;
 &lt;/ol&gt;

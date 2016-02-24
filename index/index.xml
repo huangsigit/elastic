@@ -92,14 +92,14 @@
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;elastic-job-core&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.0.3&amp;lt;/version&amp;gt;
+    &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 
 &amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt;
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;elastic-job-spring&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.0.3&amp;lt;/version&amp;gt;
+    &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
