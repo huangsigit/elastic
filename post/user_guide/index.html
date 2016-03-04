@@ -197,7 +197,7 @@ body {
 
 <h3 id="批量处理:74c632aa9613b8dd6b95bfab1ba313e2">批量处理</h3>
 
-<p>为了提高数据处理效率，数据流类型作业提供了批量处理数据的功能。之前逐条处理数据的两个抽象类分别是<code>AbstractIndividualSequenceDataFlowElasticJob</code>和<code>AbstractIndividualSequenceDataFlowElasticJob</code>，批量处理则使用另外两个接口<code>AbstractBatchSequenceDataFlowElasticJob</code>和<code>AbstractBatchSequenceDataFlowElasticJob</code>。不同之处在于<code>processData</code>方法的返回值从<code>boolean</code>类型变为<code>int</code>类型，用于表示一批数据处理的成功数量，第二个入参则转变为<code>List</code>数据集合。</p>
+<p>为了提高数据处理效率，数据流类型作业提供了批量处理数据的功能。之前逐条处理数据的两个抽象类分别是<code>AbstractIndividualThroughputDataFlowElasticJob</code>和<code>AbstractIndividualSequenceDataFlowElasticJob</code>，批量处理则使用另外两个接口<code>AbstractBatchThroughputDataFlowElasticJob</code>和<code>AbstractBatchSequenceDataFlowElasticJob</code>。不同之处在于<code>processData</code>方法的返回值从<code>boolean</code>类型变为<code>int</code>类型，用于表示一批数据处理的成功数量，第二个入参则转变为<code>List</code>数据集合。</p>
 
 <h3 id="异常处理:74c632aa9613b8dd6b95bfab1ba313e2">异常处理</h3>
 

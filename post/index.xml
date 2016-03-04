@@ -347,7 +347,7 @@
 
 &lt;h3 id=&#34;批量处理:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;批量处理&lt;/h3&gt;
 
-&lt;p&gt;为了提高数据处理效率，数据流类型作业提供了批量处理数据的功能。之前逐条处理数据的两个抽象类分别是&lt;code&gt;AbstractIndividualSequenceDataFlowElasticJob&lt;/code&gt;和&lt;code&gt;AbstractIndividualSequenceDataFlowElasticJob&lt;/code&gt;，批量处理则使用另外两个接口&lt;code&gt;AbstractBatchSequenceDataFlowElasticJob&lt;/code&gt;和&lt;code&gt;AbstractBatchSequenceDataFlowElasticJob&lt;/code&gt;。不同之处在于&lt;code&gt;processData&lt;/code&gt;方法的返回值从&lt;code&gt;boolean&lt;/code&gt;类型变为&lt;code&gt;int&lt;/code&gt;类型，用于表示一批数据处理的成功数量，第二个入参则转变为&lt;code&gt;List&lt;/code&gt;数据集合。&lt;/p&gt;
+&lt;p&gt;为了提高数据处理效率，数据流类型作业提供了批量处理数据的功能。之前逐条处理数据的两个抽象类分别是&lt;code&gt;AbstractIndividualThroughputDataFlowElasticJob&lt;/code&gt;和&lt;code&gt;AbstractIndividualSequenceDataFlowElasticJob&lt;/code&gt;，批量处理则使用另外两个接口&lt;code&gt;AbstractBatchThroughputDataFlowElasticJob&lt;/code&gt;和&lt;code&gt;AbstractBatchSequenceDataFlowElasticJob&lt;/code&gt;。不同之处在于&lt;code&gt;processData&lt;/code&gt;方法的返回值从&lt;code&gt;boolean&lt;/code&gt;类型变为&lt;code&gt;int&lt;/code&gt;类型，用于表示一批数据处理的成功数量，第二个入参则转变为&lt;code&gt;List&lt;/code&gt;数据集合。&lt;/p&gt;
 
 &lt;h3 id=&#34;异常处理:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;异常处理&lt;/h3&gt;
 
