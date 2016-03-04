@@ -434,7 +434,7 @@
 
 &lt;p&gt;作业执行时会将&lt;code&gt;fetchData&lt;/code&gt;的数据传递给&lt;code&gt;processData&lt;/code&gt;处理，其中&lt;code&gt;processData&lt;/code&gt;得到的数据是通过多线程（线程池大小可配）拆分的。如果采用流式作业处理方式，建议&lt;code&gt;processData&lt;/code&gt;处理数据后更新其状态，避免&lt;code&gt;fetchData&lt;/code&gt;再次抓取到，从而使得作业永远不会停止。&lt;code&gt;processData&lt;/code&gt;的返回值用于表示数据是否处理成功，抛出异常或者返回&lt;code&gt;false&lt;/code&gt;将会在统计信息中归入失败次数，返回&lt;code&gt;true&lt;/code&gt;则归入成功次数。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob extends AbstractIndividualSequenceDataFlowElasticJob&amp;lt;Foo&amp;gt; {
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob extends AbstractThroughputDataFlowElasticJob&amp;lt;Foo&amp;gt; {
     
     @Override
     public List&amp;lt;Foo&amp;gt; fetchData(JobExecutionMultipleShardingContext context) {
