@@ -229,9 +229,9 @@ body {
 
 <p>步骤：</p>
 
-<ol>
+<ul>
 <li>定义监听器</li>
-</ol>
+</ul>
 
 <pre><code class="language-java">import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
 import com.dangdang.ddframe.job.api.listener.ElasticJobListener;
@@ -250,9 +250,9 @@ public class MyElasticJobListener implements AbstractDistributeOnceElasticJobLis
 }
 </code></pre>
 
-<ol>
+<ul>
 <li>将监听器作为参数传入<code>JobScheduler</code></li>
-</ol>
+</ul>
 
 <pre><code class="language-java">public class JobMain {
     
@@ -268,9 +268,9 @@ public class MyElasticJobListener implements AbstractDistributeOnceElasticJobLis
 
 <p>步骤：</p>
 
-<ol>
+<ul>
 <li>定义监听器</li>
-</ol>
+</ul>
 
 <pre><code class="language-java">import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
 import com.dangdang.ddframe.job.api.listener.AbstractDistributeOnceElasticJobListener;
@@ -293,9 +293,9 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 }
 </code></pre>
 
-<ol>
+<ul>
 <li>将监听器作为参数传入<code>JobScheduler</code></li>
-</ol>
+</ul>
 
 <pre><code class="language-java">public class JobMain {
 
