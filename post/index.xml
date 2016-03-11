@@ -27,6 +27,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/2&#34;&gt;ISSUE #2&lt;/a&gt; 增加前置和后置任务&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/60&#34;&gt;ISSUE #60&lt;/a&gt; 可于DataFlow类型作业定制化线程池配置&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/61&#34;&gt;ISSUE #62&lt;/a&gt; 作业状态清理提速&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/65&#34;&gt;ISSUE #65&lt;/a&gt; 增加前置和后置任务Spring命名空间支持&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
@@ -501,7 +502,8 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;h3 id=&#34;spring命名空间配置:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;Spring命名空间配置&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
 &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
     xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
     xmlns:reg=&amp;quot;http://www.dangdang.com/schema/ddframe/reg&amp;quot;
@@ -521,6 +523,12 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
     
     &amp;lt;!-- 配置作业B--&amp;gt;
     &amp;lt;job:bean id=&amp;quot;throughputDataFlow&amp;quot; class=&amp;quot;xxx.MyThroughputDataFlowElasticJob&amp;quot; regCenter=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; shardingTotalCount=&amp;quot;3&amp;quot; shardingItemParameters=&amp;quot;0=A,1=B,2=C&amp;quot; processCountIntervalSeconds=&amp;quot;10&amp;quot; concurrentDataProcessThreadCount=&amp;quot;10&amp;quot; /&amp;gt;
+    
+    &amp;lt;!-- 配置作业C--&amp;gt;
+    &amp;lt;job:bean id=&amp;quot;listenerElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleListenerElasticJob&amp;quot; regCenter=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   shardingTotalCount=&amp;quot;3&amp;quot; shardingItemParameters=&amp;quot;0=A,1=B,2=C&amp;quot;&amp;gt;
+        &amp;lt;job:listener class=&amp;quot;xx.MySimpleJobListener&amp;quot;/&amp;gt;
+        &amp;lt;job:listener class=&amp;quot;xx.MyOnceSimpleJobListener&amp;quot; startedTimeoutMillseconds=&amp;quot;1000&amp;quot; completedTimeoutMillseconds=&amp;quot;2000&amp;quot; /&amp;gt;
+    &amp;lt;/job:bean&amp;gt;
 &amp;lt;/beans&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -688,6 +696,48 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;false&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;本地配置是否可覆盖注册中心配置&lt;br /&gt;如果可覆盖，每次启动作业都以本地配置为准&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;job-listener命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;job:listener命名空间属性详细说明&lt;/h4&gt;
+
+&lt;p&gt;job:listener必须配置为job:bean的子元素&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性名&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;缺省值&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;class&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;前置后置任务监听实现类，需实现&lt;code&gt;ElasticJobListener&lt;/code&gt;接口&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;startedTimeoutMillseconds&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行前的执行方法的超时时间&lt;br /&gt;单位：毫秒&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;completedTimeoutMillseconds&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行后的执行方法的超时时间&lt;br /&gt;单位：毫秒&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

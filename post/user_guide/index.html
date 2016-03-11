@@ -313,7 +313,8 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 <h3 id="spring命名空间配置:74c632aa9613b8dd6b95bfab1ba313e2">Spring命名空间配置</h3>
 
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<pre><code class="language-xml">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
     xmlns:reg=&quot;http://www.dangdang.com/schema/ddframe/reg&quot;
@@ -333,6 +334,12 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
     
     &lt;!-- 配置作业B--&gt;
     &lt;job:bean id=&quot;throughputDataFlow&quot; class=&quot;xxx.MyThroughputDataFlowElasticJob&quot; regCenter=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; shardingTotalCount=&quot;3&quot; shardingItemParameters=&quot;0=A,1=B,2=C&quot; processCountIntervalSeconds=&quot;10&quot; concurrentDataProcessThreadCount=&quot;10&quot; /&gt;
+    
+    &lt;!-- 配置作业C--&gt;
+    &lt;job:bean id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; regCenter=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   shardingTotalCount=&quot;3&quot; shardingItemParameters=&quot;0=A,1=B,2=C&quot;&gt;
+        &lt;job:listener class=&quot;xx.MySimpleJobListener&quot;/&gt;
+        &lt;job:listener class=&quot;xx.MyOnceSimpleJobListener&quot; startedTimeoutMillseconds=&quot;1000&quot; completedTimeoutMillseconds=&quot;2000&quot; /&gt;
+    &lt;/job:bean&gt;
 &lt;/beans&gt;
 </code></pre>
 
@@ -500,6 +507,48 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <td align="left">否</td>
 <td align="left">false</td>
 <td align="left">本地配置是否可覆盖注册中心配置<br />如果可覆盖，每次启动作业都以本地配置为准</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="job-listener命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:listener命名空间属性详细说明</h4>
+
+<p>job:listener必须配置为job:bean的子元素</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>class</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">前置后置任务监听实现类，需实现<code>ElasticJobListener</code>接口</td>
+</tr>
+
+<tr>
+<td>startedTimeoutMillseconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行前的执行方法的超时时间<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>completedTimeoutMillseconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行后的执行方法的超时时间<br />单位：毫秒</td>
 </tr>
 </tbody>
 </table>
@@ -711,6 +760,7 @@ public class JobDemo {
 <li><a href="#spring命名空间配置:74c632aa9613b8dd6b95bfab1ba313e2">Spring命名空间配置</a>
 <ul>
 <li><a href="#job-bean命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:bean命名空间属性详细说明</a></li>
+<li><a href="#job-listener命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:listener命名空间属性详细说明</a></li>
 <li><a href="#reg-bean命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">reg:bean命名空间属性详细说明</a></li>
 </ul></li>
 <li><a href="#基于spring但不使用命名空间:74c632aa9613b8dd6b95bfab1ba313e2">基于Spring但不使用命名空间</a></li>
