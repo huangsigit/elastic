@@ -283,7 +283,13 @@ body {
 <tr>
 <td>stoped</td>
 <td align="left">否</td>
-<td align="left">停止作业的标记</td>
+<td align="left">暂停作业的标记，暂停的作业不会终止调度器运行。作业程序再次启动时不会清理此标记</td>
+</tr>
+
+<tr>
+<td>shutdown</td>
+<td align="left">否</td>
+<td align="left">关闭作业的标记，关闭的作业将停止调度，并可通过控制台删除。只有作业程序再次启动时才会清理此标记</td>
 </tr>
 </tbody>
 </table>

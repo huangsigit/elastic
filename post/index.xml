@@ -957,8 +957,6 @@ public class JobDemo {
 &lt;li&gt;&lt;p&gt;一旦有服务器波动，或者修改分片项，将会触发重新分片；触发重新分片将会导致运行中的流式处理的作业在执行完本次作业后不再继续执行，等待分片结束后再恢复正常。&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;开启&lt;code&gt;monitorExecution&lt;/code&gt;才能实现分布式作业幂等性（即不会在多个作业服务器运行同一个分片）的功能，但&lt;code&gt;monitorExecution&lt;/code&gt;对短时间内执行的作业（如每5秒一触发）性能影响较大，建议关闭并自行实现幂等性。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;没有自动删除作业服务器的功能，因为无法区分是服务器崩溃还是正常下线。所以如果要下线服务器，需要手工删除&lt;code&gt;zookeeper&lt;/code&gt;中相关的服务器节点。由于直接删除服务器节点风险较大，暂时不考虑在运维平台增加此功能。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1267,7 +1265,13 @@ public class JobDemo {
 &lt;tr&gt;
 &lt;td&gt;stoped&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;停止作业的标记&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;暂停作业的标记，暂停的作业不会终止调度器运行。作业程序再次启动时不会清理此标记&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;shutdown&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;关闭作业的标记，关闭的作业将停止调度，并可通过控制台删除。只有作业程序再次启动时才会清理此标记&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
