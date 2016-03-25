@@ -92,14 +92,14 @@
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;elastic-job-core&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt;
+    &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 
 &amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt;
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;elastic-job-spring&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt;
+    &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -438,14 +438,14 @@
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;elastic-job-core&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt;
+    &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 
 &amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt;
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;elastic-job-spring&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt;
+    &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -1139,7 +1139,7 @@ public class JobDemo {
 
 &lt;li&gt;&lt;p&gt;快捷修改作业设置&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;控制作业暂停和恢复运行&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;控制作业暂停，恢复运行，停止和删除&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;设计理念:8e6e8878ca7d415631798f7cc4fcd04e&#34;&gt;设计理念&lt;/h2&gt;
@@ -1151,11 +1151,7 @@ public class JobDemo {
 &lt;h2 id=&#34;不支持项:8e6e8878ca7d415631798f7cc4fcd04e&#34;&gt;不支持项&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;添加作业。因为作业都是在首次运行时自动添加，使用运维平台添加作业并无必要。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;停止作业。即使删除了&lt;code&gt;Zookeeper&lt;/code&gt;信息也不能真正停止作业的运行，还会导致运行中的作业出问题。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;删除作业服务器。由于直接删除服务器节点风险较大，暂时不考虑在运维平台增加此功能。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;添加作业。因为作业都是在首次运行时自动添加，使用运维平台添加作业并无必要。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;主要界面:8e6e8878ca7d415631798f7cc4fcd04e&#34;&gt;主要界面&lt;/h2&gt;
@@ -1471,6 +1467,12 @@ public class JobDemo {
 &lt;td&gt;lastCompleteTime&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;该分片项最近一次的结束执行时间&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;misfire&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是否开启错过任务重新执行&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
