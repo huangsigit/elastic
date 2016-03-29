@@ -166,7 +166,7 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;1-0-6-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.6-SNAPSHOT&lt;/h2&gt;
+&lt;h2 id=&#34;1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.6&lt;/h2&gt;
 
 &lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
@@ -487,11 +487,11 @@
 
 &lt;h4 id=&#34;throughputdataflow类型作业:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;ThroughputDataFlow类型作业&lt;/h4&gt;
 
-&lt;p&gt;&lt;code&gt;ThroughputDataFlow&lt;/code&gt;类型作业意为高吞吐的数据流作业。需要继承&lt;code&gt;AbstractThroughputDataFlowElasticJob&lt;/code&gt;并可以指定返回值泛型，该类提供&lt;code&gt;3&lt;/code&gt;个方法可覆盖，分别用于抓取数据，处理数据和指定是否流式处理数据。可以获取数据处理成功失败次数等辅助监控信息。如果流式处理数据，&lt;code&gt;fetchData&lt;/code&gt;方法的返回值只有为&lt;code&gt;null&lt;/code&gt;或长度为空时，作业才会停止执行，否则作业会一直运行下去；非流式处理数据则只会在每次作业执行过程中执行一次&lt;code&gt;fetchData&lt;/code&gt;方法和&lt;code&gt;processData&lt;/code&gt;方法，即完成本次作业。流式数据处理参照&lt;code&gt;TbSchedule&lt;/code&gt;设计，适用于不间歇的数据处理。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ThroughputDataFlow&lt;/code&gt;类型作业意为高吞吐的数据流作业。需要继承&lt;code&gt;AbstractIndividualThroughputDataFlowElasticJob&lt;/code&gt;并可以指定返回值泛型，该类提供&lt;code&gt;3&lt;/code&gt;个方法可覆盖，分别用于抓取数据，处理数据和指定是否流式处理数据。可以获取数据处理成功失败次数等辅助监控信息。如果流式处理数据，&lt;code&gt;fetchData&lt;/code&gt;方法的返回值只有为&lt;code&gt;null&lt;/code&gt;或长度为空时，作业才会停止执行，否则作业会一直运行下去；非流式处理数据则只会在每次作业执行过程中执行一次&lt;code&gt;fetchData&lt;/code&gt;方法和&lt;code&gt;processData&lt;/code&gt;方法，即完成本次作业。流式数据处理参照&lt;code&gt;TbSchedule&lt;/code&gt;设计，适用于不间歇的数据处理。&lt;/p&gt;
 
 &lt;p&gt;作业执行时会将&lt;code&gt;fetchData&lt;/code&gt;的数据传递给&lt;code&gt;processData&lt;/code&gt;处理，其中&lt;code&gt;processData&lt;/code&gt;得到的数据是通过多线程（线程池大小可配）拆分的。如果采用流式作业处理方式，建议&lt;code&gt;processData&lt;/code&gt;处理数据后更新其状态，避免&lt;code&gt;fetchData&lt;/code&gt;再次抓取到，从而使得作业永远不会停止。&lt;code&gt;processData&lt;/code&gt;的返回值用于表示数据是否处理成功，抛出异常或者返回&lt;code&gt;false&lt;/code&gt;将会在统计信息中归入失败次数，返回&lt;code&gt;true&lt;/code&gt;则归入成功次数。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob extends AbstractThroughputDataFlowElasticJob&amp;lt;Foo&amp;gt; {
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob extends AbstractIndividualThroughputDataFlowElasticJob&amp;lt;Foo&amp;gt; {
     
     @Override
     public List&amp;lt;Foo&amp;gt; fetchData(JobExecutionMultipleShardingContext context) {
