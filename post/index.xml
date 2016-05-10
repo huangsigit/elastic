@@ -26,6 +26,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/71&#34;&gt;ISSUE #71&lt;/a&gt; 作业关闭功能（shutdown）&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/72&#34;&gt;ISSUE #72&lt;/a&gt; 关闭的作业可删除&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/81&#34;&gt;ISSUE #81&lt;/a&gt; 使用集中清理作业上次结束状态代替各自清理，各自清理可能导致作业机下线而产生未清理的结束状态&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
@@ -879,7 +880,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
         &amp;lt;/constructor-arg&amp;gt;
     &amp;lt;/bean&amp;gt;
     &amp;lt;!-- 配置作业--&amp;gt;
-    &amp;lt;bean id=&amp;quot;xxxJob&amp;quot; class=&amp;quot;com.dangdang.ddframe.job.api.JobScheduler&amp;quot; init-method=&amp;quot;init&amp;quot;&amp;gt;
+    &amp;lt;bean id=&amp;quot;xxxJob&amp;quot; class=&amp;quot;com.dangdang.ddframe.job.spring.schedule.SpringJobScheduler&amp;quot; init-method=&amp;quot;init&amp;quot;&amp;gt;
         &amp;lt;constructor-arg ref=&amp;quot;regCenter&amp;quot; /&amp;gt;
         &amp;lt;constructor-arg&amp;gt;
             &amp;lt;bean class=&amp;quot;com.dangdang.ddframe.job.api.JobConfiguration&amp;quot;&amp;gt;

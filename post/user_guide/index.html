@@ -672,7 +672,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
         &lt;/constructor-arg&gt;
     &lt;/bean&gt;
     &lt;!-- 配置作业--&gt;
-    &lt;bean id=&quot;xxxJob&quot; class=&quot;com.dangdang.ddframe.job.api.JobScheduler&quot; init-method=&quot;init&quot;&gt;
+    &lt;bean id=&quot;xxxJob&quot; class=&quot;com.dangdang.ddframe.job.spring.schedule.SpringJobScheduler&quot; init-method=&quot;init&quot;&gt;
         &lt;constructor-arg ref=&quot;regCenter&quot; /&gt;
         &lt;constructor-arg&gt;
             &lt;bean class=&quot;com.dangdang.ddframe.job.api.JobConfiguration&quot;&gt;
