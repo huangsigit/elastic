@@ -19,9 +19,30 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.6&lt;/h2&gt;
+&lt;h2 id=&#34;1-0-7-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.7-SNAPSHOT&lt;/h2&gt;
+
+&lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/88&#34;&gt;ISSUE #88&lt;/a&gt; stop作业改名为pause&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/91&#34;&gt;ISSUE #91&lt;/a&gt; 作业生命周期操作API&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/84&#34;&gt;ISSUE #84&lt;/a&gt; 控制台提供作业启用/禁用按钮操作&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/87&#34;&gt;ISSUE #87&lt;/a&gt; 调整主节点选举流程，作业关闭，禁用和暂停将触发主节点选举&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.6&lt;/h2&gt;
+
+&lt;h3 id=&#34;功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/71&#34;&gt;ISSUE #71&lt;/a&gt; 作业关闭功能（shutdown）&lt;/li&gt;
@@ -39,7 +60,7 @@
 
 &lt;h2 id=&#34;1-0-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.5&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/2&#34;&gt;ISSUE #2&lt;/a&gt; 增加前置和后置任务&lt;/li&gt;
@@ -56,7 +77,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/69&#34;&gt;ISSUE #69&lt;/a&gt; 分片时如在Zk中有的作业服务器sharding节点不存在将导致无法重新分片&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/59&#34;&gt;ISSUE #59&lt;/a&gt; 将elastic-job依赖的curator从&lt;code&gt;2.8.0&lt;/code&gt;升级至&lt;code&gt;2.10.0&lt;/code&gt;&lt;/li&gt;
@@ -64,7 +85,7 @@
 
 &lt;h2 id=&#34;1-0-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.4&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/16&#34;&gt;ISSUE #16&lt;/a&gt; 提供内嵌zookeeper，简化开发环境&lt;/li&gt;
@@ -72,7 +93,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/56&#34;&gt;ISSUE #56&lt;/a&gt; 作业自定义参数设置&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/57&#34;&gt;ISSUE #57&lt;/a&gt; 精简模块，移除&lt;code&gt;elastic-job-test&lt;/code&gt;模块&lt;/li&gt;
@@ -81,7 +102,7 @@
 
 &lt;h2 id=&#34;1-0-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.3&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/39&#34;&gt;ISSUE #39&lt;/a&gt; 增加作业辅助监听功能，通过dump命令抓取作业运行时信息&lt;/li&gt;
@@ -98,7 +119,7 @@
 
 &lt;h2 id=&#34;1-0-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.2&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/6&#34;&gt;ISSUE #6&lt;/a&gt; 校对作业服务器与注册中心时间误差&lt;/li&gt;
@@ -119,7 +140,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/53&#34;&gt;ISSUE #53&lt;/a&gt; Dataflow的Sequence类型作业采用多线程抓取数据&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/17&#34;&gt;ISSUE #17&lt;/a&gt; 作业类型接口变更，参见&lt;a href=&#34;http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.0.2/&#34;&gt;1.0.2升级说明&lt;/a&gt;&lt;/li&gt;
@@ -248,6 +269,10 @@
 &lt;h2 id=&#34;elastic-job-core:b4b5a29fe5be663d2644d30f96759d37&#34;&gt;elastic-job-core&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;核心模块，只通过&lt;code&gt;Quartz&lt;/code&gt;和&lt;code&gt;Curator&lt;/code&gt;就可执行分布式作业。&lt;/p&gt;
+
+&lt;h2 id=&#34;elastic-job-api:b4b5a29fe5be663d2644d30f96759d37&#34;&gt;elastic-job-api&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;生命周期操作的API，可独立使用。&lt;/p&gt;
 
 &lt;h2 id=&#34;elastic-job-spring:b4b5a29fe5be663d2644d30f96759d37&#34;&gt;elastic-job-spring&lt;/h2&gt;
 
@@ -1263,7 +1288,7 @@ public class JobDemo {
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;stoped&lt;/td&gt;
+&lt;td&gt;paused&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;暂停作业的标记，暂停的作业不会终止调度器运行。作业程序再次启动时不会清理此标记&lt;/td&gt;
 &lt;/tr&gt;

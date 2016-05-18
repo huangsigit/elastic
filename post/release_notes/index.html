@@ -110,9 +110,30 @@ body {
 
 <h1 id="release-notes:0e7a0379e76a8b6dfd2072d5a9672bab">Release Notes</h1>
 
-<h2 id="1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.6</h2>
+<h2 id="1-0-7-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.7-SNAPSHOT</h2>
+
+<h3 id="结构调整:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</h3>
+
+<ol>
+<li><a href="https://github.com/dangdangdotcom/elastic-job/issues/88">ISSUE #88</a> stop作业改名为pause</li>
+</ol>
+
+<h3 id="新功能:0e7a0379e76a8b6dfd2072d5a9672bab">新功能</h3>
+
+<ol>
+<li><a href="https://github.com/dangdangdotcom/elastic-job/issues/91">ISSUE #91</a> 作业生命周期操作API</li>
+</ol>
 
 <h3 id="功能提升:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
+
+<ol>
+<li><a href="https://github.com/dangdangdotcom/elastic-job/issues/84">ISSUE #84</a> 控制台提供作业启用/禁用按钮操作</li>
+<li><a href="https://github.com/dangdangdotcom/elastic-job/issues/87">ISSUE #87</a> 调整主节点选举流程，作业关闭，禁用和暂停将触发主节点选举</li>
+</ol>
+
+<h2 id="1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.6</h2>
+
+<h3 id="功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/71">ISSUE #71</a> 作业关闭功能（shutdown）</li>
@@ -130,7 +151,7 @@ body {
 
 <h2 id="1-0-5:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.5</h2>
 
-<h3 id="功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
+<h3 id="功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/2">ISSUE #2</a> 增加前置和后置任务</li>
@@ -147,7 +168,7 @@ body {
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/69">ISSUE #69</a> 分片时如在Zk中有的作业服务器sharding节点不存在将导致无法重新分片</li>
 </ol>
 
-<h3 id="结构调整:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</h3>
+<h3 id="结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/59">ISSUE #59</a> 将elastic-job依赖的curator从<code>2.8.0</code>升级至<code>2.10.0</code></li>
@@ -155,7 +176,7 @@ body {
 
 <h2 id="1-0-4:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.4</h2>
 
-<h3 id="功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
+<h3 id="功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/16">ISSUE #16</a> 提供内嵌zookeeper，简化开发环境</li>
@@ -163,7 +184,7 @@ body {
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/56">ISSUE #56</a> 作业自定义参数设置</li>
 </ol>
 
-<h3 id="结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</h3>
+<h3 id="结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/57">ISSUE #57</a> 精简模块，移除<code>elastic-job-test</code>模块</li>
@@ -172,7 +193,7 @@ body {
 
 <h2 id="1-0-3:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.3</h2>
 
-<h3 id="功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
+<h3 id="功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/39">ISSUE #39</a> 增加作业辅助监听功能，通过dump命令抓取作业运行时信息</li>
@@ -189,7 +210,7 @@ body {
 
 <h2 id="1-0-2:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.2</h2>
 
-<h3 id="功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
+<h3 id="功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/6">ISSUE #6</a> 校对作业服务器与注册中心时间误差</li>
@@ -210,7 +231,7 @@ body {
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/53">ISSUE #53</a> Dataflow的Sequence类型作业采用多线程抓取数据</li>
 </ol>
 
-<h3 id="结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</h3>
+<h3 id="结构调整-3:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/17">ISSUE #17</a> 作业类型接口变更，参见<a href="http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.0.2/">1.0.2升级说明</a></li>
@@ -228,32 +249,38 @@ body {
 <ul>
 <li><a href="#release-notes:0e7a0379e76a8b6dfd2072d5a9672bab">Release Notes</a>
 <ul>
+<li><a href="#1-0-7-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.7-SNAPSHOT</a>
+<ul>
+<li><a href="#结构调整:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
+<li><a href="#新功能:0e7a0379e76a8b6dfd2072d5a9672bab">新功能</a></li>
+<li><a href="#功能提升:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
+</ul></li>
 <li><a href="#1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.6</a>
 <ul>
-<li><a href="#功能提升:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
+<li><a href="#功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
 <li><a href="#缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
 </ul></li>
 <li><a href="#1-0-5:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.5</a>
 <ul>
-<li><a href="#功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
+<li><a href="#功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
 <li><a href="#缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
-<li><a href="#结构调整:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
+<li><a href="#结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
 </ul></li>
 <li><a href="#1-0-4:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.4</a>
 <ul>
-<li><a href="#功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
-<li><a href="#结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
+<li><a href="#功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
+<li><a href="#结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
 </ul></li>
 <li><a href="#1-0-3:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.3</a>
 <ul>
-<li><a href="#功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
+<li><a href="#功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
 <li><a href="#缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
 </ul></li>
 <li><a href="#1-0-2:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.2</a>
 <ul>
-<li><a href="#功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
+<li><a href="#功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
 <li><a href="#缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
-<li><a href="#结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
+<li><a href="#结构调整-3:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
 </ul></li>
 <li><a href="#1-0-1:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.1</a></li>
 </ul></li>
