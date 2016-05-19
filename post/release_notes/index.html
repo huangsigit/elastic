@@ -110,7 +110,7 @@ body {
 
 <h1 id="release-notes:0e7a0379e76a8b6dfd2072d5a9672bab">Release Notes</h1>
 
-<h2 id="1-0-7-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.7-SNAPSHOT</h2>
+<h2 id="1-0-7:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.7</h2>
 
 <h3 id="结构调整:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</h3>
 
@@ -129,6 +129,13 @@ body {
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/84">ISSUE #84</a> 控制台提供作业启用/禁用按钮操作</li>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/87">ISSUE #87</a> 调整主节点选举流程，作业关闭，禁用和暂停将触发主节点选举</li>
+<li><a href="https://github.com/dangdangdotcom/elastic-job/issues/93">ISSUE #93</a> 注册中心配置提供baseSleepTimeMilliseconds、maxSleepTimeMilliseconds和maxRetries的默认值</li>
+</ol>
+
+<h3 id="缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
+
+<ol>
+<li><a href="https://github.com/dangdangdotcom/elastic-job/issues/92">ISSUE #92</a> 修改分片总数参数导致仅单一节点执行的监听抛出超时异常</li>
 </ol>
 
 <h2 id="1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.6</h2>
@@ -141,7 +148,7 @@ body {
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/81">ISSUE #81</a> 使用集中清理作业上次结束状态代替各自清理，各自清理可能导致作业机下线而产生未清理的结束状态</li>
 </ol>
 
-<h3 id="缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
+<h3 id="缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/74">ISSUE #74</a> 流式处理且失效转移时，失效转移的分片项不能执行一次即停止</li>
@@ -160,7 +167,7 @@ body {
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/65">ISSUE #65</a> 增加前置和后置任务Spring命名空间支持</li>
 </ol>
 
-<h3 id="缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
+<h3 id="缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/61">ISSUE #61</a> 分片和主节点选举同时发生时，死锁问题解决</li>
@@ -200,7 +207,7 @@ body {
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/43">ISSUE #43</a> 增加作业异常处理回调接口</li>
 </ol>
 
-<h3 id="缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
+<h3 id="缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/30">ISSUE #30</a> 注册中心宕机较长时间后重新恢复，作业无法继续执行</li>
@@ -223,7 +230,7 @@ body {
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/55">ISSUE #55</a> offset存储功能</li>
 </ol>
 
-<h3 id="缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
+<h3 id="缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</h3>
 
 <ol>
 <li><a href="https://github.com/dangdangdotcom/elastic-job/issues/1">ISSUE #1</a> 复杂网络环境下IP地址获取不准确的问题</li>
@@ -249,21 +256,22 @@ body {
 <ul>
 <li><a href="#release-notes:0e7a0379e76a8b6dfd2072d5a9672bab">Release Notes</a>
 <ul>
-<li><a href="#1-0-7-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.7-SNAPSHOT</a>
+<li><a href="#1-0-7:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.7</a>
 <ul>
 <li><a href="#结构调整:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
 <li><a href="#新功能:0e7a0379e76a8b6dfd2072d5a9672bab">新功能</a></li>
 <li><a href="#功能提升:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
+<li><a href="#缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
 </ul></li>
 <li><a href="#1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.6</a>
 <ul>
 <li><a href="#功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
-<li><a href="#缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
+<li><a href="#缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
 </ul></li>
 <li><a href="#1-0-5:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.5</a>
 <ul>
 <li><a href="#功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
-<li><a href="#缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
+<li><a href="#缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
 <li><a href="#结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
 </ul></li>
 <li><a href="#1-0-4:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.4</a>
@@ -274,12 +282,12 @@ body {
 <li><a href="#1-0-3:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.3</a>
 <ul>
 <li><a href="#功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
-<li><a href="#缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
+<li><a href="#缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
 </ul></li>
 <li><a href="#1-0-2:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.2</a>
 <ul>
 <li><a href="#功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab">功能提升</a></li>
-<li><a href="#缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
+<li><a href="#缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab">缺陷修正</a></li>
 <li><a href="#结构调整-3:0e7a0379e76a8b6dfd2072d5a9672bab">结构调整</a></li>
 </ul></li>
 <li><a href="#1-0-1:0e7a0379e76a8b6dfd2072d5a9672bab">1.0.1</a></li>
