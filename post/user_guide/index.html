@@ -114,7 +114,11 @@ body {
 
 <h3 id="作业类型:74c632aa9613b8dd6b95bfab1ba313e2">作业类型</h3>
 
-<p>目前提供<code>2</code>种作业类型，分别是<code>Simple</code>和<code>DataFlow</code>。<code>DataFlow</code>类型用于处理数据流，它又提供<code>2</code>种作业类型，分别是<code>ThroughputDataFlow</code>和<code>SequenceDataFlow</code>。需要继承相应的抽象类。</p>
+<p>目前提供<code>3</code>种作业类型，分别是<code>Simple</code>, <code>DataFlow</code>和<code>Script</code>。</p>
+
+<p><code>DataFlow</code>类型用于处理数据流，它又提供<code>2</code>种作业类型，分别是<code>ThroughputDataFlow</code>和<code>SequenceDataFlow</code>。需要继承相应的抽象类。</p>
+
+<p><code>Script</code>类型用于处理脚本，可直接使用，无需编码。</p>
 
 <p>方法参数<code>shardingContext</code>包含作业配置，分片和运行时信息。可通过<code>getShardingTotalCount()</code>, <code>getShardingItems()</code>等方法分别获取分片总数，运行在本作业服务器的分片序列号集合等。</p>
 
@@ -195,6 +199,18 @@ body {
 }
 </code></pre>
 
+<h4 id="script类型作业:74c632aa9613b8dd6b95bfab1ba313e2">Script类型作业</h4>
+
+<p><code>Script</code>类型作业意为脚本类型作业，支持<code>shell</code>，<code>python</code>，<code>perl</code>等所有类型脚本。只需通过控制台/代码配置scriptCommandLine即可。执行脚本路径可以包含参数，最后一个参数为作业运行时信息.</p>
+
+<pre><code>#!/bin/bash
+echo sharding execution context is $*
+</code></pre>
+
+<p>作业运行时输出</p>
+
+<p><code>sharding execution context is {&quot;shardingItems&quot;:[0,1,2,3,4,5,6,7,8,9],&quot;shardingItemParameters&quot;:{},&quot;offsets&quot;:{},&quot;jobName&quot;:&quot;scriptElasticDemoJob&quot;,&quot;shardingTotalCount&quot;:10,&quot;jobParameter&quot;:&quot;&quot;,&quot;monitorExecution&quot;:true,&quot;fetchDataCount&quot;:1}</code></p>
+
 <h3 id="批量处理:74c632aa9613b8dd6b95bfab1ba313e2">批量处理</h3>
 
 <p>为了提高数据处理效率，数据流类型作业提供了批量处理数据的功能。之前逐条处理数据的两个抽象类分别是<code>AbstractIndividualThroughputDataFlowElasticJob</code>和<code>AbstractIndividualSequenceDataFlowElasticJob</code>，批量处理则使用另外两个接口<code>AbstractBatchThroughputDataFlowElasticJob</code>和<code>AbstractBatchSequenceDataFlowElasticJob</code>。不同之处在于<code>processData</code>方法的返回值从<code>boolean</code>类型变为<code>int</code>类型，用于表示一批数据处理的成功数量，第二个入参则转变为<code>List</code>数据集合。</p>
@@ -202,22 +218,6 @@ body {
 <h3 id="异常处理:74c632aa9613b8dd6b95bfab1ba313e2">异常处理</h3>
 
 <p><code>elastic-job</code>在最上层接口提供了<code>handleJobExecutionException</code>方法，使用作业时可以覆盖此方法，并使用<code>quartz</code>提供的<code>JobExecutionException</code>控制异常后作业的声明周期。默认实现是直接将异常抛出。示例：</p>
-
-<pre><code class="language-java">public class XXXSimpleJob extends AbstractSimpleElasticJob {
-    
-    @Override
-    public void process(final JobExecutionMultipleShardingContext context) {
-        int zero = 0;
-        10 / zero;
-    }
-    
-    @Override
-    public void handleJobExecutionException(JobExecutionException jobExecutionException) throws JobExecutionException {
-        jobExecutionException.unscheduleAllTriggers();
-    }
-}
-
-</code></pre>
 
 <h3 id="任务监听配置:74c632aa9613b8dd6b95bfab1ba313e2">任务监听配置</h3>
 
@@ -368,9 +368,9 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <tr>
 <td>class</td>
 <td align="left">String</td>
-<td align="left"><code>是</code></td>
+<td align="left">否</td>
 <td align="left"></td>
-<td align="left">作业实现类，需实现<code>ElasticJob</code>接口</td>
+<td align="left">作业实现类，需实现<code>ElasticJob</code>接口，脚本型作业不需要配置</td>
 </tr>
 
 <tr>
@@ -507,6 +507,14 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <td align="left">否</td>
 <td align="left">false</td>
 <td align="left">本地配置是否可覆盖注册中心配置<br />如果可覆盖，每次启动作业都以本地配置为准</td>
+</tr>
+
+<tr>
+<td>scriptCommandLine</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">脚本型作业执行命令行，仅对Script型作业有效</td>
 </tr>
 </tbody>
 </table>
@@ -698,6 +706,7 @@ import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
 import com.dangdang.example.elasticjob.core.job.SimpleJobDemo;
 import com.dangdang.example.elasticjob.core.job.ThroughputDataFlowJobDemo;
 import com.dangdang.example.elasticjob.core.job.SequenceDataFlowJobDemo;
+import com.dangdang.ddframe.job.plugin.job.type.integrated.ScriptElasticJob;
 
 public class JobDemo {
     
@@ -707,14 +716,17 @@ public class JobDemo {
     // 定义Zookeeper注册中心
     private CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(zkConfig);
     
-    // 定义作业1配置对象
-    private JobConfiguration jobConfig1 = new JobConfiguration(&quot;simpleJob&quot;, SimpleJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
+    // 定义简单作业配置对象
+    private JobConfiguration simpleJobConfig = new JobConfiguration(&quot;simpleJob&quot;, SimpleJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
     
-    // 定义作业2配置对象
-    private JobConfiguration jobConfig2 = new JobConfiguration(&quot;throughputDataFlowJob&quot;, ThroughputDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
+    // 定义高吞吐的数据流作业配置对象
+    private JobConfiguration throughputDataFlowJobConfig = new JobConfiguration(&quot;throughputDataFlowJob&quot;, ThroughputDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
     
-    // 定义作业3配置对象
-    private JobConfiguration jobConfig3 = new JobConfiguration(&quot;sequenceDataFlowJob&quot;, SequenceDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
+    // 定义顺序的数据流作业配置对象
+    private JobConfiguration sequenceDataFlowJobConfig = new JobConfiguration(&quot;sequenceDataFlowJob&quot;, SequenceDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
+    
+    // 定义脚本作业配置对象
+    private JobConfiguration scriptJobConfig = new JobConfiguration(&quot;scriptJob&quot;, SequenceDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
     
     public static void main(final String[] args) {
         new JobDemo().init();
@@ -723,12 +735,14 @@ public class JobDemo {
     private void init() {
         // 连接注册中心
         regCenter.init();
-        // 启动作业1
-        new JobScheduler(regCenter, jobConfig1).init();
-        // 启动作业2
-        new JobScheduler(regCenter, jobConfig2).init();
-        // 启动作业3
-        new JobScheduler(regCenter, jobConfig3).init();
+        // 启动简单作业
+        new JobScheduler(regCenter, simpleJobConfig).init();
+        // 启动高吞吐的数据流作业
+        new JobScheduler(regCenter, throughputDataFlowJobConfig).init();
+        // 启动顺序的数据流作业
+        new JobScheduler(regCenter, sequenceDataFlowJobConfig).init();
+        // 启动脚本作业
+        new JobScheduler(regCenter, scriptJobConfig).init();
     }
 }
 </code></pre>
@@ -746,6 +760,7 @@ public class JobDemo {
 <li><a href="#simple类型作业:74c632aa9613b8dd6b95bfab1ba313e2">Simple类型作业</a></li>
 <li><a href="#throughputdataflow类型作业:74c632aa9613b8dd6b95bfab1ba313e2">ThroughputDataFlow类型作业</a></li>
 <li><a href="#sequencedataflow类型作业:74c632aa9613b8dd6b95bfab1ba313e2">SequenceDataFlow类型作业</a></li>
+<li><a href="#script类型作业:74c632aa9613b8dd6b95bfab1ba313e2">Script类型作业</a></li>
 </ul></li>
 <li><a href="#批量处理:74c632aa9613b8dd6b95bfab1ba313e2">批量处理</a></li>
 <li><a href="#异常处理:74c632aa9613b8dd6b95bfab1ba313e2">异常处理</a></li>

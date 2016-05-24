@@ -19,6 +19,16 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
+&lt;h2 id=&#34;1-0-9-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.9-SNAPSHOT&lt;/h2&gt;
+
+&lt;h2 id=&#34;1-0-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.8&lt;/h2&gt;
+
+&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/95&#34;&gt;ISSUE #95&lt;/a&gt; 增加脚本类型作业支持&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h2 id=&#34;1-0-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.7&lt;/h2&gt;
 
 &lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
@@ -27,7 +37,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/88&#34;&gt;ISSUE #88&lt;/a&gt; stop作业改名为pause&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/91&#34;&gt;ISSUE #91&lt;/a&gt; 作业生命周期操作API&lt;/li&gt;
@@ -354,7 +364,11 @@
 
 &lt;h3 id=&#34;作业类型:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;作业类型&lt;/h3&gt;
 
-&lt;p&gt;目前提供&lt;code&gt;2&lt;/code&gt;种作业类型，分别是&lt;code&gt;Simple&lt;/code&gt;和&lt;code&gt;DataFlow&lt;/code&gt;。&lt;code&gt;DataFlow&lt;/code&gt;类型用于处理数据流，它又提供&lt;code&gt;2&lt;/code&gt;种作业类型，分别是&lt;code&gt;ThroughputDataFlow&lt;/code&gt;和&lt;code&gt;SequenceDataFlow&lt;/code&gt;。需要继承相应的抽象类。&lt;/p&gt;
+&lt;p&gt;目前提供&lt;code&gt;3&lt;/code&gt;种作业类型，分别是&lt;code&gt;Simple&lt;/code&gt;, &lt;code&gt;DataFlow&lt;/code&gt;和&lt;code&gt;Script&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DataFlow&lt;/code&gt;类型用于处理数据流，它又提供&lt;code&gt;2&lt;/code&gt;种作业类型，分别是&lt;code&gt;ThroughputDataFlow&lt;/code&gt;和&lt;code&gt;SequenceDataFlow&lt;/code&gt;。需要继承相应的抽象类。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Script&lt;/code&gt;类型用于处理脚本，可直接使用，无需编码。&lt;/p&gt;
 
 &lt;p&gt;方法参数&lt;code&gt;shardingContext&lt;/code&gt;包含作业配置，分片和运行时信息。可通过&lt;code&gt;getShardingTotalCount()&lt;/code&gt;, &lt;code&gt;getShardingItems()&lt;/code&gt;等方法分别获取分片总数，运行在本作业服务器的分片序列号集合等。&lt;/p&gt;
 
@@ -435,6 +449,18 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h4 id=&#34;script类型作业:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;Script类型作业&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;Script&lt;/code&gt;类型作业意为脚本类型作业，支持&lt;code&gt;shell&lt;/code&gt;，&lt;code&gt;python&lt;/code&gt;，&lt;code&gt;perl&lt;/code&gt;等所有类型脚本。只需通过控制台/代码配置scriptCommandLine即可。执行脚本路径可以包含参数，最后一个参数为作业运行时信息.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+echo sharding execution context is $*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;作业运行时输出&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sharding execution context is {&amp;quot;shardingItems&amp;quot;:[0,1,2,3,4,5,6,7,8,9],&amp;quot;shardingItemParameters&amp;quot;:{},&amp;quot;offsets&amp;quot;:{},&amp;quot;jobName&amp;quot;:&amp;quot;scriptElasticDemoJob&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:10,&amp;quot;jobParameter&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;monitorExecution&amp;quot;:true,&amp;quot;fetchDataCount&amp;quot;:1}&lt;/code&gt;&lt;/p&gt;
+
 &lt;h3 id=&#34;批量处理:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;批量处理&lt;/h3&gt;
 
 &lt;p&gt;为了提高数据处理效率，数据流类型作业提供了批量处理数据的功能。之前逐条处理数据的两个抽象类分别是&lt;code&gt;AbstractIndividualThroughputDataFlowElasticJob&lt;/code&gt;和&lt;code&gt;AbstractIndividualSequenceDataFlowElasticJob&lt;/code&gt;，批量处理则使用另外两个接口&lt;code&gt;AbstractBatchThroughputDataFlowElasticJob&lt;/code&gt;和&lt;code&gt;AbstractBatchSequenceDataFlowElasticJob&lt;/code&gt;。不同之处在于&lt;code&gt;processData&lt;/code&gt;方法的返回值从&lt;code&gt;boolean&lt;/code&gt;类型变为&lt;code&gt;int&lt;/code&gt;类型，用于表示一批数据处理的成功数量，第二个入参则转变为&lt;code&gt;List&lt;/code&gt;数据集合。&lt;/p&gt;
@@ -442,22 +468,6 @@
 &lt;h3 id=&#34;异常处理:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;异常处理&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在最上层接口提供了&lt;code&gt;handleJobExecutionException&lt;/code&gt;方法，使用作业时可以覆盖此方法，并使用&lt;code&gt;quartz&lt;/code&gt;提供的&lt;code&gt;JobExecutionException&lt;/code&gt;控制异常后作业的声明周期。默认实现是直接将异常抛出。示例：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class XXXSimpleJob extends AbstractSimpleElasticJob {
-    
-    @Override
-    public void process(final JobExecutionMultipleShardingContext context) {
-        int zero = 0;
-        10 / zero;
-    }
-    
-    @Override
-    public void handleJobExecutionException(JobExecutionException jobExecutionException) throws JobExecutionException {
-        jobExecutionException.unscheduleAllTriggers();
-    }
-}
-
-&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;任务监听配置:74c632aa9613b8dd6b95bfab1ba313e2&#34;&gt;任务监听配置&lt;/h3&gt;
 
@@ -608,9 +618,9 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;tr&gt;
 &lt;td&gt;class&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业实现类，需实现&lt;code&gt;ElasticJob&lt;/code&gt;接口&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业实现类，需实现&lt;code&gt;ElasticJob&lt;/code&gt;接口，脚本型作业不需要配置&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -747,6 +757,14 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;false&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;本地配置是否可覆盖注册中心配置&lt;br /&gt;如果可覆盖，每次启动作业都以本地配置为准&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;scriptCommandLine&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;脚本型作业执行命令行，仅对Script型作业有效&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -938,6 +956,7 @@ import com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter;
 import com.dangdang.example.elasticjob.core.job.SimpleJobDemo;
 import com.dangdang.example.elasticjob.core.job.ThroughputDataFlowJobDemo;
 import com.dangdang.example.elasticjob.core.job.SequenceDataFlowJobDemo;
+import com.dangdang.ddframe.job.plugin.job.type.integrated.ScriptElasticJob;
 
 public class JobDemo {
     
@@ -947,14 +966,17 @@ public class JobDemo {
     // 定义Zookeeper注册中心
     private CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(zkConfig);
     
-    // 定义作业1配置对象
-    private JobConfiguration jobConfig1 = new JobConfiguration(&amp;quot;simpleJob&amp;quot;, SimpleJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;);
+    // 定义简单作业配置对象
+    private JobConfiguration simpleJobConfig = new JobConfiguration(&amp;quot;simpleJob&amp;quot;, SimpleJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;);
     
-    // 定义作业2配置对象
-    private JobConfiguration jobConfig2 = new JobConfiguration(&amp;quot;throughputDataFlowJob&amp;quot;, ThroughputDataFlowJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;);
+    // 定义高吞吐的数据流作业配置对象
+    private JobConfiguration throughputDataFlowJobConfig = new JobConfiguration(&amp;quot;throughputDataFlowJob&amp;quot;, ThroughputDataFlowJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;);
     
-    // 定义作业3配置对象
-    private JobConfiguration jobConfig3 = new JobConfiguration(&amp;quot;sequenceDataFlowJob&amp;quot;, SequenceDataFlowJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;);
+    // 定义顺序的数据流作业配置对象
+    private JobConfiguration sequenceDataFlowJobConfig = new JobConfiguration(&amp;quot;sequenceDataFlowJob&amp;quot;, SequenceDataFlowJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;);
+    
+    // 定义脚本作业配置对象
+    private JobConfiguration scriptJobConfig = new JobConfiguration(&amp;quot;scriptJob&amp;quot;, SequenceDataFlowJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;);
     
     public static void main(final String[] args) {
         new JobDemo().init();
@@ -963,12 +985,14 @@ public class JobDemo {
     private void init() {
         // 连接注册中心
         regCenter.init();
-        // 启动作业1
-        new JobScheduler(regCenter, jobConfig1).init();
-        // 启动作业2
-        new JobScheduler(regCenter, jobConfig2).init();
-        // 启动作业3
-        new JobScheduler(regCenter, jobConfig3).init();
+        // 启动简单作业
+        new JobScheduler(regCenter, simpleJobConfig).init();
+        // 启动高吞吐的数据流作业
+        new JobScheduler(regCenter, throughputDataFlowJobConfig).init();
+        // 启动顺序的数据流作业
+        new JobScheduler(regCenter, sequenceDataFlowJobConfig).init();
+        // 启动脚本作业
+        new JobScheduler(regCenter, scriptJobConfig).init();
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -1240,6 +1264,12 @@ public class JobDemo {
 &lt;td&gt;description&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;作业描述信息&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;scriptCommandLine&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;脚本型作业作业执行命令行&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
