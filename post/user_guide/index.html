@@ -236,7 +236,7 @@ echo sharding execution context is $*
 <pre><code class="language-java">import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
 import com.dangdang.ddframe.job.api.listener.ElasticJobListener;
 
-public class MyElasticJobListener implements AbstractDistributeOnceElasticJobListener {
+public class MyElasticJobListener implements ElasticJobListener {
     
     @Override
     public void beforeJobExecuted(final JobExecutionMultipleShardingContext shardingContext) {
@@ -277,7 +277,7 @@ import com.dangdang.ddframe.job.api.listener.AbstractDistributeOnceElasticJobLis
 
 public final class TestDistributeOnceElasticJobListener extends AbstractDistributeOnceElasticJobListener {
     
-    public MyDistributeOnceElasticJobListener(final long startTimeoutMills, final long completeTimeoutMills) {
+    public TestDistributeOnceElasticJobListener(final long startTimeoutMills, final long completeTimeoutMills) {
         super(startTimeoutMills, completeTimeoutMills);
     }
     
@@ -327,23 +327,26 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
                         http://www.dangdang.com/schema/ddframe/job/job.xsd 
                         &quot;&gt;
     &lt;!--配置作业注册中心 --&gt;
-    &lt;reg:zookeeper id=&quot;regCenter&quot; serverLists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; baseSleepTimeMilliseconds=&quot;1000&quot; maxSleepTimeMilliseconds=&quot;3000&quot; maxRetries=&quot;3&quot; /&gt;
+    &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
     
-    &lt;!-- 配置作业A--&gt;
-    &lt;job:bean id=&quot;simpleElasticJob&quot; class=&quot;xxx.MySimpleElasticJob&quot; regCenter=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   shardingTotalCount=&quot;3&quot; shardingItemParameters=&quot;0=A,1=B,2=C&quot; /&gt;
+    &lt;!-- 配置简单作业--&gt;
+    &lt;job:simple id=&quot;simpleElasticJob&quot; class=&quot;xxx.MySimpleElasticJob&quot; reg-center=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
     
-    &lt;!-- 配置作业B--&gt;
-    &lt;job:bean id=&quot;throughputDataFlow&quot; class=&quot;xxx.MyThroughputDataFlowElasticJob&quot; regCenter=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; shardingTotalCount=&quot;3&quot; shardingItemParameters=&quot;0=A,1=B,2=C&quot; processCountIntervalSeconds=&quot;10&quot; concurrentDataProcessThreadCount=&quot;10&quot; /&gt;
+    &lt;!-- 配置数据流作业--&gt;
+    &lt;job:dataflow id=&quot;throughputDataFlow&quot; class=&quot;xxx.MyThroughputDataFlowElasticJob&quot; regCenter=&quot;reg-center&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; process-count-interval-seconds=&quot;10&quot; concurrent-data-process-thread-count=&quot;10&quot; /&gt;
     
-    &lt;!-- 配置作业C--&gt;
-    &lt;job:bean id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; regCenter=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   shardingTotalCount=&quot;3&quot; shardingItemParameters=&quot;0=A,1=B,2=C&quot;&gt;
+    &lt;!-- 配置脚本作业--&gt;
+    &lt;job:script id=&quot;scriptElasticJob&quot; reg-center=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; script-command-line=&quot;/your/file/path/demo.sh&quot; /&gt;
+    
+    &lt;!-- 配置带监听的简单作业--&gt;
+    &lt;job:simple id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; reg-center=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot;&gt;
         &lt;job:listener class=&quot;xx.MySimpleJobListener&quot;/&gt;
-        &lt;job:listener class=&quot;xx.MyOnceSimpleJobListener&quot; startedTimeoutMilliseconds=&quot;1000&quot; completedTimeoutMilliseconds=&quot;2000&quot; /&gt;
-    &lt;/job:bean&gt;
+        &lt;job:listener class=&quot;xx.MyOnceSimpleJobListener&quot; started-timeout-milliseconds=&quot;1000&quot; completed-timeout-milliseconds=&quot;2000&quot; /&gt;
+    &lt;/job:simple&gt;
 &lt;/beans&gt;
 </code></pre>
 
-<h4 id="job-bean命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:bean命名空间属性详细说明</h4>
+<h4 id="job-simple命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:simple命名空间属性详细说明</h4>
 
 <table>
 <thead>
@@ -374,7 +377,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>regCenter</td>
+<td>reg-center</td>
 <td align="left">String</td>
 <td align="left"><code>是</code></td>
 <td align="left"></td>
@@ -390,7 +393,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>shardingTotalCount</td>
+<td>sharding-total-count</td>
 <td align="left">int</td>
 <td align="left"><code>是</code></td>
 <td align="left"></td>
@@ -398,7 +401,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>shardingItemParameters</td>
+<td>sharding-item-parameters</td>
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
@@ -406,7 +409,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>jobParameter</td>
+<td>job-parameter</td>
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
@@ -414,7 +417,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>monitorExecution</td>
+<td>monitor-execution</td>
 <td align="left">boolean</td>
 <td align="left">否</td>
 <td align="left">true</td>
@@ -422,7 +425,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>monitorPort</td>
+<td>monitor-port</td>
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">-1</td>
@@ -430,31 +433,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>processCountIntervalSeconds</td>
-<td align="left">int</td>
-<td align="left">否</td>
-<td align="left">300</td>
-<td align="left">统计作业处理数据数量的间隔时间<br />单位：秒<br />仅对<code>DataFlow</code>类型作业有效</td>
-</tr>
-
-<tr>
-<td>concurrentDataProcessThreadCount</td>
-<td align="left">int</td>
-<td align="left">否</td>
-<td align="left">1</td>
-<td align="left">同时处理数据的并发线程数<br />不能小于1<br />仅<code>ThroughputDataFlow</code>作业有效</td>
-</tr>
-
-<tr>
-<td>fetchDataCount</td>
-<td align="left">int</td>
-<td align="left">否</td>
-<td align="left">0</td>
-<td align="left">每次抓取的数据量</td>
-</tr>
-
-<tr>
-<td>maxTimeDiffSeconds</td>
+<td>max-time-diff-seconds</td>
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">-1</td>
@@ -478,7 +457,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>jobShardingStrategyClass</td>
+<td>job-sharding-strategy-class</td>
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left">true</td>
@@ -508,13 +487,73 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <td align="left">false</td>
 <td align="left">本地配置是否可覆盖注册中心配置<br />如果可覆盖，每次启动作业都以本地配置为准</td>
 </tr>
+</tbody>
+</table>
+
+<h4 id="job-dataflow命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:dataflow命名空间属性详细说明</h4>
+
+<p>job:dataflow命名空间拥有job:simple命名空间的全部属性，以下仅列出特有属性</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>process-count-interval-seconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">300</td>
+<td align="left">统计作业处理数据数量的间隔时间<br />单位：秒<br /></td>
+</tr>
 
 <tr>
-<td>scriptCommandLine</td>
+<td>concurrent-data-process-thread-count</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">1</td>
+<td align="left">同时处理数据的并发线程数<br />不能小于1<br />仅<code>ThroughputDataFlow</code>作业有效</td>
+</tr>
+
+<tr>
+<td>fetch-data-count</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">1</td>
+<td align="left">每次抓取的数据量</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="job-script命名空间属性详细说明-基本属性参照job-simple命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:script命名空间属性详细说明，基本属性参照job:simple命名空间属性详细说明</h4>
+
+<p>job:script命名空间拥有job:simple命名空间的全部属性，以下仅列出特有属性</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>script-command-line</td>
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
-<td align="left">脚本型作业执行命令行，仅对Script型作业有效</td>
+<td align="left">脚本型作业执行命令行</td>
 </tr>
 </tbody>
 </table>
@@ -544,17 +583,17 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>startedTimeoutMilliseconds</td>
+<td>started-timeout-milliseconds</td>
 <td align="left">long</td>
-<td align="left">否</td>
+<td align="left"><code>否</code></td>
 <td align="left">Long.MAX_VALUE</td>
 <td align="left">AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行前的执行方法的超时时间<br />单位：毫秒</td>
 </tr>
 
 <tr>
-<td>completedTimeoutMilliseconds</td>
+<td>completed-timeout-milliseconds</td>
 <td align="left">long</td>
-<td align="left">否</td>
+<td align="left"><code>否</code></td>
 <td align="left">Long.MAX_VALUE</td>
 <td align="left">AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行后的执行方法的超时时间<br />单位：毫秒</td>
 </tr>
@@ -600,7 +639,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>baseSleepTimeMilliseconds</td>
+<td>base-sleep-time-milliseconds</td>
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">1000</td>
@@ -608,7 +647,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>maxSleepTimeMilliseconds</td>
+<td>max-sleep-time-milliseconds</td>
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">3000</td>
@@ -616,7 +655,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>maxRetries</td>
+<td>max-retries</td>
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">3</td>
@@ -624,7 +663,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>sessionTimeoutMilliseconds</td>
+<td>session-timeout-milliseconds</td>
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">60000</td>
@@ -632,7 +671,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>connectionTimeoutMilliseconds</td>
+<td>connection-timeout-milliseconds</td>
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">15000</td>
@@ -648,7 +687,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>nestedPort</td>
+<td>nested-port</td>
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">-1</td>
@@ -656,7 +695,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>nestedDataDir</td>
+<td>nested-data-dir</td>
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
@@ -665,40 +704,11 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tbody>
 </table>
 
-<h3 id="基于spring但不使用命名空间:74c632aa9613b8dd6b95bfab1ba313e2">基于Spring但不使用命名空间</h3>
-
-<pre><code class="language-xml">    &lt;!-- 配置作业注册中心 --&gt;
-    &lt;bean id=&quot;regCenter&quot; class=&quot;com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter&quot; init-method=&quot;init&quot;&gt;
-        &lt;constructor-arg&gt;
-            &lt;bean class=&quot;com.dangdang.ddframe.reg.zookeeper.ZookeeperConfiguration&quot;&gt;
-                &lt;property name=&quot;serverLists&quot; value=&quot;${xxx}&quot; /&gt;
-                &lt;property name=&quot;namespace&quot; value=&quot;${xxx}&quot; /&gt;
-                &lt;property name=&quot;baseSleepTimeMilliseconds&quot; value=&quot;${xxx}&quot; /&gt;
-                &lt;property name=&quot;maxSleepTimeMilliseconds&quot; value=&quot;${xxx}&quot; /&gt;
-                &lt;property name=&quot;maxRetries&quot; value=&quot;${xxx}&quot; /&gt;
-            &lt;/bean&gt;
-        &lt;/constructor-arg&gt;
-    &lt;/bean&gt;
-    &lt;!-- 配置作业--&gt;
-    &lt;bean id=&quot;xxxJob&quot; class=&quot;com.dangdang.ddframe.job.spring.schedule.SpringJobScheduler&quot; init-method=&quot;init&quot;&gt;
-        &lt;constructor-arg ref=&quot;regCenter&quot; /&gt;
-        &lt;constructor-arg&gt;
-            &lt;bean class=&quot;com.dangdang.ddframe.job.api.JobConfiguration&quot;&gt;
-                &lt;constructor-arg name=&quot;jobName&quot; value=&quot;xxxJob&quot; /&gt;
-                &lt;constructor-arg name=&quot;jobClass&quot; value=&quot;xxxDemoJob&quot; /&gt;
-                &lt;constructor-arg name=&quot;shardingTotalCount&quot; value=&quot;10&quot; /&gt;
-                &lt;constructor-arg name=&quot;cron&quot; value=&quot;0/10 * * * * ?&quot; /&gt;
-                &lt;property name=&quot;shardingItemParameters&quot; value=&quot;${xxx}&quot; /&gt;
-            &lt;/bean&gt;
-        &lt;/constructor-arg&gt;
-    &lt;/bean&gt;
-</code></pre>
-
 <h3 id="不使用spring配置:74c632aa9613b8dd6b95bfab1ba313e2">不使用Spring配置</h3>
 
 <p>如果不使用Spring框架，可以用如下方式启动作业。</p>
 
-<pre><code class="language-java">import com.dangdang.ddframe.job.api.JobConfiguration;
+<pre><code class="language-java">import com.dangdang.ddframe.job.api.config.JobConfiguration;
 import com.dangdang.ddframe.job.api.JobScheduler;
 import com.dangdang.ddframe.reg.base.CoordinatorRegistryCenter;
 import com.dangdang.ddframe.reg.zookeeper.ZookeeperConfiguration;
@@ -717,16 +727,20 @@ public class JobDemo {
     private CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(zkConfig);
     
     // 定义简单作业配置对象
-    private JobConfiguration simpleJobConfig = new JobConfiguration(&quot;simpleJob&quot;, SimpleJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
+    private final SimpleJobConfiguration simpleJobConfig = JobConfigurationFactory.createSimpleJobConfigurationBuilder(&quot;simpleElasticDemoJob&quot;, 
+                    SimpleJobDemo.class, 10, &quot;0/30 * * * * ?&quot;).build();
     
     // 定义高吞吐的数据流作业配置对象
-    private JobConfiguration throughputDataFlowJobConfig = new JobConfiguration(&quot;throughputDataFlowJob&quot;, ThroughputDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
+    private final DataFlowJobConfiguration throughputJobConfig = JobConfigurationFactory.createDataFlowJobConfigurationBuilder(&quot;throughputDataFlowElasticDemoJob&quot;, 
+                    ThroughputDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;).build();
     
     // 定义顺序的数据流作业配置对象
-    private JobConfiguration sequenceDataFlowJobConfig = new JobConfiguration(&quot;sequenceDataFlowJob&quot;, SequenceDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
+    private final DataFlowJobConfiguration sequenceJobConfig = JobConfigurationFactory.createDataFlowJobConfigurationBuilder(&quot;sequenceDataFlowElasticDemoJob&quot;, 
+                    SequenceDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;).build();
     
     // 定义脚本作业配置对象
-    private JobConfiguration scriptJobConfig = new JobConfiguration(&quot;scriptJob&quot;, SequenceDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;);
+    private final ScriptJobConfiguration scriptJobConfig = JobConfigurationFactory.createScriptJobConfigurationBuilder(&quot;scriptElasticDemoJob&quot;, 
+                    10, &quot;0/5 * * * * ?&quot;, &quot;test.sh&quot;).build();
     
     public static void main(final String[] args) {
         new JobDemo().init();
@@ -738,9 +752,9 @@ public class JobDemo {
         // 启动简单作业
         new JobScheduler(regCenter, simpleJobConfig).init();
         // 启动高吞吐的数据流作业
-        new JobScheduler(regCenter, throughputDataFlowJobConfig).init();
+        new JobScheduler(regCenter, throughputJobConfig).init();
         // 启动顺序的数据流作业
-        new JobScheduler(regCenter, sequenceDataFlowJobConfig).init();
+        new JobScheduler(regCenter, sequenceJobConfig).init();
         // 启动脚本作业
         new JobScheduler(regCenter, scriptJobConfig).init();
     }
@@ -774,11 +788,12 @@ public class JobDemo {
 <ul>
 <li><a href="#spring命名空间配置:74c632aa9613b8dd6b95bfab1ba313e2">Spring命名空间配置</a>
 <ul>
-<li><a href="#job-bean命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:bean命名空间属性详细说明</a></li>
+<li><a href="#job-simple命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:simple命名空间属性详细说明</a></li>
+<li><a href="#job-dataflow命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:dataflow命名空间属性详细说明</a></li>
+<li><a href="#job-script命名空间属性详细说明-基本属性参照job-simple命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:script命名空间属性详细说明，基本属性参照job:simple命名空间属性详细说明</a></li>
 <li><a href="#job-listener命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">job:listener命名空间属性详细说明</a></li>
 <li><a href="#reg-bean命名空间属性详细说明:74c632aa9613b8dd6b95bfab1ba313e2">reg:bean命名空间属性详细说明</a></li>
 </ul></li>
-<li><a href="#基于spring但不使用命名空间:74c632aa9613b8dd6b95bfab1ba313e2">基于Spring但不使用命名空间</a></li>
 <li><a href="#不使用spring配置:74c632aa9613b8dd6b95bfab1ba313e2">不使用Spring配置</a></li>
 </ul></li>
 </ul></li>
