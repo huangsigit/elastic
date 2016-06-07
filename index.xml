@@ -147,10 +147,10 @@
                         http://www.dangdang.com/schema/ddframe/job/job.xsd
                         &amp;quot;&amp;gt;
     &amp;lt;!--配置作业注册中心 --&amp;gt;
-    &amp;lt;reg:zookeeper id=&amp;quot;regCenter&amp;quot; server-lists=&amp;quot; yourhost:2181&amp;quot; namespace=&amp;quot;dd-job&amp;quot; base-sleep-time-milliseconds=&amp;quot;1000&amp;quot; max-sleep-time-milliseconds=&amp;quot;3000&amp;quot; maxRetries=&amp;quot;3&amp;quot; /&amp;gt;
+    &amp;lt;reg:zookeeper id=&amp;quot;regCenter&amp;quot; server-lists=&amp;quot; yourhost:2181&amp;quot; namespace=&amp;quot;dd-job&amp;quot; base-sleep-time-milliseconds=&amp;quot;1000&amp;quot; max-sleep-time-milliseconds=&amp;quot;3000&amp;quot; max-retries=&amp;quot;3&amp;quot; /&amp;gt;
 
     &amp;lt;!-- 配置作业--&amp;gt;
-    &amp;lt;job:simple id=&amp;quot;oneOffElasticJob&amp;quot; class=&amp;quot;xxx.MyElasticJob&amp;quot; reg-center=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
+    &amp;lt;job:simple id=&amp;quot;oneOffElasticJob&amp;quot; class=&amp;quot;xxx.MyElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
 &amp;lt;/beans&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -166,7 +166,7 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;1-1-0-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.0-SNAPSHOT&lt;/h2&gt;
+&lt;h2 id=&#34;1-1-0:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.0&lt;/h2&gt;
 
 &lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
@@ -339,7 +339,11 @@
 
 &lt;h1 id=&#34;elastic-job-1-1-0升级说明:abc46c17007b653a25bcc05425c64113&#34;&gt;elastic-job 1.1.0升级说明&lt;/h1&gt;
 
-&lt;p&gt;基于扩展性提升，概念明晰和命名规范化的考虑，&lt;code&gt;elastic-job 1.1.0&lt;/code&gt;版本决定抛弃原有包袱的束缚，重新定义了&lt;code&gt;JAVA API&lt;/code&gt;，&lt;code&gt;Spring&lt;/code&gt;命名空间并且删除了已废弃的API。&lt;code&gt;elastic-job 1.1.0&lt;/code&gt;作为里程碑版本发布，除了API改动并未做功能上的修改，希望通过标准化配置的方式为未来的新&lt;code&gt;elastic-job&lt;/code&gt;功能的开发打下良好的基础。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;基于扩展性提升，概念明晰和命名规范化的考虑，&lt;code&gt;elastic-job 1.1.0&lt;/code&gt;版本决定抛弃原有包袱的束缚，重新定义了&lt;code&gt;JAVA API&lt;/code&gt;，&lt;code&gt;Spring&lt;/code&gt;命名空间并且删除了已废弃的&lt;code&gt;API&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;elastic-job 1.1.0&lt;/code&gt;作为里程碑版本发布，除了&lt;code&gt;API&lt;/code&gt;改动并未做功能上的修改，希望通过标准化配置的方式为未来的新&lt;code&gt;elastic-job&lt;/code&gt;功能的开发打下良好的基础。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;重新定义java-api:abc46c17007b653a25bcc05425c64113&#34;&gt;重新定义JAVA API&lt;/h2&gt;
 
@@ -355,6 +359,8 @@
 &lt;li&gt;&lt;p&gt;删除&lt;code&gt;&amp;lt;job:bean&amp;gt;&lt;/code&gt;，细化为&lt;code&gt;&amp;lt;job:simple&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;job:dataflow&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;job:script&amp;gt;&lt;/code&gt;具体类型。&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;code&gt;Spring&lt;/code&gt;命名空间属性由驼峰式修正为&lt;code&gt;Spring&lt;/code&gt;命名空间标准命名规范(多单词以&lt;code&gt;-&lt;/code&gt;分隔)。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;作业的&lt;code&gt;Spring&lt;/code&gt;命名空间属性&lt;code&gt;regCenter&lt;/code&gt;变更为&lt;code&gt;registry-center-ref&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;废弃过时api:abc46c17007b653a25bcc05425c64113&#34;&gt;废弃过时API&lt;/h2&gt;
@@ -363,6 +369,8 @@
 &lt;li&gt;&lt;p&gt;删除废弃作业类，包括&lt;code&gt;AbstractOneOffElasticJob&lt;/code&gt;，&lt;code&gt;AbstractPerpetualElasticJob&lt;/code&gt;和&lt;code&gt;AbstractSequencePerpetualElasticJob&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;删除废弃作业调度器类，包括&lt;code&gt;com.dangdang.ddframe.job.schedule.JobController&lt;/code&gt;和&lt;code&gt;com.dangdang.ddframe.job.spring.schedule.SpringJobController&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;不再支持非&lt;code&gt;Spring&lt;/code&gt;命名空间通过&lt;code&gt;xml&lt;/code&gt;方式配置&lt;code&gt;bean&lt;/code&gt;，如有需要请使用&lt;code&gt;Spring Java Config&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -435,7 +443,7 @@
 
 &lt;h2 id=&#34;elastic-job-api:b4b5a29fe5be663d2644d30f96759d37&#34;&gt;elastic-job-api&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;生命周期操作的API，可独立使用。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;生命周期操作的&lt;code&gt;API&lt;/code&gt;，可独立使用。&lt;/p&gt;
 
 &lt;h2 id=&#34;elastic-job-spring:b4b5a29fe5be663d2644d30f96759d37&#34;&gt;elastic-job-spring&lt;/h2&gt;
 
@@ -921,7 +929,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;td align=&#34;left&#34;&gt;boolean&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;false&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;是否流式处理数据&lt;br /&gt;如果流式处理数据, 则fetchData不返回空结果将持续执行作业&lt;br /&gt;如果非流式处理数据, 则处理数据完成后作业结束&lt;br /&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是否流式处理数据&lt;br /&gt;如果流式处理数据, 则&lt;code&gt;fetchData&lt;/code&gt;不返回空结果将持续执行作业&lt;br /&gt;如果非流式处理数据, 则处理数据完成后作业结束&lt;br /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1398,6 +1406,12 @@ public class JobDemo {
 &lt;td&gt;fetchDataCount&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;每次抓取的数据量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;streaming-process&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是否流式处理数据&lt;br /&gt;如果流式处理数据, 则&lt;code&gt;fetchData&lt;/code&gt;不返回空结果将持续执行作业&lt;br /&gt;如果非流式处理数据, 则处理数据完成后作业结束&lt;br /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;

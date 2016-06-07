@@ -205,6 +205,12 @@ body {
 </tr>
 
 <tr>
+<td>streaming-process</td>
+<td align="left">否</td>
+<td align="left">是否流式处理数据<br />如果流式处理数据, 则<code>fetchData</code>不返回空结果将持续执行作业<br />如果非流式处理数据, 则处理数据完成后作业结束<br /></td>
+</tr>
+
+<tr>
 <td>maxTimeDiffSeconds</td>
 <td align="left">否</td>
 <td align="left">允许的本机与注册中心的时间误差秒数</td>

@@ -110,7 +110,11 @@ body {
 
 <h1 id="elastic-job-1-1-0升级说明:abc46c17007b653a25bcc05425c64113">elastic-job 1.1.0升级说明</h1>
 
-<p>基于扩展性提升，概念明晰和命名规范化的考虑，<code>elastic-job 1.1.0</code>版本决定抛弃原有包袱的束缚，重新定义了<code>JAVA API</code>，<code>Spring</code>命名空间并且删除了已废弃的API。<code>elastic-job 1.1.0</code>作为里程碑版本发布，除了API改动并未做功能上的修改，希望通过标准化配置的方式为未来的新<code>elastic-job</code>功能的开发打下良好的基础。</p>
+<ul>
+<li><p>基于扩展性提升，概念明晰和命名规范化的考虑，<code>elastic-job 1.1.0</code>版本决定抛弃原有包袱的束缚，重新定义了<code>JAVA API</code>，<code>Spring</code>命名空间并且删除了已废弃的<code>API</code>。</p></li>
+
+<li><p><code>elastic-job 1.1.0</code>作为里程碑版本发布，除了<code>API</code>改动并未做功能上的修改，希望通过标准化配置的方式为未来的新<code>elastic-job</code>功能的开发打下良好的基础。</p></li>
+</ul>
 
 <h2 id="重新定义java-api:abc46c17007b653a25bcc05425c64113">重新定义JAVA API</h2>
 
@@ -126,6 +130,8 @@ body {
 <li><p>删除<code>&lt;job:bean&gt;</code>，细化为<code>&lt;job:simple&gt;</code>, <code>&lt;job:dataflow&gt;</code>, <code>&lt;job:script&gt;</code>具体类型。</p></li>
 
 <li><p><code>Spring</code>命名空间属性由驼峰式修正为<code>Spring</code>命名空间标准命名规范(多单词以<code>-</code>分隔)。</p></li>
+
+<li><p>作业的<code>Spring</code>命名空间属性<code>regCenter</code>变更为<code>registry-center-ref</code>。</p></li>
 </ul>
 
 <h2 id="废弃过时api:abc46c17007b653a25bcc05425c64113">废弃过时API</h2>
@@ -134,6 +140,8 @@ body {
 <li><p>删除废弃作业类，包括<code>AbstractOneOffElasticJob</code>，<code>AbstractPerpetualElasticJob</code>和<code>AbstractSequencePerpetualElasticJob</code>。</p></li>
 
 <li><p>删除废弃作业调度器类，包括<code>com.dangdang.ddframe.job.schedule.JobController</code>和<code>com.dangdang.ddframe.job.spring.schedule.SpringJobController</code>。</p></li>
+
+<li><p>不再支持非<code>Spring</code>命名空间通过<code>xml</code>方式配置<code>bean</code>，如有需要请使用<code>Spring Java Config</code>。</p></li>
 </ul>
 
 	</div>

@@ -239,10 +239,10 @@ body {
                         http://www.dangdang.com/schema/ddframe/job/job.xsd
                         &quot;&gt;
     &lt;!--配置作业注册中心 --&gt;
-    &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; maxRetries=&quot;3&quot; /&gt;
+    &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
 
     &lt;!-- 配置作业--&gt;
-    &lt;job:simple id=&quot;oneOffElasticJob&quot; class=&quot;xxx.MyElasticJob&quot; reg-center=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
+    &lt;job:simple id=&quot;oneOffElasticJob&quot; class=&quot;xxx.MyElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
 &lt;/beans&gt;
 </code></pre>
 
