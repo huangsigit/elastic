@@ -24,10 +24,12 @@
 &lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/105&#34;&gt;ISSUE #105&lt;/a&gt; 重构Spring命名空间驼峰式定义&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/104&#34;&gt;ISSUE #104&lt;/a&gt; 移除@Deprecated代码&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/102&#34;&gt;ISSUE #102&lt;/a&gt; 重新定义Java/Spring Config API，使用Factory+Builder模式代替原有的Constructor+Setter模式&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/97&#34;&gt;ISSUE #97&lt;/a&gt; JobConfiguration重构为SimpleJobConfiguration，DataFlowJobConfiguration，ScriptJobConfiguration&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/102&#34;&gt;ISSUE #102&lt;/a&gt; 重新定义Java/Spring Config API，使用Factory+Builder模式代替原有的Constructor+Setter模式&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/104&#34;&gt;ISSUE #104&lt;/a&gt; 移除@Deprecated代码&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/105&#34;&gt;ISSUE #105&lt;/a&gt; 重构Spring命名空间驼峰式定义&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/106&#34;&gt;ISSUE #106&lt;/a&gt; isStreaming配置化&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/107&#34;&gt;ISSUE #107&lt;/a&gt; reg-center更名为registry-center-ref&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;1-0-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.8&lt;/h2&gt;
@@ -181,51 +183,39 @@
     </item>
     
     <item>
-      <title>elastic-job 1.0.2升级说明</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.0.2/</link>
-      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
+      <title>elastic-job 1.1.0升级说明</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.1.0/</link>
+      <pubDate>Tue, 07 Jun 2016 16:14:21 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.0.2/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.1.0/</guid>
       <description>
 
-&lt;h1 id=&#34;elastic-job-1-0-2升级说明:222edb4b4fef6afb18e150da049887bf&#34;&gt;elastic-job 1.0.2升级说明&lt;/h1&gt;
+&lt;h1 id=&#34;elastic-job-1-1-0升级说明:abc46c17007b653a25bcc05425c64113&#34;&gt;elastic-job 1.1.0升级说明&lt;/h1&gt;
 
-&lt;p&gt;为了扩展性和概念明晰，&lt;code&gt;elastic-job 1.0.2&lt;/code&gt;重新定义了作业类型。&lt;/p&gt;
+&lt;p&gt;基于扩展性提升，概念明晰和命名规范化的考虑，&lt;code&gt;elastic-job 1.1.0&lt;/code&gt;版本决定抛弃原有包袱的束缚，重新定义了&lt;code&gt;JAVA API&lt;/code&gt;，&lt;code&gt;Spring&lt;/code&gt;命名空间并且删除了已废弃的API。&lt;code&gt;elastic-job 1.1.0&lt;/code&gt;作为里程碑版本发布，除了API改动并未做功能上的修改，希望通过标准化配置的方式为未来的新&lt;code&gt;elastic-job&lt;/code&gt;功能的开发打下良好的基础。&lt;/p&gt;
 
-&lt;h2 id=&#34;plugin包:222edb4b4fef6afb18e150da049887bf&#34;&gt;plugin包&lt;/h2&gt;
-
-&lt;p&gt;为了扩展方便，将作业类型由&lt;code&gt;api&lt;/code&gt;包挪入&lt;code&gt;plugin&lt;/code&gt;包，欢迎大家贡献自己的作业类型到&lt;code&gt;plugin&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h2 id=&#34;重新定义并明晰作业类型:222edb4b4fef6afb18e150da049887bf&#34;&gt;重新定义并明晰作业类型&lt;/h2&gt;
+&lt;h2 id=&#34;重新定义java-api:abc46c17007b653a25bcc05425c64113&#34;&gt;重新定义JAVA API&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;原&lt;code&gt;OneOff&lt;/code&gt;更名为&lt;code&gt;Simple&lt;/code&gt;类型，意为简单实现，未经任何封装的类型。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;变更&lt;code&gt;JobConfiguration&lt;/code&gt;类为接口，通过工厂方法配合构建者模式为每种作业类型分别提供了配置实现类。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;提炼抽象出&lt;code&gt;DataFlow&lt;/code&gt;类型用于处理数据流。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;原&lt;code&gt;Perpetual&lt;/code&gt;更名为&lt;code&gt;ThroughputDataFlow&lt;/code&gt;类型，意为高吞吐的数据流作业。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;原&lt;code&gt;SequencePerpetual&lt;/code&gt;更名为&lt;code&gt;SequenceDataFlow&lt;/code&gt;类型，意为顺序性数据流作业。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;DataFlow&lt;/code&gt;父接口增加&lt;code&gt;isStreamingProcess&lt;/code&gt;接口，意为数据流类型作业是否使用流式处理（即，有数据则一直不停止作业的处理 &amp;ndash; 对应原&lt;code&gt;Perpetual&lt;/code&gt;概念，还是任务中只执行一次抓取/处理 &amp;ndash; 对应原&lt;code&gt;OneOff&lt;/code&gt;概念）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;取消&lt;code&gt;DataFlowElasticJob&lt;/code&gt;接口中&lt;code&gt;isStreamingProcess&lt;/code&gt;的方法签名，归入&lt;code&gt;DataFlow&lt;/code&gt;型作业配置，默认值为&lt;code&gt;false&lt;/code&gt;非流式处理。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;迁移作业调度器类:222edb4b4fef6afb18e150da049887bf&#34;&gt;迁移作业调度器类&lt;/h2&gt;
+&lt;h2 id=&#34;重新定义spring命名空间:abc46c17007b653a25bcc05425c64113&#34;&gt;重新定义Spring命名空间&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;迁移意义不明的&lt;code&gt;schedule&lt;/code&gt;包，将其拆分至&lt;code&gt;api&lt;/code&gt;和&lt;code&gt;internal&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;删除&lt;code&gt;&amp;lt;job:bean&amp;gt;&lt;/code&gt;，细化为&lt;code&gt;&amp;lt;job:simple&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;job:dataflow&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;job:script&amp;gt;&lt;/code&gt;具体类型。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.schedule.JobController&lt;/code&gt;更名为&lt;code&gt;com.dangdang.ddframe.job.api.JobScheduler&lt;/code&gt;，如果使用原生类启动作业，请更新。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.spring.schedule.SpringJobController&lt;/code&gt;更名为&lt;code&gt;com.dangdang.ddframe.job.spring.schedule.SpringJobScheduler&lt;/code&gt;，如果使用非&lt;code&gt;Spring&lt;/code&gt;命名空间启动作业，请更新。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Spring&lt;/code&gt;命名空间属性由驼峰式修正为&lt;code&gt;Spring&lt;/code&gt;命名空间标准命名规范(多单词以&lt;code&gt;-&lt;/code&gt;分隔)。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;兼容性问题:222edb4b4fef6afb18e150da049887bf&#34;&gt;兼容性问题&lt;/h2&gt;
+&lt;h2 id=&#34;废弃过时api:abc46c17007b653a25bcc05425c64113&#34;&gt;废弃过时API&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;将原抽象类升级为接口，所以如果之前使用&lt;code&gt;protected&lt;/code&gt;实现&lt;code&gt;fetchData&lt;/code&gt;，&lt;code&gt;processData&lt;/code&gt;等方法，需要改为&lt;code&gt;public&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;删除废弃作业类，包括&lt;code&gt;AbstractOneOffElasticJob&lt;/code&gt;，&lt;code&gt;AbstractPerpetualElasticJob&lt;/code&gt;和&lt;code&gt;AbstractSequencePerpetualElasticJob&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;其余改动的接口，包括&lt;code&gt;AbstractOneOffElasticJob&lt;/code&gt;，&lt;code&gt;AbstractPerpetualElasticJob&lt;/code&gt;和&lt;code&gt;AbstractSequencePerpetualElasticJob&lt;/code&gt;均将以&lt;code&gt;@Deprecated&lt;/code&gt;的形式继续存在一段时间，不会导致升级版本产生兼容问题。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;删除废弃作业调度器类，包括&lt;code&gt;com.dangdang.ddframe.job.schedule.JobController&lt;/code&gt;和&lt;code&gt;com.dangdang.ddframe.job.spring.schedule.SpringJobController&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -420,11 +410,6 @@
         }
         return true;
     }
-    
-    @Override
-    public boolean isStreamingProcess() {
-        return true;
-    }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -448,11 +433,6 @@
         
         // store offset
         updateOffset(context.getShardingItem(), &amp;quot;your offset, maybe id&amp;quot;);
-        return true;
-    }
-    
-    @Override
-    public boolean isStreamingProcess() {
         return true;
     }
 }
@@ -589,16 +569,16 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
     &amp;lt;reg:zookeeper id=&amp;quot;regCenter&amp;quot; server-lists=&amp;quot; yourhost:2181&amp;quot; namespace=&amp;quot;dd-job&amp;quot; base-sleep-time-milliseconds=&amp;quot;1000&amp;quot; max-sleep-time-milliseconds=&amp;quot;3000&amp;quot; max-retries=&amp;quot;3&amp;quot; /&amp;gt;
     
     &amp;lt;!-- 配置简单作业--&amp;gt;
-    &amp;lt;job:simple id=&amp;quot;simpleElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleElasticJob&amp;quot; reg-center=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
+    &amp;lt;job:simple id=&amp;quot;simpleElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
     
     &amp;lt;!-- 配置数据流作业--&amp;gt;
-    &amp;lt;job:dataflow id=&amp;quot;throughputDataFlow&amp;quot; class=&amp;quot;xxx.MyThroughputDataFlowElasticJob&amp;quot; regCenter=&amp;quot;reg-center&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; process-count-interval-seconds=&amp;quot;10&amp;quot; concurrent-data-process-thread-count=&amp;quot;10&amp;quot; /&amp;gt;
+    &amp;lt;job:dataflow id=&amp;quot;throughputDataFlow&amp;quot; class=&amp;quot;xxx.MyThroughputDataFlowElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; process-count-interval-seconds=&amp;quot;10&amp;quot; concurrent-data-process-thread-count=&amp;quot;10&amp;quot; /&amp;gt;
     
     &amp;lt;!-- 配置脚本作业--&amp;gt;
-    &amp;lt;job:script id=&amp;quot;scriptElasticJob&amp;quot; reg-center=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; script-command-line=&amp;quot;/your/file/path/demo.sh&amp;quot; /&amp;gt;
+    &amp;lt;job:script id=&amp;quot;scriptElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; script-command-line=&amp;quot;/your/file/path/demo.sh&amp;quot; /&amp;gt;
     
     &amp;lt;!-- 配置带监听的简单作业--&amp;gt;
-    &amp;lt;job:simple id=&amp;quot;listenerElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleListenerElasticJob&amp;quot; reg-center=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot;&amp;gt;
+    &amp;lt;job:simple id=&amp;quot;listenerElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleListenerElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot;&amp;gt;
         &amp;lt;job:listener class=&amp;quot;xx.MySimpleJobListener&amp;quot;/&amp;gt;
         &amp;lt;job:listener class=&amp;quot;xx.MyOnceSimpleJobListener&amp;quot; started-timeout-milliseconds=&amp;quot;1000&amp;quot; completed-timeout-milliseconds=&amp;quot;2000&amp;quot; /&amp;gt;
     &amp;lt;/job:simple&amp;gt;
@@ -636,7 +616,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;reg-center&lt;/td&gt;
+&lt;td&gt;registry-center-ref&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
@@ -688,7 +668,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;-1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业监控端口。&lt;br /&gt;建议配置作业监控端口, 方便开发者dump作业信息。&lt;br /&gt;使用方法: echo &amp;ldquo;dump&amp;rdquo; | nc 127.0.0.1 9888&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业监控端口&lt;br /&gt;建议配置作业监控端口, 方便开发者dump作业信息。&lt;br /&gt;使用方法: echo &amp;ldquo;dump&amp;rdquo; | nc 127.0.0.1 9888&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -788,6 +768,14 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;每次抓取的数据量&lt;/td&gt;
 &lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;streaming-process&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;boolean&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;false&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是否流式处理数据&lt;br /&gt;如果流式处理数据, 则fetchData不返回空结果将持续执行作业&lt;br /&gt;如果非流式处理数据, 则处理数据完成后作业结束&lt;br /&gt;&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -882,7 +870,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;serverLists&lt;/td&gt;
+&lt;td&gt;server-lists&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
@@ -989,9 +977,9 @@ public class JobDemo {
     private final SimpleJobConfiguration simpleJobConfig = JobConfigurationFactory.createSimpleJobConfigurationBuilder(&amp;quot;simpleElasticDemoJob&amp;quot;, 
                     SimpleJobDemo.class, 10, &amp;quot;0/30 * * * * ?&amp;quot;).build();
     
-    // 定义高吞吐的数据流作业配置对象
+    // 定义高吞吐流式处理的数据流作业配置对象
     private final DataFlowJobConfiguration throughputJobConfig = JobConfigurationFactory.createDataFlowJobConfigurationBuilder(&amp;quot;throughputDataFlowElasticDemoJob&amp;quot;, 
-                    ThroughputDataFlowJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;).build();
+                    ThroughputDataFlowJobDemo.class, 10, &amp;quot;0/5 * * * * ?&amp;quot;).streamingProcess(true).build();
     
     // 定义顺序的数据流作业配置对象
     private final DataFlowJobConfiguration sequenceJobConfig = JobConfigurationFactory.createDataFlowJobConfigurationBuilder(&amp;quot;sequenceDataFlowElasticDemoJob&amp;quot;, 
@@ -1010,7 +998,7 @@ public class JobDemo {
         regCenter.init();
         // 启动简单作业
         new JobScheduler(regCenter, simpleJobConfig).init();
-        // 启动高吞吐的数据流作业
+        // 启动高吞吐流式处理的数据流作业
         new JobScheduler(regCenter, throughputJobConfig).init();
         // 启动顺序的数据流作业
         new JobScheduler(regCenter, sequenceJobConfig).init();
@@ -1639,7 +1627,7 @@ public class JobDemo {
     &amp;lt;reg:zookeeper id=&amp;quot;regCenter&amp;quot; server-lists=&amp;quot; yourhost:2181&amp;quot; namespace=&amp;quot;dd-job&amp;quot; base-sleep-time-milliseconds=&amp;quot;1000&amp;quot; max-sleep-time-milliseconds=&amp;quot;3000&amp;quot; max-retries=&amp;quot;3&amp;quot; /&amp;gt;
     
     &amp;lt;!-- 配置作业--&amp;gt;
-    &amp;lt;job:simple id=&amp;quot;oneOffElasticJob&amp;quot; monitor-port=&amp;quot;9888&amp;quot; class=&amp;quot;xxx.MyElasticJob&amp;quot; reg-center=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
+    &amp;lt;job:simple id=&amp;quot;oneOffElasticJob&amp;quot; monitor-port=&amp;quot;9888&amp;quot; class=&amp;quot;xxx.MyElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
 &amp;lt;/beans&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 

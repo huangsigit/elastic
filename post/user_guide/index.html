@@ -161,11 +161,6 @@ body {
         }
         return true;
     }
-    
-    @Override
-    public boolean isStreamingProcess() {
-        return true;
-    }
 }
 </code></pre>
 
@@ -189,11 +184,6 @@ body {
         
         // store offset
         updateOffset(context.getShardingItem(), &quot;your offset, maybe id&quot;);
-        return true;
-    }
-    
-    @Override
-    public boolean isStreamingProcess() {
         return true;
     }
 }
@@ -330,16 +320,16 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
     &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
     
     &lt;!-- 配置简单作业--&gt;
-    &lt;job:simple id=&quot;simpleElasticJob&quot; class=&quot;xxx.MySimpleElasticJob&quot; reg-center=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
+    &lt;job:simple id=&quot;simpleElasticJob&quot; class=&quot;xxx.MySimpleElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
     
     &lt;!-- 配置数据流作业--&gt;
-    &lt;job:dataflow id=&quot;throughputDataFlow&quot; class=&quot;xxx.MyThroughputDataFlowElasticJob&quot; regCenter=&quot;reg-center&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; process-count-interval-seconds=&quot;10&quot; concurrent-data-process-thread-count=&quot;10&quot; /&gt;
+    &lt;job:dataflow id=&quot;throughputDataFlow&quot; class=&quot;xxx.MyThroughputDataFlowElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; process-count-interval-seconds=&quot;10&quot; concurrent-data-process-thread-count=&quot;10&quot; /&gt;
     
     &lt;!-- 配置脚本作业--&gt;
-    &lt;job:script id=&quot;scriptElasticJob&quot; reg-center=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; script-command-line=&quot;/your/file/path/demo.sh&quot; /&gt;
+    &lt;job:script id=&quot;scriptElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; script-command-line=&quot;/your/file/path/demo.sh&quot; /&gt;
     
     &lt;!-- 配置带监听的简单作业--&gt;
-    &lt;job:simple id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; reg-center=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot;&gt;
+    &lt;job:simple id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot;&gt;
         &lt;job:listener class=&quot;xx.MySimpleJobListener&quot;/&gt;
         &lt;job:listener class=&quot;xx.MyOnceSimpleJobListener&quot; started-timeout-milliseconds=&quot;1000&quot; completed-timeout-milliseconds=&quot;2000&quot; /&gt;
     &lt;/job:simple&gt;
@@ -377,7 +367,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>reg-center</td>
+<td>registry-center-ref</td>
 <td align="left">String</td>
 <td align="left"><code>是</code></td>
 <td align="left"></td>
@@ -429,7 +419,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">-1</td>
-<td align="left">作业监控端口。<br />建议配置作业监控端口, 方便开发者dump作业信息。<br />使用方法: echo &ldquo;dump&rdquo; | nc 127.0.0.1 9888</td>
+<td align="left">作业监控端口<br />建议配置作业监控端口, 方便开发者dump作业信息。<br />使用方法: echo &ldquo;dump&rdquo; | nc 127.0.0.1 9888</td>
 </tr>
 
 <tr>
@@ -529,6 +519,14 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <td align="left">1</td>
 <td align="left">每次抓取的数据量</td>
 </tr>
+
+<tr>
+<td>streaming-process</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">false</td>
+<td align="left">是否流式处理数据<br />如果流式处理数据, 则fetchData不返回空结果将持续执行作业<br />如果非流式处理数据, 则处理数据完成后作业结束<br /></td>
+</tr>
 </tbody>
 </table>
 
@@ -623,7 +621,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </tr>
 
 <tr>
-<td>serverLists</td>
+<td>server-lists</td>
 <td align="left">String</td>
 <td align="left"><code>是</code></td>
 <td align="left"></td>
@@ -730,9 +728,9 @@ public class JobDemo {
     private final SimpleJobConfiguration simpleJobConfig = JobConfigurationFactory.createSimpleJobConfigurationBuilder(&quot;simpleElasticDemoJob&quot;, 
                     SimpleJobDemo.class, 10, &quot;0/30 * * * * ?&quot;).build();
     
-    // 定义高吞吐的数据流作业配置对象
+    // 定义高吞吐流式处理的数据流作业配置对象
     private final DataFlowJobConfiguration throughputJobConfig = JobConfigurationFactory.createDataFlowJobConfigurationBuilder(&quot;throughputDataFlowElasticDemoJob&quot;, 
-                    ThroughputDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;).build();
+                    ThroughputDataFlowJobDemo.class, 10, &quot;0/5 * * * * ?&quot;).streamingProcess(true).build();
     
     // 定义顺序的数据流作业配置对象
     private final DataFlowJobConfiguration sequenceJobConfig = JobConfigurationFactory.createDataFlowJobConfigurationBuilder(&quot;sequenceDataFlowElasticDemoJob&quot;, 
@@ -751,7 +749,7 @@ public class JobDemo {
         regCenter.init();
         // 启动简单作业
         new JobScheduler(regCenter, simpleJobConfig).init();
-        // 启动高吞吐的数据流作业
+        // 启动高吞吐流式处理的数据流作业
         new JobScheduler(regCenter, throughputJobConfig).init();
         // 启动顺序的数据流作业
         new JobScheduler(regCenter, sequenceJobConfig).init();
