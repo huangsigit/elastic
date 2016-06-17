@@ -19,6 +19,14 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
+&lt;h2 id=&#34;1-1-1-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.1-SNAPSHOT&lt;/h2&gt;
+
+&lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/110&#34;&gt;ISSUE #110&lt;/a&gt; 手动触发作业&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h2 id=&#34;1-1-0:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.0&lt;/h2&gt;
 
 &lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
@@ -54,7 +62,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/91&#34;&gt;ISSUE #91&lt;/a&gt; 作业生命周期操作API&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/84&#34;&gt;ISSUE #84&lt;/a&gt; 控制台提供作业启用/禁用按钮操作&lt;/li&gt;
@@ -70,7 +78,7 @@
 
 &lt;h2 id=&#34;1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.6&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/71&#34;&gt;ISSUE #71&lt;/a&gt; 作业关闭功能（shutdown）&lt;/li&gt;
@@ -88,7 +96,7 @@
 
 &lt;h2 id=&#34;1-0-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.5&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/2&#34;&gt;ISSUE #2&lt;/a&gt; 增加前置和后置任务&lt;/li&gt;
@@ -113,7 +121,7 @@
 
 &lt;h2 id=&#34;1-0-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.4&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/16&#34;&gt;ISSUE #16&lt;/a&gt; 提供内嵌zookeeper，简化开发环境&lt;/li&gt;
@@ -130,7 +138,7 @@
 
 &lt;h2 id=&#34;1-0-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.3&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/39&#34;&gt;ISSUE #39&lt;/a&gt; 增加作业辅助监听功能，通过dump命令抓取作业运行时信息&lt;/li&gt;
@@ -147,7 +155,7 @@
 
 &lt;h2 id=&#34;1-0-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.2&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/6&#34;&gt;ISSUE #6&lt;/a&gt; 校对作业服务器与注册中心时间误差&lt;/li&gt;
@@ -765,7 +773,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;td&gt;concurrent-data-process-thread-count&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CPU核数*2&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;同时处理数据的并发线程数&lt;br /&gt;不能小于1&lt;br /&gt;仅&lt;code&gt;ThroughputDataFlow&lt;/code&gt;作业有效&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -1359,6 +1367,12 @@ public class JobDemo {
 &lt;td&gt;shutdown&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;关闭作业的标记，关闭的作业将停止调度，并可通过控制台删除。只有作业程序再次启动时才会清理此标记&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;trigger&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;立刻触发作业的标记，作业在不与上次运行中作业冲突的情况下将立刻启动，并在启动后自动清理此标记&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
