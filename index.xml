@@ -168,6 +168,12 @@
 
 &lt;h2 id=&#34;1-1-1-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.1-SNAPSHOT&lt;/h2&gt;
 
+&lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/116&#34;&gt;ISSUE #116&lt;/a&gt; 作业接口的handleJobExecutionException参数变更&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
@@ -182,7 +188,7 @@
 
 &lt;h2 id=&#34;1-1-0:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.0&lt;/h2&gt;
 
-&lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/97&#34;&gt;ISSUE #97&lt;/a&gt; JobConfiguration重构为SimpleJobConfiguration，DataFlowJobConfiguration，ScriptJobConfiguration&lt;/li&gt;
@@ -203,7 +209,7 @@
 
 &lt;h2 id=&#34;1-0-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.7&lt;/h2&gt;
 
-&lt;h3 id=&#34;结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/88&#34;&gt;ISSUE #88&lt;/a&gt; stop作业改名为pause&lt;/li&gt;
@@ -266,7 +272,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/69&#34;&gt;ISSUE #69&lt;/a&gt; 分片时如在Zk中有的作业服务器sharding节点不存在将导致无法重新分片&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/59&#34;&gt;ISSUE #59&lt;/a&gt; 将elastic-job依赖的curator从&lt;code&gt;2.8.0&lt;/code&gt;升级至&lt;code&gt;2.10.0&lt;/code&gt;&lt;/li&gt;
@@ -282,7 +288,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/56&#34;&gt;ISSUE #56&lt;/a&gt; 作业自定义参数设置&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/57&#34;&gt;ISSUE #57&lt;/a&gt; 精简模块，移除&lt;code&gt;elastic-job-test&lt;/code&gt;模块&lt;/li&gt;
@@ -329,7 +335,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/53&#34;&gt;ISSUE #53&lt;/a&gt; Dataflow的Sequence类型作业采用多线程抓取数据&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/17&#34;&gt;ISSUE #17&lt;/a&gt; 作业类型接口变更，参见&lt;a href=&#34;http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.0.2/&#34;&gt;1.0.2升级说明&lt;/a&gt;&lt;/li&gt;
