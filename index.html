@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Elastic-JOB</title>
+    <title>Elastic-Job</title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -71,7 +71,7 @@ body {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="page-scroll navbar-brand" href="#intro">Elastic-JOB</a>
+            <a class="page-scroll navbar-brand" href="#intro">Elastic-Job</a>
         </div>
         
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -99,12 +99,12 @@ body {
             <div class="row">
                 <div class="intro-image col-md-4"></div>
                 <div class="intro-message col-md-6">
-                    <h1>Elastic-JOB</h1>
+                    <h1>Elastic-Job</h1>
                     <h3>Elastic-Job - distributed scheduled job solution</h3>
                     
                     
                     
-                    <iframe class="github-btn" src="https://ghbtns.com/github-btn.html?user=dangdangdotcom&repo=Elastic-JOB&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+                    <iframe class="github-btn" src="https://ghbtns.com/github-btn.html?user=dangdangdotcom&repo=Elastic-Job&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
                     
                     <hr class="intro-divider">
                 </div>
@@ -125,77 +125,68 @@ body {
                     <div class="clearfix"></div>
                     
 
-<h1 id="elastic-job-distributed-scheduled-job-solution:d680e8a854a7cbad6d490c445cba2eba">Elastic-Job - distributed scheduled job solution</h1>
+<h1 id="elastic-job-distributed-scheduled-job-solution:d680e8a854a7cbad6d490c445cba2eba"><strong>Elastic-Job - distributed scheduled job solution</strong></h1>
 
-<p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="img/license.svg" alt="Hex.pm" /></a></p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://dangdangdotcom.github.io/elastic-job/img/license.svg" alt="Hex.pm" /></a>
+<a href="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job"><img src="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job/badge.svg" alt="Maven Status" /></a>
+<a href="https://travis-ci.org/dangdangdotcom/elastic-job"><img src="https://secure.travis-ci.org/dangdangdotcom/elastic-job.png?branch=master" alt="Build Status" /></a>
+<a href="https://coveralls.io/github/dangdangdotcom/elastic-job?branch=master"><img src="https://coveralls.io/repos/dangdangdotcom/elastic-job/badge.svg?branch=master&amp;service=github" alt="Coverage Status" /></a></p>
 
-<p><code>Elastic-Job</code>是<code>ddframe</code>中<code>dd-job</code>的作业模块中分离出来的分布式弹性作业框架。去掉了和<code>dd-job</code>中的监控和<code>ddframe</code>接入规范部分。该项目基于成熟的开源产品<code>Quartz</code>和<code>Zookeeper</code>及其客户端<code>Curator</code>进行二次开发。</p>
+<h1 id="概览:d680e8a854a7cbad6d490c445cba2eba">概览</h1>
 
-<p><code>ddframe</code>其他模块也有可独立开源的部分，之前当当曾开源过<code>dd-soa</code>的基石模块<code>DubboX</code>。</p>
+<p>Elastic-Job是一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。</p>
 
-<p><code>elastic-job</code>和<code>ddframe</code>关系见下图</p>
+<p>Elastic-Job-Lite定位为轻量级无中心化解决方案，使用jar包的形式提供分布式任务的协调服务。
+Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理、应用分发以及进程隔离等服务。</p>
 
-<p><img src="img/ddframe.jpg" alt="ddframe演进图" /></p>
+<p>Elastic-Job-Lite和Elastic-Job-Cloud提供同一套API开发作业，开发者仅需一次开发，然后可根据需要以Lite或Cloud的方式部署。</p>
 
-<h2 id="主要贡献者:d680e8a854a7cbad6d490c445cba2eba">主要贡献者</h2>
+<h1 id="功能列表:d680e8a854a7cbad6d490c445cba2eba">功能列表</h1>
 
-<ul>
-<li><p>张亮&nbsp;&nbsp;&nbsp; <a href="http://www.dangdang.com/">当当网</a> zhangliang@dangdang.com</p></li>
-
-<li><p>曹昊&nbsp;&nbsp;&nbsp; <a href="http://www.dangdang.com/">当当网</a> caohao@dangdang.com</p></li>
-
-<li><p>江树建 <a href="http://www.dangdang.com/">当当网</a> jiangshujian@dangdang.com</p></li>
-</ul>
-
-<p><strong>讨论QQ群：</strong>430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流）</p>
-
-<h2 id="elastic-job主要功能:d680e8a854a7cbad6d490c445cba2eba">Elastic-Job主要功能</h2>
-
-<h3 id="主要功能:d680e8a854a7cbad6d490c445cba2eba">主要功能</h3>
+<h2 id="1-elastic-job-lite:d680e8a854a7cbad6d490c445cba2eba">1. Elastic-Job-Lite</h2>
 
 <ul>
-<li><p><strong>分布式：</strong> 重写<code>Quartz</code>基于数据库的分布式功能，改用<code>Zookeeper</code>实现注册中心。</p></li>
-
-<li><p><strong>并行调度：</strong> 采用任务分片方式实现。将一个任务拆分为n个独立的任务项，由分布式的服务器并行执行各自分配到的分片项。</p></li>
-
-<li><p><strong>弹性扩容缩容：</strong> 将任务拆分为n个任务项后，各个服务器分别执行各自分配到的任务项。一旦有新的服务器加入集群，或现有服务器下线，<code>elastic-job</code>将在保留本次任务执行不变的情况下，下次任务开始前触发任务重分片。</p></li>
-
-<li><p><strong>集中管理：</strong> 采用基于<code>Zookeeper</code>的注册中心，集中管理和协调分布式作业的状态，分配和监听。外部系统可直接根据<code>Zookeeper</code>的数据管理和监控<code>elastic-job</code>。</p></li>
-
-<li><p><strong>定制化流程型任务：</strong> 作业可分为简单和数据流处理两种模式，数据流又分为高吞吐处理模式和顺序性处理模式，其中高吞吐处理模式可以开启足够多的线程快速的处理数据，而顺序性处理模式将每个分片项分配到一个独立线程，用于保证同一分片的顺序性，这点类似于<code>kafka</code>的分区顺序性。</p></li>
+<li>分布式调度协调</li>
+<li>弹性扩容缩容</li>
+<li>失效转移</li>
+<li>错过执行作业重触发</li>
+<li>作业分片一致性，保证同一分片在分布式环境中仅一个执行实例</li>
+<li>支持并行调度</li>
+<li>支持作业声明周期操作</li>
+<li>丰富的作业类型</li>
+<li>Spring整合以及命名空间提供</li>
+<li>运维平台</li>
 </ul>
 
-<h3 id="其他功能:d680e8a854a7cbad6d490c445cba2eba">其他功能</h3>
+<h2 id="2-elastic-job-cloud:d680e8a854a7cbad6d490c445cba2eba">2. Elastic-Job-Cloud</h2>
 
 <ul>
-<li><p><strong>失效转移：</strong> 弹性扩容缩容在下次作业运行前重分片，但本次作业执行的过程中，下线的服务器所分配的作业将不会重新被分配。失效转移功能可以在本次作业运行中用空闲服务器抓取孤儿作业分片执行。同样失效转移功能也会牺牲部分性能。</p></li>
-
-<li><p><strong>Spring命名空间支持：</strong> <code>elastic-job</code>可以不依赖于<code>spring</code>直接运行，但是也提供了自定义的命名空间方便与<code>spring</code>集成。</p></li>
-
-<li><p><strong>运维平台：</strong> 提供<code>web</code>控制台用于管理作业。</p></li>
+<li>包含Elastic-Job-Lite的全部功能</li>
+<li>弹性资源分配</li>
+<li>应用自动分发</li>
+<li>基于Docker的进程隔离(TBD)</li>
+<li>Maven部署插件</li>
 </ul>
 
-<h3 id="非功能需求:d680e8a854a7cbad6d490c445cba2eba">非功能需求</h3>
+<hr />
 
-<ul>
-<li><p><strong>稳定性：</strong> 在服务器无波动的情况下，并不会重新分片；即使服务器有波动，下次分片的结果也会根据服务器IP和作业名称哈希值算出稳定的分片顺序，尽量不做大的变动。</p></li>
+<h1 id="release-notes-post-release-notes:d680e8a854a7cbad6d490c445cba2eba"><a href="post/release_notes/">Release Notes</a></h1>
 
-<li><p><strong>高性能：</strong> 同一服务器的批量数据处理采用自动切割并多线程并行处理。</p></li>
+<h1 id="architecture:d680e8a854a7cbad6d490c445cba2eba">Architecture</h1>
 
-<li><p><strong>灵活性：</strong> 所有在功能和性能之间的权衡，都可通过配置开启/关闭。如：<code>elastic-job</code>会将作业运行状态的必要信息更新到注册中心。如果作业执行频度很高，会造成大量<code>Zookeeper</code>写操作，而分布式<code>Zookeeper</code>同步数据可能引起网络风暴。因此为了考虑性能问题，可以牺牲一些功能，而换取性能的提升。</p></li>
+<h2 id="elastic-job-lite:d680e8a854a7cbad6d490c445cba2eba">Elastic-job-Lite</h2>
 
-<li><p><strong>一致性：</strong> <code>elastic-job</code>可牺牲部分性能用以保证同一分片项不会同时在两个服务器上运行。</p></li>
+<p><img src="img/architecture/elastic_job_lite.png" alt="Elastic-Job-Lite Architecture" /></p>
 
-<li><p><strong>容错性：</strong> 作业服务器和<code>Zookeeper</code>断开连接则立即停止作业运行，用于防止分片已经重新分配，而脑裂的服务器仍在继续执行，导致重复执行。</p></li>
-</ul>
+<hr />
 
-<h2 id="quick-start:d680e8a854a7cbad6d490c445cba2eba">Quick Start</h2>
+<h2 id="elastic-job-cloud:d680e8a854a7cbad6d490c445cba2eba">Elastic-Job-Cloud</h2>
 
-<ul>
-<li><strong>引入maven依赖</strong></li>
-</ul>
+<p><img src="img/architecture/elastic_job_cloud.png" alt="Elastic-Job-Cloud Architecture" /></p>
 
-<p><code>elastic-job</code>已经发布到中央仓库，可以在<code>pom.xml</code>文件中直接引入<code>maven</code>坐标。</p>
+<h1 id="quick-start:d680e8a854a7cbad6d490c445cba2eba">Quick Start</h1>
+
+<h2 id="引入maven依赖:d680e8a854a7cbad6d490c445cba2eba">引入maven依赖</h2>
 
 <pre><code class="language-xml">&lt;!-- 引入elastic-job核心模块 --&gt;
 &lt;dependency&gt;
@@ -212,36 +203,18 @@ body {
 &lt;/dependency&gt;
 </code></pre>
 
-<ul>
-<li><strong>作业开发</strong></li>
-</ul>
+<h2 id="作业开发:d680e8a854a7cbad6d490c445cba2eba">作业开发</h2>
 
-<pre><code class="language-java">public class MyElasticJob extends AbstractThroughputDataFlowElasticJob&lt;Foo&gt; {
-
+<pre><code class="language-java">public class MyElasticJob extends AbstractSimpleElasticJob {
+    
     @Override
-    protected List&lt;Foo&gt; fetchData(JobExecutionMultipleShardingContext context) {
-        Map&lt;Integer, String&gt; offset = context.getOffsets();
-        List&lt;Foo&gt; result = // get data from database by sharding items and by offset
-        return result;
-    }
-
-    @Override
-    protected boolean processData(JobExecutionMultipleShardingContext context, Foo data) {
-        // process data
-        // ...
-
-        // store offset
-        for (int each : context.getShardingItems()) {
-            updateOffset(each, &quot;your offset, maybe id&quot;);
-        }
-        return true;
+    public void process(JobExecutionMultipleShardingContext context) {
+        // do something by sharding items
     }
 }
 </code></pre>
 
-<ul>
-<li><strong>作业配置</strong></li>
-</ul>
+<h2 id="作业配置:d680e8a854a7cbad6d490c445cba2eba">作业配置</h2>
 
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
@@ -257,11 +230,13 @@ body {
                         &quot;&gt;
     &lt;!--配置作业注册中心 --&gt;
     &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
-
+    
     &lt;!-- 配置作业--&gt;
     &lt;job:simple id=&quot;oneOffElasticJob&quot; class=&quot;xxx.MyElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
 &lt;/beans&gt;
 </code></pre>
+
+<p><strong>讨论QQ群：</strong>430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。）</p>
 
                 </div>
             </div>
@@ -278,31 +253,35 @@ body {
               
                   <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/release_notes/" target="_blank">Release Notes</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.1.0/" target="_blank">elastic-job 1.1.0升级说明</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/why_elastic_job/" target="_blank">为何使用Elastic-Job？</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/distribution/" target="_blank">何为分布式作业？</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/env_required/" target="_blank">环境需求</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/directory_structure/" target="_blank">目录结构说明</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/dev_guide/" target="_blank">开发指南</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/usage/" target="_blank">使用步骤</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/deploy_guide/" target="_blank">部署指南</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/" target="_blank">开发指南</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/other_features/" target="_blank">其他功能</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/limitations/" target="_blank">使用限制</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_job_operate_api/" target="_blank">Elastic-Job-Lite作业操作API</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/web_console/" target="_blank">运维平台</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/cloud_job_operate_api/" target="_blank">Elastic-Job-Cloud作业操作API</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/source_code_guide/" target="_blank">阅读源码编译问题说明</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_web_console/" target="_blank">Elastic-Job-Lite运维平台</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/theory/" target="_blank">实现原理</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_execution_monitor/" target="_blank">Elastic-Job-Lite作业运行状态监控</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/job_strategy/" target="_blank">作业分片策略</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_job_strategy/" target="_blank">Elastic-Job-Lite作业分片策略</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/execution_monitor/" target="_blank">作业运行状态监控</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_dump/" target="_blank">Elastic-Job-Lite dump作业运行信息</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/dump/" target="_blank">dump作业运行信息（便于开发者debug）</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/principles/lite/" target="_blank">Elastic-Job-Lite实现原理</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/quick_start/" target="_blank">快速上手</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/faq/" target="_blank">FAQ</a></li>
+             
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/companies_using/" target="_blank">采用公司</a></li>
+             
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/third_parties_docs/" target="_blank">第三方文档</a></li>
              
              </ul>
         </div>
@@ -316,7 +295,7 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Elastic-JOB All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>

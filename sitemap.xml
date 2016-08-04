@@ -16,67 +16,77 @@
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/update_notes_1.1.0/</loc>
-    <lastmod>2016-06-07T16:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/distribution/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/why_elastic_job/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/directory_structure/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/env_required/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/usage/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/dev_guide/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/deploy_guide/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/limitations/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/other_features/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/web_console/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_job_operate_api/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/source_code_guide/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/cloud_job_operate_api/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/theory/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_web_console/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_execution_monitor/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_job_strategy/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/other/lite_dump/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/principles/lite/</loc>
     <lastmod>2016-01-28T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/job_strategy/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/faq/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/execution_monitor/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/companies_using/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/dump/</loc>
-    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/quick_start/</loc>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/third_parties_docs/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
