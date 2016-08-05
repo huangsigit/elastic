@@ -1047,7 +1047,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;username&lt;/td&gt;
+&lt;td&gt;user&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;Mesos framework&lt;/code&gt;使用的用户名称&lt;/td&gt;
@@ -1946,7 +1946,15 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;8-elastic-job-2-0-0-版本-api-改动较大-升级时需要注意哪些问题:4a1318da06786ac52626178ca960109e&#34;&gt;8. &lt;code&gt;Elastic-Job 2.0.0&lt;/code&gt;版本&lt;code&gt;API&lt;/code&gt;改动较大，升级时需要注意哪些问题?&lt;/h3&gt;
+&lt;h3 id=&#34;8-zookeeper-版本不是-3-4-6-会有什么问题:4a1318da06786ac52626178ca960109e&#34;&gt;8. &lt;code&gt;Zookeeper&lt;/code&gt;版本不是&lt;code&gt;3.4.6&lt;/code&gt;会有什么问题?&lt;/h3&gt;
+
+&lt;p&gt;回答：&lt;/p&gt;
+
+&lt;p&gt;根据测试，使用&lt;code&gt;3.3.6&lt;/code&gt;版本的&lt;code&gt;Zookeeper&lt;/code&gt;在使用&lt;code&gt;Curator 2.10.0&lt;/code&gt;的&lt;code&gt;CuratorTransactionFinal&lt;/code&gt;的&lt;code&gt;commit&lt;/code&gt;时会导致死锁。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;9-elastic-job-2-0-0-版本-api-改动较大-升级时需要注意哪些问题:4a1318da06786ac52626178ca960109e&#34;&gt;9. &lt;code&gt;Elastic-Job 2.0.0&lt;/code&gt;版本&lt;code&gt;API&lt;/code&gt;改动较大，升级时需要注意哪些问题?&lt;/h3&gt;
 
 &lt;p&gt;回答：&lt;/p&gt;
 
