@@ -467,7 +467,7 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
     
     @Override
     public void process(ShardingContext context) {
-        switch (shardingItem) {
+        switch (context.getShardingItem()) {
             case 0: 
                 // do something by sharding items 0
                 break;
@@ -975,14 +975,13 @@ echo sharding execution context is $*
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;pre&gt;&lt;code&gt;
-## 作业启动
+&lt;h2 id=&#34;作业启动:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;作业启动&lt;/h2&gt;
 
-### 1. Lite的Java启动方式
+&lt;h3 id=&#34;1-lite的java启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;1. Lite的Java启动方式&lt;/h3&gt;
 
-```java
-
-public class JobDemo {
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JobDemo {
+    
+    //init jobRootConfig
     
     public static void main(final String[] args) {
         new JobDemo().init();
@@ -1005,8 +1004,7 @@ public class JobDemo {
 
 &lt;p&gt;需定义&lt;code&gt;Main&lt;/code&gt;方法并调用&lt;code&gt;Bootstrap.execute(args)&lt;/code&gt;，例子如下：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;
-public class JobDemo {
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JobDemo {
     
     public static void main(final String[] args) {
         Bootstrap.execute(args);
@@ -1061,8 +1059,10 @@ public class MyElasticJobListener implements ElasticJobListener {
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JobMain {
     
+    //init jobRootConfig
+    
     public static void main(final String[] args) {
-        new JobScheduler(regCenter, jobConfig, new MyElasticJobListener()).init();    
+        new JobScheduler(regCenter, jobRootConfig, new MyElasticJobListener()).init();    
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -1101,11 +1101,13 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JobMain {
-
+    
+    //init jobRootConfig
+    
     public static void main(final String[] args) {
         long startTimeoutMills = 5000L;
         long completeTimeoutMills = 10000L;    
-        new JobScheduler(regCenter, jobConfig, new MyDistributeOnceElasticJobListener(startTimeoutMills, completeTimeoutMills)).init();
+        new JobScheduler(regCenter, jobRootConfig, new MyDistributeOnceElasticJobListener(startTimeoutMills, completeTimeoutMills)).init();
     }
 }
 &lt;/code&gt;&lt;/pre&gt;

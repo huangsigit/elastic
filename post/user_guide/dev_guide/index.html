@@ -127,7 +127,7 @@ body {
     
     @Override
     public void process(ShardingContext context) {
-        switch (shardingItem) {
+        switch (context.getShardingItem()) {
             case 0: 
                 // do something by sharding items 0
                 break;
@@ -635,14 +635,13 @@ echo sharding execution context is $*
 </tbody>
 </table>
 
-<pre><code>
-## 作业启动
+<h2 id="作业启动:6fde5c464b5cd157fa8c5a0e82fa63a0">作业启动</h2>
 
-### 1. Lite的Java启动方式
+<h3 id="1-lite的java启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">1. Lite的Java启动方式</h3>
 
-```java
-
-public class JobDemo {
+<pre><code class="language-java">public class JobDemo {
+    
+    //init jobRootConfig
     
     public static void main(final String[] args) {
         new JobDemo().init();
@@ -665,8 +664,7 @@ public class JobDemo {
 
 <p>需定义<code>Main</code>方法并调用<code>Bootstrap.execute(args)</code>，例子如下：</p>
 
-<pre><code class="language-java">
-public class JobDemo {
+<pre><code class="language-java">public class JobDemo {
     
     public static void main(final String[] args) {
         Bootstrap.execute(args);
@@ -721,8 +719,10 @@ public class MyElasticJobListener implements ElasticJobListener {
 
 <pre><code class="language-java">public class JobMain {
     
+    //init jobRootConfig
+    
     public static void main(final String[] args) {
-        new JobScheduler(regCenter, jobConfig, new MyElasticJobListener()).init();    
+        new JobScheduler(regCenter, jobRootConfig, new MyElasticJobListener()).init();    
     }
 }
 </code></pre>
@@ -761,11 +761,13 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 </ul>
 
 <pre><code class="language-java">public class JobMain {
-
+    
+    //init jobRootConfig
+    
     public static void main(final String[] args) {
         long startTimeoutMills = 5000L;
         long completeTimeoutMills = 10000L;    
-        new JobScheduler(regCenter, jobConfig, new MyDistributeOnceElasticJobListener(startTimeoutMills, completeTimeoutMills)).init();
+        new JobScheduler(regCenter, jobRootConfig, new MyDistributeOnceElasticJobListener(startTimeoutMills, completeTimeoutMills)).init();
     }
 }
 </code></pre>
@@ -801,6 +803,10 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <li><a href="#job-listener命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:listener命名空间属性详细说明</a></li>
 <li><a href="#reg-bean命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">reg:bean命名空间属性详细说明</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#作业启动:6fde5c464b5cd157fa8c5a0e82fa63a0">作业启动</a>
+<ul>
+<li><a href="#1-lite的java启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">1. Lite的Java启动方式</a></li>
 <li><a href="#2-lite的spring启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">2. Lite的Spring启动方式</a></li>
 <li><a href="#3-cloud启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">3. Cloud启动方式</a></li>
 </ul></li>
