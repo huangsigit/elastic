@@ -128,19 +128,21 @@ body {
 
 <li><p>启动<code>Mesos Master</code>和<code>Mesos Agent</code>。</p></li>
 
-<li><p>解压并启动<code>elastic-job-cloud-master-${version}.tar.gz</code>。可通过源码<code>mvn install</code>编译获取。</p></li>
+<li><p>解压并启动<code>elastic-job-cloud-scheduler-${version}.tar.gz</code>。可通过源码<code>mvn install</code>编译获取。</p></li>
 
 <li><p>将打包之后的作业<code>tar.gz</code>文件放至网络可访问的位置，如：<code>ftp</code>或<code>http</code>。打包的<code>tar.gz</code>文件中<code>Main</code>方法需要调用<code>Elastic-Job-Lite</code>提供的<code>Bootstrap.execute</code>方法。</p></li>
 
-<li><p>使用curl命令注册待运行作业至<code>Elastic-Job-Cloud</code>。例：</p></li>
+<li><p>使用curl命令注册待运行作业至<code>Elastic-Job-Cloud</code>。</p></li>
 </ol>
 
-<p><code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;dockerImageName&quot;:&quot;&quot;,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;true&quot;:true}' http://elastic_job_cloud_masterhost:8899/job/register</code></p>
+<p><code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
+'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true} 
+http://elastic_job_cloud_masterhost:8899/job/register</code></p>
 
 <h2 id="附录-elastic-job-cloud-master启动指南:683f09d60aed8667eba01ae825b6e4c6">附录：Elastic-Job-Cloud-Master启动指南</h2>
 
 <ol>
-<li><p>启动：解压缩<code>elastic-job-cloud-master-${version}.tar.gz</code>并执行<code>bin\start.sh</code>脚本。</p></li>
+<li><p>启动：解压缩<code>elastic-job-cloud-scheduler-${version}.tar.gz</code>并执行<code>bin\start.sh</code>脚本。</p></li>
 
 <li><p>停止：不提供停止脚本，可直接使用<code>kill</code>杀进程。</p></li>
 

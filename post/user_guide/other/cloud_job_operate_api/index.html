@@ -143,6 +143,22 @@ body {
 </tr>
 
 <tr>
+<td>jobClass</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业实现类</td>
+</tr>
+
+<tr>
+<td>jobExecutionType</td>
+<td align="left">Enum</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业实现类型。<code>TRANSIENT</code>为瞬时作业，<code>DAEMON</code>为常驻作业</td>
+</tr>
+
+<tr>
 <td>cron</td>
 <td align="left">String</td>
 <td align="left"><code>是</code></td>
@@ -175,19 +191,19 @@ body {
 </tr>
 
 <tr>
-<td>dockerImageName</td>
-<td align="left">String</td>
-<td align="left">否</td>
-<td align="left"></td>
-<td align="left"><code>Docker</code>镜像名称。目前为预留值</td>
-</tr>
-
-<tr>
 <td>appURL</td>
 <td align="left">String</td>
 <td align="left"><code>是</code></td>
 <td align="left"></td>
 <td align="left">应用所在路径。必须是可以通过网络访问到的路径</td>
+</tr>
+
+<tr>
+<td>dockerImageName</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left"><code>Docker</code>镜像名称。目前为预留值</td>
 </tr>
 
 <tr>
@@ -205,11 +221,46 @@ body {
 <td align="left"><code>false</code></td>
 <td align="left">是否开启错过任务重新执行</td>
 </tr>
+
+<tr>
+<td>beanName</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left"><code>Spring</code>方式配置<code>bean</code>名称</td>
+</tr>
+
+<tr>
+<td>applicationContext</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left"><code>Spring</code>方式配置<code>Spring</code>配置文件</td>
+</tr>
+
+<tr>
+<td>jobEventConfigs</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业事件配置，可配置log和rdb两种事件，如:`{&ldquo;log&rdquo;:{}}{&ldquo;rdb&rdquo;:{&ldquo;url&rdquo;:&ldquo;&rdquo;,&ldquo;driverClassName&rdquo;:&ldquo;&rdquo;,&ldquo;username&rdquo;:&ldquo;&rdquo;,&ldquo;password&rdquo;:&ldquo;&rdquo;,&ldquo;logLevel&rdquo;:&ldquo;INFO&rdquo;}}</td>
+</tr>
 </tbody>
 </table>
 
-<p>例：
-<code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;dockerImageName&quot;:&quot;&quot;,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true}' http://elastic_job_cloud_host:8899/job/register</code></p>
+<ul>
+<li><code>Java</code>方式</li>
+</ul>
+
+<p><code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;dockerImageName&quot;:&quot;&quot;,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true}' http://elastic_job_cloud_host:8899/job/register</code></p>
+
+<ul>
+<li><code>Spring</code>方式</li>
+</ul>
+
+<p><code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
+'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;beanName&quot;:&quot;yourBeanName&quot;,&quot;applicationContext&quot;:&quot;applicationContext.xml&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,
+&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true}' http://elastic_job_cloud_masterhost:8899/job/register</code></p>
 
 <h2 id="删除作业:1b13e2530a92fd882c2bbacf0a1f573b">删除作业</h2>
 

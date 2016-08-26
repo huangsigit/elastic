@@ -21,10 +21,17 @@
 
 &lt;h2 id=&#34;2-0-0-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.0-SNAPSHOT&lt;/h2&gt;
 
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Elastic-Job-Cloud初始版本&lt;/p&gt;&lt;/li&gt;
+&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
-&lt;li&gt;&lt;p&gt;重构原Elastic-Job至Elastic-Job-Lite&lt;/p&gt;&lt;/li&gt;
+&lt;ol&gt;
+&lt;li&gt;Elastic-Job-Cloud初始版本&lt;/li&gt;
+&lt;li&gt;重构原Elastic-Job至Elastic-Job-Lite&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/123&#34;&gt;ISSUE #123&lt;/a&gt; 单机跑定时任务，zk断开后重连，没有触发leader选举&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;1-1-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.1&lt;/h2&gt;
@@ -41,7 +48,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/110&#34;&gt;ISSUE #110&lt;/a&gt; 手动触发作业&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/99&#34;&gt;ISSUE #99&lt;/a&gt; 删除作业异步导致作业删除后, 还未结束的作业继续创建zk数据&lt;/li&gt;
@@ -62,7 +69,7 @@
 
 &lt;h2 id=&#34;1-0-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.8&lt;/h2&gt;
 
-&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/95&#34;&gt;ISSUE #95&lt;/a&gt; 增加脚本类型作业支持&lt;/li&gt;
@@ -76,7 +83,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/88&#34;&gt;ISSUE #88&lt;/a&gt; stop作业改名为pause&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;新功能-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/91&#34;&gt;ISSUE #91&lt;/a&gt; 作业生命周期操作API&lt;/li&gt;
@@ -90,7 +97,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/93&#34;&gt;ISSUE #93&lt;/a&gt; 注册中心配置提供baseSleepTimeMilliseconds、maxSleepTimeMilliseconds和maxRetries的默认值&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/92&#34;&gt;ISSUE #92&lt;/a&gt; 修改分片总数参数导致仅单一节点执行的监听抛出超时异常&lt;/li&gt;
@@ -106,7 +113,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/81&#34;&gt;ISSUE #81&lt;/a&gt; 使用集中清理作业上次结束状态代替各自清理，各自清理可能导致作业机下线而产生未清理的结束状态&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/74&#34;&gt;ISSUE #74&lt;/a&gt; 流式处理且失效转移时，失效转移的分片项不能执行一次即停止&lt;/li&gt;
@@ -125,7 +132,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/65&#34;&gt;ISSUE #65&lt;/a&gt; 增加前置和后置任务Spring命名空间支持&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/61&#34;&gt;ISSUE #61&lt;/a&gt; 分片和主节点选举同时发生时，死锁问题解决&lt;/li&gt;
@@ -165,7 +172,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/43&#34;&gt;ISSUE #43&lt;/a&gt; 增加作业异常处理回调接口&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/30&#34;&gt;ISSUE #30&lt;/a&gt; 注册中心宕机较长时间后重新恢复，作业无法继续执行&lt;/li&gt;
@@ -188,7 +195,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/55&#34;&gt;ISSUE #55&lt;/a&gt; offset存储功能&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/1&#34;&gt;ISSUE #1&lt;/a&gt; 复杂网络环境下IP地址获取不准确的问题&lt;/li&gt;
@@ -236,7 +243,7 @@
 
 &lt;h3 id=&#34;3-个性化参数的适用场景:d10ff4233114ce67cb052e3d9716188b&#34;&gt;3. 个性化参数的适用场景&lt;/h3&gt;
 
-&lt;p&gt;个性化参数即&lt;code&gt;shardingItemParameters&lt;/code&gt;，可以和分片项匹配对应关系，用于将分片项的数字转换为更加可读的业务代码。&lt;/p&gt;
+&lt;p&gt;个性化参数即&lt;code&gt;shardingItemParameter&lt;/code&gt;，可以和分片项匹配对应关系，用于将分片项的数字转换为更加可读的业务代码。&lt;/p&gt;
 
 &lt;p&gt;例如：按照地区水平拆分数据库，数据库&lt;code&gt;A&lt;/code&gt;是北京的数据；数据库&lt;code&gt;B&lt;/code&gt;是上海的数据；数据库&lt;code&gt;C&lt;/code&gt;是广州的数据。
 如果仅按照分片项配置，开发者需要了解&lt;code&gt;0&lt;/code&gt;表示北京；&lt;code&gt;1&lt;/code&gt;表示上海；&lt;code&gt;2&lt;/code&gt;表示广州。
@@ -252,7 +259,7 @@
 
 &lt;h3 id=&#34;2-作业高可用:d10ff4233114ce67cb052e3d9716188b&#34;&gt;2. 作业高可用&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;Elastic-job-Lite&lt;/code&gt;提供最安全的方式执行作业。将分片项设置为&lt;code&gt;1&lt;/code&gt;，并使用多于&lt;code&gt;1&lt;/code&gt;台的服务器执行作业，作业将会以&lt;code&gt;1&lt;/code&gt;主&lt;code&gt;n&lt;/code&gt;从的方式执行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Elastic-job-Lite&lt;/code&gt;提供最安全的方式执行作业。将分片总数设置为&lt;code&gt;1&lt;/code&gt;，并使用多于&lt;code&gt;1&lt;/code&gt;台的服务器执行作业，作业将会以&lt;code&gt;1&lt;/code&gt;主&lt;code&gt;n&lt;/code&gt;从的方式执行。&lt;/p&gt;
 
 &lt;p&gt;一旦执行作业的服务器崩溃，等待执行的服务器将会在下次作业启动时替补执行。开启失效转移功能效果更好，可以保证在本次作业执行时崩溃，备机立即启动替补执行。&lt;/p&gt;
 
@@ -275,10 +282,11 @@
 
 &lt;h3 id=&#34;3-弹性资源利用:d10ff4233114ce67cb052e3d9716188b&#34;&gt;3. 弹性资源利用&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;Elastic-job-Cloud&lt;/code&gt;分为&lt;code&gt;2&lt;/code&gt;种作业运行模式：瞬时作业 和 常驻作业&lt;code&gt;(TBD)&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Elastic-job-Cloud&lt;/code&gt;分为&lt;code&gt;2&lt;/code&gt;种作业运行模式：瞬时作业 和 常驻作业。&lt;/p&gt;
 
-&lt;p&gt;瞬时作业会在每一次作业执行完毕后立刻释放资源，保证利用现有资源错峰执行。资源分配和容器启动均占用一定时长，且作业执行时资源不一定充足，因此作业执行会有延迟。瞬时作业适用于间隔时间长，资源消耗多且对执行时间无严格要求的作业。
-常驻作业无论在运行时还是等待运行时，均一直占用分配的资源，可节省过多容器启动和资源分配的开销，适用于间隔时间短，资源需求量稳定的作业。&lt;/p&gt;
+&lt;p&gt;瞬时作业会在每一次作业执行完毕后立刻释放资源，保证利用现有资源错峰执行。资源分配和容器启动均占用一定时长，且作业执行时资源不一定充足，因此作业执行会有延迟。瞬时作业适用于间隔时间长，资源消耗多且对执行时间无严格要求的作业。&lt;/p&gt;
+
+&lt;p&gt;常驻作业无论在运行时还是等待运行时，均一直占用分配的资源，可节省过多容器启动和资源分配的开销，适用于间隔时间短，资源需求量稳定的作业。&lt;/p&gt;
 </description>
     </item>
     
@@ -306,7 +314,7 @@
 
 &lt;h2 id=&#34;mesos-仅elastic-job-cloud需要:5fc72554ce10b593ad2e772b637ec905&#34;&gt;Mesos(仅Elastic-Job-Cloud需要)&lt;/h2&gt;
 
-&lt;p&gt;请使用&lt;code&gt;Mesos 0.28.0&lt;/code&gt;及其以上版本。&lt;a href=&#34;https://http://mesos.apache.org/gettingstarted/&#34;&gt;详情参见&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;请使用&lt;code&gt;Mesos 0.28.0&lt;/code&gt;及其以上版本。&lt;a href=&#34;http://mesos.apache.org/gettingstarted/&#34;&gt;详情参见&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -327,7 +335,7 @@
 &lt;p&gt;&lt;code&gt;Elastic-Job-Lite&lt;/code&gt;和&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;提供统一作业接口，开发者仅需对业务作业进行一次开发，之后可根据不同的配置以及部署至不同的&lt;code&gt;Lite&lt;/code&gt;或&lt;code&gt;Cloud&lt;/code&gt;环境。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Elastic-Job&lt;/code&gt;提供&lt;code&gt;Simple&lt;/code&gt;、&lt;code&gt;Dataflow&lt;/code&gt;和&lt;code&gt;Script&lt;/code&gt; &lt;code&gt;3&lt;/code&gt;种作业类型。
-方法参数&lt;code&gt;shardingContext&lt;/code&gt;包含作业配置、片和运行时信息。可通过&lt;code&gt;getShardingTotalCount()&lt;/code&gt;, &lt;code&gt;getShardingItems()&lt;/code&gt;等方法分别获取分片总数，运行在本作业服务器的分片序列号集合等。&lt;/p&gt;
+方法参数&lt;code&gt;shardingContext&lt;/code&gt;包含作业配置、片和运行时信息。可通过&lt;code&gt;getShardingTotalCount()&lt;/code&gt;, &lt;code&gt;getShardingItem()&lt;/code&gt;等方法分别获取分片总数，运行在本作业服务器的分片序列号等。&lt;/p&gt;
 
 &lt;h4 id=&#34;1-simple类型作业:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;1. Simple类型作业&lt;/h4&gt;
 
@@ -336,8 +344,19 @@
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob implements SimpleJob {
     
     @Override
-    public void execute(ShardingContext shardingContext) {
-        // do something by sharding items
+    public void process(ShardingContext context) {
+        switch (shardingItem) {
+            case 0: 
+                // do something by sharding items 0
+                break;
+            case 1: 
+                // do something by sharding items 1
+                break;
+            case 2: 
+                // do something by sharding items 2
+                break;
+            // case n: ...
+        }
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -346,16 +365,31 @@
 
 &lt;p&gt;&lt;code&gt;Dataflow&lt;/code&gt;类型用于处理数据流，需实现&lt;code&gt;DataflowJob&lt;/code&gt;接口。该接口提供&lt;code&gt;2&lt;/code&gt;个方法可供覆盖，分别用于抓取(&lt;code&gt;fetchData&lt;/code&gt;)和处理(&lt;code&gt;processData&lt;/code&gt;)数据。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob extends AbstractIndividualThroughputDataflowElasticJob&amp;lt;Foo&amp;gt; {
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob implements DataflowElasticJob&amp;lt;Foo&amp;gt; {
     
     @Override
-    public List&amp;lt;T&amp;gt; fetchData(ShardingContext shardingContext) {
-        List&amp;lt;Foo&amp;gt; result = // get data from database by sharding items
+    public List&amp;lt;Foo&amp;gt; fetchData(ShardingContext context) {
+        List&amp;lt;Foo&amp;gt; result = new LinkedList&amp;lt;&amp;gt;();
+        switch (context.getShardingItem()) {
+            case 0: 
+                List&amp;lt;Foo&amp;gt; data = // get data from database by sharding items 0
+                result.addAll(data);
+                break;
+            case 1: 
+                List&amp;lt;Foo&amp;gt; data = // get data from database by sharding items 1
+                result.addAll(data);
+                break;
+            case 2: 
+                List&amp;lt;Foo&amp;gt; data = // get data from database by sharding items 2
+                result.addAll(data);
+                break;
+            // case n: ...
+        }
         return result;
     }
     
     @Override
-    public void processData(ShardingContext shardingContext, List&amp;lt;T&amp;gt; data) {
+    public void processData(ShardingContext shardingContext, List&amp;lt;Foo&amp;gt; data) {
         // process data
         // ...
     }
@@ -364,22 +398,9 @@
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;strong&gt;处理方式&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Dataflow&lt;/code&gt;作业提供&lt;code&gt;2&lt;/code&gt;种作业类型，分别是&lt;code&gt;THROUGHPUT&lt;/code&gt;和&lt;code&gt;SEQUENCE&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;THROUGHPUT&lt;/code&gt;意为高吞吐的数据流作业，可将获取到的数据多线程处理，但不会保证多线程处理数据的顺序。
-&lt;code&gt;SEQUENCE&lt;/code&gt;为每一分片项分配一个线程，可保证同一分片下数据处理的正确性。&lt;/p&gt;
-
-&lt;p&gt;如：
-&lt;code&gt;THROUGHPUT&lt;/code&gt;类型从&lt;code&gt;2&lt;/code&gt;个分片共获取到&lt;code&gt;100&lt;/code&gt;条数据，第&lt;code&gt;1&lt;/code&gt;个分片&lt;code&gt;40&lt;/code&gt;条，第&lt;code&gt;2&lt;/code&gt;个分片&lt;code&gt;60&lt;/code&gt;条，配置为&lt;code&gt;2&lt;/code&gt;个线程处理，则第&lt;code&gt;1&lt;/code&gt;个线程处理前&lt;code&gt;50&lt;/code&gt;条数据，第&lt;code&gt;2&lt;/code&gt;个线程处理后&lt;code&gt;50&lt;/code&gt;条数据，无视分片项；
-&lt;code&gt;SEQUENCE&lt;/code&gt;类型作业则根据当前服务器所分配的分片项数量进行多线程处理，每个分片项使用同一线程处理，防止了同一分片的数据被多线程处理，从而导致的顺序问题。
-如：从&lt;code&gt;2&lt;/code&gt;个分片共获取到&lt;code&gt;100&lt;/code&gt;条数据，第&lt;code&gt;1&lt;/code&gt;个分片&lt;code&gt;40&lt;/code&gt;条，第&lt;code&gt;2&lt;/code&gt;个分片&lt;code&gt;60&lt;/code&gt;条，则系统自动分配两个线程处理，第&lt;code&gt;1&lt;/code&gt;个线程处理第&lt;code&gt;1&lt;/code&gt;个分片的&lt;code&gt;40&lt;/code&gt;条数据，第&lt;code&gt;2&lt;/code&gt;个线程处理第&lt;code&gt;2&lt;/code&gt;个分片的&lt;code&gt;60&lt;/code&gt;条数据。
-由于&lt;code&gt;THROUGHPUT&lt;/code&gt;作业可以使用多于分片项的任意线程数处理，所以性能可能会优于&lt;code&gt;SEQUENCE&lt;/code&gt;作业。&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;流式处理&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;可通过&lt;code&gt;JobConfiguration&lt;/code&gt;配置是否流式处理。&lt;/p&gt;
+&lt;p&gt;可通过&lt;code&gt;DataflowJobConfiguration&lt;/code&gt;配置是否流式处理。&lt;/p&gt;
 
 &lt;p&gt;流式处理数据只有&lt;code&gt;fetchData&lt;/code&gt;方法的返回值为&lt;code&gt;null&lt;/code&gt;或集合长度为空时，作业才停止抓取，否则作业将一直运行下去；
 非流式处理数据则只会在每次作业执行过程中执行一次&lt;code&gt;fetchData&lt;/code&gt;方法和&lt;code&gt;processData&lt;/code&gt;方法，随即完成本次作业。&lt;/p&gt;
@@ -397,17 +418,17 @@ echo sharding execution context is $*
 
 &lt;p&gt;作业运行时输出&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;sharding execution context is {&amp;quot;shardingItems&amp;quot;:[0,1,2,3,4,5,6,7,8,9],&amp;quot;shardingItemParameters&amp;quot;:{},&amp;quot;offsets&amp;quot;:{},&amp;quot;jobName&amp;quot;:&amp;quot;scriptElasticDemoJob&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:10,&amp;quot;jobParameter&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;monitorExecution&amp;quot;:true}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sharding execution context is {&amp;quot;shardingItem&amp;quot;:[0,1,2,3,4,5,6,7,8,9],&amp;quot;shardingItemParameters&amp;quot;:{},&amp;quot;offsets&amp;quot;:{},&amp;quot;jobName&amp;quot;:&amp;quot;scriptElasticDemoJob&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:10,&amp;quot;jobParameter&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;monitorExecution&amp;quot;:true}&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;作业配置:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;作业配置&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;Elastic-Job&lt;/code&gt;配置分为&lt;code&gt;3&lt;/code&gt;个层级，分别是&lt;code&gt;Core&lt;/code&gt;, &lt;code&gt;Type&lt;/code&gt;和&lt;code&gt;Root&lt;/code&gt;。每个层级使用相似于装饰者模式的方式装配。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;Core&lt;/code&gt;类型对应&lt;code&gt;JobCoreConfiguration&lt;/code&gt;，用于提供作业核心配置信息，如：作业名称、分片总数、&lt;code&gt;CRON&lt;/code&gt;表达式等。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Core&lt;/code&gt;对应&lt;code&gt;JobCoreConfiguration&lt;/code&gt;，用于提供作业核心配置信息，如：作业名称、分片总数、&lt;code&gt;CRON&lt;/code&gt;表达式等。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;Type&lt;/code&gt;类型对应&lt;code&gt;JobTypeConfiguration&lt;/code&gt;，有&lt;code&gt;3&lt;/code&gt;个子类分别对应&lt;code&gt;SIMPLE&lt;/code&gt;, &lt;code&gt;DATAFLOW&lt;/code&gt;和&lt;code&gt;SCRIPT&lt;/code&gt;类型作业，提供&lt;code&gt;3&lt;/code&gt;种作业需要的不同配置，如：&lt;code&gt;DATAFLOW&lt;/code&gt;类型的作业处理方式、是否流式处理或&lt;code&gt;SCRIPT&lt;/code&gt;类型的命令行等。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Type&lt;/code&gt;对应&lt;code&gt;JobTypeConfiguration&lt;/code&gt;，有&lt;code&gt;3&lt;/code&gt;个子类分别对应&lt;code&gt;SIMPLE&lt;/code&gt;, &lt;code&gt;DATAFLOW&lt;/code&gt;和&lt;code&gt;SCRIPT&lt;/code&gt;类型作业，提供&lt;code&gt;3&lt;/code&gt;种作业需要的不同配置，如：&lt;code&gt;DATAFLOW&lt;/code&gt;类型是否流式处理或&lt;code&gt;SCRIPT&lt;/code&gt;类型的命令行等。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;Root&lt;/code&gt;类型对应&lt;code&gt;JobRootConfiguration&lt;/code&gt;，有&lt;code&gt;2&lt;/code&gt;个子类分别对应&lt;code&gt;Lite&lt;/code&gt;和&lt;code&gt;Cloud&lt;/code&gt;部署类型，提供不同部署类型所需的配置，如：&lt;code&gt;Lite&lt;/code&gt;类型的是否需要覆盖或&lt;code&gt;Cloud&lt;/code&gt;占用&lt;code&gt;CPU&lt;/code&gt;或&lt;code&gt;Memory&lt;/code&gt;数量等。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Root&lt;/code&gt;对应&lt;code&gt;JobRootConfiguration&lt;/code&gt;，有&lt;code&gt;2&lt;/code&gt;个子类分别对应&lt;code&gt;Lite&lt;/code&gt;和&lt;code&gt;Cloud&lt;/code&gt;部署类型，提供不同部署类型所需的配置，如：&lt;code&gt;Lite&lt;/code&gt;类型的是否需要覆盖或&lt;code&gt;Cloud&lt;/code&gt;占用&lt;code&gt;CPU&lt;/code&gt;或&lt;code&gt;Memory&lt;/code&gt;数量等。&lt;/p&gt;
 
 &lt;h3 id=&#34;使用java代码配置:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;使用Java代码配置&lt;/h3&gt;
 
@@ -415,9 +436,9 @@ echo sharding execution context is $*
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    
     // 定义作业核心配置配置
-    JobCoreConfiguration simpleCoreConfig = JobCoreConfiguration.newBuilder(&amp;quot;demoSimpleJob&amp;quot;, &amp;quot;0/30 * * * * ?&amp;quot;, 10).build();
+    JobCoreConfiguration simpleCoreConfig = JobCoreConfiguration.newBuilder(&amp;quot;demoSimpleJob&amp;quot;, &amp;quot;0/15 * * * * ?&amp;quot;, 10).build();
     
-    // 定义SIMPLE类型
+    // 定义SIMPLE类型配置
     SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName());
     
     
@@ -425,11 +446,11 @@ echo sharding execution context is $*
     JobCoreConfiguration dataflowCoreConfig = JobCoreConfiguration.newBuilder(&amp;quot;demoDataflowJob&amp;quot;, &amp;quot;0/30 * * * * ?&amp;quot;, 10).build();
         
     // 定义DATAFLOW类型配置
-    DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName(), DataflowJobConfiguration.DataflowType.THROUGHPUT, true);
+    DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName(), true);
     
     
     // 定义作业核心配置配置
-    JobCoreConfiguration scriptCoreConfig = JobCoreConfiguration.newBuilder(&amp;quot;demoScriptJob&amp;quot;, &amp;quot;0/30 * * * * ?&amp;quot;, 10).build();
+    JobCoreConfiguration scriptCoreConfig = JobCoreConfiguration.newBuilder(&amp;quot;demoScriptJob&amp;quot;, &amp;quot;0/45 * * * * ?&amp;quot;, 10).build();
     
     // 定义SCRIPT类型配置
     ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &amp;quot;test.sh&amp;quot;);
@@ -442,13 +463,13 @@ echo sharding execution context is $*
 
 &lt;h4 id=&#34;3-cloud作业配置:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;3. Cloud作业配置&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    // dockerImageName暂时保留, 还未实现
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    // dockerImageName为预留配置, 暂未实现
     JobRootConfiguration jobConfig = new CloudJobConfiguration.newBuilder(simpleJobConfig, cpuCount, memoryMB, dockerImageName, appURL);
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;spring命名空间配置:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;Spring命名空间配置&lt;/h3&gt;
 
-&lt;p&gt;与&lt;code&gt;Spring&lt;/code&gt;容器配合使用作业，可将作业&lt;code&gt;Bean&lt;/code&gt;配置为&lt;code&gt;Spring Bean&lt;/code&gt;，并在作业中通过依赖注入使用&lt;code&gt;Spring&lt;/code&gt;容器管理的数据源等对象。可用&lt;code&gt;placeholder&lt;/code&gt;占位符从属性文件中取值。目前仅提供&lt;code&gt;Lite&lt;/code&gt;的&lt;code&gt;Spring&lt;/code&gt;命名空间。&lt;/p&gt;
+&lt;p&gt;与&lt;code&gt;Spring&lt;/code&gt;容器配合使用作业，可将作业&lt;code&gt;Bean&lt;/code&gt;配置为&lt;code&gt;Spring Bean&lt;/code&gt;，并在作业中通过依赖注入使用&lt;code&gt;Spring&lt;/code&gt;容器管理的数据源等对象。可用&lt;code&gt;placeholder&lt;/code&gt;占位符从属性文件中取值。&lt;code&gt;Lite&lt;/code&gt;可考虑使用&lt;code&gt;Spring&lt;/code&gt;命名空间方式简化配置，&lt;code&gt;Cloud&lt;/code&gt;直接使用Spring标准配置文件即可。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
 &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
@@ -469,7 +490,7 @@ echo sharding execution context is $*
     &amp;lt;job:simple id=&amp;quot;simpleElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
     
     &amp;lt;!-- 配置数据流作业--&amp;gt;
-    &amp;lt;job:dataflow id=&amp;quot;throughputDataflow&amp;quot; class=&amp;quot;xxx.MyThroughputDataflowElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; process-count-interval-seconds=&amp;quot;10&amp;quot; concurrent-data-process-thread-count=&amp;quot;10&amp;quot; /&amp;gt;
+    &amp;lt;job:dataflow id=&amp;quot;throughputDataflow&amp;quot; class=&amp;quot;xxx.MyThroughputDataflowElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
     
     &amp;lt;!-- 配置脚本作业--&amp;gt;
     &amp;lt;job:script id=&amp;quot;scriptElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; script-command-line=&amp;quot;/your/file/path/demo.sh&amp;quot; /&amp;gt;
@@ -650,14 +671,6 @@ echo sharding execution context is $*
 &lt;/thead&gt;
 
 &lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;concurrent-data-process-thread-count&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CPU核数*2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;同时处理数据的并发线程数&lt;br /&gt;不能小于1&lt;br /&gt;仅&lt;code&gt;ThroughputDataflow&lt;/code&gt;作业有效&lt;/td&gt;
-&lt;/tr&gt;
-
 &lt;tr&gt;
 &lt;td&gt;streaming-process&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;boolean&lt;/td&gt;
@@ -905,18 +918,16 @@ public class JobDemo {
 &lt;li&gt;定义监听器&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
-import com.dangdang.ddframe.job.api.listener.ElasticJobListener;
-
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;
 public class MyElasticJobListener implements ElasticJobListener {
     
     @Override
-    public void beforeJobExecuted(final JobExecutionMultipleShardingContext shardingContext) {
+    public void beforeJobExecuted(final ShardingContexts shardingContexts) {
         // do something ...
     }
     
     @Override
-    public void afterJobExecuted(final JobExecutionMultipleShardingContext shardingContext) {
+    public void afterJobExecuted(final ShardingContexts shardingContexts) {
         // do something ...
     }
 }
@@ -944,9 +955,7 @@ public class MyElasticJobListener implements ElasticJobListener {
 &lt;li&gt;定义监听器&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
-import com.dangdang.ddframe.job.api.listener.AbstractDistributeOnceElasticJobListener;
-
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;
 public final class TestDistributeOnceElasticJobListener extends AbstractDistributeOnceElasticJobListener {
     
     public TestDistributeOnceElasticJobListener(final long startTimeoutMills, final long completeTimeoutMills) {
@@ -954,12 +963,12 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
     }
     
     @Override
-    public void doBeforeJobExecutedAtLastStarted(final JobExecutionMultipleShardingContext shardingContext) {
+    public void doBeforeJobExecutedAtLastStarted(final ShardingContexts shardingContexts) {
         // do something ...
     }
     
     @Override
-    public void doAfterJobExecutedAtLastCompleted(final JobExecutionMultipleShardingContext shardingContext) {
+    public void doAfterJobExecutedAtLastCompleted(final ShardingContexts shardingContexts) {
         // do something ...
     }
 }
@@ -1009,19 +1018,21 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;li&gt;&lt;p&gt;启动&lt;code&gt;Mesos Master&lt;/code&gt;和&lt;code&gt;Mesos Agent&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;解压并启动&lt;code&gt;elastic-job-cloud-master-${version}.tar.gz&lt;/code&gt;。可通过源码&lt;code&gt;mvn install&lt;/code&gt;编译获取。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解压并启动&lt;code&gt;elastic-job-cloud-scheduler-${version}.tar.gz&lt;/code&gt;。可通过源码&lt;code&gt;mvn install&lt;/code&gt;编译获取。&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;将打包之后的作业&lt;code&gt;tar.gz&lt;/code&gt;文件放至网络可访问的位置，如：&lt;code&gt;ftp&lt;/code&gt;或&lt;code&gt;http&lt;/code&gt;。打包的&lt;code&gt;tar.gz&lt;/code&gt;文件中&lt;code&gt;Main&lt;/code&gt;方法需要调用&lt;code&gt;Elastic-Job-Lite&lt;/code&gt;提供的&lt;code&gt;Bootstrap.execute&lt;/code&gt;方法。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;使用curl命令注册待运行作业至&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;。例：&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用curl命令注册待运行作业至&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;code&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d &#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;dockerImageName&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;appURL&amp;quot;:&amp;quot;http://file_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:false,&amp;quot;true&amp;quot;:true}&#39; http://elastic_job_cloud_masterhost:8899/job/register&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
+&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://file_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:false,&amp;quot;misfire&amp;quot;:true} 
+http://elastic_job_cloud_masterhost:8899/job/register&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;附录-elastic-job-cloud-master启动指南:683f09d60aed8667eba01ae825b6e4c6&#34;&gt;附录：Elastic-Job-Cloud-Master启动指南&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;启动：解压缩&lt;code&gt;elastic-job-cloud-master-${version}.tar.gz&lt;/code&gt;并执行&lt;code&gt;bin\start.sh&lt;/code&gt;脚本。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;启动：解压缩&lt;code&gt;elastic-job-cloud-scheduler-${version}.tar.gz&lt;/code&gt;并执行&lt;code&gt;bin\start.sh&lt;/code&gt;脚本。&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;停止：不提供停止脚本，可直接使用&lt;code&gt;kill&lt;/code&gt;杀进程。&lt;/p&gt;&lt;/li&gt;
 
@@ -1177,6 +1188,22 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;/tr&gt;
 
 &lt;tr&gt;
+&lt;td&gt;jobClass&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业实现类&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;jobExecutionType&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业实现类型。&lt;code&gt;TRANSIENT&lt;/code&gt;为瞬时作业，&lt;code&gt;DAEMON&lt;/code&gt;为常驻作业&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
 &lt;td&gt;cron&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
@@ -1209,19 +1236,19 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;dockerImageName&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Docker&lt;/code&gt;镜像名称。目前为预留值&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
 &lt;td&gt;appURL&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;应用所在路径。必须是可以通过网络访问到的路径&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;dockerImageName&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Docker&lt;/code&gt;镜像名称。目前为预留值&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1239,11 +1266,46 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;是否开启错过任务重新执行&lt;/td&gt;
 &lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;beanName&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Spring&lt;/code&gt;方式配置&lt;code&gt;bean&lt;/code&gt;名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;applicationContext&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Spring&lt;/code&gt;方式配置&lt;code&gt;Spring&lt;/code&gt;配置文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;jobEventConfigs&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业事件配置，可配置log和rdb两种事件，如:`{&amp;ldquo;log&amp;rdquo;:{}}{&amp;ldquo;rdb&amp;rdquo;:{&amp;ldquo;url&amp;rdquo;:&amp;ldquo;&amp;rdquo;,&amp;ldquo;driverClassName&amp;rdquo;:&amp;ldquo;&amp;rdquo;,&amp;ldquo;username&amp;rdquo;:&amp;ldquo;&amp;rdquo;,&amp;ldquo;password&amp;rdquo;:&amp;ldquo;&amp;rdquo;,&amp;ldquo;logLevel&amp;rdquo;:&amp;ldquo;INFO&amp;rdquo;}}&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;例：
-&lt;code&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d &#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;dockerImageName&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:true,&amp;quot;misfire&amp;quot;:true}&#39; http://elastic_job_cloud_host:8899/job/register&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Java&lt;/code&gt;方式&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d &#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;dockerImageName&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:true,&amp;quot;misfire&amp;quot;:true}&#39; http://elastic_job_cloud_host:8899/job/register&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Spring&lt;/code&gt;方式&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
+&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;beanName&amp;quot;:&amp;quot;yourBeanName&amp;quot;,&amp;quot;applicationContext&amp;quot;:&amp;quot;applicationContext.xml&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,
+&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://file_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:false,&amp;quot;misfire&amp;quot;:true}&#39; http://elastic_job_cloud_masterhost:8899/job/register&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;删除作业:1b13e2530a92fd882c2bbacf0a1f573b&#34;&gt;删除作业&lt;/h2&gt;
 
@@ -1347,18 +1409,6 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;h2 id=&#34;监听作业服务器存活:1f9cda05dbaefbb38a1893608b3a502c&#34;&gt;监听作业服务器存活&lt;/h2&gt;
 
 &lt;p&gt;监听&lt;code&gt;job_name\servers\ip_address\status&lt;/code&gt;节点是否存在。该节点为临时节点，如果作业服务器下线，该节点将删除。&lt;/p&gt;
-
-&lt;h2 id=&#34;监听近期数据处理成功:1f9cda05dbaefbb38a1893608b3a502c&#34;&gt;监听近期数据处理成功&lt;/h2&gt;
-
-&lt;p&gt;数据流类型作业，可通过监听近期数据处理成功数判断作业流量是否正常。&lt;/p&gt;
-
-&lt;p&gt;监听&lt;code&gt;job_name\servers\ip_address\processSuccessCount&lt;/code&gt;节点的值。如果小于作业正常处理的阀值，可选择报警。&lt;/p&gt;
-
-&lt;h2 id=&#34;监听近期数据处理失败:1f9cda05dbaefbb38a1893608b3a502c&#34;&gt;监听近期数据处理失败&lt;/h2&gt;
-
-&lt;p&gt;数据流类型作业，可通过监听近期数据处理失败数判断作业处理结果。&lt;/p&gt;
-
-&lt;p&gt;监听&lt;code&gt;job_name\servers\ip_address\processFailureCount&lt;/code&gt;节点的值。如果大于&lt;code&gt;0&lt;/code&gt;，可选择报警。&lt;/p&gt;
 </description>
     </item>
     
@@ -1378,7 +1428,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.plugin.sharding.strategy.AverageAllocationJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.AverageAllocationJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1396,7 +1446,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.plugin.sharding.strategy.OdevitySortByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.OdevitySortByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1418,7 +1468,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.plugin.sharding.strategy.RotateServerByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.RotateServerByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1428,7 +1478,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;实现&lt;code&gt;JobShardingStrategy&lt;/code&gt;接口并实现&lt;code&gt;sharding&lt;/code&gt;方法，接口方法参数为作业服务器&lt;code&gt;IP&lt;/code&gt;列表和分片策略选项，分片策略选项包括作业名称，分片总数以及分片序列号和个性化参数对照表，可以根据需求定制化自己的分片策略。&lt;/p&gt;
 
-&lt;p&gt;欢迎将分片策略以插件的形式贡献至&lt;code&gt;com.dangdang.ddframe.job.plugin.sharding.strategy&lt;/code&gt;包。&lt;/p&gt;
+&lt;p&gt;欢迎将分片策略以插件的形式贡献至&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy&lt;/code&gt;包。&lt;/p&gt;
 
 &lt;h2 id=&#34;配置分片策略:e08f51da0b1c824f68f6b0c4969107bc&#34;&gt;配置分片策略&lt;/h2&gt;
 
@@ -1931,8 +1981,8 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 但注册中心与作业部署机无从属关系，注册中心并不能控制将单点的作业分发至其他作业机，也无法将远程服务器未启动的作业启动。&lt;code&gt;elastic-job-lite&lt;/code&gt;并不会包含&lt;code&gt;ssh&lt;/code&gt;免密管理等功能。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;elastic-job-cloud&lt;/code&gt;为&lt;code&gt;mesos&lt;/code&gt;框架，由&lt;code&gt;mesos&lt;/code&gt;负责作业启动和分发。
-但需要将作业使用&lt;code&gt;elastic-job-cloud-assembly&lt;/code&gt;打包，并调用&lt;code&gt;elastic-job-cloud&lt;/code&gt;提供的&lt;code&gt;REST API&lt;/code&gt;写入注册中心。
-打包插件自动化属于部署系统的范畴&lt;code&gt;elastic-job-cloud&lt;/code&gt;并未涉及。&lt;/p&gt;
+但需要将作业打包上传，并调用&lt;code&gt;elastic-job-cloud&lt;/code&gt;提供的&lt;code&gt;REST API&lt;/code&gt;写入注册中心。
+打包上传属于部署系统的范畴&lt;code&gt;elastic-job-cloud&lt;/code&gt;并未涉及。&lt;/p&gt;
 
 &lt;p&gt;综上所述，&lt;code&gt;elastic-job&lt;/code&gt;已做了基本动态添加功能，但无法做到真正意义的完全自动化添加。&lt;/p&gt;
 
