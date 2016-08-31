@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Elastic-Job-Lite运维平台</title>
+    <title>Elastic-Job-Cloud使用指南</title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -108,80 +108,26 @@ body {
               <div class="col-sm-8">
 		 
 
-<h1 id="elastic-job-lite运维平台:439bd6471bc872a959df6d32498bc19c">Elastic-Job-Lite运维平台</h1>
+<h1 id="elastic-job-cloud使用指南:d8865a468a719781452bdc19ad5d19d1">Elastic-Job-Cloud使用指南</h1>
 
-<p>以<code>war</code>包形式提供，可自行部署至<code>tomcat</code>或<code>jetty</code>等支持<code>servlet</code>的<code>web</code>容器中。可通过<code>mvn install</code>编译或<code>maven</code>中央仓库获取。</p>
+<h2 id="环境需求-http-dangdangdotcom-github-io-elastic-job-post-user-guide-cloud-env-required:d8865a468a719781452bdc19ad5d19d1"><a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/env_required/">环境需求</a></h2>
 
-<h2 id="登录:439bd6471bc872a959df6d32498bc19c">登录</h2>
+<h2 id="开发指南-http-dangdangdotcom-github-io-elastic-job-post-user-guide-cloud-dev-guide:d8865a468a719781452bdc19ad5d19d1"><a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/dev_guide/">开发指南</a></h2>
 
-<p>默认用户名和密码是<code>root/root</code>，可通过<code>conf\auth.properties</code>修改默认登录账户。</p>
+<h2 id="作业部署-http-dangdangdotcom-github-io-elastic-job-post-user-guide-cloud-deploy-guide:d8865a468a719781452bdc19ad5d19d1"><a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/deploy_guide/">作业部署</a></h2>
 
-<h2 id="功能列表:439bd6471bc872a959df6d32498bc19c">功能列表</h2>
-
-<ul>
-<li><p>登录安全控制</p></li>
-
-<li><p>注册中心管理</p></li>
-
-<li><p>作业维度状态查看</p></li>
-
-<li><p>服务器维度状态查看</p></li>
-
-<li><p>快捷修改作业设置</p></li>
-
-<li><p>控制作业暂停，恢复运行，停止和删除</p></li>
-</ul>
-
-<h2 id="设计理念:439bd6471bc872a959df6d32498bc19c">设计理念</h2>
-
-<p>运维平台和<code>elastic-job-lite</code>并无直接关系，是通过读取作业注册中心数据展现作业状态，或更新注册中心数据修改全局配置。</p>
-
-<p>控制台只能控制作业本身是否运行，但不能控制作业进程的启动，因为控制台和作业本身服务器是完全分离的，控制台并不能控制作业服务器。</p>
-
-<h2 id="不支持项:439bd6471bc872a959df6d32498bc19c">不支持项</h2>
-
-<ul>
-<li>添加作业。
-作业在首次运行时将自动添加。<code>Elastic-Job-Lite</code>以<code>jar</code>方式启动，并无作业分发功能。如需完全通过运维平台发布作业，请使用<code>Elastic-Job-Cloud</code>。</li>
-</ul>
-
-<h2 id="主要界面:439bd6471bc872a959df6d32498bc19c">主要界面</h2>
-
-<ul>
-<li>总览页</li>
-</ul>
-
-<p><img src="../../../../img/console/lite_index.png" alt="总览页" /></p>
-
-<ul>
-<li>注册中心管理页</li>
-</ul>
-
-<p><img src="../../../../img/console/lite_reg_center.png" alt="注册中心管理页" /></p>
-
-<ul>
-<li>作业详细信息页</li>
-</ul>
-
-<p><img src="../../../../img/console/lite_job_details.png" alt="作业详细信息页" /></p>
-
-<ul>
-<li>服务器详细信息页</li>
-</ul>
-
-<p><img src="../../../../img/console/lite_server_details.png" alt="服务器详细信息页" /></p>
+<h2 id="其他功能-http-dangdangdotcom-github-io-elastic-job-post-user-guide-cloud-other-features:d8865a468a719781452bdc19ad5d19d1"><a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/other_features/">其他功能</a></h2>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
 <ul>
-<li><a href="#elastic-job-lite运维平台:439bd6471bc872a959df6d32498bc19c">Elastic-Job-Lite运维平台</a>
+<li><a href="#elastic-job-cloud使用指南:d8865a468a719781452bdc19ad5d19d1">Elastic-Job-Cloud使用指南</a>
 <ul>
-<li><a href="#登录:439bd6471bc872a959df6d32498bc19c">登录</a></li>
-<li><a href="#功能列表:439bd6471bc872a959df6d32498bc19c">功能列表</a></li>
-<li><a href="#设计理念:439bd6471bc872a959df6d32498bc19c">设计理念</a></li>
-<li><a href="#不支持项:439bd6471bc872a959df6d32498bc19c">不支持项</a></li>
-<li><a href="#主要界面:439bd6471bc872a959df6d32498bc19c">主要界面</a></li>
+<li><a href="#环境需求-http-dangdangdotcom-github-io-elastic-job-post-user-guide-cloud-env-required:d8865a468a719781452bdc19ad5d19d1"><a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/env_required/">环境需求</a></a></li>
+<li><a href="#开发指南-http-dangdangdotcom-github-io-elastic-job-post-user-guide-cloud-dev-guide:d8865a468a719781452bdc19ad5d19d1"><a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/dev_guide/">开发指南</a></a></li>
+<li><a href="#作业部署-http-dangdangdotcom-github-io-elastic-job-post-user-guide-cloud-deploy-guide:d8865a468a719781452bdc19ad5d19d1"><a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/deploy_guide/">作业部署</a></a></li>
+<li><a href="#其他功能-http-dangdangdotcom-github-io-elastic-job-post-user-guide-cloud-other-features:d8865a468a719781452bdc19ad5d19d1"><a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/other_features/">其他功能</a></a></li>
 </ul></li>
 </ul>
 </nav>
@@ -197,7 +143,7 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Lite运维平台 All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Cloud使用指南 All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>

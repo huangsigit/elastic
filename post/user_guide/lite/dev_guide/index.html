@@ -243,15 +243,9 @@ echo sharding execution context is $*
 <pre><code class="language-java">    JobRootConfiguration jobConfig = LiteJobConfiguration.newBuilder(simpleJobConfig).build();
 </code></pre>
 
-<h4 id="3-cloud作业配置:6fde5c464b5cd157fa8c5a0e82fa63a0">3. Cloud作业配置</h4>
-
-<pre><code class="language-java">    // dockerImageName为预留配置, 暂未实现
-    JobRootConfiguration jobConfig = new CloudJobConfiguration.newBuilder(simpleJobConfig, cpuCount, memoryMB, dockerImageName, appURL);
-</code></pre>
-
 <h3 id="spring命名空间配置:6fde5c464b5cd157fa8c5a0e82fa63a0">Spring命名空间配置</h3>
 
-<p>与<code>Spring</code>容器配合使用作业，可将作业<code>Bean</code>配置为<code>Spring Bean</code>，并在作业中通过依赖注入使用<code>Spring</code>容器管理的数据源等对象。可用<code>placeholder</code>占位符从属性文件中取值。<code>Lite</code>可考虑使用<code>Spring</code>命名空间方式简化配置，<code>Cloud</code>直接使用Spring标准配置文件即可。</p>
+<p>与<code>Spring</code>容器配合使用作业，可将作业<code>Bean</code>配置为<code>Spring Bean</code>，并在作业中通过依赖注入使用<code>Spring</code>容器管理的数据源等对象。可用<code>placeholder</code>占位符从属性文件中取值。<code>Lite</code>可考虑使用<code>Spring</code>命名空间方式简化配置。</p>
 
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
@@ -269,7 +263,7 @@ echo sharding execution context is $*
     &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
     
     &lt;!-- 配置简单作业--&gt;
-    &lt;job:simple id=&quot;simpleElasticJob&quot; class=&quot;xxx.MySimpleElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
+    &lt;job:simple id=&quot;simpleElasticJob&quot; class=&quot;xxx.MySimpleElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
     
     &lt;!-- 配置数据流作业--&gt;
     &lt;job:dataflow id=&quot;throughputDataflow&quot; class=&quot;xxx.MyThroughputDataflowElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
@@ -281,6 +275,12 @@ echo sharding execution context is $*
     &lt;job:simple id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot;&gt;
         &lt;job:listener class=&quot;xx.MySimpleJobListener&quot;/&gt;
         &lt;job:listener class=&quot;xx.MyOnceSimpleJobListener&quot; started-timeout-milliseconds=&quot;1000&quot; completed-timeout-milliseconds=&quot;2000&quot; /&gt;
+    &lt;/job:simple&gt;
+    
+    &lt;!-- 配置带数据库和日志作业事件监听的简单作业--&gt;
+    &lt;job:simple id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot;&gt;
+        &lt;job:event-log /&gt;
+        &lt;job:event-rdb driver=&quot;org.h2.Driver&quot; url=&quot;jdbc:h2:mem:job_event_bus&quot; username=&quot;sa&quot; password=&quot;&quot;  log-level=&quot;INFO&quot; /&gt;
     &lt;/job:simple&gt;
 &lt;/beans&gt;
 </code></pre>
@@ -531,6 +531,21 @@ echo sharding execution context is $*
 </tbody>
 </table>
 
+<h4 id="job-event-log命名空间详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:event-log命名空间详细说明</h4>
+
+<p><code>job:event-log</code>必须配置为<code>job:bean</code>的子元素，表示以日志文件的形式记录作业事件</p>
+
+<h4 id="job-event-rdb命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:event-rdb命名空间属性详细说明</h4>
+
+<p><code>job:event-rdb</code>必须配置为<code>job:bean</code>的子元素，表示以数据库的形式记录作业事件
+| 属性名                          | 类型  |是否必填|缺省值         | 描述                                                                                      |
+| &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |:&mdash;&mdash;|:&mdash;&mdash;|:&mdash;&mdash;&mdash;&mdash;-|:&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
+|driver                          |String |<code>是</code>   |              | 数据库驱动类名                                                                             |
+|url                             |String |<code>是</code>   |              | 数据库URL地址                                                                              |
+|username                        |String |<code>是</code>   |              | 数据库用户名                                                                               |
+|password                        |String |<code>是</code>   |              | 数据库用户名                                                                               |
+|log-level                       |Enum   |<code>是</code>   |              | 日志级别，可配置为<code>TRACE</code>,<code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>。<br />默认为<code>INFO</code>                  |</p>
+
 <h4 id="reg-bean命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">reg:bean命名空间属性详细说明</h4>
 
 <table>
@@ -616,22 +631,6 @@ echo sharding execution context is $*
 <td align="left">无验证</td>
 <td align="left">连接<code>Zookeeper</code>的权限令牌<br />缺省为不需要权限验证</td>
 </tr>
-
-<tr>
-<td>nested-port</td>
-<td align="left">int</td>
-<td align="left">否</td>
-<td align="left">-1</td>
-<td align="left">内嵌<code>Zookeeper</code>的端口号<br />-1表示不开启内嵌<code>Zookeeper</code></td>
-</tr>
-
-<tr>
-<td>nested-data-dir</td>
-<td align="left">String</td>
-<td align="left">否</td>
-<td align="left"></td>
-<td align="left">内嵌<code>Zookeeper</code>的数据存储路径<br />为空表示不开启内嵌<code>Zookeeper</code></td>
-</tr>
 </tbody>
 </table>
 
@@ -659,20 +658,6 @@ echo sharding execution context is $*
 <h3 id="2-lite的spring启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">2. Lite的Spring启动方式</h3>
 
 <p>参见<code>Spring</code>命名空间</p>
-
-<h3 id="3-cloud启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">3. Cloud启动方式</h3>
-
-<p>需定义<code>Main</code>方法并调用<code>Bootstrap.execute(args)</code>，例子如下：</p>
-
-<pre><code class="language-java">public class JobDemo {
-    
-    public static void main(final String[] args) {
-        Bootstrap.execute(args);
-    }
-}
-</code></pre>
-
-<p>之后将作业和用于执行<code>Java Main</code>方法的<code>Shell</code>脚本打包为<code>gz.tar</code>格式，然后使用<code>Cloud</code>提供的<code>REST API</code>将其部署至<code>Elastic-Job-Cloud</code>系统。</p>
 
 <h2 id="其他功能:6fde5c464b5cd157fa8c5a0e82fa63a0">其他功能</h2>
 
@@ -793,7 +778,6 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <ul>
 <li><a href="#1-通用作业配置:6fde5c464b5cd157fa8c5a0e82fa63a0">1. 通用作业配置</a></li>
 <li><a href="#2-lite作业配置:6fde5c464b5cd157fa8c5a0e82fa63a0">2. Lite作业配置</a></li>
-<li><a href="#3-cloud作业配置:6fde5c464b5cd157fa8c5a0e82fa63a0">3. Cloud作业配置</a></li>
 </ul></li>
 <li><a href="#spring命名空间配置:6fde5c464b5cd157fa8c5a0e82fa63a0">Spring命名空间配置</a>
 <ul>
@@ -801,6 +785,8 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <li><a href="#job-dataflow命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:dataflow命名空间属性详细说明</a></li>
 <li><a href="#job-script命名空间属性详细说明-基本属性参照job-simple命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:script命名空间属性详细说明，基本属性参照job:simple命名空间属性详细说明</a></li>
 <li><a href="#job-listener命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:listener命名空间属性详细说明</a></li>
+<li><a href="#job-event-log命名空间详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:event-log命名空间详细说明</a></li>
+<li><a href="#job-event-rdb命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:event-rdb命名空间属性详细说明</a></li>
 <li><a href="#reg-bean命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">reg:bean命名空间属性详细说明</a></li>
 </ul></li>
 </ul></li>
@@ -808,7 +794,6 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <ul>
 <li><a href="#1-lite的java启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">1. Lite的Java启动方式</a></li>
 <li><a href="#2-lite的spring启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">2. Lite的Spring启动方式</a></li>
-<li><a href="#3-cloud启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0">3. Cloud启动方式</a></li>
 </ul></li>
 <li><a href="#其他功能:6fde5c464b5cd157fa8c5a0e82fa63a0">其他功能</a>
 <ul>

@@ -121,96 +121,6 @@ body {
 <li><p>运行包含<code>Elastic-Job-Lite</code>和业务代码的<code>jar</code>文件。</p></li>
 </ol>
 
-<h2 id="elastic-job-cloud:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Cloud</h2>
-
-<ol>
-<li><p>启动<code>Elastic-Job-Cloud</code>和<code>Mesos</code>指定注册中心的<code>Zookeeper</code>。</p></li>
-
-<li><p>启动<code>Mesos Master</code>和<code>Mesos Agent</code>。</p></li>
-
-<li><p>解压并启动<code>elastic-job-cloud-scheduler-${version}.tar.gz</code>。可通过源码<code>mvn install</code>编译获取。</p></li>
-
-<li><p>将打包之后的作业<code>tar.gz</code>文件放至网络可访问的位置，如：<code>ftp</code>或<code>http</code>。打包的<code>tar.gz</code>文件中<code>Main</code>方法需要调用<code>Elastic-Job-Lite</code>提供的<code>Bootstrap.execute</code>方法。</p></li>
-
-<li><p>使用curl命令注册待运行作业至<code>Elastic-Job-Cloud</code>。</p></li>
-</ol>
-
-<p><code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true} 
-http://elastic_job_cloud_masterhost:8899/job/register</code></p>
-
-<h2 id="附录-elastic-job-cloud-master启动指南:683f09d60aed8667eba01ae825b6e4c6">附录：Elastic-Job-Cloud-Master启动指南</h2>
-
-<ol>
-<li><p>启动：解压缩<code>elastic-job-cloud-scheduler-${version}.tar.gz</code>并执行<code>bin\start.sh</code>脚本。</p></li>
-
-<li><p>停止：不提供停止脚本，可直接使用<code>kill</code>杀进程。</p></li>
-
-<li><p>配置：修改<code>conf\elastic-job-cloud.properties</code>文件。配置项说明如下：</p></li>
-</ol>
-
-<table>
-<thead>
-<tr>
-<th>属性名称</th>
-<th align="left">必填</th>
-<th align="left">默认值</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>hostname</td>
-<td align="left"><code>是</code></td>
-<td align="left"></td>
-<td align="left">服务器真实的<code>IP</code>或<code>hostname</code>，不能是<code>127.0.0.1</code>或<code>localhost</code></td>
-</tr>
-
-<tr>
-<td>user</td>
-<td align="left">否</td>
-<td align="left"></td>
-<td align="left"><code>Mesos framework</code>使用的用户名称</td>
-</tr>
-
-<tr>
-<td>mesos_url</td>
-<td align="left"><code>是</code></td>
-<td align="left"><code>zk://127.0.0.1:2181/mesos</code></td>
-<td align="left"><code>Mesos</code>所使用的<code>Zookeeper</code>地址</td>
-</tr>
-
-<tr>
-<td>zk_servers</td>
-<td align="left"><code>是</code></td>
-<td align="left"><code>127.0.0.1:2181</code></td>
-<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>地址</td>
-</tr>
-
-<tr>
-<td>zk_namespace</td>
-<td align="left">否</td>
-<td align="left"><code>elastic-job-cloud</code></td>
-<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>命名空间</td>
-</tr>
-
-<tr>
-<td>zk_digest</td>
-<td align="left">否</td>
-<td align="left"></td>
-<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>登录凭证</td>
-</tr>
-
-<tr>
-<td>http_port</td>
-<td align="left"><code>是</code></td>
-<td align="left"><code>8899</code></td>
-<td align="left">作业操作的<code>Restful API</code>所使用的端口号</td>
-</tr>
-</tbody>
-</table>
-
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
@@ -218,8 +128,6 @@ http://elastic_job_cloud_masterhost:8899/job/register</code></p>
 <li><a href="#部署指南:683f09d60aed8667eba01ae825b6e4c6">部署指南</a>
 <ul>
 <li><a href="#elastic-job-lite:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Lite</a></li>
-<li><a href="#elastic-job-cloud:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Cloud</a></li>
-<li><a href="#附录-elastic-job-cloud-master启动指南:683f09d60aed8667eba01ae825b6e4c6">附录：Elastic-Job-Cloud-Master启动指南</a></li>
 </ul></li>
 </ul>
 </nav>

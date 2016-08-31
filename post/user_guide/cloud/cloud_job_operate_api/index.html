@@ -199,14 +199,6 @@ body {
 </tr>
 
 <tr>
-<td>dockerImageName</td>
-<td align="left">String</td>
-<td align="left">否</td>
-<td align="left"></td>
-<td align="left"><code>Docker</code>镜像名称。目前为预留值</td>
-</tr>
-
-<tr>
 <td>failover</td>
 <td align="left">boolean</td>
 <td align="left">否</td>
@@ -252,7 +244,7 @@ body {
 <li><code>Java</code>方式</li>
 </ul>
 
-<p><code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;dockerImageName&quot;:&quot;&quot;,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true}' http://elastic_job_cloud_host:8899/job/register</code></p>
+<p><code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true}' http://elastic_job_cloud_host:8899/job/register</code></p>
 
 <ul>
 <li><code>Spring</code>方式</li>

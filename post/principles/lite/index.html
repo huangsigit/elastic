@@ -200,6 +200,11 @@ body {
 </tr>
 
 <tr>
+<td>disabled</td>
+<td align="left">作业服务器状态是否禁用<br />可用于部署作业时，先禁止启动，部署结束后统一启动</td>
+</tr>
+
+<tr>
 <td>monitorExecution</td>
 <td align="left">监控作业执行时状态</td>
 </tr>
@@ -215,23 +220,23 @@ body {
 </tr>
 
 <tr>
-<td>dataflowType</td>
-<td align="left"><code>DATAFLW</code>类型作业的子类型，目前支持<code>THROUGHPUT</code>和<code>SEQUENCE</code>两种类型</td>
-</tr>
-
-<tr>
 <td>streamingProcess</td>
 <td align="left">是否流式处理数据<br />如果流式处理数据，则<code>fetchData</code>不返回空结果将持续执行作业<br />如果非流式处理数据, 则处理数据完成后作业结束<br /></td>
 </tr>
 
 <tr>
-<td>concurrentDataProcessThreadCount</td>
-<td align="left">同时处理数据的并发线程数，仅<code>DATAFLOW</code>的<code>THROUGHPUT</code>类型有效</td>
+<td>jobShardingStrategyClass</td>
+<td align="left">作业分片策略类的全路径</td>
 </tr>
 
 <tr>
 <td>scriptCommandLine</td>
 <td align="left"><code>SCRIPT</code>型作业作业执行命令行</td>
+</tr>
+
+<tr>
+<td>jobEventConfigs</td>
+<td align="left">作业执行事件追踪,可配置log,<code>rdb</code>两种方式,<code>rdb</code>方式需配置<code>driverClassName</code>,<code>url</code>,&lsquo;username<code>,</code>password<code>,</code>logLevel`</td>
 </tr>
 
 <tr>
