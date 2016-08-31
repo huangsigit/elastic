@@ -735,7 +735,6 @@ echo sharding execution context is $*
     // 定义DATAFLOW类型配置
     DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName(), true);
     
-    
     // 定义作业核心配置配置
     JobCoreConfiguration scriptCoreConfig = JobCoreConfiguration.newBuilder(&amp;quot;demoScriptJob&amp;quot;, &amp;quot;0/45 * * * * ?&amp;quot;, 10).build();
     
@@ -1042,14 +1041,61 @@ echo sharding execution context is $*
 
 &lt;h4 id=&#34;job-event-rdb命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;job:event-rdb命名空间属性详细说明&lt;/h4&gt;
 
-&lt;p&gt;&lt;code&gt;job:event-rdb&lt;/code&gt;必须配置为&lt;code&gt;job:bean&lt;/code&gt;的子元素，表示以数据库的形式记录作业事件
-| 属性名                          | 类型  |是否必填|缺省值         | 描述                                                                                      |
-| &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; |:&amp;mdash;&amp;mdash;|:&amp;mdash;&amp;mdash;|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-|driver                          |String |&lt;code&gt;是&lt;/code&gt;   |              | 数据库驱动类名                                                                             |
-|url                             |String |&lt;code&gt;是&lt;/code&gt;   |              | 数据库URL地址                                                                              |
-|username                        |String |&lt;code&gt;是&lt;/code&gt;   |              | 数据库用户名                                                                               |
-|password                        |String |&lt;code&gt;是&lt;/code&gt;   |              | 数据库用户名                                                                               |
-|log-level                       |Enum   |&lt;code&gt;是&lt;/code&gt;   |              | 日志级别，可配置为&lt;code&gt;TRACE&lt;/code&gt;,&lt;code&gt;DEBUG&lt;/code&gt;,&lt;code&gt;INFO&lt;/code&gt;,&lt;code&gt;WARN&lt;/code&gt;,&lt;code&gt;ERROR&lt;/code&gt;。&lt;br /&gt;默认为&lt;code&gt;INFO&lt;/code&gt;                  |&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;job:event-rdb&lt;/code&gt;必须配置为&lt;code&gt;job:bean&lt;/code&gt;的子元素，表示以数据库的形式记录作业事件&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性名&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;缺省值&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;driver&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;数据库驱动类名&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;url&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;数据库URL地址&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;username&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;数据库用户名&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;password&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;数据库用户名&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;log-level&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;日志级别，可配置为&lt;code&gt;TRACE&lt;/code&gt;,&lt;code&gt;DEBUG&lt;/code&gt;,&lt;code&gt;INFO&lt;/code&gt;,&lt;code&gt;WARN&lt;/code&gt;,&lt;code&gt;ERROR&lt;/code&gt;。&lt;br /&gt;默认为&lt;code&gt;INFO&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h4 id=&#34;reg-bean命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;reg:bean命名空间属性详细说明&lt;/h4&gt;
 
@@ -1173,6 +1219,26 @@ echo sharding execution context is $*
 &lt;h3 id=&#34;定制化作业处理线程池:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;定制化作业处理线程池&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;JobProperties&lt;/code&gt;，可扩展&lt;code&gt;ExecutorServiceHandler&lt;/code&gt;接口，并设置&lt;code&gt;executor_service_handler&lt;/code&gt;定制线程池。&lt;/p&gt;
+
+&lt;h3 id=&#34;事件溯源:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;事件溯源&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;JobEventConfiguration&lt;/code&gt;，目前支持数据库和日志文件两种方式配置，默认为日志文件方式。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    // 定义日志文件事件溯源配置
+    JobEventConfiguration jobLogEventConfig = new JobEventLogConfiguration();
+    
+    // 定义数据库日志文件事件溯源配置
+    JobEventConfiguration jobRdbEventConfig = new JobEventRdbConfiguration(&amp;quot;org.h2.Driver&amp;quot;, &amp;quot;jdbc:h2:mem:job_event_bus&amp;quot;, &amp;quot;sa&amp;quot;, &amp;quot;&amp;quot;, LogLevel.INFO);
+    
+    // 定义SIMPLE作业类型，使用日志文件方式
+    SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName()).jobEventConfiguration(jobLogEventConfig);
+    
+    // 定义DATAFLOW作业类型，使用数据库方式
+    DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName()).jobEventConfiguration(jobRdbEventConfig);
+    
+    // 定义SCRIPT类型配置，使用数据库方式
+    ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &amp;quot;test.sh&amp;quot;).jobEventConfiguration(jobLogEventConfig, jobRdbEventConfig);
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;任务监听:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;任务监听&lt;/h3&gt;
 

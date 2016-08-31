@@ -230,7 +230,6 @@ echo sharding execution context is $*
     // 定义DATAFLOW类型配置
     DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName(), true);
     
-    
     // 定义作业核心配置配置
     JobCoreConfiguration scriptCoreConfig = JobCoreConfiguration.newBuilder(&quot;demoScriptJob&quot;, &quot;0/45 * * * * ?&quot;, 10).build();
     
@@ -537,14 +536,61 @@ echo sharding execution context is $*
 
 <h4 id="job-event-rdb命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:event-rdb命名空间属性详细说明</h4>
 
-<p><code>job:event-rdb</code>必须配置为<code>job:bean</code>的子元素，表示以数据库的形式记录作业事件
-| 属性名                          | 类型  |是否必填|缺省值         | 描述                                                                                      |
-| &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; |:&mdash;&mdash;|:&mdash;&mdash;|:&mdash;&mdash;&mdash;&mdash;-|:&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-|driver                          |String |<code>是</code>   |              | 数据库驱动类名                                                                             |
-|url                             |String |<code>是</code>   |              | 数据库URL地址                                                                              |
-|username                        |String |<code>是</code>   |              | 数据库用户名                                                                               |
-|password                        |String |<code>是</code>   |              | 数据库用户名                                                                               |
-|log-level                       |Enum   |<code>是</code>   |              | 日志级别，可配置为<code>TRACE</code>,<code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>。<br />默认为<code>INFO</code>                  |</p>
+<p><code>job:event-rdb</code>必须配置为<code>job:bean</code>的子元素，表示以数据库的形式记录作业事件</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>driver</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">数据库驱动类名</td>
+</tr>
+
+<tr>
+<td>url</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">数据库URL地址</td>
+</tr>
+
+<tr>
+<td>username</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">数据库用户名</td>
+</tr>
+
+<tr>
+<td>password</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">数据库用户名</td>
+</tr>
+
+<tr>
+<td>log-level</td>
+<td align="left">Enum</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">日志级别，可配置为<code>TRACE</code>,<code>DEBUG</code>,<code>INFO</code>,<code>WARN</code>,<code>ERROR</code>。<br />默认为<code>INFO</code></td>
+</tr>
+</tbody>
+</table>
 
 <h4 id="reg-bean命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">reg:bean命名空间属性详细说明</h4>
 
@@ -668,6 +714,26 @@ echo sharding execution context is $*
 <h3 id="定制化作业处理线程池:6fde5c464b5cd157fa8c5a0e82fa63a0">定制化作业处理线程池</h3>
 
 <p><code>elastic-job</code>在配置中提供了<code>JobProperties</code>，可扩展<code>ExecutorServiceHandler</code>接口，并设置<code>executor_service_handler</code>定制线程池。</p>
+
+<h3 id="事件溯源:6fde5c464b5cd157fa8c5a0e82fa63a0">事件溯源</h3>
+
+<p><code>elastic-job</code>在配置中提供了<code>JobEventConfiguration</code>，目前支持数据库和日志文件两种方式配置，默认为日志文件方式。</p>
+
+<pre><code class="language-java">    // 定义日志文件事件溯源配置
+    JobEventConfiguration jobLogEventConfig = new JobEventLogConfiguration();
+    
+    // 定义数据库日志文件事件溯源配置
+    JobEventConfiguration jobRdbEventConfig = new JobEventRdbConfiguration(&quot;org.h2.Driver&quot;, &quot;jdbc:h2:mem:job_event_bus&quot;, &quot;sa&quot;, &quot;&quot;, LogLevel.INFO);
+    
+    // 定义SIMPLE作业类型，使用日志文件方式
+    SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName()).jobEventConfiguration(jobLogEventConfig);
+    
+    // 定义DATAFLOW作业类型，使用数据库方式
+    DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName()).jobEventConfiguration(jobRdbEventConfig);
+    
+    // 定义SCRIPT类型配置，使用数据库方式
+    ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &quot;test.sh&quot;).jobEventConfiguration(jobLogEventConfig, jobRdbEventConfig);
+</code></pre>
 
 <h3 id="任务监听:6fde5c464b5cd157fa8c5a0e82fa63a0">任务监听</h3>
 
@@ -799,6 +865,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <ul>
 <li><a href="#异常处理:6fde5c464b5cd157fa8c5a0e82fa63a0">异常处理</a></li>
 <li><a href="#定制化作业处理线程池:6fde5c464b5cd157fa8c5a0e82fa63a0">定制化作业处理线程池</a></li>
+<li><a href="#事件溯源:6fde5c464b5cd157fa8c5a0e82fa63a0">事件溯源</a></li>
 <li><a href="#任务监听:6fde5c464b5cd157fa8c5a0e82fa63a0">任务监听</a>
 <ul>
 <li><a href="#1-每台作业节点均执行的监听:6fde5c464b5cd157fa8c5a0e82fa63a0">1. 每台作业节点均执行的监听</a></li>
