@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Elastic-Job-Lite环境需求</title>
+    <title>Elastic-Job-Cloud-Scheduler启动指南</title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -108,30 +108,100 @@ body {
               <div class="col-sm-8">
 		 
 
-<h1 id="elastic-job-lite环境需求:5fc72554ce10b593ad2e772b637ec905">Elastic-Job-Lite环境需求</h1>
+<h1 id="elastic-job-cloud-scheduler启动指南:d20483f31c6c25e8300b2730cea8eb51">Elastic-Job-Cloud-Scheduler启动指南</h1>
 
-<h2 id="java:5fc72554ce10b593ad2e772b637ec905">Java</h2>
+<ol>
+<li><p>启动<code>Elastic-Job-Cloud-Scheduler</code>和<code>Mesos</code>指定注册中心的<code>Zookeeper</code>。</p></li>
 
-<p>请使用<code>JDK1.7</code>及其以上版本。<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">详情参见</a></p>
+<li><p>启动<code>Mesos Master</code>和<code>Mesos Agent</code>。</p></li>
 
-<h2 id="zookeeper:5fc72554ce10b593ad2e772b637ec905">Zookeeper</h2>
+<li><p>解压<code>elastic-job-cloud-scheduler-${version}.tar.gz</code>。可通过源码<code>mvn install</code>编译获取。</p></li>
 
-<p>请使用<code>Zookeeper 3.4.6</code>及其以上版本。<a href="https://zookeeper.apache.org/doc/trunk/zookeeperStarted.html">详情参见</a></p>
+<li><p>执行<code>bin\start.sh</code>脚本启动<code>elastic-job-cloud-scheduler</code>。</p></li>
+</ol>
 
-<h2 id="maven:5fc72554ce10b593ad2e772b637ec905">Maven</h2>
+<h1 id="附录:d20483f31c6c25e8300b2730cea8eb51">附录</h1>
 
-<p>请使用<code>Maven 3.0.4</code>及其以上版本。<a href="http://maven.apache.org/install.html">详情参见</a></p>
+<ul>
+<li>配置：修改<code>conf\elastic-job-cloud-scheduler.properties</code>文件。配置项说明如下：</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th align="left">必填</th>
+<th align="left">默认值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>hostname</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">服务器真实的<code>IP</code>或<code>hostname</code>，不能是<code>127.0.0.1</code>或<code>localhost</code></td>
+</tr>
+
+<tr>
+<td>user</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left"><code>Mesos framework</code>使用的用户名称</td>
+</tr>
+
+<tr>
+<td>mesos_url</td>
+<td align="left"><code>是</code></td>
+<td align="left"><code>zk://127.0.0.1:2181/mesos</code></td>
+<td align="left"><code>Mesos</code>所使用的<code>Zookeeper</code>地址</td>
+</tr>
+
+<tr>
+<td>zk_servers</td>
+<td align="left"><code>是</code></td>
+<td align="left"><code>127.0.0.1:2181</code></td>
+<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>地址</td>
+</tr>
+
+<tr>
+<td>zk_namespace</td>
+<td align="left">否</td>
+<td align="left"><code>elastic-job-cloud</code></td>
+<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>命名空间</td>
+</tr>
+
+<tr>
+<td>zk_digest</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>登录凭证</td>
+</tr>
+
+<tr>
+<td>http_port</td>
+<td align="left"><code>是</code></td>
+<td align="left"><code>8899</code></td>
+<td align="left"><code>Restful API</code>所使用的端口号</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<ul>
+<li><p>停止：不提供停止脚本，可直接使用<code>kill</code>杀进程。</p></li>
+
+<li><p><code>Elastic-Job-Cloud-Scheduler</code>是什么？<code>Elastic-Job-Cloud-Scheduler</code>是<code>Mesos Framework</code>，用于资源调度和应用分发，需要独立启动提供服务。</p></li>
+</ul>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
 <ul>
-<li><a href="#elastic-job-lite环境需求:5fc72554ce10b593ad2e772b637ec905">Elastic-Job-Lite环境需求</a>
-<ul>
-<li><a href="#java:5fc72554ce10b593ad2e772b637ec905">Java</a></li>
-<li><a href="#zookeeper:5fc72554ce10b593ad2e772b637ec905">Zookeeper</a></li>
-<li><a href="#maven:5fc72554ce10b593ad2e772b637ec905">Maven</a></li>
-</ul></li>
+<li><a href="#elastic-job-cloud-scheduler启动指南:d20483f31c6c25e8300b2730cea8eb51">Elastic-Job-Cloud-Scheduler启动指南</a></li>
+<li><a href="#附录:d20483f31c6c25e8300b2730cea8eb51">附录</a></li>
 </ul>
 </nav>
 	</div>
@@ -146,7 +216,7 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Lite环境需求 All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Cloud-Scheduler启动指南 All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>

@@ -16,27 +16,12 @@
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_index/</loc>
-    <lastmod>2016-08-27T16:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/lite_index/</loc>
     <lastmod>2016-08-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/env_required/</loc>
-    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/env_required/</loc>
-    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/dev_guide/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
@@ -46,17 +31,7 @@
   </url>
   
   <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/deploy_guide/</loc>
-    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/deploy_guide/</loc>
-    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/other_features/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
@@ -67,11 +42,6 @@
   
   <url>
     <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other/lite_job_operate_api/</loc>
-    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_job_operate_api/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
   
@@ -96,7 +66,37 @@
   </url>
   
   <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_index/</loc>
+    <lastmod>2016-08-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/env_required/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/dev_guide/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/deploy_guide/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/scheduler_guide/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://dangdangdotcom.github.io/elastic-job/post/principles/lite/</loc>
+    <lastmod>2016-01-28T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/principles/cloud/</loc>
     <lastmod>2016-01-28T16:14:21+08:00</lastmod>
   </url>
   

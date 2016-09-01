@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>部署指南</title>
+    <title>Elastic-Job-Cloud部署指南</title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -108,106 +108,192 @@ body {
               <div class="col-sm-8">
 		 
 
-<h1 id="部署指南:683f09d60aed8667eba01ae825b6e4c6">部署指南</h1>
+<h1 id="elastic-job-cloud部署指南:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Cloud部署指南</h1>
 
-<h2 id="elastic-job-cloud:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Cloud</h2>
-
-<ol>
-<li><p>启动<code>Elastic-Job-Cloud</code>和<code>Mesos</code>指定注册中心的<code>Zookeeper</code>。</p></li>
-
-<li><p>启动<code>Mesos Master</code>和<code>Mesos Agent</code>。</p></li>
-
-<li><p>解压并启动<code>elastic-job-cloud-scheduler-${version}.tar.gz</code>。可通过源码<code>mvn install</code>编译获取。</p></li>
-
-<li><p>将打包之后的作业<code>tar.gz</code>文件放至网络可访问的位置，如：<code>ftp</code>或<code>http</code>。打包的<code>tar.gz</code>文件中<code>Main</code>方法需要调用<code>Elastic-Job-Lite</code>提供的<code>Bootstrap.execute</code>方法。</p></li>
-
-<li><p>使用curl命令注册待运行作业至<code>Elastic-Job-Cloud</code>。</p></li>
-</ol>
-
-<p><code>curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true} 
-http://elastic_job_cloud_masterhost:8899/job/register</code></p>
-
-<h2 id="附录-elastic-job-cloud-master启动指南:683f09d60aed8667eba01ae825b6e4c6">附录：Elastic-Job-Cloud-Master启动指南</h2>
+<h2 id="部署步骤:683f09d60aed8667eba01ae825b6e4c6">部署步骤</h2>
 
 <ol>
-<li><p>启动：解压缩<code>elastic-job-cloud-scheduler-${version}.tar.gz</code>并执行<code>bin\start.sh</code>脚本。</p></li>
+<li><p>启动<code>Zookeeper</code>, <code>Mesos Master/Agent</code>以及<code>Elastic-Job-Cloud-Scheduler</code>。</p></li>
 
-<li><p>停止：不提供停止脚本，可直接使用<code>kill</code>杀进程。</p></li>
+<li><p>将打包之后的作业<code>tar.gz</code>文件放至网络可访问的位置，如：<code>ftp</code>或<code>http</code>。打包的<code>tar.gz</code>文件中<code>Main</code>方法需要调用<code>Elastic-Job-Cloud</code>提供的<code>JobBootstrap.execute</code>方法。</p></li>
 
-<li><p>配置：修改<code>conf\elastic-job-cloud.properties</code>文件。配置项说明如下：</p></li>
+<li><p>使用<code>curl</code>命令调用<code>RESTful API</code>注册作业。</p></li>
 </ol>
+
+<h2 id="restful-api:683f09d60aed8667eba01ae825b6e4c6">RESTful API</h2>
+
+<p><code>Elastic-Job-Cloud</code>提供作业注册/注销<code>Restful API</code>。可通过<code>curl</code>操作。</p>
+
+<h3 id="注册作业:683f09d60aed8667eba01ae825b6e4c6">注册作业</h3>
+
+<p>url：<code>job/register</code></p>
+
+<p>方法：<code>POST</code></p>
+
+<p>参数类型：<code>application/json</code></p>
+
+<p>参数列表：</p>
 
 <table>
 <thead>
 <tr>
-<th>属性名称</th>
-<th align="left">必填</th>
-<th align="left">默认值</th>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
 <th align="left">描述</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>hostname</td>
+<td>jobName</td>
+<td align="left">String</td>
 <td align="left"><code>是</code></td>
 <td align="left"></td>
-<td align="left">服务器真实的<code>IP</code>或<code>hostname</code>，不能是<code>127.0.0.1</code>或<code>localhost</code></td>
+<td align="left">作业名称。为<code>Elastic-Job-Cloud</code>的作业唯一标识</td>
 </tr>
 
 <tr>
-<td>user</td>
+<td>jobClass</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业实现类</td>
+</tr>
+
+<tr>
+<td>jobExecutionType</td>
+<td align="left">Enum</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业执行类型。<code>TRANSIENT</code>为瞬时作业，<code>DAEMON</code>为常驻作业</td>
+</tr>
+
+<tr>
+<td>cron</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"><code>cron</code>表达式，用于配置作业触发时间</td>
+</tr>
+
+<tr>
+<td>shardingTotalCount</td>
+<td align="left">int</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业分片总数</td>
+</tr>
+
+<tr>
+<td>cpuCount</td>
+<td align="left">double</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">单片作业所需要的<code>CPU</code>数量</td>
+</tr>
+
+<tr>
+<td>memoryMB</td>
+<td align="left">double</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">单片作业所需要的内存<code>MB</code></td>
+</tr>
+
+<tr>
+<td>appURL</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">应用所在路径。必须是可以通过网络访问到的路径</td>
+</tr>
+
+<tr>
+<td>failover</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left"><code>false</code></td>
+<td align="left">是否开启失效转移</td>
+</tr>
+
+<tr>
+<td>misfire</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left"><code>false</code></td>
+<td align="left">是否开启错过任务重新执行</td>
+</tr>
+
+<tr>
+<td>beanName</td>
+<td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
-<td align="left"><code>Mesos framework</code>使用的用户名称</td>
+<td align="left"><code>Spring</code>容器中配置的<code>bean</code>名称</td>
 </tr>
 
 <tr>
-<td>mesos_url</td>
-<td align="left"><code>是</code></td>
-<td align="left"><code>zk://127.0.0.1:2181/mesos</code></td>
-<td align="left"><code>Mesos</code>所使用的<code>Zookeeper</code>地址</td>
-</tr>
-
-<tr>
-<td>zk_servers</td>
-<td align="left"><code>是</code></td>
-<td align="left"><code>127.0.0.1:2181</code></td>
-<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>地址</td>
-</tr>
-
-<tr>
-<td>zk_namespace</td>
-<td align="left">否</td>
-<td align="left"><code>elastic-job-cloud</code></td>
-<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>命名空间</td>
-</tr>
-
-<tr>
-<td>zk_digest</td>
+<td>applicationContext</td>
+<td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
-<td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>登录凭证</td>
+<td align="left"><code>Spring</code>方式配置<code>Spring</code>配置文件相对路径以及名称，如：<code>META-INF\applicationContext.xml</code></td>
 </tr>
 
 <tr>
-<td>http_port</td>
-<td align="left"><code>是</code></td>
-<td align="left"><code>8899</code></td>
-<td align="left">作业操作的<code>Restful API</code>所使用的端口号</td>
+<td>jobEventConfigs</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业事件配置，目前可配置<code>log</code>和<code>rdb</code>监听器，如:<code>{&quot;log&quot;:{},{&quot;rdb&quot;:{&quot;driverClassName&quot;:&quot;com.mysql.jdbc.Driver&quot;, &quot;url&quot;:&quot;jdbc:mysql://your_host:3306/elastic_job_log&quot;, &quot;username&quot;:&quot;root&quot;, &quot;password&quot;:&quot;&quot;, logLevel:&quot;WARN&quot;}}</code></td>
 </tr>
 </tbody>
 </table>
+
+<p>注册的作业可用<code>Java</code>和<code>Spring</code>两种启动方式，作业启动在<a href="../dev_guide/">开发指南</a>中有说明，这里只举例说明两种方式如何注册。</p>
+
+<p><strong>Java启动方式作业注册</strong></p>
+
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
+'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true}' 
+http://elastic_job_cloud_host:8899/job/register
+</code></pre>
+
+<p><strong>Spring启动方式作业注册</strong></p>
+
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
+'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;beanName&quot;:&quot;yourBeanName&quot;,&quot;applicationContext&quot;:&quot;applicationContext.xml&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,
+&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true}' 
+http://elastic_job_cloud_masterhost:8899/job/register
+</code></pre>
+
+<h3 id="注销作业:683f09d60aed8667eba01ae825b6e4c6">注销作业</h3>
+
+<p>url：<code>job/unregister</code></p>
+
+<p>方法：<code>DELETE</code></p>
+
+<p>参数类型：<code>application/text</code></p>
+
+<p>参数：作业名称</p>
+
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/text&quot; -X DELETE -d 'foo_job' http://elastic_job_cloud_host:8899/job/unregister
+</code></pre>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
 <ul>
-<li><a href="#部署指南:683f09d60aed8667eba01ae825b6e4c6">部署指南</a>
+<li><a href="#elastic-job-cloud部署指南:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Cloud部署指南</a>
 <ul>
-<li><a href="#elastic-job-cloud:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Cloud</a></li>
-<li><a href="#附录-elastic-job-cloud-master启动指南:683f09d60aed8667eba01ae825b6e4c6">附录：Elastic-Job-Cloud-Master启动指南</a></li>
+<li><a href="#部署步骤:683f09d60aed8667eba01ae825b6e4c6">部署步骤</a></li>
+<li><a href="#restful-api:683f09d60aed8667eba01ae825b6e4c6">RESTful API</a>
+<ul>
+<li><a href="#注册作业:683f09d60aed8667eba01ae825b6e4c6">注册作业</a></li>
+<li><a href="#注销作业:683f09d60aed8667eba01ae825b6e4c6">注销作业</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -223,7 +309,7 @@ http://elastic_job_cloud_masterhost:8899/job/register</code></p>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; 部署指南 All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Cloud部署指南 All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>

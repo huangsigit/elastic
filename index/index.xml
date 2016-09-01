@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Indices on Elastic-Job</title>
+    <title>Indexes on Elastic-Job</title>
     <link>http://dangdangdotcom.github.io/elastic-job/index/</link>
-    <description>Recent content in Indices on Elastic-Job</description>
+    <description>Recent content in Indexes on Elastic-Job</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="http://dangdangdotcom.github.io/elastic-job/index/index.xml" rel="self" type="application/rss+xml" />
@@ -65,7 +65,7 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 
 &lt;h1 id=&#34;architecture:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Architecture&lt;/h1&gt;
 
-&lt;h2 id=&#34;elastic-job-lite:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Elastic-job-Lite&lt;/h2&gt;
+&lt;h2 id=&#34;elastic-job-lite:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Elastic-Job-Lite&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/architecture/elastic_job_lite.png&#34; alt=&#34;Elastic-Job-Lite Architecture&#34; /&gt;&lt;/p&gt;
 
