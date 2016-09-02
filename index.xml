@@ -154,6 +154,7 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/123&#34;&gt;ISSUE #123&lt;/a&gt; 单机跑定时任务，zk断开后重连，没有触发leader选举&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/127&#34;&gt;ISSUE #127&lt;/a&gt; Spring方式配置作业id无法使用占位符&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;1-1-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.1&lt;/h2&gt;
@@ -545,7 +546,7 @@ echo sharding execution context is $*
     &amp;lt;!-- 配置带监听的简单作业--&amp;gt;
     &amp;lt;job:simple id=&amp;quot;listenerElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleListenerElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot;&amp;gt;
         &amp;lt;job:listener class=&amp;quot;xx.MySimpleJobListener&amp;quot;/&amp;gt;
-        &amp;lt;job:listener class=&amp;quot;xx.MyOnceSimpleJobListener&amp;quot; started-timeout-milliseconds=&amp;quot;1000&amp;quot; completed-timeout-milliseconds=&amp;quot;2000&amp;quot; /&amp;gt;
+        &amp;lt;job:distributed-listener class=&amp;quot;xx.MyOnceSimpleJobListener&amp;quot; started-timeout-milliseconds=&amp;quot;1000&amp;quot; completed-timeout-milliseconds=&amp;quot;2000&amp;quot; /&amp;gt;
     &amp;lt;/job:simple&amp;gt;
     
     &amp;lt;!-- 配置带数据库和日志作业事件监听的简单作业--&amp;gt;
@@ -762,7 +763,7 @@ echo sharding execution context is $*
 
 &lt;h4 id=&#34;job-listener命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;job:listener命名空间属性详细说明&lt;/h4&gt;
 
-&lt;p&gt;&lt;code&gt;job:listener&lt;/code&gt;必须配置为&lt;code&gt;job:bean&lt;/code&gt;的子元素&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;job:listener&lt;/code&gt;必须配置为&lt;code&gt;job:bean&lt;/code&gt;的子元素，并且在子元素中只允许出现一次&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -783,13 +784,39 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;前置后置任务监听实现类，需实现&lt;code&gt;ElasticJobListener&lt;/code&gt;接口&lt;/td&gt;
 &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;job-distributed-listener命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;job:distributed-listener命名空间属性详细说明&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;job:distributed-listener&lt;/code&gt;必须配置为&lt;code&gt;job:bean&lt;/code&gt;的子元素，并且在子元素中只允许出现一次&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性名&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;缺省值&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;class&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;前置后置任务分布式监听实现类，需继承&lt;code&gt;AbstractDistributeOnceElasticJobListener&lt;/code&gt;类&lt;/td&gt;
+&lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;started-timeout-milliseconds&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;long&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;否&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;Long.MAX_VALUE&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行前的执行方法的超时时间&lt;br /&gt;单位：毫秒&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;最后一个作业执行前的执行方法的超时时间&lt;br /&gt;单位：毫秒&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -797,7 +824,7 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;long&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;否&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;Long.MAX_VALUE&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行后的执行方法的超时时间&lt;br /&gt;单位：毫秒&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;最后一个作业执行后的执行方法的超时时间&lt;br /&gt;单位：毫秒&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

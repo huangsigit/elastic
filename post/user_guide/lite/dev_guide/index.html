@@ -262,7 +262,7 @@ echo sharding execution context is $*
     &lt;!-- 配置带监听的简单作业--&gt;
     &lt;job:simple id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot;&gt;
         &lt;job:listener class=&quot;xx.MySimpleJobListener&quot;/&gt;
-        &lt;job:listener class=&quot;xx.MyOnceSimpleJobListener&quot; started-timeout-milliseconds=&quot;1000&quot; completed-timeout-milliseconds=&quot;2000&quot; /&gt;
+        &lt;job:distributed-listener class=&quot;xx.MyOnceSimpleJobListener&quot; started-timeout-milliseconds=&quot;1000&quot; completed-timeout-milliseconds=&quot;2000&quot; /&gt;
     &lt;/job:simple&gt;
     
     &lt;!-- 配置带数据库和日志作业事件监听的简单作业--&gt;
@@ -479,7 +479,7 @@ echo sharding execution context is $*
 
 <h4 id="job-listener命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:listener命名空间属性详细说明</h4>
 
-<p><code>job:listener</code>必须配置为<code>job:bean</code>的子元素</p>
+<p><code>job:listener</code>必须配置为<code>job:bean</code>的子元素，并且在子元素中只允许出现一次</p>
 
 <table>
 <thead>
@@ -500,13 +500,39 @@ echo sharding execution context is $*
 <td align="left"></td>
 <td align="left">前置后置任务监听实现类，需实现<code>ElasticJobListener</code>接口</td>
 </tr>
+</tbody>
+</table>
+
+<h4 id="job-distributed-listener命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:distributed-listener命名空间属性详细说明</h4>
+
+<p><code>job:distributed-listener</code>必须配置为<code>job:bean</code>的子元素，并且在子元素中只允许出现一次</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>class</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">前置后置任务分布式监听实现类，需继承<code>AbstractDistributeOnceElasticJobListener</code>类</td>
+</tr>
 
 <tr>
 <td>started-timeout-milliseconds</td>
 <td align="left">long</td>
 <td align="left"><code>否</code></td>
 <td align="left">Long.MAX_VALUE</td>
-<td align="left">AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行前的执行方法的超时时间<br />单位：毫秒</td>
+<td align="left">最后一个作业执行前的执行方法的超时时间<br />单位：毫秒</td>
 </tr>
 
 <tr>
@@ -514,7 +540,7 @@ echo sharding execution context is $*
 <td align="left">long</td>
 <td align="left"><code>否</code></td>
 <td align="left">Long.MAX_VALUE</td>
-<td align="left">AbstractDistributeOnceElasticJobListener型监听器，最后一个作业执行后的执行方法的超时时间<br />单位：毫秒</td>
+<td align="left">最后一个作业执行后的执行方法的超时时间<br />单位：毫秒</td>
 </tr>
 </tbody>
 </table>
@@ -833,6 +859,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 <li><a href="#job-dataflow命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:dataflow命名空间属性详细说明</a></li>
 <li><a href="#job-script命名空间属性详细说明-基本属性参照job-simple命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:script命名空间属性详细说明，基本属性参照job:simple命名空间属性详细说明</a></li>
 <li><a href="#job-listener命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:listener命名空间属性详细说明</a></li>
+<li><a href="#job-distributed-listener命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:distributed-listener命名空间属性详细说明</a></li>
 <li><a href="#job-event-log命名空间详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:event-log命名空间详细说明</a></li>
 <li><a href="#job-event-rdb命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">job:event-rdb命名空间属性详细说明</a></li>
 <li><a href="#reg-bean命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0">reg:bean命名空间属性详细说明</a></li>
