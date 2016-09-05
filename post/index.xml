@@ -1568,6 +1568,14 @@ echo sharding execution context is $*
 &lt;/tr&gt;
 
 &lt;tr&gt;
+&lt;td&gt;jobType&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业类型。&lt;code&gt;SIMPLE&lt;/code&gt;，&lt;code&gt;DATAFLOW&lt;/code&gt;，&lt;code&gt;SCRIPT&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
 &lt;td&gt;jobExecutionType&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
@@ -1613,6 +1621,14 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;应用所在路径。必须是可以通过网络访问到的路径&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;bootstrapScript&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;启动脚本，如：&lt;code&gt;bin\start.sh&lt;/code&gt;。&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1662,15 +1678,15 @@ echo sharding execution context is $*
 &lt;p&gt;&lt;strong&gt;Java启动方式作业注册&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
-&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:true,&amp;quot;misfire&amp;quot;:true}&#39; 
+&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;jobType&amp;quot;:&amp;quot;SIMPLE&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:true,&amp;quot;misfire&amp;quot;:true,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;}&#39; 
 http://elastic_job_cloud_host:8899/job/register
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;Spring启动方式作业注册&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
-&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;beanName&amp;quot;:&amp;quot;yourBeanName&amp;quot;,&amp;quot;applicationContext&amp;quot;:&amp;quot;applicationContext.xml&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,
-&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://file_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:false,&amp;quot;misfire&amp;quot;:true}&#39; 
+&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;beanName&amp;quot;:&amp;quot;yourBeanName&amp;quot;,&amp;quot;applicationContext&amp;quot;:&amp;quot;applicationContext.xml&amp;quot;,&amp;quot;jobType&amp;quot;:&amp;quot;SIMPLE&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,
+&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://file_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:false,&amp;quot;misfire&amp;quot;:true,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;}&#39; 
 http://elastic_job_cloud_masterhost:8899/job/register
 &lt;/code&gt;&lt;/pre&gt;
 

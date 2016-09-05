@@ -163,6 +163,14 @@ body {
 </tr>
 
 <tr>
+<td>jobType</td>
+<td align="left">Enum</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业类型。<code>SIMPLE</code>，<code>DATAFLOW</code>，<code>SCRIPT</code></td>
+</tr>
+
+<tr>
 <td>jobExecutionType</td>
 <td align="left">Enum</td>
 <td align="left"><code>是</code></td>
@@ -208,6 +216,14 @@ body {
 <td align="left"><code>是</code></td>
 <td align="left"></td>
 <td align="left">应用所在路径。必须是可以通过网络访问到的路径</td>
+</tr>
+
+<tr>
+<td>bootstrapScript</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">启动脚本，如：<code>bin\start.sh</code>。</td>
 </tr>
 
 <tr>
@@ -257,15 +273,15 @@ body {
 <p><strong>Java启动方式作业注册</strong></p>
 
 <pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true}' 
+'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' 
 http://elastic_job_cloud_host:8899/job/register
 </code></pre>
 
 <p><strong>Spring启动方式作业注册</strong></p>
 
 <pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;beanName&quot;:&quot;yourBeanName&quot;,&quot;applicationContext&quot;:&quot;applicationContext.xml&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,
-&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true}' 
+'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;beanName&quot;:&quot;yourBeanName&quot;,&quot;applicationContext&quot;:&quot;applicationContext.xml&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,
+&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' 
 http://elastic_job_cloud_masterhost:8899/job/register
 </code></pre>
 
