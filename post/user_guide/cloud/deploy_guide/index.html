@@ -263,7 +263,15 @@ body {
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
-<td align="left">作业事件配置，目前可配置<code>log</code>和<code>rdb</code>监听器，如:<code>{&quot;log&quot;:{},{&quot;rdb&quot;:{&quot;driverClassName&quot;:&quot;com.mysql.jdbc.Driver&quot;, &quot;url&quot;:&quot;jdbc:mysql://your_host:3306/elastic_job_log&quot;, &quot;username&quot;:&quot;root&quot;, &quot;password&quot;:&quot;&quot;, logLevel:&quot;WARN&quot;}}</code></td>
+<td align="left">作业事件配置，目前可配置<code>log</code>和<code>rdb</code>监听器，如:<code>{&quot;log&quot;:{},&quot;rdb&quot;:{&quot;driverClassName&quot;:&quot;com.mysql.jdbc.Driver&quot;, &quot;url&quot;:&quot;jdbc:mysql://your_host:3306/elastic_job_log&quot;, &quot;username&quot;:&quot;root&quot;, &quot;password&quot;:&quot;&quot;, &quot;logLevel&quot;:&quot;WARN&quot;}}</code></td>
+</tr>
+
+<tr>
+<td>scriptCommandLine</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left"><code>SCRIPT</code>类型作业命令行执行脚本</td>
 </tr>
 </tbody>
 </table>
@@ -287,15 +295,15 @@ http://elastic_job_cloud_masterhost:8899/job/register
 
 <h3 id="注销作业:683f09d60aed8667eba01ae825b6e4c6">注销作业</h3>
 
-<p>url：<code>job/unregister</code></p>
+<p>url：<code>job/deregister</code></p>
 
 <p>方法：<code>DELETE</code></p>
 
-<p>参数类型：<code>application/text</code></p>
+<p>参数类型：<code>application/json</code></p>
 
 <p>参数：作业名称</p>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/text&quot; -X DELETE -d 'foo_job' http://elastic_job_cloud_host:8899/job/unregister
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X DELETE -d 'foo_job' http://elastic_job_cloud_host:8899/job/deregister
 </code></pre>
 
 	</div>

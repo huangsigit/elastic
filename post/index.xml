@@ -31,6 +31,7 @@
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/119&#34;&gt;ISSUE #119&lt;/a&gt; spring容器关闭时，quartz未正常关闭&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/123&#34;&gt;ISSUE #123&lt;/a&gt; 单机跑定时任务，zk断开后重连，没有触发leader选举&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/127&#34;&gt;ISSUE #127&lt;/a&gt; Spring方式配置作业id无法使用占位符&lt;/li&gt;
 &lt;/ol&gt;
@@ -1168,7 +1169,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.AverageAllocationJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.impl.AverageAllocationJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1186,7 +1187,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.OdevitySortByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.impl.OdevitySortByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1208,7 +1209,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.RotateServerByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.impl.RotateServerByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1668,7 +1669,15 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业事件配置，目前可配置&lt;code&gt;log&lt;/code&gt;和&lt;code&gt;rdb&lt;/code&gt;监听器，如:&lt;code&gt;{&amp;quot;log&amp;quot;:{},{&amp;quot;rdb&amp;quot;:{&amp;quot;driverClassName&amp;quot;:&amp;quot;com.mysql.jdbc.Driver&amp;quot;, &amp;quot;url&amp;quot;:&amp;quot;jdbc:mysql://your_host:3306/elastic_job_log&amp;quot;, &amp;quot;username&amp;quot;:&amp;quot;root&amp;quot;, &amp;quot;password&amp;quot;:&amp;quot;&amp;quot;, logLevel:&amp;quot;WARN&amp;quot;}}&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业事件配置，目前可配置&lt;code&gt;log&lt;/code&gt;和&lt;code&gt;rdb&lt;/code&gt;监听器，如:&lt;code&gt;{&amp;quot;log&amp;quot;:{},&amp;quot;rdb&amp;quot;:{&amp;quot;driverClassName&amp;quot;:&amp;quot;com.mysql.jdbc.Driver&amp;quot;, &amp;quot;url&amp;quot;:&amp;quot;jdbc:mysql://your_host:3306/elastic_job_log&amp;quot;, &amp;quot;username&amp;quot;:&amp;quot;root&amp;quot;, &amp;quot;password&amp;quot;:&amp;quot;&amp;quot;, &amp;quot;logLevel&amp;quot;:&amp;quot;WARN&amp;quot;}}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;scriptCommandLine&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;SCRIPT&lt;/code&gt;类型作业命令行执行脚本&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1692,15 +1701,15 @@ http://elastic_job_cloud_masterhost:8899/job/register
 
 &lt;h3 id=&#34;注销作业:683f09d60aed8667eba01ae825b6e4c6&#34;&gt;注销作业&lt;/h3&gt;
 
-&lt;p&gt;url：&lt;code&gt;job/unregister&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;url：&lt;code&gt;job/deregister&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;方法：&lt;code&gt;DELETE&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;参数类型：&lt;code&gt;application/text&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;参数：作业名称&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/text&amp;quot; -X DELETE -d &#39;foo_job&#39; http://elastic_job_cloud_host:8899/job/unregister
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X DELETE -d &#39;foo_job&#39; http://elastic_job_cloud_host:8899/job/deregister
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>

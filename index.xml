@@ -153,6 +153,7 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/119&#34;&gt;ISSUE #119&lt;/a&gt; spring容器关闭时，quartz未正常关闭&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/123&#34;&gt;ISSUE #123&lt;/a&gt; 单机跑定时任务，zk断开后重连，没有触发leader选举&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/127&#34;&gt;ISSUE #127&lt;/a&gt; Spring方式配置作业id无法使用占位符&lt;/li&gt;
 &lt;/ol&gt;
@@ -1290,7 +1291,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.AverageAllocationJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.impl.AverageAllocationJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1308,7 +1309,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.OdevitySortByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.impl.OdevitySortByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1330,7 +1331,7 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;p&gt;&lt;strong&gt;全路径：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.RotateServerByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;com.dangdang.ddframe.job.lite.api.strategy.impl.RotateServerByNameJobShardingStrategy&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;策略说明：&lt;/strong&gt;&lt;/p&gt;
 
