@@ -1605,7 +1605,7 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;单片作业所需要的&lt;code&gt;CPU&lt;/code&gt;数量&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;单片作业所需要的&lt;code&gt;CPU&lt;/code&gt;数量，最小值为&lt;code&gt;0.01&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1613,7 +1613,7 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;单片作业所需要的内存&lt;code&gt;MB&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;单片作业所需要的内存&lt;code&gt;MB&lt;/code&gt;，最小值为&lt;code&gt;32&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
