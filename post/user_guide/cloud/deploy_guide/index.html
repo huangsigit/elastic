@@ -293,6 +293,21 @@ http://elastic_job_cloud_host:8899/job/register
 http://elastic_job_cloud_masterhost:8899/job/register
 </code></pre>
 
+<h3 id="修改作业配置:683f09d60aed8667eba01ae825b6e4c6">修改作业配置</h3>
+
+<p>url：<code>job/update</code></p>
+
+<p>方法：<code>PUT</code></p>
+
+<p>参数类型：<code>application/json</code></p>
+
+<p>参数：同注册作业</p>
+
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X PUT -d 
+'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' 
+http://elastic_job_cloud_host:8899/job/update
+</code></pre>
+
 <h3 id="注销作业:683f09d60aed8667eba01ae825b6e4c6">注销作业</h3>
 
 <p>url：<code>job/deregister</code></p>
@@ -316,6 +331,7 @@ http://elastic_job_cloud_masterhost:8899/job/register
 <li><a href="#restful-api:683f09d60aed8667eba01ae825b6e4c6">RESTful API</a>
 <ul>
 <li><a href="#注册作业:683f09d60aed8667eba01ae825b6e4c6">注册作业</a></li>
+<li><a href="#修改作业配置:683f09d60aed8667eba01ae825b6e4c6">修改作业配置</a></li>
 <li><a href="#注销作业:683f09d60aed8667eba01ae825b6e4c6">注销作业</a></li>
 </ul></li>
 </ul></li>

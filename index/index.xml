@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Indices on Elastic-Job</title>
+    <title>Indexes on Elastic-Job</title>
     <link>http://dangdangdotcom.github.io/elastic-job/index/</link>
-    <description>Recent content in Indices on Elastic-Job</description>
+    <description>Recent content in Indexes on Elastic-Job</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="http://dangdangdotcom.github.io/elastic-job/index/index.xml" rel="self" type="application/rss+xml" />
@@ -77,35 +77,48 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 
 &lt;h1 id=&#34;quick-start:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Quick Start&lt;/h1&gt;
 
-&lt;h2 id=&#34;引入maven依赖:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;引入maven依赖&lt;/h2&gt;
+&lt;h2 id=&#34;elastic-job-lite-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Elastic-Job-Lite&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;!-- 引入elastic-job核心模块 --&amp;gt;
+&lt;h3 id=&#34;引入maven依赖:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;引入maven依赖&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;!-- 引入elastic-job-lite核心模块 --&amp;gt;
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;elastic-job-core&amp;lt;/artifactId&amp;gt;
+    &amp;lt;artifactId&amp;gt;elastic-job-lite-core&amp;lt;/artifactId&amp;gt;
     &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 
 &amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt;
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;elastic-job-spring&amp;lt;/artifactId&amp;gt;
+    &amp;lt;artifactId&amp;gt;elastic-job-lite-spring&amp;lt;/artifactId&amp;gt;
     &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt;
 &amp;lt;/dependency&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;作业开发:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;作业开发&lt;/h2&gt;
+&lt;h3 id=&#34;作业开发:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;作业开发&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob extends AbstractSimpleElasticJob {
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob implements SimpleJob {
     
     @Override
-    public void process(JobExecutionMultipleShardingContext context) {
-        // do something by sharding items
+    public void process(ShardingContext context) {
+        switch (context.getShardingItem()) {
+            case 0: 
+                // do something by sharding item 0
+                break;
+            case 1: 
+                // do something by sharding item 1
+                break;
+            case 2: 
+                // do something by sharding item 2
+                break;
+            // case n: ...
+        }
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;作业配置:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;作业配置&lt;/h2&gt;
+&lt;h3 id=&#34;作业配置:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;作业配置&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
 &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
@@ -126,6 +139,33 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
     &amp;lt;job:simple id=&amp;quot;oneOffElasticJob&amp;quot; class=&amp;quot;xxx.MyElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt;
 &amp;lt;/beans&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;elastic-job-cloud-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Elastic-Job-Cloud&lt;/h2&gt;
+
+&lt;h3 id=&#34;引入maven依赖-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;引入maven依赖&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;!-- 引入elastic-job-cloud执行器模块 --&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;elastic-job-cloud-executor&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;作业开发-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;作业开发&lt;/h3&gt;
+
+&lt;p&gt;同&lt;code&gt;Elastic-Job-Lite&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;作业配置-1:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;作业配置&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
+&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;jobType&amp;quot;:&amp;quot;SIMPLE&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:true,&amp;quot;misfire&amp;quot;:true,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;}&#39; 
+http://elastic_job_cloud_host:8899/job/register
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;讨论QQ群：&lt;/strong&gt;430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。）&lt;/p&gt;
 </description>

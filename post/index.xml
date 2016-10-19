@@ -377,21 +377,21 @@ echo sharding execution context is $*
     // 定义SIMPLE类型配置
     SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName());
     // 定义Lite作业根配置
-    JobRootConfiguration jobConfig = LiteJobConfiguration.newBuilder(simpleJobConfig).build();
+    JobRootConfiguration simpleJobRootConfig = LiteJobConfiguration.newBuilder(simpleJobConfig).build();
     
     // 定义作业核心配置
     JobCoreConfiguration dataflowCoreConfig = JobCoreConfiguration.newBuilder(&amp;quot;demoDataflowJob&amp;quot;, &amp;quot;0/30 * * * * ?&amp;quot;, 10).build();
     // 定义DATAFLOW类型配置
     DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName(), true);
     // 定义Lite作业根配置
-    JobRootConfiguration jobConfig = LiteJobConfiguration.newBuilder(dataflowJobConfig).build();
+    JobRootConfiguration dataflowJobRootConfig = LiteJobConfiguration.newBuilder(dataflowJobConfig).build();
     
     // 定义作业核心配置配置
     JobCoreConfiguration scriptCoreConfig = JobCoreConfiguration.newBuilder(&amp;quot;demoScriptJob&amp;quot;, &amp;quot;0/45 * * * * ?&amp;quot;, 10).build();
     // 定义SCRIPT类型配置
     ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &amp;quot;test.sh&amp;quot;);
     // 定义Lite作业根配置
-    JobRootConfiguration jobConfig = LiteJobConfiguration.newBuilder(scriptCoreConfig).build();
+    JobRootConfiguration scriptJobRootConfig = LiteJobConfiguration.newBuilder(scriptCoreConfig).build();
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;spring命名空间配置:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;Spring命名空间配置&lt;/h3&gt;
@@ -864,17 +864,19 @@ echo sharding execution context is $*
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JobDemo {
     
-    //init jobRootConfig
-    
-    public static void main(final String[] args) {
-        new JobDemo().init();
+    public static void main(String[] args) {
+        new JobScheduler(createRegistryCenter(), createJobConfiguration()).init();
     }
     
-    private void init() {
-        // 连接注册中心
+    private static CoordinatorRegistryCenter createRegistryCenter() {
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration(&amp;quot;zk_host:2181&amp;quot;, &amp;quot;elastic-job-demo&amp;quot;));
         regCenter.init();
-        // 启动作业
-        new JobScheduler(regCenter, jobRootConfig).init();
+        return regCenter;
+    }
+    
+    private static LiteJobConfiguration createJobConfiguration() {
+        // 创建作业配置
+        ...
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -905,6 +907,8 @@ echo sharding execution context is $*
     ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &amp;quot;test.sh&amp;quot;).jobEventConfiguration(jobLogEventConfig, jobRdbEventConfig);
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;更多信息请参见&lt;a href=&#34;../../common/event_trace/&#34;&gt;Elastic-Job事件追踪&lt;/a&gt;。&lt;/p&gt;
+
 &lt;h3 id=&#34;2-异常处理:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;2. 异常处理&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;JobProperties&lt;/code&gt;，可扩展&lt;code&gt;JobExceptionHandler&lt;/code&gt;接口，并设置&lt;code&gt;job_exception_handler&lt;/code&gt;定制异常处理流程，默认实现是记录日志但不抛出异常。&lt;/p&gt;
@@ -931,12 +935,12 @@ echo sharding execution context is $*
 public class MyElasticJobListener implements ElasticJobListener {
     
     @Override
-    public void beforeJobExecuted(final ShardingContexts shardingContexts) {
+    public void beforeJobExecuted(ShardingContexts shardingContexts) {
         // do something ...
     }
     
     @Override
-    public void afterJobExecuted(final ShardingContexts shardingContexts) {
+    public void afterJobExecuted(ShardingContexts shardingContexts) {
         // do something ...
     }
 }
@@ -948,10 +952,19 @@ public class MyElasticJobListener implements ElasticJobListener {
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JobMain {
     
-    //init jobRootConfig
+    public static void main(String[] args) {
+        new JobScheduler(createRegistryCenter(), createJobConfiguration(), new MyElasticJobListener()).init();
+    }
     
-    public static void main(final String[] args) {
-        new JobScheduler(regCenter, jobRootConfig, new MyElasticJobListener()).init();    
+    private static CoordinatorRegistryCenter createRegistryCenter() {
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration(&amp;quot;zk_host:2181&amp;quot;, &amp;quot;elastic-job-demo&amp;quot;));
+        regCenter.init();
+        return regCenter;
+    }
+    
+    private static LiteJobConfiguration createJobConfiguration() {
+        // 创建作业配置
+        ...
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -967,19 +980,19 @@ public class MyElasticJobListener implements ElasticJobListener {
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;
-public final class TestDistributeOnceElasticJobListener extends AbstractDistributeOnceElasticJobListener {
+public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnceElasticJobListener {
     
-    public TestDistributeOnceElasticJobListener(final long startTimeoutMills, final long completeTimeoutMills) {
+    public TestDistributeOnceElasticJobListener(long startTimeoutMills, long completeTimeoutMills) {
         super(startTimeoutMills, completeTimeoutMills);
     }
     
     @Override
-    public void doBeforeJobExecutedAtLastStarted(final ShardingContexts shardingContexts) {
+    public void doBeforeJobExecutedAtLastStarted(ShardingContexts shardingContexts) {
         // do something ...
     }
     
     @Override
-    public void doAfterJobExecutedAtLastCompleted(final ShardingContexts shardingContexts) {
+    public void doAfterJobExecutedAtLastCompleted(ShardingContexts shardingContexts) {
         // do something ...
     }
 }
@@ -991,12 +1004,21 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JobMain {
     
-    //init jobRootConfig
-    
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
         long startTimeoutMills = 5000L;
-        long completeTimeoutMills = 10000L;    
-        new JobScheduler(regCenter, jobRootConfig, new MyDistributeOnceElasticJobListener(startTimeoutMills, completeTimeoutMills)).init();
+        long completeTimeoutMills = 10000L;
+        new JobScheduler(createRegistryCenter(), createJobConfiguration(), new MyDistributeOnceElasticJobListener(startTimeoutMills, completeTimeoutMills)).init();
+    }
+    
+    private static CoordinatorRegistryCenter createRegistryCenter() {
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration(&amp;quot;zk_host:2181&amp;quot;, &amp;quot;elastic-job-demo&amp;quot;));
+        regCenter.init();
+        return regCenter;
+    }
+    
+    private static LiteJobConfiguration createJobConfiguration() {
+        // 创建作业配置
+        ...
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -1028,6 +1050,20 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
     
     <item>
       <title>Elastic-Job-Lite其他功能</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/other_features/</link>
+      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/other_features/</guid>
+      <description>
+
+&lt;h1 id=&#34;elastic-job-lite其他功能:3bff589538149fbb9b4c841bdafd58e5&#34;&gt;Elastic-Job-Lite其他功能&lt;/h1&gt;
+
+&lt;h2 id=&#34;事件追踪-common-event-trace:3bff589538149fbb9b4c841bdafd58e5&#34;&gt;&lt;a href=&#34;../../common/event_trace/&#34;&gt;事件追踪&lt;/a&gt;&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Elastic-Job-Lite其他功能</title>
       <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other_features/</link>
       <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
       
@@ -1035,6 +1071,8 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
       <description>
 
 &lt;h1 id=&#34;elastic-job-lite其他功能:3bff589538149fbb9b4c841bdafd58e5&#34;&gt;Elastic-Job-Lite其他功能&lt;/h1&gt;
+
+&lt;h2 id=&#34;事件追踪-common-event-trace:3bff589538149fbb9b4c841bdafd58e5&#34;&gt;&lt;a href=&#34;../../common/event_trace/&#34;&gt;事件追踪&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&#34;作业操作api-other-lite-job-operate-api:3bff589538149fbb9b4c841bdafd58e5&#34;&gt;&lt;a href=&#34;../other/lite_job_operate_api/&#34;&gt;作业操作API&lt;/a&gt;&lt;/h2&gt;
 
@@ -1308,6 +1346,184 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
     </item>
     
     <item>
+      <title>Elastic-Job事件追踪</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/common/event_trace/</link>
+      <pubDate>Tue, 27 Sep 2016 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/common/event_trace/</guid>
+      <description>
+
+&lt;h1 id=&#34;elastic-job事件追踪:7df458b8cae687a433cb980ca278ca47&#34;&gt;Elastic-Job事件追踪&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;Elastic-Job&lt;/code&gt;的&lt;code&gt;Lite&lt;/code&gt;版和&lt;code&gt;Cloud&lt;/code&gt;版都提供了事件追踪功能，可通过事件订阅的方式处理调度过程的重要事件，用于查询、统计和监控。&lt;code&gt;Elastic-Job&lt;/code&gt;目前提供了基于日志和关系型数据库两种事件订阅方式记录事件。&lt;/p&gt;
+
+&lt;h2 id=&#34;基于日志的事件追踪:7df458b8cae687a433cb980ca278ca47&#34;&gt;基于日志的事件追踪&lt;/h2&gt;
+
+&lt;p&gt;默认开启，通过应用程序配置的&lt;code&gt;logback.xml&lt;/code&gt;或&lt;code&gt;log4j.xml&lt;/code&gt;等日志框架文件输出事件日志。&lt;/p&gt;
+
+&lt;h2 id=&#34;基于关系型数据库的事件追踪:7df458b8cae687a433cb980ca278ca47&#34;&gt;基于关系型数据库的事件追踪&lt;/h2&gt;
+
+&lt;p&gt;通过配置开启。具体配置方式请分别参见&lt;a href=&#34;../../lite/dev_guide/&#34;&gt;Elastic-Job-Lite开发指南&lt;/a&gt;和&lt;a href=&#34;../../cloud/dev_guide/&#34;&gt;Elastic-Job-Cloud开发指南&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;将于作业配置的&lt;code&gt;JobEventConfiguration&lt;/code&gt;的&lt;code&gt;url&lt;/code&gt;属性对应库自动创建&lt;code&gt;JOB_EXECUTION_LOG&lt;/code&gt;和&lt;code&gt;JOB_TRACE_LOG&lt;/code&gt;两张表。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;JOB_EXECUTION_LOG&lt;/code&gt;字段含义&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段名称&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;字段类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;id&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(40)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;主键&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;job_name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(100)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;hostname&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(255)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;主机名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;sharding_item&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;INT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;分片项&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;execution_source&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(20)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业执行来源。可选值为&lt;code&gt;NORMAL_TRIGGER&lt;/code&gt;, &lt;code&gt;MISFIRE&lt;/code&gt;, &lt;code&gt;FAILOVER&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;is_success&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;BIT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是否执行成功&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;failure_cause&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(2000)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;执行失败原因&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;start_time&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;TIMESTAMP&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业开始执行时间&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;complete_time&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;TIMESTAMP&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业结束执行时间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;code&gt;JOB_EXECUTION_LOG&lt;/code&gt;记录每次作业的执行历史。分为两个步骤：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;作业开始执行时向数据库插入数据，除&lt;code&gt;failure_cause&lt;/code&gt;和&lt;code&gt;complete_time&lt;/code&gt;外的其他字段均不为空。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;作业完成执行时向数据库更新数据，更新&lt;code&gt;is_success&lt;/code&gt;, &lt;code&gt;complete_time&lt;/code&gt;和&lt;code&gt;failure_cause&lt;/code&gt;(如果作业执行失败)。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code&gt;JOB_TRACE_LOG&lt;/code&gt;字段含义&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字段名称&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;字段类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;id&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(40)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;主键&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;job_name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(100)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;hostname&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(255)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;主机名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;log_level&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CHAR(5)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;日志级别。可选值为&lt;code&gt;TRACE&lt;/code&gt;, &lt;code&gt;DEBUG&lt;/code&gt;, &lt;code&gt;INFO&lt;/code&gt;, &lt;code&gt;WARN&lt;/code&gt;, &lt;code&gt;ERROR&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;message&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(2000)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;相关信息&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;failure_cause&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(2000)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;执行失败原因&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;creation_time&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;TIMESTAMP&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;记录创建时间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;code&gt;JOB_TRACE_LOG&lt;/code&gt;记录作业运行痕迹表，可作为运行日志查看，原理同log框架，只能写入比配置日志级别更高的数据。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Elastic-Job-Cloud使用指南</title>
       <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_index/</link>
       <pubDate>Sat, 27 Aug 2016 16:14:21 +0800</pubDate>
@@ -1324,6 +1540,8 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;h2 id=&#34;部署指南-deploy-guide:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../deploy_guide/&#34;&gt;部署指南&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&#34;elastic-job-cloud-scheduler启动指南-scheduler-guide:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../scheduler_guide/&#34;&gt;Elastic-Job-Cloud-Scheduler启动指南&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&#34;其他功能-other-features:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../other_features/&#34;&gt;其他功能&lt;/a&gt;&lt;/h2&gt;
 </description>
     </item>
     
@@ -1352,365 +1570,6 @@ public final class TestDistributeOnceElasticJobListener extends AbstractDistribu
 &lt;h2 id=&#34;mesos:5fc72554ce10b593ad2e772b637ec905&#34;&gt;Mesos&lt;/h2&gt;
 
 &lt;p&gt;请使用&lt;code&gt;Mesos 0.28.0&lt;/code&gt;及其以上版本。&lt;a href=&#34;http://mesos.apache.org/gettingstarted/&#34;&gt;详情参见&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Elastic-Job-Cloud开发指南</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/dev_guide/</link>
-      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/dev_guide/</guid>
-      <description>
-
-&lt;h1 id=&#34;elastic-job-cloud开发指南:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;Elastic-Job-Cloud开发指南&lt;/h1&gt;
-
-&lt;h2 id=&#34;作业开发:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;作业开发&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;Elastic-Job-Lite&lt;/code&gt;和&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;提供统一作业接口，开发者仅需对业务作业进行一次开发，之后可根据不同的配置以及部署至不同的&lt;code&gt;Lite&lt;/code&gt;或&lt;code&gt;Cloud&lt;/code&gt;环境。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Elastic-Job&lt;/code&gt;提供&lt;code&gt;Simple&lt;/code&gt;、&lt;code&gt;Dataflow&lt;/code&gt;和&lt;code&gt;Script&lt;/code&gt; &lt;code&gt;3&lt;/code&gt;种作业类型。
-方法参数&lt;code&gt;shardingContext&lt;/code&gt;包含作业配置、片和运行时信息。可通过&lt;code&gt;getShardingTotalCount()&lt;/code&gt;, &lt;code&gt;getShardingItem()&lt;/code&gt;等方法分别获取分片总数，运行在本作业服务器的分片序列号等。&lt;/p&gt;
-
-&lt;h3 id=&#34;1-simple类型作业:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;1. Simple类型作业&lt;/h3&gt;
-
-&lt;p&gt;意为简单实现，未经任何封装的类型。需实现&lt;code&gt;SimpleJob&lt;/code&gt;接口。该接口仅提供单一方法用于覆盖，此方法将定时执行。与&lt;code&gt;Quartz&lt;/code&gt;原生接口相似，但提供了弹性扩缩容和分片等功能。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob implements SimpleJob {
-    
-    @Override
-    public void process(ShardingContext context) {
-        switch (context.getShardingItem()) {
-            case 0: 
-                // do something by sharding item 0
-                break;
-            case 1: 
-                // do something by sharding item 1
-                break;
-            case 2: 
-                // do something by sharding item 2
-                break;
-            // case n: ...
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;2-dataflow类型作业:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;2. Dataflow类型作业&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;Dataflow&lt;/code&gt;类型用于处理数据流，需实现&lt;code&gt;DataflowJob&lt;/code&gt;接口。该接口提供&lt;code&gt;2&lt;/code&gt;个方法可供覆盖，分别用于抓取(&lt;code&gt;fetchData&lt;/code&gt;)和处理(&lt;code&gt;processData&lt;/code&gt;)数据。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob implements DataflowElasticJob&amp;lt;Foo&amp;gt; {
-    
-    @Override
-    public List&amp;lt;Foo&amp;gt; fetchData(ShardingContext context) {
-        switch (context.getShardingItem()) {
-            case 0: 
-                List&amp;lt;Foo&amp;gt; data = // get data from database by sharding item 0
-                return data;
-            case 1: 
-                List&amp;lt;Foo&amp;gt; data = // get data from database by sharding item 1
-                return data;
-            case 2: 
-                List&amp;lt;Foo&amp;gt; data = // get data from database by sharding item 2
-                return data;
-            // case n: ...
-        }
-        return result;
-    }
-    
-    @Override
-    public void processData(ShardingContext shardingContext, List&amp;lt;Foo&amp;gt; data) {
-        // process data
-        // ...
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;流式处理&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;可通过&lt;code&gt;DataflowJobConfiguration&lt;/code&gt;配置是否流式处理。&lt;/p&gt;
-
-&lt;p&gt;流式处理数据只有&lt;code&gt;fetchData&lt;/code&gt;方法的返回值为&lt;code&gt;null&lt;/code&gt;或集合长度为空时，作业才停止抓取，否则作业将一直运行下去；
-非流式处理数据则只会在每次作业执行过程中执行一次&lt;code&gt;fetchData&lt;/code&gt;方法和&lt;code&gt;processData&lt;/code&gt;方法，随即完成本次作业。&lt;/p&gt;
-
-&lt;p&gt;如果采用流式作业处理方式，建议&lt;code&gt;processData&lt;/code&gt;处理数据后更新其状态，避免&lt;code&gt;fetchData&lt;/code&gt;再次抓取到，从而使得作业永不停止。
-流式数据处理参照&lt;code&gt;TbSchedule&lt;/code&gt;设计，适用于不间歇的数据处理。&lt;/p&gt;
-
-&lt;h3 id=&#34;3-script类型作业:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;3. Script类型作业&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;Script&lt;/code&gt;类型作业意为脚本类型作业，支持&lt;code&gt;shell&lt;/code&gt;，&lt;code&gt;python&lt;/code&gt;，&lt;code&gt;perl&lt;/code&gt;等所有类型脚本。只需通过控制台或代码配置&lt;code&gt;scriptCommandLine&lt;/code&gt;即可，无需编码。执行脚本路径可包含参数，参数传递完毕后，作业框架会自动追加最后一个参数为作业运行时信息。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#!/bin/bash
-echo sharding execution context is $*
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;作业运行时输出&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sharding execution context is {&amp;quot;jobName&amp;quot;:&amp;quot;scriptElasticDemoJob&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:10,&amp;quot;jobParameter&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;shardingItem&amp;quot;:0,&amp;quot;shardingParameter&amp;quot;:&amp;quot;A&amp;quot;}&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;作业启动:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;作业启动&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-java启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;1. Java启动方式&lt;/h3&gt;
-
-&lt;p&gt;需定义&lt;code&gt;Main&lt;/code&gt;方法并调用&lt;code&gt;JobBootstrap.execute()&lt;/code&gt;，例子如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class JobDemo {
-    
-    public static void main(final String[] args) {
-        JobBootstrap.execute();
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;2-spring启动方式:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;2. Spring启动方式&lt;/h3&gt;
-
-&lt;p&gt;同&lt;code&gt;Java&lt;/code&gt;启动方式，但需要通过&lt;code&gt;REST API&lt;/code&gt;配置&lt;code&gt;bean&lt;/code&gt;的名字和&lt;code&gt;Spring&lt;/code&gt;配置文件位置，如：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{..., &amp;quot;beanName&amp;quot;:&amp;quot;simpleJobBean&amp;quot;, &amp;quot;applicationContext&amp;quot;:&amp;quot;yourDir/applicationContext.xml&amp;quot;}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;之后将作业和用于执行&lt;code&gt;Java Main&lt;/code&gt;方法的&lt;code&gt;Shell&lt;/code&gt;脚本打包为&lt;code&gt;gz.tar&lt;/code&gt;格式，然后使用&lt;code&gt;Cloud&lt;/code&gt;提供的&lt;code&gt;REST API&lt;/code&gt;将其部署至&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;系统。如对如何打包不理解请参考我们提供的&lt;code&gt;example&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h2 id=&#34;其他功能:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;其他功能&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-作业事件追踪:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;1. 作业事件追踪&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;JobEventConfiguration&lt;/code&gt;，目前支持数据库和日志文件两种方式配置，默认为日志文件方式。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    // 定义日志文件事件溯源配置
-    JobEventConfiguration jobLogEventConfig = new JobEventLogConfiguration();
-    
-    // 定义数据库日志文件事件溯源配置
-    JobEventConfiguration jobRdbEventConfig = new JobEventRdbConfiguration(&amp;quot;org.h2.Driver&amp;quot;, &amp;quot;jdbc:h2:mem:job_event_bus&amp;quot;, &amp;quot;sa&amp;quot;, &amp;quot;&amp;quot;, LogLevel.INFO);
-    
-    // 定义SIMPLE作业类型，使用日志文件方式
-    SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName()).jobEventConfiguration(jobLogEventConfig);
-    
-    // 定义DATAFLOW作业类型，使用数据库方式
-    DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName()).jobEventConfiguration(jobRdbEventConfig);
-    
-    // 定义SCRIPT类型配置，使用日志文件和数据库方式
-    ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &amp;quot;test.sh&amp;quot;).jobEventConfiguration(jobLogEventConfig, jobRdbEventConfig);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;2-异常处理:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;2. 异常处理&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;JobProperties&lt;/code&gt;，可扩展&lt;code&gt;JobExceptionHandler&lt;/code&gt;接口，并设置&lt;code&gt;job_exception_handler&lt;/code&gt;定制异常处理流程。默认实现是记录日志但不抛出异常。&lt;/p&gt;
-
-&lt;h3 id=&#34;3-定制化作业处理线程池:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;3. 定制化作业处理线程池&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;JobProperties&lt;/code&gt;，可扩展&lt;code&gt;ExecutorServiceHandler&lt;/code&gt;接口，并设置&lt;code&gt;executor_service_handler&lt;/code&gt;定制线程池。默认使用&lt;code&gt;CPU*2&lt;/code&gt;线程数的线程池。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Elastic-Job-Cloud部署指南</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/deploy_guide/</link>
-      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/deploy_guide/</guid>
-      <description>
-
-&lt;h1 id=&#34;elastic-job-cloud部署指南:683f09d60aed8667eba01ae825b6e4c6&#34;&gt;Elastic-Job-Cloud部署指南&lt;/h1&gt;
-
-&lt;h2 id=&#34;部署步骤:683f09d60aed8667eba01ae825b6e4c6&#34;&gt;部署步骤&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;启动&lt;code&gt;Zookeeper&lt;/code&gt;, &lt;code&gt;Mesos Master/Agent&lt;/code&gt;以及&lt;code&gt;Elastic-Job-Cloud-Scheduler&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;将打包之后的作业&lt;code&gt;tar.gz&lt;/code&gt;文件放至网络可访问的位置，如：&lt;code&gt;ftp&lt;/code&gt;或&lt;code&gt;http&lt;/code&gt;。打包的&lt;code&gt;tar.gz&lt;/code&gt;文件中&lt;code&gt;Main&lt;/code&gt;方法需要调用&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;提供的&lt;code&gt;JobBootstrap.execute&lt;/code&gt;方法。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;使用&lt;code&gt;curl&lt;/code&gt;命令调用&lt;code&gt;RESTful API&lt;/code&gt;注册作业。&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;restful-api:683f09d60aed8667eba01ae825b6e4c6&#34;&gt;RESTful API&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;提供作业注册/注销&lt;code&gt;Restful API&lt;/code&gt;。可通过&lt;code&gt;curl&lt;/code&gt;操作。&lt;/p&gt;
-
-&lt;h3 id=&#34;注册作业:683f09d60aed8667eba01ae825b6e4c6&#34;&gt;注册作业&lt;/h3&gt;
-
-&lt;p&gt;url：&lt;code&gt;job/register&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;方法：&lt;code&gt;POST&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;参数列表：&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;属性名&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;类型&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;缺省值&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;jobName&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业名称。为&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;的作业唯一标识&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;jobClass&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业实现类&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;jobType&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业类型。&lt;code&gt;SIMPLE&lt;/code&gt;，&lt;code&gt;DATAFLOW&lt;/code&gt;，&lt;code&gt;SCRIPT&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;jobExecutionType&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业执行类型。&lt;code&gt;TRANSIENT&lt;/code&gt;为瞬时作业，&lt;code&gt;DAEMON&lt;/code&gt;为常驻作业&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;cron&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;cron&lt;/code&gt;表达式，用于配置作业触发时间&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;shardingTotalCount&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业分片总数&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;cpuCount&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;单片作业所需要的&lt;code&gt;CPU&lt;/code&gt;数量，最小值为&lt;code&gt;0.01&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;memoryMB&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;单片作业所需要的内存&lt;code&gt;MB&lt;/code&gt;，最小值为&lt;code&gt;32&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;appURL&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;应用所在路径。必须是可以通过网络访问到的路径&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;bootstrapScript&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;启动脚本，如：&lt;code&gt;bin\start.sh&lt;/code&gt;。&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;failover&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;boolean&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;是否开启失效转移&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;misfire&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;boolean&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;是否开启错过任务重新执行&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;beanName&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Spring&lt;/code&gt;容器中配置的&lt;code&gt;bean&lt;/code&gt;名称&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;applicationContext&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Spring&lt;/code&gt;方式配置&lt;code&gt;Spring&lt;/code&gt;配置文件相对路径以及名称，如：&lt;code&gt;META-INF\applicationContext.xml&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;jobEventConfigs&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业事件配置，目前可配置&lt;code&gt;log&lt;/code&gt;和&lt;code&gt;rdb&lt;/code&gt;监听器，如:&lt;code&gt;{&amp;quot;log&amp;quot;:{},&amp;quot;rdb&amp;quot;:{&amp;quot;driverClassName&amp;quot;:&amp;quot;com.mysql.jdbc.Driver&amp;quot;, &amp;quot;url&amp;quot;:&amp;quot;jdbc:mysql://your_host:3306/elastic_job_log&amp;quot;, &amp;quot;username&amp;quot;:&amp;quot;root&amp;quot;, &amp;quot;password&amp;quot;:&amp;quot;&amp;quot;, &amp;quot;logLevel&amp;quot;:&amp;quot;WARN&amp;quot;}}&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;scriptCommandLine&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;SCRIPT&lt;/code&gt;类型作业命令行执行脚本&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;注册的作业可用&lt;code&gt;Java&lt;/code&gt;和&lt;code&gt;Spring&lt;/code&gt;两种启动方式，作业启动在&lt;a href=&#34;../dev_guide/&#34;&gt;开发指南&lt;/a&gt;中有说明，这里只举例说明两种方式如何注册。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Java启动方式作业注册&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
-&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;jobType&amp;quot;:&amp;quot;SIMPLE&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:true,&amp;quot;misfire&amp;quot;:true,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;}&#39; 
-http://elastic_job_cloud_host:8899/job/register
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Spring启动方式作业注册&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
-&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;beanName&amp;quot;:&amp;quot;yourBeanName&amp;quot;,&amp;quot;applicationContext&amp;quot;:&amp;quot;applicationContext.xml&amp;quot;,&amp;quot;jobType&amp;quot;:&amp;quot;SIMPLE&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,
-&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://file_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:false,&amp;quot;misfire&amp;quot;:true,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;}&#39; 
-http://elastic_job_cloud_masterhost:8899/job/register
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;注销作业:683f09d60aed8667eba01ae825b6e4c6&#34;&gt;注销作业&lt;/h3&gt;
-
-&lt;p&gt;url：&lt;code&gt;job/deregister&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;方法：&lt;code&gt;DELETE&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;参数：作业名称&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X DELETE -d &#39;foo_job&#39; http://elastic_job_cloud_host:8899/job/deregister
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

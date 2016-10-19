@@ -36,6 +36,11 @@
   </url>
   
   <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/other_features/</loc>
+    <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other_features/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
   </url>
@@ -63,6 +68,11 @@
   <url>
     <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other/lite_dump/</loc>
     <lastmod>2016-01-27T16:14:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dangdangdotcom.github.io/elastic-job/post/user_guide/common/event_trace/</loc>
+    <lastmod>2016-09-27T16:14:21+08:00</lastmod>
   </url>
   
   <url>

@@ -154,21 +154,21 @@ body {
 <tr>
 <td>mesos_url</td>
 <td align="left"><code>是</code></td>
-<td align="left"><code>zk://127.0.0.1:2181/mesos</code></td>
+<td align="left">zk://127.0.0.1:2181/mesos</td>
 <td align="left"><code>Mesos</code>所使用的<code>Zookeeper</code>地址</td>
 </tr>
 
 <tr>
 <td>zk_servers</td>
 <td align="left"><code>是</code></td>
-<td align="left"><code>127.0.0.1:2181</code></td>
+<td align="left">127.0.0.1:2181</td>
 <td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>地址</td>
 </tr>
 
 <tr>
 <td>zk_namespace</td>
 <td align="left">否</td>
-<td align="left"><code>elastic-job-cloud</code></td>
+<td align="left">elastic-job-cloud</td>
 <td align="left"><code>Elastic-Job-Cloud</code>所使用的<code>Zookeeper</code>命名空间</td>
 </tr>
 
@@ -182,8 +182,22 @@ body {
 <tr>
 <td>http_port</td>
 <td align="left"><code>是</code></td>
-<td align="left"><code>8899</code></td>
+<td align="left">8899</td>
 <td align="left"><code>Restful API</code>所使用的端口号</td>
+</tr>
+
+<tr>
+<td>app_cache_enable</td>
+<td align="left"><code>是</code></td>
+<td align="left">false</td>
+<td align="left">每次执行作业时是否从缓存中读取应用。禁用则每次执行任务均从应用仓库下载应用至本地</td>
+</tr>
+
+<tr>
+<td>job_state_queue_size</td>
+<td align="left"><code>是</code></td>
+<td align="left">10000</td>
+<td align="left">堆积作业最大值, 超过此阀值的堆积作业将直接丢弃。阀值过大可能会导致<code>Zookeeper</code>无响应，应根据实测情况调整</td>
 </tr>
 </tbody>
 </table>

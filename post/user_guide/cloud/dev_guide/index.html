@@ -241,6 +241,8 @@ echo sharding execution context is $*
     ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &quot;test.sh&quot;).jobEventConfiguration(jobLogEventConfig, jobRdbEventConfig);
 </code></pre>
 
+<p>更多信息请参见<a href="../../common/event_trace/">Elastic-Job事件追踪</a>。</p>
+
 <h3 id="2-异常处理:6fde5c464b5cd157fa8c5a0e82fa63a0">2. 异常处理</h3>
 
 <p><code>elastic-job</code>在配置中提供了<code>JobProperties</code>，可扩展<code>JobExceptionHandler</code>接口，并设置<code>job_exception_handler</code>定制异常处理流程。默认实现是记录日志但不抛出异常。</p>
