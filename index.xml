@@ -181,7 +181,9 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;2-0-0-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.0-SNAPSHOT&lt;/h2&gt;
+&lt;h2 id=&#34;2-0-1-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.1-SNAPSHOT&lt;/h2&gt;
+
+&lt;h2 id=&#34;2-0-0:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.0&lt;/h2&gt;
 
 &lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
@@ -449,7 +451,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob implements SimpleJob {
     
     @Override
-    public void process(ShardingContext context) {
+    public void execute(ShardingContext context) {
         switch (context.getShardingItem()) {
             case 0: 
                 // do something by sharding item 0
