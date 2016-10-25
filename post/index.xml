@@ -310,7 +310,7 @@
 
 &lt;p&gt;&lt;code&gt;Dataflow&lt;/code&gt;类型用于处理数据流，需实现&lt;code&gt;DataflowJob&lt;/code&gt;接口。该接口提供&lt;code&gt;2&lt;/code&gt;个方法可供覆盖，分别用于抓取(&lt;code&gt;fetchData&lt;/code&gt;)和处理(&lt;code&gt;processData&lt;/code&gt;)数据。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob implements DataflowElasticJob&amp;lt;Foo&amp;gt; {
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class MyElasticJob implements DataflowJob&amp;lt;Foo&amp;gt; {
     
     @Override
     public List&amp;lt;Foo&amp;gt; fetchData(ShardingContext context) {

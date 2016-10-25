@@ -210,7 +210,7 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 <pre><code class="language-java">public class MyElasticJob implements SimpleJob {
     
     @Override
-    public void process(ShardingContext context) {
+    public void execute(ShardingContext context) {
         switch (context.getShardingItem()) {
             case 0: 
                 // do something by sharding item 0

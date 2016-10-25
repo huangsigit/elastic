@@ -145,7 +145,7 @@ body {
 
 <p><code>Dataflow</code>类型用于处理数据流，需实现<code>DataflowJob</code>接口。该接口提供<code>2</code>个方法可供覆盖，分别用于抓取(<code>fetchData</code>)和处理(<code>processData</code>)数据。</p>
 
-<pre><code class="language-java">public class MyElasticJob implements DataflowElasticJob&lt;Foo&gt; {
+<pre><code class="language-java">public class MyElasticJob implements DataflowJob&lt;Foo&gt; {
     
     @Override
     public List&lt;Foo&gt; fetchData(ShardingContext context) {
