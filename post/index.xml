@@ -21,6 +21,16 @@
 
 &lt;h2 id=&#34;2-0-1-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.1-SNAPSHOT&lt;/h2&gt;
 
+&lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/143&#34;&gt;ISSUE #143&lt;/a&gt; elastic-job-cloud-scheduler内存泄漏问题&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/145&#34;&gt;ISSUE #145&lt;/a&gt; 修改作业日志的数据库连接后日志还是会写入老的数据库&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/141&#34;&gt;ISSUE #141&lt;/a&gt; 删除reg模块从zk读取信息功能，使reg命名空间的placeholder完全可用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/146&#34;&gt;ISSUE #146&lt;/a&gt; 作业的线程池复用问题&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/150&#34;&gt;ISSUE #150&lt;/a&gt; Cloud的misfire功能在作业堆积时将会一直执行&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h2 id=&#34;2-0-0:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.0&lt;/h2&gt;
 
 &lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
@@ -30,7 +40,7 @@
 &lt;li&gt;重构原Elastic-Job至Elastic-Job-Lite&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/119&#34;&gt;ISSUE #119&lt;/a&gt; spring容器关闭时，quartz未正常关闭&lt;/li&gt;
@@ -52,7 +62,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/110&#34;&gt;ISSUE #110&lt;/a&gt; 手动触发作业&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/99&#34;&gt;ISSUE #99&lt;/a&gt; 删除作业异步导致作业删除后, 还未结束的作业继续创建zk数据&lt;/li&gt;
@@ -101,7 +111,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/93&#34;&gt;ISSUE #93&lt;/a&gt; 注册中心配置提供baseSleepTimeMilliseconds、maxSleepTimeMilliseconds和maxRetries的默认值&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/92&#34;&gt;ISSUE #92&lt;/a&gt; 修改分片总数参数导致仅单一节点执行的监听抛出超时异常&lt;/li&gt;
@@ -117,7 +127,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/81&#34;&gt;ISSUE #81&lt;/a&gt; 使用集中清理作业上次结束状态代替各自清理，各自清理可能导致作业机下线而产生未清理的结束状态&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/74&#34;&gt;ISSUE #74&lt;/a&gt; 流式处理且失效转移时，失效转移的分片项不能执行一次即停止&lt;/li&gt;
@@ -136,7 +146,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/65&#34;&gt;ISSUE #65&lt;/a&gt; 增加前置和后置任务Spring命名空间支持&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/61&#34;&gt;ISSUE #61&lt;/a&gt; 分片和主节点选举同时发生时，死锁问题解决&lt;/li&gt;
@@ -176,7 +186,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/43&#34;&gt;ISSUE #43&lt;/a&gt; 增加作业异常处理回调接口&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/30&#34;&gt;ISSUE #30&lt;/a&gt; 注册中心宕机较长时间后重新恢复，作业无法继续执行&lt;/li&gt;
@@ -199,7 +209,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/55&#34;&gt;ISSUE #55&lt;/a&gt; offset存储功能&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/1&#34;&gt;ISSUE #1&lt;/a&gt; 复杂网络环境下IP地址获取不准确的问题&lt;/li&gt;
