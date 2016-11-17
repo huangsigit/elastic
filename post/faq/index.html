@@ -187,11 +187,11 @@ body {
 
 <hr />
 
-<h3 id="7-使用-spring-占位符出错:4a1318da06786ac52626178ca960109e">7. 使用<code>Spring</code>占位符出错?</h3>
+<h3 id="7-使用-spring-版本有何限制:4a1318da06786ac52626178ca960109e">7. 使用<code>Spring</code>版本有何限制?</h3>
 
 <p>回答：</p>
 
-<p><code>Elastic-Job</code>的<code>Spring</code>命名空间以及占位符仅支持<code>Spring 4</code>及其以上版本。低版本的<code>Spring</code>不支持这些功能。</p>
+<p><code>Elastic-Job</code>的<code>Spring</code>版本支持从<code>3.1.0.RELEASE</code>至<code>4</code>的任何版本。<code>Spring 5</code>由于仅支持<code>JDK 8</code>及其以上版本，因此目前并不支持。<code>Spring 3.1.0</code>之前的版本对占位符的使用与目前不同，因此不再支持。<code>Elastic-Job</code>并未包含<code>Spring</code>的<code>maven</code>依赖，请自行添加您需要的版本。</p>
 
 <hr />
 
@@ -263,7 +263,7 @@ body {
 <li><a href="#4-怀疑-elastic-job-lite-在分布式环境中有问题-但无法重现又不能在线上环境调试-应该怎么做:4a1318da06786ac52626178ca960109e">4. 怀疑<code>Elastic-Job-Lite</code>在分布式环境中有问题，但无法重现又不能在线上环境调试，应该怎么做?</a></li>
 <li><a href="#5-elastic-job-有何使用限制:4a1318da06786ac52626178ca960109e">5. <code>Elastic-Job</code>有何使用限制?</a></li>
 <li><a href="#6-是否支持动态添加作业:4a1318da06786ac52626178ca960109e">6. 是否支持动态添加作业?</a></li>
-<li><a href="#7-使用-spring-占位符出错:4a1318da06786ac52626178ca960109e">7. 使用<code>Spring</code>占位符出错?</a></li>
+<li><a href="#7-使用-spring-版本有何限制:4a1318da06786ac52626178ca960109e">7. 使用<code>Spring</code>版本有何限制?</a></li>
 <li><a href="#8-zookeeper-版本不是-3-4-6-会有什么问题:4a1318da06786ac52626178ca960109e">8. <code>Zookeeper</code>版本不是<code>3.4.6</code>会有什么问题?</a></li>
 <li><a href="#9-elastic-job-2-0-0-版本-api-改动较大-升级时需要注意哪些问题:4a1318da06786ac52626178ca960109e">9. <code>Elastic-Job 2.0.0</code>版本<code>API</code>改动较大，升级时需要注意哪些问题?</a></li>
 </ul></li>

@@ -150,10 +150,24 @@ body {
 </tr>
 
 <tr>
+<td>task_id</td>
+<td align="left">VARCHAR(1000)</td>
+<td align="left"><code>是</code></td>
+<td align="left">任务名称</td>
+</tr>
+
+<tr>
 <td>hostname</td>
 <td align="left">VARCHAR(255)</td>
 <td align="left"><code>是</code></td>
 <td align="left">主机名称</td>
+</tr>
+
+<tr>
+<td>ip</td>
+<td align="left">VARCHAR(50)</td>
+<td align="left"><code>是</code></td>
+<td align="left">主机IP</td>
 </tr>
 
 <tr>
@@ -171,17 +185,17 @@ body {
 </tr>
 
 <tr>
-<td>is_success</td>
-<td align="left">BIT</td>
-<td align="left"><code>是</code></td>
-<td align="left">是否执行成功</td>
-</tr>
-
-<tr>
 <td>failure_cause</td>
 <td align="left">VARCHAR(2000)</td>
 <td align="left">否</td>
 <td align="left">执行失败原因</td>
+</tr>
+
+<tr>
+<td>is_success</td>
+<td align="left">BIT</td>
+<td align="left"><code>是</code></td>
+<td align="left">是否执行成功</td>
 </tr>
 
 <tr>
@@ -210,7 +224,7 @@ body {
 
 <hr />
 
-<p><code>JOB_TRACE_LOG</code>字段含义</p>
+<p><code>JOB_STATUS_TRACE_LOG</code>字段含义</p>
 
 <table>
 <thead>
@@ -245,10 +259,52 @@ body {
 </tr>
 
 <tr>
-<td>log_level</td>
-<td align="left">CHAR(5)</td>
+<td>original_task_id</td>
+<td align="left">VARCHAR(1000)</td>
 <td align="left"><code>是</code></td>
-<td align="left">日志级别。可选值为<code>TRACE</code>, <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code></td>
+<td align="left">原任务名称</td>
+</tr>
+
+<tr>
+<td>task_id</td>
+<td align="left">VARCHAR(1000)</td>
+<td align="left"><code>是</code></td>
+<td align="left">任务名称</td>
+</tr>
+
+<tr>
+<td>slave_id</td>
+<td align="left">VARCHAR(1000)</td>
+<td align="left"><code>是</code></td>
+<td align="left">slave名称</td>
+</tr>
+
+<tr>
+<td>source</td>
+<td align="left">VARCHAR(50)</td>
+<td align="left"><code>是</code></td>
+<td align="left">任务执行源..可选值为<code>CLOUD_SCHEDULER</code>, <code>CLOUD_EXECUTOR</code>, <code>LITE_EXECUTOR</code></td>
+</tr>
+
+<tr>
+<td>execution_type</td>
+<td align="left">VARCHAR(20)</td>
+<td align="left"><code>是</code></td>
+<td align="left">任务执行类型.可选值为<code>NORMAL_TRIGGER</code>, <code>MISFIRE</code>, <code>FAILOVER</code></td>
+</tr>
+
+<tr>
+<td>sharding_item</td>
+<td align="left">VARCHAR(255)</td>
+<td align="left"><code>是</code></td>
+<td align="left">分片项</td>
+</tr>
+
+<tr>
+<td>state</td>
+<td align="left">VARCHAR(20)</td>
+<td align="left"><code>是</code></td>
+<td align="left">任务执行状态.可选值为<code>TASK_STAGING</code>, <code>TASK_RUNNING</code>, <code>TASK_FINISHED</code>, <code>TASK_KILLED</code>, <code>TASK_LOST</code>, <code>TASK_FAILED</code>, <code>TASK_ERROR</code></td>
 </tr>
 
 <tr>
@@ -256,13 +312,6 @@ body {
 <td align="left">VARCHAR(2000)</td>
 <td align="left"><code>是</code></td>
 <td align="left">相关信息</td>
-</tr>
-
-<tr>
-<td>failure_cause</td>
-<td align="left">VARCHAR(2000)</td>
-<td align="left">否</td>
-<td align="left">执行失败原因</td>
 </tr>
 
 <tr>
@@ -274,7 +323,7 @@ body {
 </tbody>
 </table>
 
-<p><code>JOB_TRACE_LOG</code>记录作业运行痕迹表，可作为运行日志查看，原理同log框架，只能写入比配置日志级别更高的数据。</p>
+<p><code>JOB_STATUS_TRACE_LOG</code>记录作业运行痕迹表，可作为运行日志查看，原理同log框架，只能写入比配置日志级别更高的数据。</p>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">

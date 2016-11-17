@@ -19,9 +19,40 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;2-0-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.1&lt;/h2&gt;
+&lt;h2 id=&#34;2-0-2-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.2-SNAPSHOT&lt;/h2&gt;
 
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/64&#34;&gt;ISSUE #64&lt;/a&gt; Spring命名空间，若注册多个同Class的作业Bean，会导致作业Bean查找不准确&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/115&#34;&gt;ISSUE #115&lt;/a&gt; console新增注册中心，没有连接成功，后台一直反复连接并报错&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/151&#34;&gt;ISSUE #151&lt;/a&gt; 基于关系型数据库的事件追踪缺乏对MySQL之外数据库的支持&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/152&#34;&gt;ISSUE #152&lt;/a&gt; job自定义异常处理器无效，总是被DefaultJobExceptionHandler处理&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/156&#34;&gt;ISSUE #156&lt;/a&gt; 作业事件追踪整体调用链路数据采集&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/158&#34;&gt;ISSUE #158&lt;/a&gt; 作业在暂停时错过分片时机将不会再分片&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/161&#34;&gt;ISSUE #161&lt;/a&gt; Lite版本部署至某些版本的Tomcat无法启动&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/163&#34;&gt;ISSUE #163&lt;/a&gt; 任务设置disable＝true后，启动项目还是会自动执行任务&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/165&#34;&gt;ISSUE #165&lt;/a&gt; 所有服务节点都disable时会导致分片线程死锁&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/167&#34;&gt;ISSUE #167&lt;/a&gt; Failover作业增加源执行任务ID记录&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/159&#34;&gt;ISSUE #159&lt;/a&gt; 提供从Spring 3.1.0.REELASE至Spring 4任何版本的支持&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/164&#34;&gt;ISSUE #164&lt;/a&gt; 作业Spring命名空间中已声明的JobBean不需要再声明@Component或在Spring xml中定义&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/153&#34;&gt;ISSUE #153&lt;/a&gt; 事件追踪配置集中化&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/160&#34;&gt;ISSUE #160&lt;/a&gt; 调整maven模块结构，提供elastic-job-common及其二级模块，原elastic-job-core模块迁移至elastic-job-common-core&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;2-0-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.1&lt;/h2&gt;
+
+&lt;h3 id=&#34;缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/141&#34;&gt;ISSUE #141&lt;/a&gt; 删除reg模块从zk读取信息功能，使reg命名空间的placeholder完全可用&lt;/li&gt;
@@ -42,7 +73,7 @@
 &lt;li&gt;重构原Elastic-Job至Elastic-Job-Lite&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/119&#34;&gt;ISSUE #119&lt;/a&gt; spring容器关闭时，quartz未正常关闭&lt;/li&gt;
@@ -52,19 +83,19 @@
 
 &lt;h2 id=&#34;1-1-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.1&lt;/h2&gt;
 
-&lt;h3 id=&#34;结构调整:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/116&#34;&gt;ISSUE #116&lt;/a&gt; 作业接口的handleJobExecutionException参数变更&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/110&#34;&gt;ISSUE #110&lt;/a&gt; 手动触发作业&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/99&#34;&gt;ISSUE #99&lt;/a&gt; 删除作业异步导致作业删除后, 还未结束的作业继续创建zk数据&lt;/li&gt;
@@ -72,7 +103,7 @@
 
 &lt;h2 id=&#34;1-1-0:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.1.0&lt;/h2&gt;
 
-&lt;h3 id=&#34;结构调整-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/97&#34;&gt;ISSUE #97&lt;/a&gt; JobConfiguration重构为SimpleJobConfiguration，DataflowJobConfiguration，ScriptJobConfiguration&lt;/li&gt;
@@ -93,7 +124,7 @@
 
 &lt;h2 id=&#34;1-0-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.7&lt;/h2&gt;
 
-&lt;h3 id=&#34;结构调整-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/88&#34;&gt;ISSUE #88&lt;/a&gt; stop作业改名为pause&lt;/li&gt;
@@ -105,7 +136,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/91&#34;&gt;ISSUE #91&lt;/a&gt; 作业生命周期操作API&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/84&#34;&gt;ISSUE #84&lt;/a&gt; 控制台提供作业启用/禁用按钮操作&lt;/li&gt;
@@ -113,7 +144,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/93&#34;&gt;ISSUE #93&lt;/a&gt; 注册中心配置提供baseSleepTimeMilliseconds、maxSleepTimeMilliseconds和maxRetries的默认值&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/92&#34;&gt;ISSUE #92&lt;/a&gt; 修改分片总数参数导致仅单一节点执行的监听抛出超时异常&lt;/li&gt;
@@ -121,7 +152,7 @@
 
 &lt;h2 id=&#34;1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.6&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/71&#34;&gt;ISSUE #71&lt;/a&gt; 作业关闭功能（shutdown）&lt;/li&gt;
@@ -129,7 +160,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/81&#34;&gt;ISSUE #81&lt;/a&gt; 使用集中清理作业上次结束状态代替各自清理，各自清理可能导致作业机下线而产生未清理的结束状态&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/74&#34;&gt;ISSUE #74&lt;/a&gt; 流式处理且失效转移时，失效转移的分片项不能执行一次即停止&lt;/li&gt;
@@ -139,7 +170,7 @@
 
 &lt;h2 id=&#34;1-0-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.5&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/2&#34;&gt;ISSUE #2&lt;/a&gt; 增加前置和后置任务&lt;/li&gt;
@@ -148,7 +179,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/65&#34;&gt;ISSUE #65&lt;/a&gt; 增加前置和后置任务Spring命名空间支持&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/61&#34;&gt;ISSUE #61&lt;/a&gt; 分片和主节点选举同时发生时，死锁问题解决&lt;/li&gt;
@@ -156,7 +187,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/69&#34;&gt;ISSUE #69&lt;/a&gt; 分片时如在Zk中有的作业服务器sharding节点不存在将导致无法重新分片&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/59&#34;&gt;ISSUE #59&lt;/a&gt; 将elastic-job依赖的curator从&lt;code&gt;2.8.0&lt;/code&gt;升级至&lt;code&gt;2.10.0&lt;/code&gt;&lt;/li&gt;
@@ -164,7 +195,7 @@
 
 &lt;h2 id=&#34;1-0-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.4&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/16&#34;&gt;ISSUE #16&lt;/a&gt; 提供内嵌zookeeper，简化开发环境&lt;/li&gt;
@@ -172,7 +203,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/56&#34;&gt;ISSUE #56&lt;/a&gt; 作业自定义参数设置&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/57&#34;&gt;ISSUE #57&lt;/a&gt; 精简模块，移除&lt;code&gt;elastic-job-test&lt;/code&gt;模块&lt;/li&gt;
@@ -181,14 +212,14 @@
 
 &lt;h2 id=&#34;1-0-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.3&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/39&#34;&gt;ISSUE #39&lt;/a&gt; 增加作业辅助监听功能，通过dump命令抓取作业运行时信息&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/43&#34;&gt;ISSUE #43&lt;/a&gt; 增加作业异常处理回调接口&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/30&#34;&gt;ISSUE #30&lt;/a&gt; 注册中心宕机较长时间后重新恢复，作业无法继续执行&lt;/li&gt;
@@ -198,7 +229,7 @@
 
 &lt;h2 id=&#34;1-0-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.2&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/6&#34;&gt;ISSUE #6&lt;/a&gt; 校对作业服务器与注册中心时间误差&lt;/li&gt;
@@ -211,7 +242,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/55&#34;&gt;ISSUE #55&lt;/a&gt; offset存储功能&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/1&#34;&gt;ISSUE #1&lt;/a&gt; 复杂网络环境下IP地址获取不准确的问题&lt;/li&gt;
@@ -219,7 +250,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/53&#34;&gt;ISSUE #53&lt;/a&gt; Dataflow的Sequence类型作业采用多线程抓取数据&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;结构调整-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
+&lt;h3 id=&#34;结构调整-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;结构调整&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/17&#34;&gt;ISSUE #17&lt;/a&gt; 作业类型接口变更&lt;/li&gt;
@@ -1409,10 +1440,24 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;/tr&gt;
 
 &lt;tr&gt;
+&lt;td&gt;task_id&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(1000)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
 &lt;td&gt;hostname&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(255)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;主机名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ip&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(50)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;主机IP&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1430,17 +1475,17 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;is_success&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;BIT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;是否执行成功&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
 &lt;td&gt;failure_cause&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(2000)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;执行失败原因&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;is_success&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;BIT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是否执行成功&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1469,7 +1514,7 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;code&gt;JOB_TRACE_LOG&lt;/code&gt;字段含义&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;JOB_STATUS_TRACE_LOG&lt;/code&gt;字段含义&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -1504,10 +1549,52 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;log_level&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CHAR(5)&lt;/td&gt;
+&lt;td&gt;original_task_id&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(1000)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;日志级别。可选值为&lt;code&gt;TRACE&lt;/code&gt;, &lt;code&gt;DEBUG&lt;/code&gt;, &lt;code&gt;INFO&lt;/code&gt;, &lt;code&gt;WARN&lt;/code&gt;, &lt;code&gt;ERROR&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;原任务名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;task_id&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(1000)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;slave_id&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(1000)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;slave名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;source&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(50)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务执行源..可选值为&lt;code&gt;CLOUD_SCHEDULER&lt;/code&gt;, &lt;code&gt;CLOUD_EXECUTOR&lt;/code&gt;, &lt;code&gt;LITE_EXECUTOR&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;execution_type&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(20)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务执行类型.可选值为&lt;code&gt;NORMAL_TRIGGER&lt;/code&gt;, &lt;code&gt;MISFIRE&lt;/code&gt;, &lt;code&gt;FAILOVER&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;sharding_item&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(255)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;分片项&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;state&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;VARCHAR(20)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务执行状态.可选值为&lt;code&gt;TASK_STAGING&lt;/code&gt;, &lt;code&gt;TASK_RUNNING&lt;/code&gt;, &lt;code&gt;TASK_FINISHED&lt;/code&gt;, &lt;code&gt;TASK_KILLED&lt;/code&gt;, &lt;code&gt;TASK_LOST&lt;/code&gt;, &lt;code&gt;TASK_FAILED&lt;/code&gt;, &lt;code&gt;TASK_ERROR&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1515,13 +1602,6 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;td align=&#34;left&#34;&gt;VARCHAR(2000)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;相关信息&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;failure_cause&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;VARCHAR(2000)&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;执行失败原因&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1533,7 +1613,7 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;&lt;code&gt;JOB_TRACE_LOG&lt;/code&gt;记录作业运行痕迹表，可作为运行日志查看，原理同log框架，只能写入比配置日志级别更高的数据。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;JOB_STATUS_TRACE_LOG&lt;/code&gt;记录作业运行痕迹表，可作为运行日志查看，原理同log框架，只能写入比配置日志级别更高的数据。&lt;/p&gt;
 </description>
     </item>
     
