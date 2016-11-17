@@ -223,25 +223,9 @@ echo sharding execution context is $*
 
 <h3 id="1-作业事件追踪:6fde5c464b5cd157fa8c5a0e82fa63a0">1. 作业事件追踪</h3>
 
-<p><code>elastic-job</code>在配置中提供了<code>JobEventConfiguration</code>，目前支持数据库和日志文件两种方式配置，默认为日志文件方式。</p>
+<p><code>elastic-job</code>在配置中提供了<code>JobEventConfiguration</code>，目前支持数据库方式配置。</p>
 
-<pre><code class="language-java">    // 定义日志文件事件溯源配置
-    JobEventConfiguration jobLogEventConfig = new JobEventLogConfiguration();
-    
-    // 定义数据库日志文件事件溯源配置
-    JobEventConfiguration jobRdbEventConfig = new JobEventRdbConfiguration(&quot;org.h2.Driver&quot;, &quot;jdbc:h2:mem:job_event_bus&quot;, &quot;sa&quot;, &quot;&quot;, LogLevel.INFO);
-    
-    // 定义SIMPLE作业类型，使用日志文件方式
-    SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName()).jobEventConfiguration(jobLogEventConfig);
-    
-    // 定义DATAFLOW作业类型，使用数据库方式
-    DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName()).jobEventConfiguration(jobRdbEventConfig);
-    
-    // 定义SCRIPT类型配置，使用日志文件和数据库方式
-    ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &quot;test.sh&quot;).jobEventConfiguration(jobLogEventConfig, jobRdbEventConfig);
-</code></pre>
-
-<p>更多信息请参见<a href="../../common/event_trace/">Elastic-Job事件追踪</a>。</p>
+<p>更多信息请参见<a href="../../common/event_trace/">Elastic-Job事件追踪</a>及[]。</p>
 
 <h3 id="2-异常处理:6fde5c464b5cd157fa8c5a0e82fa63a0">2. 异常处理</h3>
 

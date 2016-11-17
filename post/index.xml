@@ -468,15 +468,13 @@ echo sharding execution context is $*
     &amp;lt;job:script id=&amp;quot;scriptElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; script-command-line=&amp;quot;/your/file/path/demo.sh&amp;quot; /&amp;gt;
     
     &amp;lt;!-- 配置带监听的简单作业--&amp;gt;
-    &amp;lt;job:simple id=&amp;quot;listenerElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleListenerElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot;&amp;gt;
+    &amp;lt;job:simple id=&amp;quot;listenerElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleListenerElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot;&amp;gt;
         &amp;lt;job:listener class=&amp;quot;xx.MySimpleJobListener&amp;quot;/&amp;gt;
         &amp;lt;job:distributed-listener class=&amp;quot;xx.MyOnceSimpleJobListener&amp;quot; started-timeout-milliseconds=&amp;quot;1000&amp;quot; completed-timeout-milliseconds=&amp;quot;2000&amp;quot; /&amp;gt;
     &amp;lt;/job:simple&amp;gt;
     
-    &amp;lt;!-- 配置带数据库和日志作业事件监听的简单作业--&amp;gt;
-    &amp;lt;job:simple id=&amp;quot;listenerElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleListenerElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot;   sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot;&amp;gt;
-        &amp;lt;job:event-log /&amp;gt;
-        &amp;lt;job:event-rdb driver=&amp;quot;org.h2.Driver&amp;quot; url=&amp;quot;jdbc:h2:mem:job_event_bus&amp;quot; username=&amp;quot;sa&amp;quot; password=&amp;quot;&amp;quot;  log-level=&amp;quot;INFO&amp;quot; /&amp;gt;
+    &amp;lt;!-- 配置带作业数据库事件追踪的简单作业--&amp;gt;
+    &amp;lt;job:simple id=&amp;quot;listenerElasticJob&amp;quot; class=&amp;quot;xxx.MySimpleListenerElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; event-trace-rdb-data-source=&amp;quot;yourDataSource&amp;quot;&amp;gt;
     &amp;lt;/job:simple&amp;gt;
 &amp;lt;/beans&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -630,6 +628,14 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;作业定制化属性，目前支持&lt;code&gt;job_exception_handler&lt;/code&gt;和&lt;code&gt;executor_service_handler&lt;/code&gt;，用于扩展异常处理和自定义作业处理线程池&lt;/td&gt;
 &lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;event-trace-rdb-data-source&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业事件追踪的数据源&lt;code&gt;Bean&lt;/code&gt;引用&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -753,68 +759,6 @@ echo sharding execution context is $*
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h4 id=&#34;job-event-log命名空间详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;job:event-log命名空间详细说明&lt;/h4&gt;
-
-&lt;p&gt;&lt;code&gt;job:event-log&lt;/code&gt;必须配置为&lt;code&gt;job:bean&lt;/code&gt;的子元素，表示以日志文件的形式记录作业事件&lt;/p&gt;
-
-&lt;h4 id=&#34;job-event-rdb命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;job:event-rdb命名空间属性详细说明&lt;/h4&gt;
-
-&lt;p&gt;&lt;code&gt;job:event-rdb&lt;/code&gt;必须配置为&lt;code&gt;job:bean&lt;/code&gt;的子元素，表示以数据库的形式记录作业事件&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;属性名&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;类型&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;缺省值&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;driver&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;数据库驱动类名&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;url&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;数据库URL地址&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;username&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;数据库用户名&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;password&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;数据库用户名&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;log-level&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;日志级别，可配置为&lt;code&gt;TRACE&lt;/code&gt;,&lt;code&gt;DEBUG&lt;/code&gt;,&lt;code&gt;INFO&lt;/code&gt;,&lt;code&gt;WARN&lt;/code&gt;,&lt;code&gt;ERROR&lt;/code&gt;。&lt;br /&gt;默认为&lt;code&gt;INFO&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
 &lt;h4 id=&#34;reg-bean命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;reg:bean命名空间属性详细说明&lt;/h4&gt;
 
 &lt;table&gt;
@@ -934,22 +878,17 @@ echo sharding execution context is $*
 
 &lt;h3 id=&#34;1-作业事件追踪:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;1. 作业事件追踪&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;JobEventConfiguration&lt;/code&gt;，目前支持数据库和日志文件两种方式配置，默认为日志文件方式。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;JobEventConfiguration&lt;/code&gt;，目前支持数据库方式配置。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    // 定义日志文件事件溯源配置
-    JobEventConfiguration jobLogEventConfig = new JobEventLogConfiguration();
-    
-    // 定义数据库日志文件事件溯源配置
-    JobEventConfiguration jobRdbEventConfig = new JobEventRdbConfiguration(&amp;quot;org.h2.Driver&amp;quot;, &amp;quot;jdbc:h2:mem:job_event_bus&amp;quot;, &amp;quot;sa&amp;quot;, &amp;quot;&amp;quot;, LogLevel.INFO);
-    
-    // 定义SIMPLE作业类型，使用日志文件方式
-    SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName()).jobEventConfiguration(jobLogEventConfig);
-    
-    // 定义DATAFLOW作业类型，使用数据库方式
-    DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName()).jobEventConfiguration(jobRdbEventConfig);
-    
-    // 定义SCRIPT类型配置，使用日志文件和数据库方式
-    ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &amp;quot;test.sh&amp;quot;).jobEventConfiguration(jobLogEventConfig, jobRdbEventConfig);
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    // 初始化数据源
+    DataSource dataSource = ...;
+    // 定义日志数据库事件溯源配置
+    JobEventConfiguration jobEventRdbConfig = new JobEventRdbConfiguration(dataSource);
+    // 初始化注册中心
+    CoordinatorRegistryCenter regCenter = ...;
+    // 初始化作业配置
+    LiteJobConfiguration liteJobConfig = ...;
+    new JobScheduler(regCenter, liteJobConfig, jobEventRdbConfig).init(); 
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;更多信息请参见&lt;a href=&#34;../../common/event_trace/&#34;&gt;Elastic-Job事件追踪&lt;/a&gt;。&lt;/p&gt;
