@@ -110,17 +110,13 @@ body {
 
 <h1 id="elastic-job事件追踪:7df458b8cae687a433cb980ca278ca47">Elastic-Job事件追踪</h1>
 
-<p><code>Elastic-Job</code>的<code>Lite</code>版和<code>Cloud</code>版都提供了事件追踪功能，可通过事件订阅的方式处理调度过程的重要事件，用于查询、统计和监控。<code>Elastic-Job</code>目前提供了基于日志和关系型数据库两种事件订阅方式记录事件。</p>
-
-<h2 id="基于日志的事件追踪:7df458b8cae687a433cb980ca278ca47">基于日志的事件追踪</h2>
-
-<p>默认开启，通过应用程序配置的<code>logback.xml</code>或<code>log4j.xml</code>等日志框架文件输出事件日志。</p>
+<p><code>Elastic-Job</code>的<code>Lite</code>版和<code>Cloud</code>版都提供了事件追踪功能，可通过事件订阅的方式处理调度过程的重要事件，用于查询、统计和监控。<code>Elastic-Job</code>目前提供了基于关系型数据库两种事件订阅方式记录事件。</p>
 
 <h2 id="基于关系型数据库的事件追踪:7df458b8cae687a433cb980ca278ca47">基于关系型数据库的事件追踪</h2>
 
-<p>通过配置开启。具体配置方式请分别参见<a href="../../lite/dev_guide/">Elastic-Job-Lite开发指南</a>和<a href="../../cloud/dev_guide/">Elastic-Job-Cloud开发指南</a>。</p>
+<p>通过配置开启。具体配置方式请分别参见<a href="../../lite/dev_guide/">Elastic-Job-Lite开发指南</a>和<a href="../../cloud/scheduler_guide/">Elastic-Job-Cloud-Scheduler启动指南</a>。</p>
 
-<p>将于作业配置的<code>JobEventConfiguration</code>的<code>url</code>属性对应库自动创建<code>JOB_EXECUTION_LOG</code>和<code>JOB_TRACE_LOG</code>两张表。</p>
+<p>事件追踪的<code>event_trace_rdb_url</code>属性对应库自动创建<code>JOB_EXECUTION_LOG</code>和<code>JOB_STATUS_TRACE_LOG</code>两张表以及若干索引。</p>
 
 <p><code>JOB_EXECUTION_LOG</code>字段含义</p>
 
@@ -153,7 +149,7 @@ body {
 <td>task_id</td>
 <td align="left">VARCHAR(1000)</td>
 <td align="left"><code>是</code></td>
-<td align="left">任务名称</td>
+<td align="left">任务名称,每次作业运行生成新任务</td>
 </tr>
 
 <tr>
@@ -252,13 +248,6 @@ body {
 </tr>
 
 <tr>
-<td>hostname</td>
-<td align="left">VARCHAR(255)</td>
-<td align="left"><code>是</code></td>
-<td align="left">主机名称</td>
-</tr>
-
-<tr>
 <td>original_task_id</td>
 <td align="left">VARCHAR(1000)</td>
 <td align="left"><code>是</code></td>
@@ -276,35 +265,35 @@ body {
 <td>slave_id</td>
 <td align="left">VARCHAR(1000)</td>
 <td align="left"><code>是</code></td>
-<td align="left">slave名称</td>
+<td align="left">执行作业服务器的名称，<code>Lite</code>版本为服务器的<code>IP</code>地址，<code>Cloud</code>版本为<code>Mesos</code>执行机主键</td>
 </tr>
 
 <tr>
 <td>source</td>
 <td align="left">VARCHAR(50)</td>
 <td align="left"><code>是</code></td>
-<td align="left">任务执行源..可选值为<code>CLOUD_SCHEDULER</code>, <code>CLOUD_EXECUTOR</code>, <code>LITE_EXECUTOR</code></td>
+<td align="left">任务执行源，可选值为<code>CLOUD_SCHEDULER</code>, <code>CLOUD_EXECUTOR</code>, <code>LITE_EXECUTOR</code></td>
 </tr>
 
 <tr>
 <td>execution_type</td>
 <td align="left">VARCHAR(20)</td>
 <td align="left"><code>是</code></td>
-<td align="left">任务执行类型.可选值为<code>NORMAL_TRIGGER</code>, <code>MISFIRE</code>, <code>FAILOVER</code></td>
+<td align="left">任务执行类型，可选值为<code>NORMAL_TRIGGER</code>, <code>MISFIRE</code>, <code>FAILOVER</code></td>
 </tr>
 
 <tr>
 <td>sharding_item</td>
 <td align="left">VARCHAR(255)</td>
 <td align="left"><code>是</code></td>
-<td align="left">分片项</td>
+<td align="left">分片项集合，多个分片项以逗号分隔</td>
 </tr>
 
 <tr>
 <td>state</td>
 <td align="left">VARCHAR(20)</td>
 <td align="left"><code>是</code></td>
-<td align="left">任务执行状态.可选值为<code>TASK_STAGING</code>, <code>TASK_RUNNING</code>, <code>TASK_FINISHED</code>, <code>TASK_KILLED</code>, <code>TASK_LOST</code>, <code>TASK_FAILED</code>, <code>TASK_ERROR</code></td>
+<td align="left">任务执行状态，可选值为<code>TASK_STAGING</code>, <code>TASK_RUNNING</code>, <code>TASK_FINISHED</code>, <code>TASK_KILLED</code>, <code>TASK_LOST</code>, <code>TASK_FAILED</code>, <code>TASK_ERROR</code></td>
 </tr>
 
 <tr>
@@ -323,7 +312,7 @@ body {
 </tbody>
 </table>
 
-<p><code>JOB_STATUS_TRACE_LOG</code>记录作业运行痕迹表，可作为运行日志查看，原理同log框架，只能写入比配置日志级别更高的数据。</p>
+<p><code>JOB_STATUS_TRACE_LOG</code>记录作业状态变更痕迹表。可通过每次作业运行的<code>task_id</code>查询作业状态变化的生命周期和运行轨迹。</p>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
@@ -331,7 +320,6 @@ body {
 <ul>
 <li><a href="#elastic-job事件追踪:7df458b8cae687a433cb980ca278ca47">Elastic-Job事件追踪</a>
 <ul>
-<li><a href="#基于日志的事件追踪:7df458b8cae687a433cb980ca278ca47">基于日志的事件追踪</a></li>
 <li><a href="#基于关系型数据库的事件追踪:7df458b8cae687a433cb980ca278ca47">基于关系型数据库的事件追踪</a></li>
 </ul></li>
 </ul>

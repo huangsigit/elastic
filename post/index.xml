@@ -19,7 +19,7 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;2-0-2-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.2-SNAPSHOT&lt;/h2&gt;
+&lt;h2 id=&#34;2-0-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.2&lt;/h2&gt;
 
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
@@ -1033,14 +1033,14 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
     </item>
     
     <item>
-      <title>Elastic-Job-Lite其他功能</title>
+      <title>Elastic-Job-Cloud其他功能</title>
       <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/other_features/</link>
       <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
       
       <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/other_features/</guid>
       <description>
 
-&lt;h1 id=&#34;elastic-job-lite其他功能:3bff589538149fbb9b4c841bdafd58e5&#34;&gt;Elastic-Job-Lite其他功能&lt;/h1&gt;
+&lt;h1 id=&#34;elastic-job-cloud其他功能:3bff589538149fbb9b4c841bdafd58e5&#34;&gt;Elastic-Job-Cloud其他功能&lt;/h1&gt;
 
 &lt;h2 id=&#34;事件追踪-common-event-trace:3bff589538149fbb9b4c841bdafd58e5&#34;&gt;&lt;a href=&#34;../../common/event_trace/&#34;&gt;事件追踪&lt;/a&gt;&lt;/h2&gt;
 </description>
@@ -1339,17 +1339,13 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 
 &lt;h1 id=&#34;elastic-job事件追踪:7df458b8cae687a433cb980ca278ca47&#34;&gt;Elastic-Job事件追踪&lt;/h1&gt;
 
-&lt;p&gt;&lt;code&gt;Elastic-Job&lt;/code&gt;的&lt;code&gt;Lite&lt;/code&gt;版和&lt;code&gt;Cloud&lt;/code&gt;版都提供了事件追踪功能，可通过事件订阅的方式处理调度过程的重要事件，用于查询、统计和监控。&lt;code&gt;Elastic-Job&lt;/code&gt;目前提供了基于日志和关系型数据库两种事件订阅方式记录事件。&lt;/p&gt;
-
-&lt;h2 id=&#34;基于日志的事件追踪:7df458b8cae687a433cb980ca278ca47&#34;&gt;基于日志的事件追踪&lt;/h2&gt;
-
-&lt;p&gt;默认开启，通过应用程序配置的&lt;code&gt;logback.xml&lt;/code&gt;或&lt;code&gt;log4j.xml&lt;/code&gt;等日志框架文件输出事件日志。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Elastic-Job&lt;/code&gt;的&lt;code&gt;Lite&lt;/code&gt;版和&lt;code&gt;Cloud&lt;/code&gt;版都提供了事件追踪功能，可通过事件订阅的方式处理调度过程的重要事件，用于查询、统计和监控。&lt;code&gt;Elastic-Job&lt;/code&gt;目前提供了基于关系型数据库两种事件订阅方式记录事件。&lt;/p&gt;
 
 &lt;h2 id=&#34;基于关系型数据库的事件追踪:7df458b8cae687a433cb980ca278ca47&#34;&gt;基于关系型数据库的事件追踪&lt;/h2&gt;
 
-&lt;p&gt;通过配置开启。具体配置方式请分别参见&lt;a href=&#34;../../lite/dev_guide/&#34;&gt;Elastic-Job-Lite开发指南&lt;/a&gt;和&lt;a href=&#34;../../cloud/dev_guide/&#34;&gt;Elastic-Job-Cloud开发指南&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;通过配置开启。具体配置方式请分别参见&lt;a href=&#34;../../lite/dev_guide/&#34;&gt;Elastic-Job-Lite开发指南&lt;/a&gt;和&lt;a href=&#34;../../cloud/scheduler_guide/&#34;&gt;Elastic-Job-Cloud-Scheduler启动指南&lt;/a&gt;。&lt;/p&gt;
 
-&lt;p&gt;将于作业配置的&lt;code&gt;JobEventConfiguration&lt;/code&gt;的&lt;code&gt;url&lt;/code&gt;属性对应库自动创建&lt;code&gt;JOB_EXECUTION_LOG&lt;/code&gt;和&lt;code&gt;JOB_TRACE_LOG&lt;/code&gt;两张表。&lt;/p&gt;
+&lt;p&gt;事件追踪的&lt;code&gt;event_trace_rdb_url&lt;/code&gt;属性对应库自动创建&lt;code&gt;JOB_EXECUTION_LOG&lt;/code&gt;和&lt;code&gt;JOB_STATUS_TRACE_LOG&lt;/code&gt;两张表以及若干索引。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;JOB_EXECUTION_LOG&lt;/code&gt;字段含义&lt;/p&gt;
 
@@ -1382,7 +1378,7 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;td&gt;task_id&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(1000)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;任务名称&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务名称,每次作业运行生成新任务&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1481,13 +1477,6 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;hostname&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;VARCHAR(255)&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;主机名称&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
 &lt;td&gt;original_task_id&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(1000)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
@@ -1505,35 +1494,35 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;td&gt;slave_id&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(1000)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;slave名称&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;执行作业服务器的名称，&lt;code&gt;Lite&lt;/code&gt;版本为服务器的&lt;code&gt;IP&lt;/code&gt;地址，&lt;code&gt;Cloud&lt;/code&gt;版本为&lt;code&gt;Mesos&lt;/code&gt;执行机主键&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;source&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(50)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;任务执行源..可选值为&lt;code&gt;CLOUD_SCHEDULER&lt;/code&gt;, &lt;code&gt;CLOUD_EXECUTOR&lt;/code&gt;, &lt;code&gt;LITE_EXECUTOR&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务执行源，可选值为&lt;code&gt;CLOUD_SCHEDULER&lt;/code&gt;, &lt;code&gt;CLOUD_EXECUTOR&lt;/code&gt;, &lt;code&gt;LITE_EXECUTOR&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;execution_type&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(20)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;任务执行类型.可选值为&lt;code&gt;NORMAL_TRIGGER&lt;/code&gt;, &lt;code&gt;MISFIRE&lt;/code&gt;, &lt;code&gt;FAILOVER&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务执行类型，可选值为&lt;code&gt;NORMAL_TRIGGER&lt;/code&gt;, &lt;code&gt;MISFIRE&lt;/code&gt;, &lt;code&gt;FAILOVER&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;sharding_item&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(255)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;分片项&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;分片项集合，多个分片项以逗号分隔&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;state&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;VARCHAR(20)&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;任务执行状态.可选值为&lt;code&gt;TASK_STAGING&lt;/code&gt;, &lt;code&gt;TASK_RUNNING&lt;/code&gt;, &lt;code&gt;TASK_FINISHED&lt;/code&gt;, &lt;code&gt;TASK_KILLED&lt;/code&gt;, &lt;code&gt;TASK_LOST&lt;/code&gt;, &lt;code&gt;TASK_FAILED&lt;/code&gt;, &lt;code&gt;TASK_ERROR&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;任务执行状态，可选值为&lt;code&gt;TASK_STAGING&lt;/code&gt;, &lt;code&gt;TASK_RUNNING&lt;/code&gt;, &lt;code&gt;TASK_FINISHED&lt;/code&gt;, &lt;code&gt;TASK_KILLED&lt;/code&gt;, &lt;code&gt;TASK_LOST&lt;/code&gt;, &lt;code&gt;TASK_FAILED&lt;/code&gt;, &lt;code&gt;TASK_ERROR&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -1552,7 +1541,7 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;&lt;code&gt;JOB_STATUS_TRACE_LOG&lt;/code&gt;记录作业运行痕迹表，可作为运行日志查看，原理同log框架，只能写入比配置日志级别更高的数据。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;JOB_STATUS_TRACE_LOG&lt;/code&gt;记录作业状态变更痕迹表。可通过每次作业运行的&lt;code&gt;task_id&lt;/code&gt;查询作业状态变化的生命周期和运行轨迹。&lt;/p&gt;
 </description>
     </item>
     

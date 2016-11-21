@@ -227,7 +227,7 @@ body {
 </tr>
 
 <tr>
-<td>sharding-item-parameters</td>
+<td>shardingItemParameters</td>
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
@@ -235,7 +235,7 @@ body {
 </tr>
 
 <tr>
-<td>job-parameter</td>
+<td>jobParameter</td>
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
@@ -272,6 +272,14 @@ body {
 <td align="left">否</td>
 <td align="left"></td>
 <td align="left"><code>Spring</code>方式配置<code>Spring</code>配置文件相对路径以及名称，如：<code>META-INF\applicationContext.xml</code></td>
+</tr>
+
+<tr>
+<td>streamingProcess</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left"><code>false</code></td>
+<td align="left"><code>DATAFLOW</code>类型作业，是否流式处理数据<br />如果流式处理数据, 则<code>fetchData</code>不返回空结果将持续执行作业<br />如果非流式处理数据, 则处理数据完成后作业结束<br /></td>
 </tr>
 
 <tr>
