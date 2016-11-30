@@ -310,6 +310,8 @@ body {
 
 <p>注册的作业可用<code>Java</code>和<code>Spring</code>两种启动方式，作业启动在<a href="../dev_guide/">开发指南</a>中有说明，这里只举例说明两种方式如何注册。</p>
 
+<p>使用<code>Transient</code>的<code>Script</code>类型作业可直接将<code>shell</code>上传至<code>appURL</code>，而无需打成<code>java</code>包。如果只有单个<code>shell</code>文件可无需压缩。如是复杂<code>shell</code>或<code>python</code>等应用，仍可上传<code>tar</code>包，支持各种常见压缩格式。</p>
+
 <p><strong>Java启动方式作业注册</strong></p>
 
 <pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
@@ -353,6 +355,21 @@ http://elastic_job_cloud_host:8899/job/update
 <pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X DELETE -d 'foo_job' http://elastic_job_cloud_host:8899/job/deregister
 </code></pre>
 
+<h3 id="触发一次作业:683f09d60aed8667eba01ae825b6e4c6">触发一次作业</h3>
+
+<p>url：<code>job/trigger</code></p>
+
+<p>方法：<code>POST</code></p>
+
+<p>参数类型：<code>application/json</code></p>
+
+<p>参数：作业名称</p>
+
+<p>说明：即事件驱动，通过调用<code>API</code>而非定时的触发作业。目前仅对<code>Transient</code>作业类型生效。</p>
+
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 'foo_job' http://elastic_job_cloud_host:8899/job/trigger
+</code></pre>
+
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
@@ -365,6 +382,7 @@ http://elastic_job_cloud_host:8899/job/update
 <li><a href="#注册作业:683f09d60aed8667eba01ae825b6e4c6">注册作业</a></li>
 <li><a href="#修改作业配置:683f09d60aed8667eba01ae825b6e4c6">修改作业配置</a></li>
 <li><a href="#注销作业:683f09d60aed8667eba01ae825b6e4c6">注销作业</a></li>
+<li><a href="#触发一次作业:683f09d60aed8667eba01ae825b6e4c6">触发一次作业</a></li>
 </ul></li>
 </ul></li>
 </ul>
