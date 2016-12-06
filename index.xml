@@ -181,6 +181,14 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
+&lt;h2 id=&#34;2-0-4-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.4-SNAPSHOT&lt;/h2&gt;
+
+&lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/187&#34;&gt;ISSUE #187&lt;/a&gt; ShardingContext中增加taskId属性，供业务方使用&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h2 id=&#34;2-0-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.3&lt;/h2&gt;
 
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
@@ -196,7 +204,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/178&#34;&gt;ISSUE #178&lt;/a&gt; 事件驱动触发作业&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/179&#34;&gt;ISSUE #179&lt;/a&gt; Transient的Script类型作业优化，无需Java的Executor支持&lt;/li&gt;
@@ -227,7 +235,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/167&#34;&gt;ISSUE #167&lt;/a&gt; Failover作业增加源执行任务ID记录&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;功能提升-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/159&#34;&gt;ISSUE #159&lt;/a&gt; 提供从Spring 3.1.0.REELASE至Spring 4任何版本的支持&lt;/li&gt;
@@ -280,7 +288,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/116&#34;&gt;ISSUE #116&lt;/a&gt; 作业接口的handleJobExecutionException参数变更&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;功能提升-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/110&#34;&gt;ISSUE #110&lt;/a&gt; 手动触发作业&lt;/li&gt;
@@ -327,7 +335,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/91&#34;&gt;ISSUE #91&lt;/a&gt; 作业生命周期操作API&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;功能提升-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/84&#34;&gt;ISSUE #84&lt;/a&gt; 控制台提供作业启用/禁用按钮操作&lt;/li&gt;
@@ -343,7 +351,7 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h2 id=&#34;1-0-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.6&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/71&#34;&gt;ISSUE #71&lt;/a&gt; 作业关闭功能（shutdown）&lt;/li&gt;
@@ -361,7 +369,7 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h2 id=&#34;1-0-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.5&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/2&#34;&gt;ISSUE #2&lt;/a&gt; 增加前置和后置任务&lt;/li&gt;
@@ -386,7 +394,7 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h2 id=&#34;1-0-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.4&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/16&#34;&gt;ISSUE #16&lt;/a&gt; 提供内嵌zookeeper，简化开发环境&lt;/li&gt;
@@ -403,7 +411,7 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h2 id=&#34;1-0-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.3&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/39&#34;&gt;ISSUE #39&lt;/a&gt; 增加作业辅助监听功能，通过dump命令抓取作业运行时信息&lt;/li&gt;
@@ -420,7 +428,7 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h2 id=&#34;1-0-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.2&lt;/h2&gt;
 
-&lt;h3 id=&#34;功能提升-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
+&lt;h3 id=&#34;功能提升-9:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/6&#34;&gt;ISSUE #6&lt;/a&gt; 校对作业服务器与注册中心时间误差&lt;/li&gt;
@@ -950,7 +958,7 @@ echo sharding execution context is $*
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h4 id=&#34;reg-bean命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;reg:bean命名空间属性详细说明&lt;/h4&gt;
+&lt;h4 id=&#34;reg-zookeeper命名空间属性详细说明:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;reg:zookeeper命名空间属性详细说明&lt;/h4&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
