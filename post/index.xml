@@ -1168,27 +1168,27 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;li&gt;作业定义&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;../../../../../img/console/cloud/job/job_def.png&#34; alt=&#34;作业定义&#34; /&gt;
-&lt;img src=&#34;../../../../../img/console/cloud/job/job_reg.png&#34; alt=&#34;作业注册&#34; /&gt;
-&lt;img src=&#34;../../../../../img/console/cloud/job/job_detail.png&#34; alt=&#34;作业详情&#34; /&gt;
-&lt;img src=&#34;../../../../../img/console/cloud/job/job_update.png&#34; alt=&#34;作业修改&#34; /&gt;
-&lt;img src=&#34;../../../../../img/console/cloud/job/job_remove.png&#34; alt=&#34;作业删除&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/console/cloud/job/job_def.png&#34; alt=&#34;作业定义&#34; /&gt;
+&lt;img src=&#34;../../../../img/console/cloud/job/job_reg.png&#34; alt=&#34;作业注册&#34; /&gt;
+&lt;img src=&#34;../../../../img/console/cloud/job/job_detail.png&#34; alt=&#34;作业详情&#34; /&gt;
+&lt;img src=&#34;../../../../img/console/cloud/job/job_update.png&#34; alt=&#34;作业修改&#34; /&gt;
+&lt;img src=&#34;../../../../img/console/cloud/job/job_remove.png&#34; alt=&#34;作业删除&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;作业状态&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;../../../../../img/console/cloud/status/job_ready.png&#34; alt=&#34;待运行作业状态&#34; /&gt;
-&lt;img src=&#34;../../../../../img/console/cloud/status/job_running.png&#34; alt=&#34;运行中作业状态&#34; /&gt;
-&lt;img src=&#34;../../../../../img/console/cloud/status/job_failover.png&#34; alt=&#34;待失效转移任务状态&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/console/cloud/status/job_ready.png&#34; alt=&#34;待运行作业状态&#34; /&gt;
+&lt;img src=&#34;../../../../img/console/cloud/status/job_running.png&#34; alt=&#34;运行中作业状态&#34; /&gt;
+&lt;img src=&#34;../../../../img/console/cloud/status/job_failover.png&#34; alt=&#34;待失效转移任务状态&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;作业历史&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;../../../../../img/console/cloud/history/job_status_trace.png&#34; alt=&#34;运行轨迹查询&#34; /&gt;
-&lt;img src=&#34;../../../../../img/console/cloud/history/job_execution.png&#34; alt=&#34;执行状态查询&#34; /&gt;
-&lt;img src=&#34;../../../../../img/console/cloud/history/dashboard.png&#34; alt=&#34;历史dashboard&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../../../img/console/cloud/history/job_status_trace.png&#34; alt=&#34;运行轨迹查询&#34; /&gt;
+&lt;img src=&#34;../../../../img/console/cloud/history/job_execution.png&#34; alt=&#34;执行状态查询&#34; /&gt;
+&lt;img src=&#34;../../../../img/console/cloud/history/dashboard.png&#34; alt=&#34;历史dashboard&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
