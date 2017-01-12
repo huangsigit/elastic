@@ -19,7 +19,22 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;2-0-4-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.4-SNAPSHOT&lt;/h2&gt;
+&lt;h2 id=&#34;2-0-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.4&lt;/h2&gt;
+
+&lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/189&#34;&gt;ISSUE #189&lt;/a&gt; 管理后台执行失效操作，但任务还在执行&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/204&#34;&gt;ISSUE #204&lt;/a&gt; 异步事件执行消息顺序不一致导致数据库数据不准确&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/209&#34;&gt;ISSUE #209&lt;/a&gt; cloud作业资源分配算法改进&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/203&#34;&gt;ISSUE #203&lt;/a&gt; cloud类型作业增加运行统计，并提供REST API查询&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/215&#34;&gt;ISSUE #215&lt;/a&gt; cloud版本运维管理界面&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h3 id=&#34;功能提升:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;功能提升&lt;/h3&gt;
 
@@ -29,14 +44,14 @@
 
 &lt;h2 id=&#34;2-0-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.3&lt;/h2&gt;
 
-&lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/177&#34;&gt;ISSUE #177&lt;/a&gt; 2.0.2版本Spring命名空间的job:script空指针&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/185&#34;&gt;ISSUE #185&lt;/a&gt; Executor多占用分片资源导致资源浪费问题&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/178&#34;&gt;ISSUE #178&lt;/a&gt; 事件驱动触发作业&lt;/li&gt;
@@ -58,7 +73,7 @@
 
 &lt;h2 id=&#34;2-0-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.2&lt;/h2&gt;
 
-&lt;h3 id=&#34;缺陷修正-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/64&#34;&gt;ISSUE #64&lt;/a&gt; Spring命名空间，若注册多个同Class的作业Bean，会导致作业Bean查找不准确&lt;/li&gt;
@@ -89,7 +104,7 @@
 
 &lt;h2 id=&#34;2-0-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.1&lt;/h2&gt;
 
-&lt;h3 id=&#34;缺陷修正-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/141&#34;&gt;ISSUE #141&lt;/a&gt; 删除reg模块从zk读取信息功能，使reg命名空间的placeholder完全可用&lt;/li&gt;
@@ -103,14 +118,14 @@
 
 &lt;h2 id=&#34;2-0-0:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.0&lt;/h2&gt;
 
-&lt;h3 id=&#34;新功能-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Elastic-Job-Cloud初始版本&lt;/li&gt;
 &lt;li&gt;重构原Elastic-Job至Elastic-Job-Lite&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/119&#34;&gt;ISSUE #119&lt;/a&gt; spring容器关闭时，quartz未正常关闭&lt;/li&gt;
@@ -132,7 +147,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/110&#34;&gt;ISSUE #110&lt;/a&gt; 手动触发作业&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/99&#34;&gt;ISSUE #99&lt;/a&gt; 删除作业异步导致作业删除后, 还未结束的作业继续创建zk数据&lt;/li&gt;
@@ -153,7 +168,7 @@
 
 &lt;h2 id=&#34;1-0-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.8&lt;/h2&gt;
 
-&lt;h3 id=&#34;新功能-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/95&#34;&gt;ISSUE #95&lt;/a&gt; 增加脚本类型作业支持&lt;/li&gt;
@@ -167,7 +182,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/88&#34;&gt;ISSUE #88&lt;/a&gt; stop作业改名为pause&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;新功能-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/91&#34;&gt;ISSUE #91&lt;/a&gt; 作业生命周期操作API&lt;/li&gt;
@@ -181,7 +196,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/93&#34;&gt;ISSUE #93&lt;/a&gt; 注册中心配置提供baseSleepTimeMilliseconds、maxSleepTimeMilliseconds和maxRetries的默认值&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/92&#34;&gt;ISSUE #92&lt;/a&gt; 修改分片总数参数导致仅单一节点执行的监听抛出超时异常&lt;/li&gt;
@@ -197,7 +212,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/81&#34;&gt;ISSUE #81&lt;/a&gt; 使用集中清理作业上次结束状态代替各自清理，各自清理可能导致作业机下线而产生未清理的结束状态&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/74&#34;&gt;ISSUE #74&lt;/a&gt; 流式处理且失效转移时，失效转移的分片项不能执行一次即停止&lt;/li&gt;
@@ -216,7 +231,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/65&#34;&gt;ISSUE #65&lt;/a&gt; 增加前置和后置任务Spring命名空间支持&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-7:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/61&#34;&gt;ISSUE #61&lt;/a&gt; 分片和主节点选举同时发生时，死锁问题解决&lt;/li&gt;
@@ -256,7 +271,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/43&#34;&gt;ISSUE #43&lt;/a&gt; 增加作业异常处理回调接口&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-9:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/30&#34;&gt;ISSUE #30&lt;/a&gt; 注册中心宕机较长时间后重新恢复，作业无法继续执行&lt;/li&gt;
@@ -279,7 +294,7 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/55&#34;&gt;ISSUE #55&lt;/a&gt; offset存储功能&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;缺陷修正-9:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
+&lt;h3 id=&#34;缺陷修正-10:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/1&#34;&gt;ISSUE #1&lt;/a&gt; 复杂网络环境下IP地址获取不准确的问题&lt;/li&gt;
@@ -1122,6 +1137,62 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
     </item>
     
     <item>
+      <title>Elastic-Job-Cloud运维平台</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_web_console/</link>
+      <pubDate>Sat, 07 Jan 2017 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_web_console/</guid>
+      <description>
+
+&lt;h1 id=&#34;elastic-job-cloud运维平台:0f027333df0efc86ae4e7e2fcd61ab91&#34;&gt;Elastic-Job-Cloud运维平台&lt;/h1&gt;
+
+&lt;p&gt;运维平台内嵌于&lt;code&gt;elastic-job-cloud-scheduler&lt;/code&gt;的jar包中, 无需额外启动WEB付服务器, 可通过修改配置文件中&lt;code&gt;http_port&lt;/code&gt;参数来调整启动端口, 默认端口为8899，访问地址为&lt;code&gt;http://{your_scheduler_ip}:8899&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;功能列表:0f027333df0efc86ae4e7e2fcd61ab91&#34;&gt;功能列表&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;作业管理（注册、修改、查看以及删除）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;作业状态查看（待运行、运行中、待失效转移）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;作业历史查看（运行轨迹、执行状态、历史dashboard）&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;设计理念:0f027333df0efc86ae4e7e2fcd61ab91&#34;&gt;设计理念&lt;/h2&gt;
+
+&lt;p&gt;运维平台采用纯静态HTML+JS方式与后台的&lt;code&gt;Restful API&lt;/code&gt;交互，通过读取作业注册中心展示作业配置和状态，数据库展现作业运行轨迹及执行状态，或更新作业注册中心数据修改作业配置。&lt;/p&gt;
+
+&lt;h2 id=&#34;主要界面:0f027333df0efc86ae4e7e2fcd61ab91&#34;&gt;主要界面&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;作业定义&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../../../../img/console/cloud/job/job_def.png&#34; alt=&#34;作业定义&#34; /&gt;
+&lt;img src=&#34;../../../../../img/console/cloud/job/job_reg.png&#34; alt=&#34;作业注册&#34; /&gt;
+&lt;img src=&#34;../../../../../img/console/cloud/job/job_detail.png&#34; alt=&#34;作业详情&#34; /&gt;
+&lt;img src=&#34;../../../../../img/console/cloud/job/job_update.png&#34; alt=&#34;作业修改&#34; /&gt;
+&lt;img src=&#34;../../../../../img/console/cloud/job/job_remove.png&#34; alt=&#34;作业删除&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;作业状态&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../../../../img/console/cloud/status/job_ready.png&#34; alt=&#34;待运行作业状态&#34; /&gt;
+&lt;img src=&#34;../../../../../img/console/cloud/status/job_running.png&#34; alt=&#34;运行中作业状态&#34; /&gt;
+&lt;img src=&#34;../../../../../img/console/cloud/status/job_failover.png&#34; alt=&#34;待失效转移任务状态&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;作业历史&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../../../../img/console/cloud/history/job_status_trace.png&#34; alt=&#34;运行轨迹查询&#34; /&gt;
+&lt;img src=&#34;../../../../../img/console/cloud/history/job_execution.png&#34; alt=&#34;执行状态查询&#34; /&gt;
+&lt;img src=&#34;../../../../../img/console/cloud/history/dashboard.png&#34; alt=&#34;历史dashboard&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Elastic-Job-Lite运维平台</title>
       <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other/lite_web_console/</link>
       <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
@@ -1600,35 +1671,9 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 
 &lt;h2 id=&#34;elastic-job-cloud-scheduler启动指南-scheduler-guide:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../scheduler_guide/&#34;&gt;Elastic-Job-Cloud-Scheduler启动指南&lt;/a&gt;&lt;/h2&gt;
 
+&lt;h2 id=&#34;运维平台-cloud-web-console:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../cloud_web_console/&#34;&gt;运维平台&lt;/a&gt;&lt;/h2&gt;
+
 &lt;h2 id=&#34;其他功能-other-features:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../other_features/&#34;&gt;其他功能&lt;/a&gt;&lt;/h2&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Elastic-Job-Cloud环境需求</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/env_required/</link>
-      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/env_required/</guid>
-      <description>
-
-&lt;h1 id=&#34;环境需求:5fc72554ce10b593ad2e772b637ec905&#34;&gt;环境需求&lt;/h1&gt;
-
-&lt;h2 id=&#34;java:5fc72554ce10b593ad2e772b637ec905&#34;&gt;Java&lt;/h2&gt;
-
-&lt;p&gt;请使用&lt;code&gt;JDK1.7&lt;/code&gt;及其以上版本。&lt;a href=&#34;http://www.oracle.com/technetwork/java/javase/downloads/index.html&#34;&gt;详情参见&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;zookeeper:5fc72554ce10b593ad2e772b637ec905&#34;&gt;Zookeeper&lt;/h2&gt;
-
-&lt;p&gt;请使用&lt;code&gt;Zookeeper 3.4.6&lt;/code&gt;及其以上版本。&lt;a href=&#34;https://zookeeper.apache.org/doc/trunk/zookeeperStarted.html&#34;&gt;详情参见&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;maven:5fc72554ce10b593ad2e772b637ec905&#34;&gt;Maven&lt;/h2&gt;
-
-&lt;p&gt;请使用&lt;code&gt;Maven 3.0.4&lt;/code&gt;及其以上版本。&lt;a href=&#34;http://maven.apache.org/install.html&#34;&gt;详情参见&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;mesos:5fc72554ce10b593ad2e772b637ec905&#34;&gt;Mesos&lt;/h2&gt;
-
-&lt;p&gt;请使用&lt;code&gt;Mesos 0.28.0&lt;/code&gt;及其以上版本。&lt;a href=&#34;http://mesos.apache.org/gettingstarted/&#34;&gt;详情参见&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

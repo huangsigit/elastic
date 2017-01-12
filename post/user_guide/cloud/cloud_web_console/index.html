@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Elastic-Job-Cloud使用指南</title>
+    <title>Elastic-Job-Cloud运维平台</title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -108,32 +108,61 @@ body {
               <div class="col-sm-8">
 		 
 
-<h1 id="elastic-job-cloud使用指南:d8865a468a719781452bdc19ad5d19d1">Elastic-Job-Cloud使用指南</h1>
+<h1 id="elastic-job-cloud运维平台:0f027333df0efc86ae4e7e2fcd61ab91">Elastic-Job-Cloud运维平台</h1>
 
-<h2 id="环境需求-env-required:d8865a468a719781452bdc19ad5d19d1"><a href="../env_required/">环境需求</a></h2>
+<p>运维平台内嵌于<code>elastic-job-cloud-scheduler</code>的jar包中, 无需额外启动WEB付服务器, 可通过修改配置文件中<code>http_port</code>参数来调整启动端口, 默认端口为8899，访问地址为<code>http://{your_scheduler_ip}:8899</code>。</p>
 
-<h2 id="开发指南-dev-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../dev_guide/">开发指南</a></h2>
+<h2 id="功能列表:0f027333df0efc86ae4e7e2fcd61ab91">功能列表</h2>
 
-<h2 id="部署指南-deploy-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../deploy_guide/">部署指南</a></h2>
+<ul>
+<li><p>作业管理（注册、修改、查看以及删除）</p></li>
 
-<h2 id="elastic-job-cloud-scheduler启动指南-scheduler-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../scheduler_guide/">Elastic-Job-Cloud-Scheduler启动指南</a></h2>
+<li><p>作业状态查看（待运行、运行中、待失效转移）</p></li>
 
-<h2 id="运维平台-cloud-web-console:d8865a468a719781452bdc19ad5d19d1"><a href="../cloud_web_console/">运维平台</a></h2>
+<li><p>作业历史查看（运行轨迹、执行状态、历史dashboard）</p></li>
+</ul>
 
-<h2 id="其他功能-other-features:d8865a468a719781452bdc19ad5d19d1"><a href="../other_features/">其他功能</a></h2>
+<h2 id="设计理念:0f027333df0efc86ae4e7e2fcd61ab91">设计理念</h2>
+
+<p>运维平台采用纯静态HTML+JS方式与后台的<code>Restful API</code>交互，通过读取作业注册中心展示作业配置和状态，数据库展现作业运行轨迹及执行状态，或更新作业注册中心数据修改作业配置。</p>
+
+<h2 id="主要界面:0f027333df0efc86ae4e7e2fcd61ab91">主要界面</h2>
+
+<ul>
+<li>作业定义</li>
+</ul>
+
+<p><img src="../../../../../img/console/cloud/job/job_def.png" alt="作业定义" />
+<img src="../../../../../img/console/cloud/job/job_reg.png" alt="作业注册" />
+<img src="../../../../../img/console/cloud/job/job_detail.png" alt="作业详情" />
+<img src="../../../../../img/console/cloud/job/job_update.png" alt="作业修改" />
+<img src="../../../../../img/console/cloud/job/job_remove.png" alt="作业删除" /></p>
+
+<ul>
+<li>作业状态</li>
+</ul>
+
+<p><img src="../../../../../img/console/cloud/status/job_ready.png" alt="待运行作业状态" />
+<img src="../../../../../img/console/cloud/status/job_running.png" alt="运行中作业状态" />
+<img src="../../../../../img/console/cloud/status/job_failover.png" alt="待失效转移任务状态" /></p>
+
+<ul>
+<li>作业历史</li>
+</ul>
+
+<p><img src="../../../../../img/console/cloud/history/job_status_trace.png" alt="运行轨迹查询" />
+<img src="../../../../../img/console/cloud/history/job_execution.png" alt="执行状态查询" />
+<img src="../../../../../img/console/cloud/history/dashboard.png" alt="历史dashboard" /></p>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
 <ul>
-<li><a href="#elastic-job-cloud使用指南:d8865a468a719781452bdc19ad5d19d1">Elastic-Job-Cloud使用指南</a>
+<li><a href="#elastic-job-cloud运维平台:0f027333df0efc86ae4e7e2fcd61ab91">Elastic-Job-Cloud运维平台</a>
 <ul>
-<li><a href="#环境需求-env-required:d8865a468a719781452bdc19ad5d19d1"><a href="../env_required/">环境需求</a></a></li>
-<li><a href="#开发指南-dev-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../dev_guide/">开发指南</a></a></li>
-<li><a href="#部署指南-deploy-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../deploy_guide/">部署指南</a></a></li>
-<li><a href="#elastic-job-cloud-scheduler启动指南-scheduler-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../scheduler_guide/">Elastic-Job-Cloud-Scheduler启动指南</a></a></li>
-<li><a href="#运维平台-cloud-web-console:d8865a468a719781452bdc19ad5d19d1"><a href="../cloud_web_console/">运维平台</a></a></li>
-<li><a href="#其他功能-other-features:d8865a468a719781452bdc19ad5d19d1"><a href="../other_features/">其他功能</a></a></li>
+<li><a href="#功能列表:0f027333df0efc86ae4e7e2fcd61ab91">功能列表</a></li>
+<li><a href="#设计理念:0f027333df0efc86ae4e7e2fcd61ab91">设计理念</a></li>
+<li><a href="#主要界面:0f027333df0efc86ae4e7e2fcd61ab91">主要界面</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -149,7 +178,7 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Cloud使用指南 All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Cloud运维平台 All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>
