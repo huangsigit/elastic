@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Elastic-Job-Cloud使用指南</title>
+    <title>Elastic-Job-Cloud-Scheduler高可用模式</title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -108,35 +108,34 @@ body {
               <div class="col-sm-8">
 		 
 
-<h1 id="elastic-job-cloud使用指南:d8865a468a719781452bdc19ad5d19d1">Elastic-Job-Cloud使用指南</h1>
+<h1 id="elastic-job-cloud-scheduler高可用模式:016847a6cbd7966beec6fc0038f2667a">Elastic-Job-Cloud-Scheduler高可用模式</h1>
 
-<h2 id="环境需求-env-required:d8865a468a719781452bdc19ad5d19d1"><a href="../env_required/">环境需求</a></h2>
+<h2 id="介绍:016847a6cbd7966beec6fc0038f2667a">介绍</h2>
 
-<h2 id="开发指南-dev-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../dev_guide/">开发指南</a></h2>
+<p>在生产环境运行<code>Elastic-Job-Cloud-Scheduler</code>时，建议使用高可用模式。
+该模式是通过运行几个指向同一个ZooKeeper集群的<code>Elastic-Job-Cloud-Scheduler</code>实例来实现的。 <code>ZooKeeper</code>用于在当前主<code>Elastic-Job-Cloud-Scheduler</code>实例失败的情况下执行领导者选举。
+高可用模式需启动至少两个调度器实例来构成集群，集群中只有一个调度器实例提供服务，其他实例处于&rdquo;待命&rdquo;状态。当该实例失败时，集群会选举剩余实例中的一个来继续提供服务。</p>
 
-<h2 id="部署指南-deploy-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../deploy_guide/">部署指南</a></h2>
+<h2 id="配置:016847a6cbd7966beec6fc0038f2667a">配置</h2>
 
-<h2 id="elastic-job-cloud-scheduler启动指南-scheduler-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../scheduler_guide/">Elastic-Job-Cloud-Scheduler启动指南</a></h2>
+<p>每个<code>Elastic-Job-Cloud-Scheduler</code>实例必须使用相同的ZooKeeper集群。
+例如，如果<code>Zookeeper</code>的<code>Quorum</code>为<code>zk://1.2.3.4:2181,2.3.4.5:2181,3.4.5.6:2181/elastic-job-cloud</code>，则<code>elastic-job-cloud-scheduler.properties</code>中<code>Zookeeper</code>相关配置为：</p>
 
-<h2 id="elastic-job-cloud-scheduler高可用模式-high-availability:d8865a468a719781452bdc19ad5d19d1"><a href="../high_availability/">Elastic-Job-Cloud-Scheduler高可用模式</a></h2>
+<pre><code class="language-properties"># Elastic-Job-Cloud's zookeeper address
+zk_servers=1.2.3.4:2181,2.3.4.5:2181,3.4.5.6:2181
 
-<h2 id="运维平台-cloud-web-console:d8865a468a719781452bdc19ad5d19d1"><a href="../cloud_web_console/">运维平台</a></h2>
-
-<h2 id="其他功能-other-features:d8865a468a719781452bdc19ad5d19d1"><a href="../other_features/">其他功能</a></h2>
+# Elastic-Job-Cloud's zookeeper namespace
+zk_namespace=elastic-job-cloud
+</code></pre>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
 <ul>
-<li><a href="#elastic-job-cloud使用指南:d8865a468a719781452bdc19ad5d19d1">Elastic-Job-Cloud使用指南</a>
+<li><a href="#elastic-job-cloud-scheduler高可用模式:016847a6cbd7966beec6fc0038f2667a">Elastic-Job-Cloud-Scheduler高可用模式</a>
 <ul>
-<li><a href="#环境需求-env-required:d8865a468a719781452bdc19ad5d19d1"><a href="../env_required/">环境需求</a></a></li>
-<li><a href="#开发指南-dev-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../dev_guide/">开发指南</a></a></li>
-<li><a href="#部署指南-deploy-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../deploy_guide/">部署指南</a></a></li>
-<li><a href="#elastic-job-cloud-scheduler启动指南-scheduler-guide:d8865a468a719781452bdc19ad5d19d1"><a href="../scheduler_guide/">Elastic-Job-Cloud-Scheduler启动指南</a></a></li>
-<li><a href="#elastic-job-cloud-scheduler高可用模式-high-availability:d8865a468a719781452bdc19ad5d19d1"><a href="../high_availability/">Elastic-Job-Cloud-Scheduler高可用模式</a></a></li>
-<li><a href="#运维平台-cloud-web-console:d8865a468a719781452bdc19ad5d19d1"><a href="../cloud_web_console/">运维平台</a></a></li>
-<li><a href="#其他功能-other-features:d8865a468a719781452bdc19ad5d19d1"><a href="../other_features/">其他功能</a></a></li>
+<li><a href="#介绍:016847a6cbd7966beec6fc0038f2667a">介绍</a></li>
+<li><a href="#配置:016847a6cbd7966beec6fc0038f2667a">配置</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -152,7 +151,7 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Cloud使用指南 All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Cloud-Scheduler高可用模式 All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>
