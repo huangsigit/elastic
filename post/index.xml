@@ -19,7 +19,7 @@
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
-&lt;h2 id=&#34;2-0-5-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.5-SNAPSHOT&lt;/h2&gt;
+&lt;h2 id=&#34;2-0-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.5&lt;/h2&gt;
 
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
 
@@ -31,6 +31,7 @@
 &lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/191&#34;&gt;ISSUE #191&lt;/a&gt; Framework的HA功能&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/217&#34;&gt;ISSUE #217&lt;/a&gt; cloud版本增加APP维度配置&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/223&#34;&gt;ISSUE #223&lt;/a&gt; cloud版本常驻作业事件追踪采样率&lt;/li&gt;
 &lt;/ol&gt;
@@ -1686,6 +1687,8 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;h2 id=&#34;部署指南-deploy-guide:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../deploy_guide/&#34;&gt;部署指南&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&#34;elastic-job-cloud-scheduler启动指南-scheduler-guide:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../scheduler_guide/&#34;&gt;Elastic-Job-Cloud-Scheduler启动指南&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h2 id=&#34;elastic-job-cloud-scheduler高可用模式-high-availability:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../high_availability/&#34;&gt;Elastic-Job-Cloud-Scheduler高可用模式&lt;/a&gt;&lt;/h2&gt;
 
 &lt;h2 id=&#34;运维平台-cloud-web-console:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../cloud_web_console/&#34;&gt;运维平台&lt;/a&gt;&lt;/h2&gt;
 
