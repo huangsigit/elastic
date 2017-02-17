@@ -1154,6 +1154,412 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
     </item>
     
     <item>
+      <title>Elastic-Job-Cloud REST API</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_restful_api/</link>
+      <pubDate>Fri, 17 Feb 2017 14:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_restful_api/</guid>
+      <description>
+
+&lt;h1 id=&#34;elastic-job-cloud-restful-api:72170dbf4f95fec2685f0e0c43e506d4&#34;&gt;Elastic-Job-Cloud RESTful API&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;提供APP及作业注册等&lt;code&gt;RESTful API&lt;/code&gt;可通过&lt;code&gt;curl&lt;/code&gt;操作。&lt;/p&gt;
+
+&lt;h3 id=&#34;注册作业app:72170dbf4f95fec2685f0e0c43e506d4&#34;&gt;注册作业App&lt;/h3&gt;
+
+&lt;p&gt;url：&lt;code&gt;app&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;方法：&lt;code&gt;POST&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数列表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性名&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;缺省值&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;appName&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业应用名称。为&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;的作业应用唯一标识&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;appURL&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业应用所在路径。必须是可以通过网络访问到的路径&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cpuCount&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业应用启动所需要的&lt;code&gt;CPU&lt;/code&gt;数量&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;memoryMB&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;128&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业应用启动所需要的内存&lt;code&gt;MB&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;bootstrapScript&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;启动脚本，如：&lt;code&gt;bin\start.sh&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;appCacheEnable&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;bool&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;true&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;每次执行作业时是否从缓存中读取应用。禁用则每次执行任务均从应用仓库下载应用至本地&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;eventTraceSamplingCount&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;常驻作业事件采样率统计条数，默认不采样全部记录。为避免数据量过大，可对频繁调度的常驻作业配置采样率，即作业每执行N次，才会记录作业执行及追踪相关数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
+&#39;{&amp;quot;appName&amp;quot;:&amp;quot;foo_app&amp;quot;,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;,&amp;quot;appCacheEnable&amp;quot;:true,&amp;quot;eventTraceSamplingCount&amp;quot;:0}&#39; 
+http://elastic_job_cloud_host:8899/app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;修改作业app配置:72170dbf4f95fec2685f0e0c43e506d4&#34;&gt;修改作业App配置&lt;/h3&gt;
+
+&lt;p&gt;url：&lt;code&gt;app&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;方法：&lt;code&gt;PUT&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数列表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性名&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;缺省值&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;appName&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业应用名称。为&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;的作业应用唯一标识&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;appCacheEnable&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;bool&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;true&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;每次执行作业时是否从缓存中读取应用。禁用则每次执行任务均从应用仓库下载应用至本地&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;eventTraceSamplingCount&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;常驻作业事件采样率统计条数，默认不采样全部记录。为避免数据量过大，可对频繁调度的常驻作业配置采样率，即作业每执行N次，才会记录作业执行及追踪相关数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X PUT -d 
+&#39;{&amp;quot;appName&amp;quot;:&amp;quot;foo_app&amp;quot;,&amp;quot;appCacheEnable&amp;quot;:true}&#39; 
+http://elastic_job_cloud_host:8899/app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;注册作业:72170dbf4f95fec2685f0e0c43e506d4&#34;&gt;注册作业&lt;/h3&gt;
+
+&lt;p&gt;url：&lt;code&gt;job/register&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;方法：&lt;code&gt;POST&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数列表：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性名&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否必填&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;缺省值&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;jobName&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业名称。为&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;的作业唯一标识&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;appName&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业应用名称。&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;jobClass&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业实现类&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;jobType&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业类型。&lt;code&gt;SIMPLE&lt;/code&gt;，&lt;code&gt;DATAFLOW&lt;/code&gt;，&lt;code&gt;SCRIPT&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;jobExecutionType&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Enum&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业执行类型。&lt;code&gt;TRANSIENT&lt;/code&gt;为瞬时作业，&lt;code&gt;DAEMON&lt;/code&gt;为常驻作业&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cron&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;cron&lt;/code&gt;表达式，用于配置作业触发时间&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;shardingTotalCount&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业分片总数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cpuCount&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;单片作业所需要的&lt;code&gt;CPU&lt;/code&gt;数量，最小值为&lt;code&gt;0.001&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;memoryMB&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;double&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;单片作业所需要的内存&lt;code&gt;MB&lt;/code&gt;，最小值为&lt;code&gt;1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;appURL&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;应用所在路径。必须是可以通过网络访问到的路径&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;bootstrapScript&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;是&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;启动脚本，如：&lt;code&gt;bin\start.sh&lt;/code&gt;。&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;shardingItemParameters&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;分片序列号和参数用等号分隔，多个键值对用逗号分隔&lt;br /&gt;分片序列号从&lt;code&gt;0&lt;/code&gt;开始，不可大于或等于作业分片总数&lt;br /&gt;如：&lt;br/&gt;&lt;code&gt;0=a,1=b,2=c&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;jobParameter&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业自定义参数&lt;br /&gt;作业自定义参数，可通过传递该参数为作业调度的业务方法传参，用于实现带参数的作业&lt;br /&gt;例：每次获取的数据量、作业实例从数据库读取的主键等&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;failover&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;boolean&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是否开启失效转移&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;misfire&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;boolean&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是否开启错过任务重新执行&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;beanName&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Spring&lt;/code&gt;容器中配置的&lt;code&gt;bean&lt;/code&gt;名称&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;applicationContext&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Spring&lt;/code&gt;方式配置&lt;code&gt;Spring&lt;/code&gt;配置文件相对路径以及名称，如：&lt;code&gt;META-INF\applicationContext.xml&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;streamingProcess&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;boolean&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;DATAFLOW&lt;/code&gt;类型作业，是否流式处理数据&lt;br /&gt;如果流式处理数据, 则&lt;code&gt;fetchData&lt;/code&gt;不返回空结果将持续执行作业&lt;br /&gt;如果非流式处理数据, 则处理数据完成后作业结束&lt;br /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;scriptCommandLine&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;SCRIPT&lt;/code&gt;类型作业命令行执行脚本&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;jobProperties&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业定制化属性，目前支持&lt;code&gt;job_exception_handler&lt;/code&gt;和&lt;code&gt;executor_service_handler&lt;/code&gt;，用于扩展异常处理和自定义作业处理线程池&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;description&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;作业描述信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;注册的作业可用&lt;code&gt;Java&lt;/code&gt;和&lt;code&gt;Spring&lt;/code&gt;两种启动方式，作业启动在&lt;a href=&#34;../dev_guide/&#34;&gt;开发指南&lt;/a&gt;中有说明，这里只举例说明两种方式如何注册。&lt;/p&gt;
+
+&lt;p&gt;使用&lt;code&gt;Transient&lt;/code&gt;的&lt;code&gt;Script&lt;/code&gt;类型作业可直接将&lt;code&gt;shell&lt;/code&gt;上传至&lt;code&gt;appURL&lt;/code&gt;，而无需打成&lt;code&gt;java&lt;/code&gt;包。如果只有单个&lt;code&gt;shell&lt;/code&gt;文件可无需压缩。如是复杂&lt;code&gt;shell&lt;/code&gt;或&lt;code&gt;python&lt;/code&gt;等应用，仍可上传&lt;code&gt;tar&lt;/code&gt;包，支持各种常见压缩格式。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Java启动方式作业注册&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
+&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;appName&amp;quot;:&amp;quot;foo_app&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;jobType&amp;quot;:&amp;quot;SIMPLE&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:true,&amp;quot;misfire&amp;quot;:true,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;}&#39; 
+http://elastic_job_cloud_host:8899/job/register
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Spring启动方式作业注册&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d 
+&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;beanName&amp;quot;:&amp;quot;yourBeanName&amp;quot;,&amp;quot;applicationContext&amp;quot;:&amp;quot;applicationContext.xml&amp;quot;,&amp;quot;jobType&amp;quot;:&amp;quot;SIMPLE&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,
+&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://file_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:false,&amp;quot;misfire&amp;quot;:true,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;}&#39; 
+http://elastic_job_cloud_masterhost:8899/job/register
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;修改作业配置:72170dbf4f95fec2685f0e0c43e506d4&#34;&gt;修改作业配置&lt;/h3&gt;
+
+&lt;p&gt;url：&lt;code&gt;job/update&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;方法：&lt;code&gt;PUT&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数：同注册作业&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X PUT -d 
+&#39;{&amp;quot;jobName&amp;quot;:&amp;quot;foo_job&amp;quot;,&amp;quot;jobClass&amp;quot;:&amp;quot;yourJobClass&amp;quot;,&amp;quot;jobType&amp;quot;:&amp;quot;SIMPLE&amp;quot;,&amp;quot;jobExecutionType&amp;quot;:&amp;quot;TRANSIENT&amp;quot;,&amp;quot;cron&amp;quot;:&amp;quot;0/5 * * * * ?&amp;quot;,&amp;quot;shardingTotalCount&amp;quot;:5,&amp;quot;cpuCount&amp;quot;:0.1,&amp;quot;memoryMB&amp;quot;:64.0,&amp;quot;appURL&amp;quot;:&amp;quot;http://app_host:8080/foo-job.tar.gz&amp;quot;,&amp;quot;failover&amp;quot;:true,&amp;quot;misfire&amp;quot;:true,&amp;quot;bootstrapScript&amp;quot;:&amp;quot;bin/start.sh&amp;quot;}&#39; 
+http://elastic_job_cloud_host:8899/job/update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;注销作业:72170dbf4f95fec2685f0e0c43e506d4&#34;&gt;注销作业&lt;/h3&gt;
+
+&lt;p&gt;url：&lt;code&gt;job/deregister&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;方法：&lt;code&gt;DELETE&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数：作业名称&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X DELETE -d &#39;foo_job&#39; http://elastic_job_cloud_host:8899/job/deregister
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;触发一次作业:72170dbf4f95fec2685f0e0c43e506d4&#34;&gt;触发一次作业&lt;/h3&gt;
+
+&lt;p&gt;url：&lt;code&gt;job/trigger&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;方法：&lt;code&gt;POST&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数类型：&lt;code&gt;application/json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;参数：作业名称&lt;/p&gt;
+
+&lt;p&gt;说明：即事件驱动，通过调用&lt;code&gt;API&lt;/code&gt;而非定时的触发作业。目前仅对&lt;code&gt;Transient&lt;/code&gt;作业类型生效。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;curl -l -H &amp;quot;Content-type: application/json&amp;quot; -X POST -d &#39;foo_job&#39; http://elastic_job_cloud_host:8899/job/trigger
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Elastic-Job-Cloud运维平台</title>
       <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_web_console/</link>
       <pubDate>Sat, 07 Jan 2017 16:14:21 +0800</pubDate>
@@ -1177,7 +1583,7 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 
 &lt;h2 id=&#34;设计理念:0f027333df0efc86ae4e7e2fcd61ab91&#34;&gt;设计理念&lt;/h2&gt;
 
-&lt;p&gt;运维平台采用纯静态HTML+JS方式与后台的&lt;code&gt;Restful API&lt;/code&gt;交互，通过读取作业注册中心展示作业配置和状态，数据库展现作业运行轨迹及执行状态，或更新作业注册中心数据修改作业配置。&lt;/p&gt;
+&lt;p&gt;运维平台采用纯静态HTML+JS方式与后台的&lt;code&gt;RESTful API&lt;/code&gt;交互，通过读取作业注册中心展示作业配置和状态，数据库展现作业运行轨迹及执行状态，或更新作业注册中心数据修改作业配置。&lt;/p&gt;
 
 &lt;h2 id=&#34;主要界面:0f027333df0efc86ae4e7e2fcd61ab91&#34;&gt;主要界面&lt;/h2&gt;
 
@@ -1667,32 +2073,6 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;/table&gt;
 
 &lt;p&gt;&lt;code&gt;JOB_STATUS_TRACE_LOG&lt;/code&gt;记录作业状态变更痕迹表。可通过每次作业运行的&lt;code&gt;task_id&lt;/code&gt;查询作业状态变化的生命周期和运行轨迹。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Elastic-Job-Cloud使用指南</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_index/</link>
-      <pubDate>Sat, 27 Aug 2016 16:14:21 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_index/</guid>
-      <description>
-
-&lt;h1 id=&#34;elastic-job-cloud使用指南:d8865a468a719781452bdc19ad5d19d1&#34;&gt;Elastic-Job-Cloud使用指南&lt;/h1&gt;
-
-&lt;h2 id=&#34;环境需求-env-required:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../env_required/&#34;&gt;环境需求&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&#34;开发指南-dev-guide:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../dev_guide/&#34;&gt;开发指南&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&#34;部署指南-deploy-guide:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../deploy_guide/&#34;&gt;部署指南&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&#34;elastic-job-cloud-scheduler启动指南-scheduler-guide:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../scheduler_guide/&#34;&gt;Elastic-Job-Cloud-Scheduler启动指南&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&#34;elastic-job-cloud-scheduler高可用模式-high-availability:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../high_availability/&#34;&gt;Elastic-Job-Cloud-Scheduler高可用模式&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&#34;运维平台-cloud-web-console:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../cloud_web_console/&#34;&gt;运维平台&lt;/a&gt;&lt;/h2&gt;
-
-&lt;h2 id=&#34;其他功能-other-features:d8865a468a719781452bdc19ad5d19d1&#34;&gt;&lt;a href=&#34;../other_features/&#34;&gt;其他功能&lt;/a&gt;&lt;/h2&gt;
 </description>
     </item>
     
