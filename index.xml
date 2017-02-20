@@ -181,6 +181,14 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h1 id=&#34;release-notes:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;Release Notes&lt;/h1&gt;
 
+&lt;h2 id=&#34;2-0-6-snapshot:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.6-SNAPSHOT&lt;/h2&gt;
+
+&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/195&#34;&gt;ISSUE #195&lt;/a&gt; elastic-job-lite：主节点增加reconcile线程任务，修复分片不一致等分布式相关一致性问题。&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h2 id=&#34;2-0-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.5&lt;/h2&gt;
 
 &lt;h3 id=&#34;缺陷修正:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;缺陷修正&lt;/h3&gt;
@@ -190,7 +198,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/231&#34;&gt;ISSUE 231&lt;/a&gt; 批量删除cloud作业时，mesos会提前同步TASK_LOST消息给framework，导致作业被重新放入ready队列并执行&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;新功能:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/191&#34;&gt;ISSUE #191&lt;/a&gt; Framework的HA功能&lt;/li&gt;
@@ -208,7 +216,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/209&#34;&gt;ISSUE #209&lt;/a&gt; cloud作业资源分配算法改进&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;新功能-1:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/203&#34;&gt;ISSUE #203&lt;/a&gt; cloud类型作业增加运行统计，并提供REST API查询&lt;/li&gt;
@@ -230,7 +238,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/185&#34;&gt;ISSUE #185&lt;/a&gt; Executor多占用分片资源导致资源浪费问题&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;新功能-2:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/178&#34;&gt;ISSUE #178&lt;/a&gt; 事件驱动触发作业&lt;/li&gt;
@@ -297,7 +305,7 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h2 id=&#34;2-0-0:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.0&lt;/h2&gt;
 
-&lt;h3 id=&#34;新功能-3:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Elastic-Job-Cloud初始版本&lt;/li&gt;
@@ -347,7 +355,7 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;h2 id=&#34;1-0-8:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;1.0.8&lt;/h2&gt;
 
-&lt;h3 id=&#34;新功能-4:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/95&#34;&gt;ISSUE #95&lt;/a&gt; 增加脚本类型作业支持&lt;/li&gt;
@@ -361,7 +369,7 @@ http://elastic_job_cloud_host:8899/job/register
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/88&#34;&gt;ISSUE #88&lt;/a&gt; stop作业改名为pause&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;新功能-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
+&lt;h3 id=&#34;新功能-6:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;新功能&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/91&#34;&gt;ISSUE #91&lt;/a&gt; 作业生命周期操作API&lt;/li&gt;
@@ -867,6 +875,14 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;作业事件追踪的数据源&lt;code&gt;Bean&lt;/code&gt;引用&lt;/td&gt;
 &lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;reconcile-interval-minutes&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;-1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;修复作业服务器不一致状态服务调度间隔分钟数&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -1237,6 +1253,10 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;4-修复作业服务器不一致状态:6fde5c464b5cd157fa8c5a0e82fa63a0&#34;&gt;4. 修复作业服务器不一致状态&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;elastic-job&lt;/code&gt;在配置中提供了&lt;code&gt;reconcileIntervalMinutes&lt;/code&gt;设置修复状态服务执行间隔分钟数，用于修复作业服务器不一致状态，默认为-1不启用。&lt;/p&gt;
 </description>
     </item>
     
@@ -1345,32 +1365,6 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 &lt;li&gt;添加作业。
 作业在首次运行时将自动添加。&lt;code&gt;Elastic-Job-Lite&lt;/code&gt;以&lt;code&gt;jar&lt;/code&gt;方式启动，并无作业分发功能。如需完全通过运维平台发布作业，请使用&lt;code&gt;Elastic-Job-Cloud&lt;/code&gt;。&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;主要界面:439bd6471bc872a959df6d32498bc19c&#34;&gt;主要界面&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;总览页&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&#34;../../../../../img/console/lite_index.png&#34; alt=&#34;总览页&#34; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;注册中心管理页&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&#34;../../../../../img/console/lite_reg_center.png&#34; alt=&#34;注册中心管理页&#34; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;作业详细信息页&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&#34;../../../../../img/console/lite_job_details.png&#34; alt=&#34;作业详细信息页&#34; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;服务器详细信息页&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&#34;../../../../../img/console/lite_server_details.png&#34; alt=&#34;服务器详细信息页&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

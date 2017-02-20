@@ -428,6 +428,14 @@ echo sharding execution context is $*
 <td align="left"></td>
 <td align="left">作业事件追踪的数据源<code>Bean</code>引用</td>
 </tr>
+
+<tr>
+<td>reconcile-interval-minutes</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">-1</td>
+<td align="left">修复作业服务器不一致状态服务调度间隔分钟数</td>
+</tr>
 </tbody>
 </table>
 
@@ -799,6 +807,10 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 }
 </code></pre>
 
+<h3 id="4-修复作业服务器不一致状态:6fde5c464b5cd157fa8c5a0e82fa63a0">4. 修复作业服务器不一致状态</h3>
+
+<p><code>elastic-job</code>在配置中提供了<code>reconcileIntervalMinutes</code>设置修复状态服务执行间隔分钟数，用于修复作业服务器不一致状态，默认为-1不启用。</p>
+
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
@@ -839,6 +851,7 @@ public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnce
 <li><a href="#1-每台作业节点均执行的监听:6fde5c464b5cd157fa8c5a0e82fa63a0">1. 每台作业节点均执行的监听</a></li>
 <li><a href="#2-分布式场景中仅单一节点执行的监听:6fde5c464b5cd157fa8c5a0e82fa63a0">2. 分布式场景中仅单一节点执行的监听</a></li>
 </ul></li>
+<li><a href="#4-修复作业服务器不一致状态:6fde5c464b5cd157fa8c5a0e82fa63a0">4. 修复作业服务器不一致状态</a></li>
 </ul></li>
 </ul></li>
 </ul>
