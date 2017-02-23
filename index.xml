@@ -861,11 +861,19 @@ echo sharding execution context is $*
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;jobProperties&lt;/td&gt;
+&lt;td&gt;job-exception-handler&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;作业定制化属性，目前支持&lt;code&gt;job_exception_handler&lt;/code&gt;和&lt;code&gt;executor_service_handler&lt;/code&gt;，用于扩展异常处理和自定义作业处理线程池&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;扩展异常处理类&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;executor-service-handler&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;String&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;扩展作业处理线程池类&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -881,7 +889,7 @@ echo sharding execution context is $*
 &lt;td align=&#34;left&#34;&gt;int&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;-1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;修复作业服务器不一致状态服务调度间隔分钟数&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;修复作业服务器不一致状态服务调度间隔分钟数，配置为&lt;code&gt;-1&lt;/code&gt;表示不执行修复。&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

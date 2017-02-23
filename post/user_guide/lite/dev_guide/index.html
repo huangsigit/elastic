@@ -414,11 +414,19 @@ echo sharding execution context is $*
 </tr>
 
 <tr>
-<td>jobProperties</td>
+<td>job-exception-handler</td>
 <td align="left">String</td>
 <td align="left">否</td>
 <td align="left"></td>
-<td align="left">作业定制化属性，目前支持<code>job_exception_handler</code>和<code>executor_service_handler</code>，用于扩展异常处理和自定义作业处理线程池</td>
+<td align="left">扩展异常处理类</td>
+</tr>
+
+<tr>
+<td>executor-service-handler</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">扩展作业处理线程池类</td>
 </tr>
 
 <tr>
@@ -434,7 +442,7 @@ echo sharding execution context is $*
 <td align="left">int</td>
 <td align="left">否</td>
 <td align="left">-1</td>
-<td align="left">修复作业服务器不一致状态服务调度间隔分钟数</td>
+<td align="left">修复作业服务器不一致状态服务调度间隔分钟数，配置为<code>-1</code>表示不执行修复。</td>
 </tr>
 </tbody>
 </table>
