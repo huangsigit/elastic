@@ -187,6 +187,7 @@ http://elastic_job_cloud_host:8899/job/register
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/195&#34;&gt;ISSUE #195&lt;/a&gt; elastic-job-lite：主节点增加reconcile线程任务，修复分片不一致等分布式相关一致性问题。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dangdangdotcom/elastic-job/issues/242&#34;&gt;ISSUE #242&lt;/a&gt; cloud支持删除app及作业功能&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;2-0-5:0e7a0379e76a8b6dfd2072d5a9672bab&#34;&gt;2.0.5&lt;/h2&gt;
