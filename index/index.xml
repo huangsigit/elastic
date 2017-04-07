@@ -42,8 +42,9 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 &lt;li&gt;失效转移&lt;/li&gt;
 &lt;li&gt;错过执行作业重触发&lt;/li&gt;
 &lt;li&gt;作业分片一致性，保证同一分片在分布式环境中仅一个执行实例&lt;/li&gt;
+&lt;li&gt;自诊断并修复分布式不稳定造成的问题&lt;/li&gt;
 &lt;li&gt;支持并行调度&lt;/li&gt;
-&lt;li&gt;支持作业声明周期操作&lt;/li&gt;
+&lt;li&gt;支持作业生命周期操作&lt;/li&gt;
 &lt;li&gt;丰富的作业类型&lt;/li&gt;
 &lt;li&gt;Spring整合以及命名空间提供&lt;/li&gt;
 &lt;li&gt;运维平台&lt;/li&gt;
@@ -53,10 +54,9 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 
 &lt;ul&gt;
 &lt;li&gt;包含Elastic-Job-Lite的全部功能&lt;/li&gt;
-&lt;li&gt;弹性资源分配&lt;/li&gt;
 &lt;li&gt;应用自动分发&lt;/li&gt;
+&lt;li&gt;基于Fenzo的弹性资源分配&lt;/li&gt;
 &lt;li&gt;基于Docker的进程隔离(TBD)&lt;/li&gt;
-&lt;li&gt;Maven部署插件&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;

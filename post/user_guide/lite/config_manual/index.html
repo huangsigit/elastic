@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Elastic-Job-Lite配置手册</title>
+    
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+    
+    <link href="http://dangdangdotcom.github.io/elastic-job/css/landing-page.css" rel="stylesheet">
+    
+    
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    
+    <style>
+    .navbar {
+    border-color: #e7e7e7;
+}
+
+.content-section-a,
+footer,
+.navbar {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.navbar a:link,
+.navbar-default .navbar-nav>li>a {
+    color: #777;
+}
+
+.navbar a:hover,
+.navbar-default .navbar-nav>li>a:hover {
+    color: rgb(51, 51, 51);
+}
+
+.content-section-b {
+    background-color: white;
+    color: #333;
+}
+
+body {
+    color: rgb(51, 51, 51);
+}
+
+.header-container h1,
+.header-container h2,
+.header-container h3,
+.header-container h4 {
+    color: rgb(51, 51, 51);
+}
+
+  </style>
+    <link href="http://dangdangdotcom.github.io/elastic-job/css/prism.css" rel="stylesheet">
+    <link href="http://dangdangdotcom.github.io/elastic-job/css/table.css" rel="stylesheet">
+</head>
+<body>
+
+<style>
+    .container {
+        width: 95%;
+    }
+</style>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="page-scroll navbar-brand" href="#intro">Elastic-Job</a>
+        </div>
+        
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href=https://github.com/dangdangdotcom/elastic-job>Github</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href=http://dangdangdotcom.github.io/elastic-job>Docs</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href=https://github.com/dangdangdotcom>DangDang</a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    
+</nav>
+
+
+<section id="services">
+   <div class="content-section-a">
+
+      <div class="container">
+        <div class="clearfix"></div>
+        <div class="row">
+	
+              <div class="col-sm-8">
+		 
+
+<h1 id="elastic-job-lite配置手册:b4b5cdb23c98ff8dbad50e840bf37015">Elastic-Job-Lite配置手册</h1>
+
+<h2 id="1-java-code配置:b4b5cdb23c98ff8dbad50e840bf37015">1. Java Code配置</h2>
+
+<h3 id="a-注册中心配置:b4b5cdb23c98ff8dbad50e840bf37015">a. 注册中心配置</h3>
+
+<p>用于注册和协调作业分布式行为的组件，目前仅支持<code>Zookeeper</code>。</p>
+
+<h4 id="zookeeperconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">ZookeeperConfiguration属性详细说明</h4>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">构造器注入</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>serverLists</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">连接<code>Zookeeper</code>服务器的列表<br />包括IP地址和端口号<br />多个地址用逗号分隔<br />如: host1:2181,host2:2181</td>
+</tr>
+
+<tr>
+<td>namespace</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"><code>Zookeeper</code>的命名空间</td>
+</tr>
+
+<tr>
+<td>baseSleepTimeMilliseconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">1000</td>
+<td align="left">等待重试的间隔时间的初始值<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>maxSleepTimeMilliseconds</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left">3000</td>
+<td align="left">等待重试的间隔时间的最大值<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>maxRetries</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left">3</td>
+<td align="left">最大重试次数</td>
+</tr>
+
+<tr>
+<td>sessionTimeoutMilliseconds</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">60000</td>
+<td align="left">会话超时时间<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>connectionTimeoutMilliseconds</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">15000</td>
+<td align="left">连接超时时间<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>digest</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">连接<code>Zookeeper</code>的权限令牌<br />缺省为不需要权限验证</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="b-作业配置:b4b5cdb23c98ff8dbad50e840bf37015">b. 作业配置</h3>
+
+<p>作业配置分为3级，分别是<code>JobCoreConfiguration</code>，<code>JobTypeConfiguration</code>和<code>LiteJobConfiguration</code>。<code>LiteJobConfiguration</code>使用<code>JobTypeConfiguration</code>，<code>JobTypeConfiguration</code>使用<code>JobCoreConfiguration</code>，层层嵌套。
+<code>JobTypeConfiguration</code>根据不同实现类型分为<code>SimpleJobConfiguration</code>，<code>DataflowJobConfiguration</code>和<code>ScriptJobConfiguration</code>。</p>
+
+<h4 id="jobcoreconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">JobCoreConfiguration属性详细说明</h4>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">构造器注入</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>jobName</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业名称</td>
+</tr>
+
+<tr>
+<td>cron</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"><code>cron</code>表达式，用于控制作业触发时间</td>
+</tr>
+
+<tr>
+<td>shardingTotalCount</td>
+<td align="left">int</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业分片总数</td>
+</tr>
+
+<tr>
+<td>shardingItemParameters</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">分片序列号和参数用等号分隔，多个键值对用逗号分隔<br />分片序列号从<code>0</code>开始，不可大于或等于作业分片总数<br />如：<br/><code>0=a,1=b,2=c</code></td>
+</tr>
+
+<tr>
+<td>jobParameter</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业自定义参数<br />作业自定义参数，可通过传递该参数为作业调度的业务方法传参，用于实现带参数的作业<br />例：每次获取的数据量、作业实例从数据库读取的主键等</td>
+</tr>
+
+<tr>
+<td>failover</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">false</td>
+<td align="left">是否开启失效转移<br />仅<code>monitorExecution</code>开启，失效转移才有效</td>
+</tr>
+
+<tr>
+<td>misfire</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">true</td>
+<td align="left">是否开启错过任务重新执行</td>
+</tr>
+
+<tr>
+<td>description</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业描述信息</td>
+</tr>
+
+<tr>
+<td>jobProperties</td>
+<td align="left">Enum</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">配置<code>jobProperties</code>定义的枚举控制<code>Elastic-Job</code>的实现细节<br />JOB_EXCEPTION_HANDLER<code>用于扩展异常处理类&lt;br /&gt;</code>EXECUTOR_SERVICE_HANDLER`用于扩展作业处理线程池类</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="simplejobconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">SimpleJobConfiguration属性详细说明</h4>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">构造器注入</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>coreConfig</td>
+<td align="left">JobCoreConfiguration</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>jobClass</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业实现类，需实现<code>ElasticJob</code>接口</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="dataflowjobconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">DataflowJobConfiguration属性详细说明</h4>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">构造器注入</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>coreConfig</td>
+<td align="left">JobCoreConfiguration</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>jobClass</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业实现类，需实现<code>ElasticJob</code>接口</td>
+</tr>
+
+<tr>
+<td>streamingProcess</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">false</td>
+<td align="left">是否流式处理数据<br />如果流式处理数据, 则<code>fetchData</code>不返回空结果将持续执行作业<br />如果非流式处理数据, 则处理数据完成后作业结束</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="scriptjobconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">ScriptJobConfiguration属性详细说明</h4>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">构造器注入</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>coreConfig</td>
+<td align="left">JobCoreConfiguration</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>scriptCommandLine</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">脚本型作业执行命令行</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="litejobconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">LiteJobConfiguration属性详细说明</h4>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">构造器注入</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>jobConfig</td>
+<td align="left">JobTypeConfiguration</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td>monitorExecution</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">true</td>
+<td align="left">监控作业运行时状态<br />每次作业执行时间和间隔时间均非常短的情况，建议不监控作业运行时状态以提升效率。因为是瞬时状态，所以无必要监控。请用户自行增加数据堆积监控。并且不能保证数据重复选取，应在作业中实现幂等性。<br />每次作业执行时间和间隔时间均较长的情况，建议监控作业运行时状态，可保证数据不会重复选取。</td>
+</tr>
+
+<tr>
+<td>monitorPort</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">-1</td>
+<td align="left">作业监控端口<br />建议配置作业监控端口, 方便开发者dump作业信息。<br />使用方法: echo &ldquo;dump&rdquo; | nc 127.0.0.1 9888</td>
+</tr>
+
+<tr>
+<td>maxTimeDiffSeconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">-1</td>
+<td align="left">最大允许的本机与注册中心的时间误差秒数<br />如果时间误差超过配置秒数则作业启动时将抛异常<br />配置为<code>-1</code>表示不校验时间误差</td>
+</tr>
+
+<tr>
+<td>jobShardingStrategyClass</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left">-1</td>
+<td align="left">作业分片策略实现类全路径<br />默认使用平均分配策略<br />详情参见：<a href="http://dangdangdotcom.github.io/elastic-job/post/job_strategy">作业分片策略</a></td>
+</tr>
+
+<tr>
+<td>reconcileIntervalMinutes</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">10</td>
+<td align="left">修复作业服务器不一致状态服务调度间隔时间，配置为小于<code>1</code>的任意值表示不执行修复<br />单位：分钟</td>
+</tr>
+
+<tr>
+<td>eventTraceRdbDataSource</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业事件追踪的数据源<code>Bean</code>引用</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="2-spring命名空间配置:b4b5cdb23c98ff8dbad50e840bf37015">2. Spring命名空间配置</h2>
+
+<p><code>Spring</code>命名空间与<code>Java Code</code>方式配置类似，大部分属性只是将命名方式由驼峰式改为以减号间隔。使用<code>Spring</code>命名空间需在<code>pom.xml</code>文件中添加<code>elastic-job-lite-spring</code>模块的依赖。</p>
+
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.dangdang&lt;/groupId&gt;
+    &lt;artifactId&gt;elastic-job-lite-spring&lt;/artifactId&gt;
+    &lt;version&gt;${latest.release.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h3 id="a-注册中心配置-1:b4b5cdb23c98ff8dbad50e840bf37015">a. 注册中心配置</h3>
+
+<h4 id="reg-zookeeper命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">reg:zookeeper命名空间属性详细说明</h4>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">注册中心在<code>Spring</code>容器中的主键</td>
+</tr>
+
+<tr>
+<td>server-lists</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">连接<code>Zookeeper</code>服务器的列表<br />包括IP地址和端口号<br />多个地址用逗号分隔<br />如: host1:2181,host2:2181</td>
+</tr>
+
+<tr>
+<td>namespace</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"><code>Zookeeper</code>的命名空间</td>
+</tr>
+
+<tr>
+<td>base-sleep-time-milliseconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">1000</td>
+<td align="left">等待重试的间隔时间的初始值<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>max-sleep-time-milliseconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">3000</td>
+<td align="left">等待重试的间隔时间的最大值<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>max-retries</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">3</td>
+<td align="left">最大重试次数</td>
+</tr>
+
+<tr>
+<td>session-timeout-milliseconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">60000</td>
+<td align="left">会话超时时间<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>connection-timeout-milliseconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">15000</td>
+<td align="left">连接超时时间<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>digest</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">连接<code>Zookeeper</code>的权限令牌<br />缺省为不需要权限验证</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="b-作业配置-1:b4b5cdb23c98ff8dbad50e840bf37015">b. 作业配置</h3>
+
+<h4 id="job-simple命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:simple命名空间属性详细说明</h4>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业名称</td>
+</tr>
+
+<tr>
+<td>class</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业实现类，需实现<code>ElasticJob</code>接口</td>
+</tr>
+
+<tr>
+<td>registry-center-ref</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">注册中心<code>Bean</code>的引用，需引用<code>reg:zookeeper</code>的声明</td>
+</tr>
+
+<tr>
+<td>cron</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left"><code>cron</code>表达式，用于控制作业触发时间</td>
+</tr>
+
+<tr>
+<td>sharding-total-count</td>
+<td align="left">int</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">作业分片总数</td>
+</tr>
+
+<tr>
+<td>sharding-item-parameters</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">分片序列号和参数用等号分隔，多个键值对用逗号分隔<br />分片序列号从<code>0</code>开始，不可大于或等于作业分片总数<br />如：<br/><code>0=a,1=b,2=c</code></td>
+</tr>
+
+<tr>
+<td>job-instance-id</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left">defaultInstance</td>
+<td align="left">作业实例主键，同IP可运行实例主键不同, 但名称相同的多个作业实例</td>
+</tr>
+
+<tr>
+<td>job-parameter</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业自定义参数<br />作业自定义参数，可通过传递该参数为作业调度的业务方法传参，用于实现带参数的作业<br />例：每次获取的数据量、作业实例从数据库读取的主键等</td>
+</tr>
+
+<tr>
+<td>monitor-execution</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">true</td>
+<td align="left">监控作业运行时状态<br />每次作业执行时间和间隔时间均非常短的情况，建议不监控作业运行时状态以提升效率。因为是瞬时状态，所以无必要监控。请用户自行增加数据堆积监控。并且不能保证数据重复选取，应在作业中实现幂等性。<br />每次作业执行时间和间隔时间均较长的情况，建议监控作业运行时状态，可保证数据不会重复选取。</td>
+</tr>
+
+<tr>
+<td>monitor-port</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">-1</td>
+<td align="left">作业监控端口<br />建议配置作业监控端口, 方便开发者dump作业信息。<br />使用方法: echo &ldquo;dump&rdquo; | nc 127.0.0.1 9888</td>
+</tr>
+
+<tr>
+<td>max-time-diff-seconds</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">-1</td>
+<td align="left">最大允许的本机与注册中心的时间误差秒数<br />如果时间误差超过配置秒数则作业启动时将抛异常<br />配置为<code>-1</code>表示不校验时间误差</td>
+</tr>
+
+<tr>
+<td>failover</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">false</td>
+<td align="left">是否开启失效转移<br />仅<code>monitorExecution</code>开启，失效转移才有效</td>
+</tr>
+
+<tr>
+<td>misfire</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">true</td>
+<td align="left">是否开启错过任务重新执行</td>
+</tr>
+
+<tr>
+<td>job-sharding-strategy-class</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业分片策略实现类全路径<br />默认使用平均分配策略<br />详情参见：<a href="http://dangdangdotcom.github.io/elastic-job/post/job_strategy">作业分片策略</a></td>
+</tr>
+
+<tr>
+<td>description</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业描述信息</td>
+</tr>
+
+<tr>
+<td>disabled</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">false</td>
+<td align="left">作业是否禁止启动<br />可用于部署作业时，先禁止启动，部署结束后统一启动</td>
+</tr>
+
+<tr>
+<td>overwrite</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">false</td>
+<td align="left">本地配置是否可覆盖注册中心配置<br />如果可覆盖，每次启动作业都以本地配置为准</td>
+</tr>
+
+<tr>
+<td>job-exception-handler</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">扩展异常处理类</td>
+</tr>
+
+<tr>
+<td>executor-service-handler</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">扩展作业处理线程池类</td>
+</tr>
+
+<tr>
+<td>reconcile-interval-minutes</td>
+<td align="left">int</td>
+<td align="left">否</td>
+<td align="left">10</td>
+<td align="left">修复作业服务器不一致状态服务调度间隔时间，配置为小于<code>1</code>的任意值表示不执行修复<br />单位：分钟</td>
+</tr>
+
+<tr>
+<td>event-trace-rdb-data-source</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">作业事件追踪的数据源<code>Bean</code>引用</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="job-dataflow命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:dataflow命名空间属性详细说明</h4>
+
+<p>job:dataflow命名空间拥有job:simple命名空间的全部属性，以下仅列出特有属性</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>streaming-process</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">false</td>
+<td align="left">是否流式处理数据<br />如果流式处理数据, 则<code>fetchData</code>不返回空结果将持续执行作业<br />如果非流式处理数据, 则处理数据完成后作业结束</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="job-script命名空间属性详细说明-基本属性参照job-simple命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:script命名空间属性详细说明，基本属性参照job:simple命名空间属性详细说明</h4>
+
+<p>job:script命名空间拥有job:simple命名空间的全部属性，以下仅列出特有属性</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>script-command-line</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"></td>
+<td align="left">脚本型作业执行命令行</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="job-listener命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:listener命名空间属性详细说明</h4>
+
+<p><code>job:listener</code>必须配置为<code>job:bean</code>的子元素，并且在子元素中只允许出现一次</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>class</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">前置后置任务监听实现类，需实现<code>ElasticJobListener</code>接口</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="c-作业监听配置:b4b5cdb23c98ff8dbad50e840bf37015">c. 作业监听配置</h3>
+
+<h4 id="job-distributed-listener命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:distributed-listener命名空间属性详细说明</h4>
+
+<p><code>job:distributed-listener</code>必须配置为<code>job:bean</code>的子元素，并且在子元素中只允许出现一次</p>
+
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th align="left">类型</th>
+<th align="left">是否必填</th>
+<th align="left">缺省值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>class</td>
+<td align="left">String</td>
+<td align="left"><code>是</code></td>
+<td align="left"></td>
+<td align="left">前置后置任务分布式监听实现类，需继承<code>AbstractDistributeOnceElasticJobListener</code>类</td>
+</tr>
+
+<tr>
+<td>started-timeout-milliseconds</td>
+<td align="left">long</td>
+<td align="left">否</td>
+<td align="left">Long.MAX_VALUE</td>
+<td align="left">最后一个作业执行前的执行方法的超时时间<br />单位：毫秒</td>
+</tr>
+
+<tr>
+<td>completed-timeout-milliseconds</td>
+<td align="left">long</td>
+<td align="left">否</td>
+<td align="left">Long.MAX_VALUE</td>
+<td align="left">最后一个作业执行后的执行方法的超时时间<br />单位：毫秒</td>
+</tr>
+</tbody>
+</table>
+
+	</div>
+	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
+		 <nav id="TableOfContents">
+<ul>
+<li><a href="#elastic-job-lite配置手册:b4b5cdb23c98ff8dbad50e840bf37015">Elastic-Job-Lite配置手册</a>
+<ul>
+<li><a href="#1-java-code配置:b4b5cdb23c98ff8dbad50e840bf37015">1. Java Code配置</a>
+<ul>
+<li><a href="#a-注册中心配置:b4b5cdb23c98ff8dbad50e840bf37015">a. 注册中心配置</a>
+<ul>
+<li><a href="#zookeeperconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">ZookeeperConfiguration属性详细说明</a></li>
+</ul></li>
+<li><a href="#b-作业配置:b4b5cdb23c98ff8dbad50e840bf37015">b. 作业配置</a>
+<ul>
+<li><a href="#jobcoreconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">JobCoreConfiguration属性详细说明</a></li>
+<li><a href="#simplejobconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">SimpleJobConfiguration属性详细说明</a></li>
+<li><a href="#dataflowjobconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">DataflowJobConfiguration属性详细说明</a></li>
+<li><a href="#scriptjobconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">ScriptJobConfiguration属性详细说明</a></li>
+<li><a href="#litejobconfiguration属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">LiteJobConfiguration属性详细说明</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#2-spring命名空间配置:b4b5cdb23c98ff8dbad50e840bf37015">2. Spring命名空间配置</a>
+<ul>
+<li><a href="#a-注册中心配置-1:b4b5cdb23c98ff8dbad50e840bf37015">a. 注册中心配置</a>
+<ul>
+<li><a href="#reg-zookeeper命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">reg:zookeeper命名空间属性详细说明</a></li>
+</ul></li>
+<li><a href="#b-作业配置-1:b4b5cdb23c98ff8dbad50e840bf37015">b. 作业配置</a>
+<ul>
+<li><a href="#job-simple命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:simple命名空间属性详细说明</a></li>
+<li><a href="#job-dataflow命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:dataflow命名空间属性详细说明</a></li>
+<li><a href="#job-script命名空间属性详细说明-基本属性参照job-simple命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:script命名空间属性详细说明，基本属性参照job:simple命名空间属性详细说明</a></li>
+<li><a href="#job-listener命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:listener命名空间属性详细说明</a></li>
+</ul></li>
+<li><a href="#c-作业监听配置:b4b5cdb23c98ff8dbad50e840bf37015">c. 作业监听配置</a>
+<ul>
+<li><a href="#job-distributed-listener命名空间属性详细说明:b4b5cdb23c98ff8dbad50e840bf37015">job:distributed-listener命名空间属性详细说明</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+	</div>
+        </div>
+    </div>
+</div>
+</div>
+
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Lite配置手册 All Rights Reserved</p>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="//cdn.bootcss.com/jquery/1.12.0/jquery.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+<script src="http://dangdangdotcom.github.io/elastic-job/js/prism.js"></script>
+
+
+
+</body>
+</html>
+

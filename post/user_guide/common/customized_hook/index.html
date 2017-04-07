@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Elastic-Job-Lite其他功能</title>
+    <title>Elastic-Job定制化处理</title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -108,33 +108,20 @@ body {
               <div class="col-sm-8">
 		 
 
-<h1 id="elastic-job-lite其他功能:3bff589538149fbb9b4c841bdafd58e5">Elastic-Job-Lite其他功能</h1>
+<h1 id="异常处理:7a59f1b5dfe52aefdc14d004dde362e4">异常处理</h1>
 
-<h2 id="事件追踪-common-event-trace:3bff589538149fbb9b4c841bdafd58e5"><a href="../../common/event_trace/">事件追踪</a></h2>
+<p><code>Elastic-Job</code>在配置中提供了<code>JobProperties</code>，可扩展<code>JobExceptionHandler</code>接口，并设置<code>job_exception_handler</code>定制异常处理流程，默认实现是记录日志但不抛出异常。</p>
 
-<h2 id="作业操作api-other-lite-job-operate-api:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_job_operate_api/">作业操作API</a></h2>
+<h1 id="定制化作业处理线程池:7a59f1b5dfe52aefdc14d004dde362e4">定制化作业处理线程池</h1>
 
-<h2 id="运维平台-other-lite-web-console:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_web_console/">运维平台</a></h2>
-
-<h2 id="作业运行状态监控-other-lite-execution-monitor:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_execution_monitor/">作业运行状态监控</a></h2>
-
-<h2 id="作业分片策略-other-lite-job-strategy:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_job_strategy/">作业分片策略</a></h2>
-
-<h2 id="dump作业运行信息-other-lite-dump:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_dump/">dump作业运行信息</a></h2>
+<p><code>Elastic-Job</code>在配置中提供了<code>JobProperties</code>，可扩展<code>ExecutorServiceHandler</code>接口，并设置<code>executor_service_handler</code>定制线程池。</p>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
 <ul>
-<li><a href="#elastic-job-lite其他功能:3bff589538149fbb9b4c841bdafd58e5">Elastic-Job-Lite其他功能</a>
-<ul>
-<li><a href="#事件追踪-common-event-trace:3bff589538149fbb9b4c841bdafd58e5"><a href="../../common/event_trace/">事件追踪</a></a></li>
-<li><a href="#作业操作api-other-lite-job-operate-api:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_job_operate_api/">作业操作API</a></a></li>
-<li><a href="#运维平台-other-lite-web-console:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_web_console/">运维平台</a></a></li>
-<li><a href="#作业运行状态监控-other-lite-execution-monitor:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_execution_monitor/">作业运行状态监控</a></a></li>
-<li><a href="#作业分片策略-other-lite-job-strategy:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_job_strategy/">作业分片策略</a></a></li>
-<li><a href="#dump作业运行信息-other-lite-dump:3bff589538149fbb9b4c841bdafd58e5"><a href="../other/lite_dump/">dump作业运行信息</a></a></li>
-</ul></li>
+<li><a href="#异常处理:7a59f1b5dfe52aefdc14d004dde362e4">异常处理</a></li>
+<li><a href="#定制化作业处理线程池:7a59f1b5dfe52aefdc14d004dde362e4">定制化作业处理线程池</a></li>
 </ul>
 </nav>
 	</div>
@@ -149,7 +136,7 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Lite其他功能 All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job定制化处理 All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>

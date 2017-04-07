@@ -110,15 +110,24 @@ body {
 
 <h1 id="elastic-job-lite部署指南:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Lite部署指南</h1>
 
-<h2 id="elastic-job-lite:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Lite</h2>
+<h2 id="应用部署:683f09d60aed8667eba01ae825b6e4c6">应用部署</h2>
 
 <ol>
 <li><p>启动<code>Elastic-Job-Lite</code>指定注册中心的<code>Zookeeper</code>。</p></li>
 
-<li><p>部署运维平台<code>war</code>文件至任何支持<code>Servlet</code>的<code>Web</code>容器(可选)。
-运维平台以<code>war</code>包形式提供，可自行部署至<code>tomcat</code>或<code>jetty</code>等支持<code>servlet</code>的<code>web</code>容器中。<code>elastic-job-console.war</code>可通过<code>mvn install</code>编译或<code>maven</code>中央仓库获取。</p></li>
+<li><p>运行包含<code>Elastic-Job-Lite</code>和业务代码的<code>jar</code>文件。不限与<code>jar</code>或<code>war</code>的启动方式。</p></li>
+</ol>
 
-<li><p>运行包含<code>Elastic-Job-Lite</code>和业务代码的<code>jar</code>文件。</p></li>
+<h2 id="运维平台和restful-api部署-可选:683f09d60aed8667eba01ae825b6e4c6">运维平台和RESTFul API部署(可选)</h2>
+
+<ol>
+<li><p>解压缩<code>elastic-job-lite-console-${version}.tar.gz</code>并执行<code>bin\start.sh</code>。</p></li>
+
+<li><p>打开浏览器访问<code>http://localhost:8899/</code>即可访问控制台。<code>8899</code>为默认端口号，可通过启动脚本输入<code>-p</code>自定义端口号。</p></li>
+
+<li><p>访问<code>RESTFul API</code>方法同控制台。</p></li>
+
+<li><p><code>elastic-job-lite-console-${version}.tar.gz</code>可通过<code>mvn install</code>编译获取。</p></li>
 </ol>
 
 	</div>
@@ -127,7 +136,8 @@ body {
 <ul>
 <li><a href="#elastic-job-lite部署指南:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Lite部署指南</a>
 <ul>
-<li><a href="#elastic-job-lite:683f09d60aed8667eba01ae825b6e4c6">Elastic-Job-Lite</a></li>
+<li><a href="#应用部署:683f09d60aed8667eba01ae825b6e4c6">应用部署</a></li>
+<li><a href="#运维平台和restful-api部署-可选:683f09d60aed8667eba01ae825b6e4c6">运维平台和RESTFul API部署(可选)</a></li>
 </ul></li>
 </ul>
 </nav>

@@ -161,7 +161,7 @@ body {
 <p><code>Elastic-Job-Lite</code>的使用限制：</p>
 
 <ul>
-<li><p>同一台作业服务器只能运行一个相同的作业实例，因为作业运行时是按照<code>IP</code>注册和管理的。</p></li>
+<li><p>同一台作业服务器可以运行多个相同的作业实例，但每个作业实例必须使用不同的<code>JobInstanceId</code>，因为作业运行时是按照<code>IP</code>和<code>JobInstanceId</code>注册和管理的。<code>JobInstanceId</code>可在作业配置中设置。</p></li>
 
 <li><p>一旦有服务器波动，或者修改分片项，将会触发重新分片；触发重新分片将会导致运行中的流式处理的作业在执行完本次作业后不再继续执行，等待分片结束后再恢复正常。</p></li>
 
@@ -279,6 +279,12 @@ body {
 <li><p>作业配置参数cpuCount,memoryMB分别代表作业运行时需要用到的<code>CPU</code>及内存。</p></li>
 </ul>
 
+<h3 id="12-elastic-job-2-0-6-版本支持单节点运行多个相同的作业实例-是否不兼容原来的数据结构:4a1318da06786ac52626178ca960109e">12. <code>Elastic-Job 2.0.6</code>版本支持单节点运行多个相同的作业实例，是否不兼容原来的数据结构?</h3>
+
+<p>回答：</p>
+
+<p>是的。新<code>Elastic-Job Lite</code>的数据结构和原有结构并不兼容。在升级<code>Elastic-Job 2.0.6</code>版本时，请清理<code>Zookeeper</code>中相关作业节点下的<code>server</code>节点下的所有数据。否则使用<code>Web Console</code>时会导致显示错乱，且将导致<code>Elastic-Job-Lite</code>运行不稳定。</p>
+
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
@@ -298,6 +304,7 @@ body {
 <li><a href="#9-作业暂停-pause-与作业失效-disable-的区别是什么:4a1318da06786ac52626178ca960109e">9. 作业暂停(<code>Pause</code>)与作业失效(<code>Disable</code>)的区别是什么?</a></li>
 <li><a href="#10-elastic-job-2-0-0-版本-api-改动较大-升级时需要注意哪些问题:4a1318da06786ac52626178ca960109e">10. <code>Elastic-Job 2.0.0</code>版本<code>API</code>改动较大，升级时需要注意哪些问题?</a></li>
 <li><a href="#11-elastic-job-2-0-5-版本使用cloud需要注意哪些问题:4a1318da06786ac52626178ca960109e">11. <code>Elastic-Job 2.0.5</code>版本使用Cloud需要注意哪些问题?</a></li>
+<li><a href="#12-elastic-job-2-0-6-版本支持单节点运行多个相同的作业实例-是否不兼容原来的数据结构:4a1318da06786ac52626178ca960109e">12. <code>Elastic-Job 2.0.6</code>版本支持单节点运行多个相同的作业实例，是否不兼容原来的数据结构?</a></li>
 </ul></li>
 </ul></li>
 </ul>

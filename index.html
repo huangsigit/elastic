@@ -151,8 +151,9 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 <li>失效转移</li>
 <li>错过执行作业重触发</li>
 <li>作业分片一致性，保证同一分片在分布式环境中仅一个执行实例</li>
+<li>自诊断并修复分布式不稳定造成的问题</li>
 <li>支持并行调度</li>
-<li>支持作业声明周期操作</li>
+<li>支持作业生命周期操作</li>
 <li>丰富的作业类型</li>
 <li>Spring整合以及命名空间提供</li>
 <li>运维平台</li>
@@ -162,10 +163,9 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 
 <ul>
 <li>包含Elastic-Job-Lite的全部功能</li>
-<li>弹性资源分配</li>
 <li>应用自动分发</li>
+<li>基于Fenzo的弹性资源分配</li>
 <li>基于Docker的进程隔离(TBD)</li>
-<li>Maven部署插件</li>
 </ul>
 
 <hr />
@@ -301,19 +301,27 @@ http://elastic_job_cloud_host:8899/job/register
              
                   <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/deploy_guide/" target="_blank">Elastic-Job-Lite部署指南</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other_features/" target="_blank">Elastic-Job-Lite其他功能</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/config_manual/" target="_blank">Elastic-Job-Lite配置手册</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other/lite_job_operate_api/" target="_blank">Elastic-Job-Lite作业操作API</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/operation_manual/" target="_blank">Elastic-Job-Lite操作手册</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other/lite_web_console/" target="_blank">Elastic-Job-Lite运维平台</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/feature_details/" target="_blank">Elastic-Job-Lite详细功能列表</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other/lite_execution_monitor/" target="_blank">Elastic-Job-Lite作业运行状态监控</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/features/lite_web_console/" target="_blank">Elastic-Job-Lite运维平台</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other/lite_job_strategy/" target="_blank">Elastic-Job-Lite作业分片策略</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/features/lite_execution_monitor/" target="_blank">Elastic-Job-Lite作业运行状态监控</a></li>
              
-                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/other/lite_dump/" target="_blank">Elastic-Job-Lite dump作业运行信息</a></li>
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/features/lite_job_strategy/" target="_blank">Elastic-Job-Lite作业分片策略</a></li>
+             
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/features/lite_dump/" target="_blank">Elastic-Job-Lite dump作业运行信息</a></li>
+             
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/features/lite_job_listener/" target="_blank">Elastic-Job-Lite作业监听器</a></li>
+             
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/lite/features/lite_job_reconcile/" target="_blank">Elastic-Job-Lite自诊断并修复分布式不稳定造成的问题</a></li>
              
                   <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/common/event_trace/" target="_blank">Elastic-Job事件追踪</a></li>
+             
+                  <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/common/customized_hook/" target="_blank">Elastic-Job定制化处理</a></li>
              
                   <li> <a href="http://dangdangdotcom.github.io/elastic-job/post/user_guide/cloud/cloud_index/" target="_blank">Elastic-Job-Cloud使用指南</a></li>
              

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Elastic-Job-Lite使用指南</title>
+    <title>Elastic-Job-Lite运维平台</title>
     
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     
@@ -108,32 +108,55 @@ body {
               <div class="col-sm-8">
 		 
 
-<h1 id="elastic-job-lite使用指南:a7868a07e449e89f9c7027c7fe3676ea">Elastic-Job-Lite使用指南</h1>
+<h1 id="elastic-job-lite运维平台:439bd6471bc872a959df6d32498bc19c">Elastic-Job-Lite运维平台</h1>
 
-<h2 id="环境需求-env-required:a7868a07e449e89f9c7027c7fe3676ea"><a href="../env_required/">环境需求</a></h2>
+<p>解压缩<code>elastic-job-lite-console-${version}.tar.gz</code>并执行<code>bin\start.sh</code>。打开浏览器访问<code>http://localhost:8899/</code>即可访问控制台。<code>8899</code>为默认端口号，可通过启动脚本输入<code>-p</code>自定义端口号。</p>
 
-<h2 id="开发指南-dev-guide:a7868a07e449e89f9c7027c7fe3676ea"><a href="../dev_guide/">开发指南</a></h2>
+<p><code>elastic-job-lite-console-${version}.tar.gz</code>可通过<code>mvn install</code>编译获取。</p>
 
-<h2 id="部署指南-deploy-guide:a7868a07e449e89f9c7027c7fe3676ea"><a href="../deploy_guide/">部署指南</a></h2>
+<h2 id="登录:439bd6471bc872a959df6d32498bc19c">登录</h2>
 
-<h2 id="配置手册-config-manual:a7868a07e449e89f9c7027c7fe3676ea"><a href="../config_manual/">配置手册</a></h2>
+<p>默认用户名和密码是<code>root/root</code>，可通过<code>conf\auth.properties</code>修改默认登录账户。</p>
 
-<h2 id="操作手册-operation-manual:a7868a07e449e89f9c7027c7fe3676ea"><a href="../operation_manual/">操作手册</a></h2>
+<h2 id="功能列表:439bd6471bc872a959df6d32498bc19c">功能列表</h2>
 
-<h2 id="详细功能列表-feature-details:a7868a07e449e89f9c7027c7fe3676ea"><a href="../feature_details/">详细功能列表</a></h2>
+<ul>
+<li><p>登录安全控制</p></li>
+
+<li><p>注册中心管理</p></li>
+
+<li><p>快捷修改作业设置</p></li>
+
+<li><p>作业和服务器维度状态查看</p></li>
+
+<li><p>操作作业暂停\恢复、禁用\启用、停止和删除等生命周期</p></li>
+
+<li><p>事件追踪查询</p></li>
+</ul>
+
+<h2 id="设计理念:439bd6471bc872a959df6d32498bc19c">设计理念</h2>
+
+<p>运维平台和<code>elastic-job-lite</code>并无直接关系，是通过读取作业注册中心数据展现作业状态，或更新注册中心数据修改全局配置。</p>
+
+<p>控制台只能控制作业本身是否运行，但不能控制作业进程的启动，因为控制台和作业本身服务器是完全分离的，控制台并不能控制作业服务器。</p>
+
+<h2 id="不支持项:439bd6471bc872a959df6d32498bc19c">不支持项</h2>
+
+<ul>
+<li>添加作业
+作业在首次运行时将自动添加。<code>Elastic-Job-Lite</code>以<code>jar</code>方式启动，并无作业分发功能。如需完全通过运维平台发布作业，请使用<code>Elastic-Job-Cloud</code>。</li>
+</ul>
 
 	</div>
 	<div class="col-sm-3 col-sm-offset-1 doc-sidebar">
 		 <nav id="TableOfContents">
 <ul>
-<li><a href="#elastic-job-lite使用指南:a7868a07e449e89f9c7027c7fe3676ea">Elastic-Job-Lite使用指南</a>
+<li><a href="#elastic-job-lite运维平台:439bd6471bc872a959df6d32498bc19c">Elastic-Job-Lite运维平台</a>
 <ul>
-<li><a href="#环境需求-env-required:a7868a07e449e89f9c7027c7fe3676ea"><a href="../env_required/">环境需求</a></a></li>
-<li><a href="#开发指南-dev-guide:a7868a07e449e89f9c7027c7fe3676ea"><a href="../dev_guide/">开发指南</a></a></li>
-<li><a href="#部署指南-deploy-guide:a7868a07e449e89f9c7027c7fe3676ea"><a href="../deploy_guide/">部署指南</a></a></li>
-<li><a href="#配置手册-config-manual:a7868a07e449e89f9c7027c7fe3676ea"><a href="../config_manual/">配置手册</a></a></li>
-<li><a href="#操作手册-operation-manual:a7868a07e449e89f9c7027c7fe3676ea"><a href="../operation_manual/">操作手册</a></a></li>
-<li><a href="#详细功能列表-feature-details:a7868a07e449e89f9c7027c7fe3676ea"><a href="../feature_details/">详细功能列表</a></a></li>
+<li><a href="#登录:439bd6471bc872a959df6d32498bc19c">登录</a></li>
+<li><a href="#功能列表:439bd6471bc872a959df6d32498bc19c">功能列表</a></li>
+<li><a href="#设计理念:439bd6471bc872a959df6d32498bc19c">设计理念</a></li>
+<li><a href="#不支持项:439bd6471bc872a959df6d32498bc19c">不支持项</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -149,7 +172,7 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Lite使用指南 All Rights Reserved</p>
+                <p class="copyright text-muted small">Copyright &copy; Elastic-Job-Lite运维平台 All Rights Reserved</p>
             </div>
             <div class="col-md-4">
             </div>

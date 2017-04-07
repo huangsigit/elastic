@@ -112,6 +112,25 @@ body {
 
 <p><code>Elastic-Job</code>的<code>Lite</code>版和<code>Cloud</code>版都提供了事件追踪功能，可通过事件订阅的方式处理调度过程的重要事件，用于查询、统计和监控。<code>Elastic-Job</code>目前提供了基于关系型数据库两种事件订阅方式记录事件。</p>
 
+<h2 id="开启事件追踪:7df458b8cae687a433cb980ca278ca47">开启事件追踪</h2>
+
+<h3 id="lite版通过代码配置:7df458b8cae687a433cb980ca278ca47">Lite版通过代码配置</h3>
+
+<p><code>Elastic-Job-Lite</code>在配置中提供了<code>JobEventConfiguration</code>，目前支持数据库方式配置。</p>
+
+<pre><code class="language-java">    // 初始化数据源
+    DataSource dataSource = ...;
+    // 定义日志数据库事件溯源配置
+    JobEventConfiguration jobEventRdbConfig = new JobEventRdbConfiguration(dataSource);
+    // 初始化注册中心
+    CoordinatorRegistryCenter regCenter = ...;
+    // 初始化作业配置
+    LiteJobConfiguration liteJobConfig = ...;
+    new JobScheduler(regCenter, liteJobConfig, jobEventRdbConfig).init(); 
+</code></pre>
+
+<h3 id="cloud版通过配置文件:7df458b8cae687a433cb980ca278ca47">Cloud版通过配置文件</h3>
+
 <h2 id="基于关系型数据库的事件追踪:7df458b8cae687a433cb980ca278ca47">基于关系型数据库的事件追踪</h2>
 
 <p>通过配置开启。具体配置方式请分别参见<a href="../../lite/dev_guide/">Elastic-Job-Lite开发指南</a>和<a href="../../cloud/scheduler_guide/">Elastic-Job-Cloud-Scheduler启动指南</a>。</p>
@@ -320,6 +339,11 @@ body {
 <ul>
 <li><a href="#elastic-job事件追踪:7df458b8cae687a433cb980ca278ca47">Elastic-Job事件追踪</a>
 <ul>
+<li><a href="#开启事件追踪:7df458b8cae687a433cb980ca278ca47">开启事件追踪</a>
+<ul>
+<li><a href="#lite版通过代码配置:7df458b8cae687a433cb980ca278ca47">Lite版通过代码配置</a></li>
+<li><a href="#cloud版通过配置文件:7df458b8cae687a433cb980ca278ca47">Cloud版通过配置文件</a></li>
+</ul></li>
 <li><a href="#基于关系型数据库的事件追踪:7df458b8cae687a433cb980ca278ca47">基于关系型数据库的事件追踪</a></li>
 </ul></li>
 </ul>
