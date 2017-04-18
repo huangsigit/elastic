@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/img/favicon.png" type="image/x-icon" />
 
     
-    <title>00-overviews</title>
+    <title>快速入门</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.8.0/styles/monokai-sublime.min.css">
 <link rel="stylesheet" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/style.css">
   </head>
-  <body class="" data-url="/00-overview/">
+  <body class="" data-url="/01-start/quick-start/">
     
     <nav id="sidebar">
   <div id="header-wrapper">
@@ -98,7 +98,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
           <span>
             
@@ -149,7 +149,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/01-start/index/">
+      <li class="dd-item  parent" data-nav-id="/01-start/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/">
           <span>
             
@@ -162,7 +162,7 @@
         
         <ul>
           
-            <li class="dd-item " data-nav-id="/01-start/quick-start/">
+            <li class="dd-item active" data-nav-id="/01-start/quick-start/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/quick-start/">
                 <span>快速入门     </i></span>
               </a>
@@ -358,31 +358,166 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
                 
                   
                   
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/" itemprop="url"><span itemprop="title">概览</span></a> <i class="fa fa-angle-right"></i>
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/" itemprop="url"><span itemprop="title">起航</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> 00-overviews</span>
+                <span itemprop="title"> 快速入门</span>
               </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-使用api配置启动">1. 使用API配置启动</a>
+<ul>
+<li><a href="#引入maven依赖">引入maven依赖</a></li>
+<li><a href="#作业开发">作业开发</a></li>
+<li><a href="#作业配置">作业配置</a></li>
+<li><a href="#启动作业">启动作业</a></li>
+</ul></li>
+<li><a href="#2-使用spring配置启动">2. 使用Spring配置启动</a>
+<ul>
+<li><a href="#作业开发-1">作业开发</a></li>
+<li><a href="#作业配置-1">作业配置</a></li>
+<li><a href="#启动作业-1">启动作业</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
               
 
             </div>
             
-              <div id="chapter">
-            
               <div id="body-inner">
+                
+                <h1>快速入门</h1>
                 
 
 
+
+<h2 id="1-使用api配置启动">1. 使用API配置启动</h2>
+
+<h3 id="引入maven依赖">引入maven依赖</h3>
+
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.dangdang&lt;/groupId&gt;
+    &lt;artifactId&gt;elastic-job-lite-core&lt;/artifactId&gt;
+    &lt;version&gt;${latest.release.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h3 id="作业开发">作业开发</h3>
+
+<pre><code class="language-java">public class MyElasticJob implements SimpleJob {
+    
+    @Override
+    public void execute(ShardingContext context) {
+        switch (context.getShardingItem()) {
+            case 0: 
+                // do something by sharding item 0
+                break;
+            case 1: 
+                // do something by sharding item 1
+                break;
+            case 2: 
+                // do something by sharding item 2
+                break;
+            // case n: ...
+        }
+    }
+}
+</code></pre>
+
+<h3 id="作业配置">作业配置</h3>
+
+<pre><code class="language-java">    // 定义作业核心配置
+    JobCoreConfiguration simpleCoreConfig = JobCoreConfiguration.newBuilder(&quot;demoSimpleJob&quot;, &quot;0/15 * * * * ?&quot;, 10).build();
+    // 定义SIMPLE类型配置
+    SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName());
+    // 定义Lite作业根配置
+    LiteJobConfiguration simpleJobRootConfig = LiteJobConfiguration.newBuilder(simpleJobConfig).build();
+</code></pre>
+
+<h3 id="启动作业">启动作业</h3>
+
+<pre><code class="language-java">public class JobDemo {
+    
+    public static void main(String[] args) {
+        new JobScheduler(createRegistryCenter(), createJobConfiguration()).init();
+    }
+    
+    private static CoordinatorRegistryCenter createRegistryCenter() {
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration(&quot;zk_host:2181&quot;, &quot;elastic-job-demo&quot;));
+        regCenter.init();
+        return regCenter;
+    }
+    
+    private static LiteJobConfiguration createJobConfiguration() {
+        // 创建作业配置
+        // ...
+    }
+}
+</code></pre>
+
+<h2 id="2-使用spring配置启动">2. 使用Spring配置启动</h2>
+
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.dangdang&lt;/groupId&gt;
+    &lt;artifactId&gt;elastic-job-lite-spring&lt;/artifactId&gt;
+    &lt;version&gt;${latest.release.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h3 id="作业开发-1">作业开发</h3>
+
+<p>同使用API配置中作业开发</p>
+
+<h3 id="作业配置-1">作业配置</h3>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:reg=&quot;http://www.dangdang.com/schema/ddframe/reg&quot;
+    xmlns:job=&quot;http://www.dangdang.com/schema/ddframe/job&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd
+                        &quot;&gt;
+    &lt;!--配置作业注册中心 --&gt;
+    &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
+    
+    &lt;!-- 配置作业--&gt;
+    &lt;job:simple id=&quot;demoSimpleSpringJob&quot; class=&quot;xxx.MyElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<h3 id="启动作业-1">启动作业</h3>
+
+<p>将配置Spring命名空间的xml通过Spring启动，作业将自动加载。</p>
+
+<blockquote>
+<p>详细的规则配置请参考<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/config-manual">配置手册</a></p>
+</blockquote>
+
+
       
-      
-        </div> 
       
       </div>
     </div>
@@ -391,8 +526,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/faq" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

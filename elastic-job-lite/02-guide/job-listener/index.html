@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/img/favicon.png" type="image/x-icon" />
 
     
-    <title>00-overviews</title>
+    <title>作业监听器</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.8.0/styles/monokai-sublime.min.css">
 <link rel="stylesheet" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/style.css">
   </head>
-  <body class="" data-url="/00-overview/">
+  <body class="" data-url="/02-guide/job-listener/">
     
     <nav id="sidebar">
   <div id="header-wrapper">
@@ -98,7 +98,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
           <span>
             
@@ -206,7 +206,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/02-guide/index/">
+      <li class="dd-item  parent" data-nav-id="/02-guide/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/">
           <span>
             
@@ -255,7 +255,7 @@
               </a>
             </li>
           
-            <li class="dd-item " data-nav-id="/02-guide/job-listener/">
+            <li class="dd-item active" data-nav-id="/02-guide/job-listener/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/job-listener/">
                 <span>作业监听器     </i></span>
               </a>
@@ -364,25 +364,129 @@
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/" itemprop="url"><span itemprop="title">概览</span></a> <i class="fa fa-angle-right"></i>
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/" itemprop="url"><span itemprop="title">使用指南</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> 00-overviews</span>
+                <span itemprop="title"> 作业监听器</span>
               </div>
               
 
             </div>
             
-              <div id="chapter">
-            
               <div id="body-inner">
+                
+                <h1>作业监听器</h1>
                 
 
 
+
+<p>可通过配置多个任务监听器，在任务执行前和执行后执行监听的方法。监听器分为每台作业节点均执行和分布式场景中仅单一节点执行2种。</p>
+
+<h2 id="1-每台作业节点均执行的监听">1. 每台作业节点均执行的监听</h2>
+
+<p>若作业处理作业服务器的文件，处理完成后删除文件，可考虑使用每个节点均执行清理任务。此类型任务实现简单，且无需考虑全局分布式任务是否完成，请尽量使用此类型监听器。</p>
+
+<p>步骤：</p>
+
+<ul>
+<li>定义监听器</li>
+</ul>
+
+<pre><code class="language-java">
+public class MyElasticJobListener implements ElasticJobListener {
+    
+    @Override
+    public void beforeJobExecuted(ShardingContexts shardingContexts) {
+        // do something ...
+    }
+    
+    @Override
+    public void afterJobExecuted(ShardingContexts shardingContexts) {
+        // do something ...
+    }
+}
+</code></pre>
+
+<ul>
+<li>将监听器作为参数传入JobScheduler</li>
+</ul>
+
+<pre><code class="language-java">public class JobMain {
+    
+    public static void main(String[] args) {
+        new JobScheduler(createRegistryCenter(), createJobConfiguration(), new MyElasticJobListener()).init();
+    }
+    
+    private static CoordinatorRegistryCenter createRegistryCenter() {
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration(&quot;zk_host:2181&quot;, &quot;elastic-job-demo&quot;));
+        regCenter.init();
+        return regCenter;
+    }
+    
+    private static LiteJobConfiguration createJobConfiguration() {
+        // 创建作业配置
+        ...
+    }
+}
+</code></pre>
+
+<h2 id="2-分布式场景中仅单一节点执行的监听">2. 分布式场景中仅单一节点执行的监听</h2>
+
+<p>若作业处理数据库数据，处理完成后只需一个节点完成数据清理任务即可。此类型任务处理复杂，需同步分布式环境下作业的状态同步，提供了超时设置来避免作业不同步导致的死锁，请谨慎使用。</p>
+
+<p>步骤：</p>
+
+<ul>
+<li>定义监听器</li>
+</ul>
+
+<pre><code class="language-java">
+public class TestDistributeOnceElasticJobListener extends AbstractDistributeOnceElasticJobListener {
+    
+    public TestDistributeOnceElasticJobListener(long startTimeoutMills, long completeTimeoutMills) {
+        super(startTimeoutMills, completeTimeoutMills);
+    }
+    
+    @Override
+    public void doBeforeJobExecutedAtLastStarted(ShardingContexts shardingContexts) {
+        // do something ...
+    }
+    
+    @Override
+    public void doAfterJobExecutedAtLastCompleted(ShardingContexts shardingContexts) {
+        // do something ...
+    }
+}
+</code></pre>
+
+<ul>
+<li>将监听器作为参数传入JobScheduler</li>
+</ul>
+
+<pre><code class="language-java">public class JobMain {
+    
+    public static void main(String[] args) {
+        long startTimeoutMills = 5000L;
+        long completeTimeoutMills = 10000L;
+        new JobScheduler(createRegistryCenter(), createJobConfiguration(), new MyDistributeOnceElasticJobListener(startTimeoutMills, completeTimeoutMills)).init();
+    }
+    
+    private static CoordinatorRegistryCenter createRegistryCenter() {
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration(&quot;zk_host:2181&quot;, &quot;elastic-job-demo&quot;));
+        regCenter.init();
+        return regCenter;
+    }
+    
+    private static LiteJobConfiguration createJobConfiguration() {
+        // 创建作业配置
+        ...
+    }
+}
+</code></pre>
+
+
       
-      
-        </div> 
       
       </div>
     </div>
@@ -391,8 +495,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/dump"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/job-reconcile" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

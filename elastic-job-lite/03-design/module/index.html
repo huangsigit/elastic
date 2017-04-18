@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/img/favicon.png" type="image/x-icon" />
 
     
-    <title>00-overviews</title>
+    <title>目录结构说明</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.8.0/styles/monokai-sublime.min.css">
 <link rel="stylesheet" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/style.css">
   </head>
-  <body class="" data-url="/00-overview/">
+  <body class="" data-url="/03-design/module/">
     
     <nav id="sidebar">
   <div id="header-wrapper">
@@ -98,7 +98,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
           <span>
             
@@ -299,7 +299,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/03-design/index/">
+      <li class="dd-item  parent" data-nav-id="/03-design/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/">
           <span>
             
@@ -312,7 +312,7 @@
         
         <ul>
           
-            <li class="dd-item " data-nav-id="/03-design/module/">
+            <li class="dd-item active" data-nav-id="/03-design/module/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/module/">
                 <span>目录结构说明     </i></span>
               </a>
@@ -358,31 +358,54 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
                 
                   
                   
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/" itemprop="url"><span itemprop="title">概览</span></a> <i class="fa fa-angle-right"></i>
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/" itemprop="url"><span itemprop="title">设计规划</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> 00-overviews</span>
+                <span itemprop="title"> 目录结构说明</span>
               </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
               
 
             </div>
             
-              <div id="chapter">
-            
               <div id="body-inner">
                 
+                <h1>目录结构说明</h1>
+                
+
+<pre><code>elastic-job
+    ├──elastic-job-lite                                 lite父模块，不应直接使用
+    ├      ├──elastic-job-lite-core                     Java支持模块，可直接使用
+    ├      ├──elastic-job-lite-spring                   Spring命名空间支持模块，可直接使用
+    ├      ├──elastic-job-lite-lifecyle                 lite作业相关操作模块，不可直接使用
+    ├      ├──elastic-job-lite-console                  lite界面模块，可直接使用
+    ├──elastic-job-example                              使用示例
+    ├      ├──elastic-job-example-embed-zk              供示例使用的内嵌ZK模块
+    ├      ├──elastic-job-example-jobs                  作业示例
+    ├      ├──elastic-job-example-lite-java             基于Java的使用示例
+    ├      ├──elastic-job-example-lite-spring           基于Spring的使用示例
+    ├      ├──elastic-job-example-lite-springboot       基于SpringBoot的使用示例
+    ├──elastic-job-doc                                  markdown生成文档的项目，使用方无需关注
+    ├      ├──elastic-job-lite-doc                      lite相关文档
+</code></pre>
 
 
       
-      
-        </div> 
       
       </div>
     </div>
@@ -391,8 +414,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/lite-design" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

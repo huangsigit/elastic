@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/img/favicon.png" type="image/x-icon" />
 
     
-    <title>00-overviews</title>
+    <title>部署指南</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.8.0/styles/monokai-sublime.min.css">
 <link rel="stylesheet" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/style.css">
   </head>
-  <body class="" data-url="/00-overview/">
+  <body class="" data-url="/01-start/deploy-guide/">
     
     <nav id="sidebar">
   <div id="header-wrapper">
@@ -98,7 +98,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
           <span>
             
@@ -149,7 +149,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/01-start/index/">
+      <li class="dd-item  parent" data-nav-id="/01-start/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/">
           <span>
             
@@ -180,7 +180,7 @@
               </a>
             </li>
           
-            <li class="dd-item " data-nav-id="/01-start/deploy-guide/">
+            <li class="dd-item active" data-nav-id="/01-start/deploy-guide/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/deploy-guide/">
                 <span>部署指南     </i></span>
               </a>
@@ -358,31 +358,68 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
                 
                   
                   
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/" itemprop="url"><span itemprop="title">概览</span></a> <i class="fa fa-angle-right"></i>
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/" itemprop="url"><span itemprop="title">起航</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> 00-overviews</span>
+                <span itemprop="title"> 部署指南</span>
               </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#应用部署">应用部署</a></li>
+<li><a href="#运维平台和restful-api部署-可选">运维平台和RESTFul API部署(可选)</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
               
 
             </div>
             
-              <div id="chapter">
-            
               <div id="body-inner">
+                
+                <h1>部署指南</h1>
                 
 
 
+
+<h2 id="应用部署">应用部署</h2>
+
+<ol>
+<li><p>启动Elastic-Job-Lite指定注册中心的Zookeeper。</p></li>
+
+<li><p>运行包含Elastic-Job-Lite和业务代码的jar文件。不限与jar或war的启动方式。</p></li>
+</ol>
+
+<h2 id="运维平台和restful-api部署-可选">运维平台和RESTFul API部署(可选)</h2>
+
+<ol>
+<li><p>解压缩elastic-job-lite-console-${version}.tar.gz并执行bin\start.sh。</p></li>
+
+<li><p>打开浏览器访问<code>http://localhost:8899/</code>即可访问控制台。8899为默认端口号，可通过启动脚本输入-p自定义端口号。</p></li>
+
+<li><p>访问RESTFul API方法同控制台。</p></li>
+
+<li><p>elastic-job-lite-console-${version}.tar.gz可通过mvn install编译获取。</p></li>
+</ol>
+
+
       
-      
-        </div> 
       
       </div>
     </div>
@@ -391,8 +428,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/dev-guide"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

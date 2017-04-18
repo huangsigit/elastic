@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/img/favicon.png" type="image/x-icon" />
 
     
-    <title>00-overviews</title>
+    <title>定制化处理</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.8.0/styles/monokai-sublime.min.css">
 <link rel="stylesheet" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/style.css">
   </head>
-  <body class="" data-url="/00-overview/">
+  <body class="" data-url="/02-guide/customized-hook/">
     
     <nav id="sidebar">
   <div id="header-wrapper">
@@ -98,7 +98,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
           <span>
             
@@ -206,7 +206,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/02-guide/index/">
+      <li class="dd-item  parent" data-nav-id="/02-guide/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/">
           <span>
             
@@ -273,7 +273,7 @@
               </a>
             </li>
           
-            <li class="dd-item " data-nav-id="/02-guide/customized-hook/">
+            <li class="dd-item active" data-nav-id="/02-guide/customized-hook/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/customized-hook/">
                 <span>定制化处理     </i></span>
               </a>
@@ -364,25 +364,35 @@
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/" itemprop="url"><span itemprop="title">概览</span></a> <i class="fa fa-angle-right"></i>
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/" itemprop="url"><span itemprop="title">使用指南</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> 00-overviews</span>
+                <span itemprop="title"> 定制化处理</span>
               </div>
               
 
             </div>
             
-              <div id="chapter">
-            
               <div id="body-inner">
+                
+                <h1>定制化处理</h1>
                 
 
 
+
+<p>Elastic-Job在配置中提供了JobProperties，用于定制化处理，目前支持自定义异常处理及作业处理线程池。</p>
+
+<h2 id="异常处理">异常处理</h2>
+
+<p>可扩展JobExceptionHandler接口，并设置job_exception_handler定制异常处理流程，默认实现是记录日志但不抛出异常。</p>
+
+<h2 id="作业处理线程池">作业处理线程池</h2>
+
+<p>可扩展ExecutorServiceHandler接口，并设置executor_service_handler定制线程池。</p>
+
+
       
-      
-        </div> 
       
       </div>
     </div>
@@ -391,8 +401,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/operation-manual"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

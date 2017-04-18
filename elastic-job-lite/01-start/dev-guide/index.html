@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/img/favicon.png" type="image/x-icon" />
 
     
-    <title>贡献代码</title>
+    <title>开发指南</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.8.0/styles/monokai-sublime.min.css">
 <link rel="stylesheet" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/style.css">
   </head>
-  <body class="" data-url="/00-overview/contribution/">
+  <body class="" data-url="/01-start/dev-guide/">
     
     <nav id="sidebar">
   <div id="header-wrapper">
@@ -98,7 +98,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
           <span>
             
@@ -123,7 +123,7 @@
               </a>
             </li>
           
-            <li class="dd-item active" data-nav-id="/00-overview/contribution/">
+            <li class="dd-item " data-nav-id="/00-overview/contribution/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/contribution/">
                 <span>贡献代码     </i></span>
               </a>
@@ -149,7 +149,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/01-start/index/">
+      <li class="dd-item  parent" data-nav-id="/01-start/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/">
           <span>
             
@@ -174,7 +174,7 @@
               </a>
             </li>
           
-            <li class="dd-item " data-nav-id="/01-start/dev-guide/">
+            <li class="dd-item active" data-nav-id="/01-start/dev-guide/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/dev-guide/">
                 <span>开发指南     </i></span>
               </a>
@@ -366,11 +366,11 @@
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/" itemprop="url"><span itemprop="title">概览</span></a> <i class="fa fa-angle-right"></i>
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/" itemprop="url"><span itemprop="title">起航</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> 贡献代码</span>
+                <span itemprop="title"> 开发指南</span>
               </div>
               
                   <div class="progress">
@@ -379,25 +379,27 @@
 <ul>
 <li>
 <ul>
-<li><a href="#报告bug">报告bug</a>
+<li><a href="#0-环境要求">0. 环境要求</a>
 <ul>
-<li><a href="#报告一个新bug之前">报告一个新bug之前</a></li>
-<li><a href="#如何提交一个有质量的bug">如何提交一个有质量的bug</a></li>
+<li><a href="#a-java">a. Java</a></li>
+<li><a href="#b-zookeeper">b. Zookeeper</a></li>
+<li><a href="#c-maven">c. Maven</a></li>
 </ul></li>
-<li><a href="#提交功能增强建议">提交功能增强建议</a>
+<li><a href="#1-作业开发">1. 作业开发</a>
 <ul>
-<li><a href="#提交一个功能增强建议之前">提交一个功能增强建议之前</a></li>
-<li><a href="#如何提交一个好的功能增强建议">如何提交一个好的功能增强建议</a></li>
+<li><a href="#a-simple类型作业">a. Simple类型作业</a></li>
+<li><a href="#b-dataflow类型作业">b. Dataflow类型作业</a></li>
+<li><a href="#c-script类型作业">c. Script类型作业</a></li>
 </ul></li>
-<li><a href="#贡献补丁-patch">贡献补丁(patch)</a>
+<li><a href="#2-作业配置">2. 作业配置</a>
 <ul>
-<li><a href="#开发理念">开发理念</a></li>
-<li><a href="#开发行为规范">开发行为规范</a></li>
-<li><a href="#编码规范">编码规范</a></li>
-<li><a href="#单元测试规范">单元测试规范</a></li>
-<li><a href="#编译代码">编译代码</a></li>
-<li><a href="#文档生成">文档生成</a></li>
-<li><a href="#贡献代码">贡献代码</a></li>
+<li><a href="#a-使用java代码配置">a. 使用Java代码配置</a></li>
+<li><a href="#b-spring命名空间配置">b. Spring命名空间配置</a></li>
+</ul></li>
+<li><a href="#3-作业启动">3. 作业启动</a>
+<ul>
+<li><a href="#a-java启动方式">a. Java启动方式</a></li>
+<li><a href="#b-spring启动方式">b. Spring启动方式</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -411,199 +413,214 @@
             
               <div id="body-inner">
                 
-                <h1>贡献代码</h1>
+                <h1>开发指南</h1>
                 
 
 
 
-<p>您可以报告bug，提交一个新的功能增强建议或者直接对以上内容提交改进补丁。</p>
+<h2 id="0-环境要求">0. 环境要求</h2>
 
-<h2 id="报告bug">报告bug</h2>
+<h3 id="a-java">a. Java</h3>
 
-<p>本章节介绍如何提交一个bug。</p>
+<p>请使用JDK1.7及其以上版本。<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">详情参见</a></p>
 
-<h3 id="报告一个新bug之前">报告一个新bug之前</h3>
+<h3 id="b-zookeeper">b. Zookeeper</h3>
 
-<ul>
-<li>确定在最新版本中该bug存在。我们将不会持续维护所有的发布版本，所有的修改仅根据当前版本。</li>
-<li>确认该bug是可以复现的。请尽量提供完整的重现步骤。</li>
-<li>请确定这不是一个重复的bug。
-查看<a href="https://github.com/dangdangdotcom/elastic-job/issues">Issue Page</a>列表，搜索您要提交的bug是否已经被报告过。</li>
-</ul>
+<p>请使用Zookeeper 3.4.6及其以上版本。<a href="https://zookeeper.apache.org/doc/trunk/zookeeperStarted.html">详情参见</a></p>
 
-<h3 id="如何提交一个有质量的bug">如何提交一个有质量的bug</h3>
+<h3 id="c-maven">c. Maven</h3>
 
-<p>请在<a href="https://github.com/dangdangdotcom/elastic-job/issues">Issue Page</a>页面中提交bug。</p>
+<p>请使用Maven 3.0.4及其以上版本。<a href="http://maven.apache.org/install.html">详情参见</a></p>
 
-<ul>
-<li>使用一个清晰并有描述性的标题来定义bug。</li>
-<li>详细的描述复现bug的步骤。包括您使用的SQL，配置情况，预计产生的结果，实际产生的结果。并附加详细的TRACE日志。</li>
-<li>如果程序抛出异常，请附加完整的堆栈日志。</li>
-<li>如有可能，请附上屏幕截图或动态的GIF图，这些图片能帮助演示整个问题的产生过程。</li>
-<li>如果涉及性能问题，请附加上CPU，内存或网络磁盘IO的Profile截图。</li>
-<li>说明适用的版本，只有release版本的bug才可以提交，并且应该是当前最新版本。</li>
-<li>说明适用的操作系统，及其版本。</li>
-<li>使用bug标签(Label)来标记这个issue。</li>
-</ul>
+<h2 id="1-作业开发">1. 作业开发</h2>
 
-<p>以下是bug的Markdown模板，请按照该模板填写issue。</p>
+<p>Elastic-Job-Lite和Elastic-Job-Cloud提供统一作业接口，开发者仅需对业务作业进行一次开发，之后可根据不同的配置以及部署至不同的Lite或Cloud环境。</p>
 
-<pre><code>[问题简单描述]
+<p>Elastic-Job提供Simple、Dataflow和Script 3种作业类型。
+方法参数shardingContext包含作业配置、片和运行时信息。可通过getShardingTotalCount(), getShardingItem()等方法分别获取分片总数，运行在本作业服务器的分片序列号等。</p>
 
-**问题复现步骤:**
+<h3 id="a-simple类型作业">a. Simple类型作业</h3>
 
-1. [第一步]
-2. [第二步]
-3. [其他步骤...]
+<p>意为简单实现，未经任何封装的类型。需实现SimpleJob接口。该接口仅提供单一方法用于覆盖，此方法将定时执行。与Quartz原生接口相似，但提供了弹性扩缩容和分片等功能。</p>
 
-**期望的表现:**
-
-[在这里描述期望的表现]
-
-**观察到的表现:**
-
-[在这里描述观察到的表现]
-
-**屏幕截图和动态GIF图**
-
-![复现步骤的屏幕截图和动态GIF图](图片的url)
-
-**Elastic-Job版本:** [输入Elastic-Job的版本]
-**操作系统及版本:** [输入操作系统及版本]
-
+<pre><code class="language-java">public class MyElasticJob implements SimpleJob {
+    
+    @Override
+    public void execute(ShardingContext context) {
+        switch (context.getShardingItem()) {
+            case 0: 
+                // do something by sharding item 0
+                break;
+            case 1: 
+                // do something by sharding item 1
+                break;
+            case 2: 
+                // do something by sharding item 2
+                break;
+            // case n: ...
+        }
+    }
+}
 </code></pre>
 
-<h2 id="提交功能增强建议">提交功能增强建议</h2>
+<h3 id="b-dataflow类型作业">b. Dataflow类型作业</h3>
 
-<p>本章节介绍如何提交一个功能增强建议。</p>
+<p>Dataflow类型用于处理数据流，需实现DataflowJob接口。该接口提供2个方法可供覆盖，分别用于抓取(fetchData)和处理(processData)数据。</p>
 
-<h3 id="提交一个功能增强建议之前">提交一个功能增强建议之前</h3>
-
-<ul>
-<li>请先检查<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/">详细功能列表</a>。</li>
-<li>请确定这不是一个重复的功能增强建议。
-查看<a href="https://github.com/dangdangdotcom/elastic-job/issues">Issue Page</a>列表，搜索您要提交的功能增强建议是否已经被提交过。</li>
-</ul>
-
-<h3 id="如何提交一个好的功能增强建议">如何提交一个好的功能增强建议</h3>
-
-<p>请在<a href="https://github.com/dangdangdotcom/elastic-job/issues">Issue Page</a>页面中提交功能增强建议。</p>
-
-<ul>
-<li>使用一个清晰并有描述性的标题来定义增强建议。</li>
-<li>详细描述增强功能的行为模式。</li>
-<li>解释说明为什么该功能是对大多数用户是有用的。新功能应该具有广泛的适用性。</li>
-<li>如有可能，可以列出其他数据库中间已经具备的类似功能。商用与开源软件均可。</li>
-<li>使用enhancement标签(Label)来标记这个issue。</li>
-</ul>
-
-<p>以下是功能增强建议的Markdown模板，请按照该模板填写issue。</p>
-
-<pre><code>[简单的建议描述]
-
-**建议的新功能行为**
-
-[描述新功能应表现的行为模式]
-
-**为什么这个新功能是对大多数用户有用的**
-
-[解释这个功能为什么对大多数用户是有用的]
-
-[列出其他的数据库中间件是否包含该功能，且如何实现的]
-
+<pre><code class="language-java">public class MyElasticJob implements DataflowJob&lt;Foo&gt; {
+    
+    @Override
+    public List&lt;Foo&gt; fetchData(ShardingContext context) {
+        switch (context.getShardingItem()) {
+            case 0: 
+                List&lt;Foo&gt; data = // get data from database by sharding item 0
+                return data;
+            case 1: 
+                List&lt;Foo&gt; data = // get data from database by sharding item 1
+                return data;
+            case 2: 
+                List&lt;Foo&gt; data = // get data from database by sharding item 2
+                return data;
+            // case n: ...
+        }
+    }
+    
+    @Override
+    public void processData(ShardingContext shardingContext, List&lt;Foo&gt; data) {
+        // process data
+        // ...
+    }
+}
 </code></pre>
 
-<h2 id="贡献补丁-patch">贡献补丁(patch)</h2>
+<hr />
 
-<p>本章节向贡献者介绍开发规范、环境、示例和文档。</p>
+<p><strong>流式处理</strong></p>
 
-<h3 id="开发理念">开发理念</h3>
+<p>可通过DataflowJobConfiguration配置是否流式处理。</p>
 
-<ul>
-<li>用心写代码，提炼真正的非功能性需求。</li>
-<li>代码整洁干净到极致, 请参见《重构》和《代码整洁之道》。</li>
-<li>极简代码, 高度复用，无重复代码和配置。</li>
-<li>代码应在同一抽象层级。</li>
-<li>修改功能时多考虑影响面, 不可留下没修改完全的部分。</li>
-<li>只有一个需求时，不需扩展性。两个类似需求时, 再提炼扩展性。</li>
-</ul>
+<p>流式处理数据只有fetchData方法的返回值为null或集合长度为空时，作业才停止抓取，否则作业将一直运行下去；
+非流式处理数据则只会在每次作业执行过程中执行一次fetchData方法和processData方法，随即完成本次作业。</p>
 
-<h3 id="开发行为规范">开发行为规范</h3>
+<p>如果采用流式作业处理方式，建议processData处理数据后更新其状态，避免fetchData再次抓取到，从而使得作业永不停止。
+流式数据处理参照TbSchedule设计，适用于不间歇的数据处理。</p>
 
-<ul>
-<li>提交之前先确定模块的测试套件，并使用测试覆盖率工具检查覆盖率不能低于master分支的覆盖率。</li>
-<li>使用Checkstyle检查代码, 违反验证规则的需要有特殊理由。模板位置在elastic-job/src/resources/dd_checks.xml。</li>
-<li>执行mvn clean install可以测试和编译通过。</li>
-<li>及时删除无用代码。</li>
-</ul>
+<h3 id="c-script类型作业">c. Script类型作业</h3>
 
-<h3 id="编码规范">编码规范</h3>
+<p>Script类型作业意为脚本类型作业，支持shell，python，perl等所有类型脚本。只需通过控制台或代码配置scriptCommandLine即可，无需编码。执行脚本路径可包含参数，参数传递完毕后，作业框架会自动追加最后一个参数为作业运行时信息。</p>
 
-<ul>
-<li>写代码之前看一下系统已有的代码, 保持风格和使用方式一致。</li>
-<li>变量命名要有意义, 如果方法只有唯一的返回值, 使用result命名返回值. 循环中使用each命名循环变量, map中使用entry代替each。</li>
-<li>嵌套循环尽量提成方法。</li>
-<li>优先使用卫语句。</li>
-<li>配置文件使用驼峰命名, 文件名首字母小写。</li>
-<li>类和方法的访问权限控制为最小, 例如: 可以设为包私有的就不用public。</li>
-<li>方法所用到的私有方法应紧跟着该方法, 如果有多个私有方法, 书写私有方法应与私有方法在原方法的出现顺序相同。</li>
-<li>优先使用guava而非apache commons, 如：优先使用Strings而非StringUtils。</li>
-<li>优先使用lombok代替构造器, get, set, log方法。</li>
-<li>使用linux换行符。</li>
-<li>缩进（包含空行）和上一行保持一致。</li>
-<li>不应有无意义的空行。</li>
-<li>方法入参和返回值不允许为null，如有特殊情况需注释说明。</li>
-<li>需要注释解释的代码尽量提成小方法，用方法名称解释，注释应只包含javadoc和todo，fixme等。</li>
-<li>禁止使用static import。</li>
-<li>不需要公开的类放入internal包，包中类尽量包私有。</li>
-<li>日志一律使用英文。</li>
-<li>使用annotation获取spring的业务bean。</li>
-<li>如果模块中有公用的切入点，应在模块一级路径创建pointcut包。</li>
-<li>属性配置项需要添加到各个模块的常量枚举中。</li>
-</ul>
+<pre><code>#!/bin/bash
+echo sharding execution context is $*
+</code></pre>
 
-<h3 id="单元测试规范">单元测试规范</h3>
+<p>作业运行时输出</p>
 
-<ul>
-<li>测试代码和生产代码需遵守相同代码规范。</li>
-<li>如无特殊理由, 测试需全覆盖。</li>
-<li>准备环境的代码和测试代码分离。</li>
-<li>单数据断言, 应使用assertTrue, assertFalse, assertNull, assertNotNull。</li>
-<li>多数据断言, 应使用assertThat。</li>
-<li>精确断言, 尽量不使用not, containsString断言。</li>
-<li>调用业务方法的变量, 应命名为actualXXX, 期望值应命名为expectedXXX。</li>
-<li>只有junit assertXXX, hamcrest, mocktio相关可以使用static import。</li>
-</ul>
+<p>sharding execution context is {&ldquo;jobName&rdquo;:&ldquo;scriptElasticDemoJob&rdquo;,&ldquo;shardingTotalCount&rdquo;:10,&ldquo;jobParameter&rdquo;:&ldquo;&rdquo;,&ldquo;shardingItem&rdquo;:0,&ldquo;shardingParameter&rdquo;:&ldquo;A&rdquo;}</p>
 
-<h3 id="编译代码">编译代码</h3>
+<h2 id="2-作业配置">2. 作业配置</h2>
 
-<p>Elastic-Job的代码编译需要<a href="http://maven.apache.org/">Maven</a>，请保证IDE中正确配置了它。
-代码用到的所有依赖完全都可以从公网下载，请根据自身的网络情况选择合理的镜像。</p>
+<p>Elastic-Job配置分为3个层级，分别是Core, Type和Root。每个层级使用相似于装饰者模式的方式装配。</p>
 
-<p>代码使用了<a href="https://projectlombok.org/download.html">Lombok</a>来生成类属性的访问方法，构造器等。
-故请以上从链接内容来获取适合您的IDE的解决方法。</p>
+<p>Core对应JobCoreConfiguration，用于提供作业核心配置信息，如：作业名称、分片总数、CRON表达式等。</p>
 
-<h3 id="文档生成">文档生成</h3>
+<p>Type对应JobTypeConfiguration，有3个子类分别对应SIMPLE, DATAFLOW和SCRIPT类型作业，提供3种作业需要的不同配置，如：DATAFLOW类型是否流式处理或SCRIPT类型的命令行等。</p>
 
-<p>文档使用博客生成引擎<a href="https://gohugo.io/">HUGO</a>，请根据文档安装环境。
-文档全部在elastic-job/elastic-job-doc/public目录中。</p>
+<p>Root对应JobRootConfiguration，有2个子类分别对应Lite和Cloud部署类型，提供不同部署类型所需的配置，如：Lite类型的是否需要覆盖本地配置或Cloud占用CPU或Memory数量等。</p>
 
-<h3 id="贡献代码">贡献代码</h3>
+<h3 id="a-使用java代码配置">a. 使用Java代码配置</h3>
 
-<p>请按照规范贡献代码，示例和文档。</p>
+<p><strong>通用作业配置</strong></p>
 
-<ul>
-<li>所有的问题与新功能请使用<a href="https://github.com/dangdangdotcom/elastic-job/issues">Issue Page</a>进行管理。</li>
-<li>任何人想要开发任何功能，请先回复该功能所关联的Issue，表明您当前正在这个Issue上工作。
-并在回复的时候为自己设置一个deadline，并添加的回复内容中。</li>
-<li>在核心贡献者找到一个导师(shepherd)，导师会在设计与功能实现上给予即时的反馈。</li>
-<li>您应该新建一个分支来开始您的工作，分支的名字为功能名称/issueId。
-例如，您想完成作业依赖功能并提交了<strong>Issue 111</strong>，那么您的branch名字应为 <strong>dependency/111</strong>。
-功能名称与导师讨论后确定。</li>
-<li>完成后，发送一个pull request到dangdangdotcom/elastic-job，
-接着导师做CodeReview，然后他会与您讨论一些细节（包括设计，实现，性能等）。当团队中所有人员对本次修改满意后，导师会将提交合并到master分支。</li>
-<li>最后，恭喜您已经成为了Elastic-Job的官方贡献者！</li>
-</ul>
+<pre><code class="language-java">    // 定义作业核心配置
+    JobCoreConfiguration simpleCoreConfig = JobCoreConfiguration.newBuilder(&quot;demoSimpleJob&quot;, &quot;0/15 * * * * ?&quot;, 10).build();
+    // 定义SIMPLE类型配置
+    SimpleJobConfiguration simpleJobConfig = new SimpleJobConfiguration(simpleCoreConfig, SimpleDemoJob.class.getCanonicalName());
+    // 定义Lite作业根配置
+    JobRootConfiguration simpleJobRootConfig = LiteJobConfiguration.newBuilder(simpleJobConfig).build();
+    
+    // 定义作业核心配置
+    JobCoreConfiguration dataflowCoreConfig = JobCoreConfiguration.newBuilder(&quot;demoDataflowJob&quot;, &quot;0/30 * * * * ?&quot;, 10).build();
+    // 定义DATAFLOW类型配置
+    DataflowJobConfiguration dataflowJobConfig = new DataflowJobConfiguration(dataflowCoreConfig, DataflowDemoJob.class.getCanonicalName(), true);
+    // 定义Lite作业根配置
+    JobRootConfiguration dataflowJobRootConfig = LiteJobConfiguration.newBuilder(dataflowJobConfig).build();
+    
+    // 定义作业核心配置配置
+    JobCoreConfiguration scriptCoreConfig = JobCoreConfiguration.newBuilder(&quot;demoScriptJob&quot;, &quot;0/45 * * * * ?&quot;, 10).build();
+    // 定义SCRIPT类型配置
+    ScriptJobConfiguration scriptJobConfig = new ScriptJobConfiguration(scriptCoreConfig, &quot;test.sh&quot;);
+    // 定义Lite作业根配置
+    JobRootConfiguration scriptJobRootConfig = LiteJobConfiguration.newBuilder(scriptCoreConfig).build();
+</code></pre>
+
+<h3 id="b-spring命名空间配置">b. Spring命名空间配置</h3>
+
+<p>与Spring容器配合使用作业，可将作业Bean配置为Spring Bean，并在作业中通过依赖注入使用Spring容器管理的数据源等对象。可用placeholder占位符从属性文件中取值。Lite可考虑使用Spring命名空间方式简化配置。</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:reg=&quot;http://www.dangdang.com/schema/ddframe/reg&quot;
+    xmlns:job=&quot;http://www.dangdang.com/schema/ddframe/job&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://www.dangdang.com/schema/ddframe/reg 
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd 
+                        http://www.dangdang.com/schema/ddframe/job 
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd 
+                        &quot;&gt;
+    &lt;!--配置作业注册中心 --&gt;
+    &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
+    
+    &lt;!-- 配置简单作业--&gt;
+    &lt;job:simple id=&quot;simpleElasticJob&quot; class=&quot;xxx.MySimpleElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
+    
+    &lt;!-- 配置数据流作业--&gt;
+    &lt;job:dataflow id=&quot;throughputDataflow&quot; class=&quot;xxx.MyThroughputDataflowElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
+    
+    &lt;!-- 配置脚本作业--&gt;
+    &lt;job:script id=&quot;scriptElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; script-command-line=&quot;/your/file/path/demo.sh&quot; /&gt;
+    
+    &lt;!-- 配置带监听的简单作业--&gt;
+    &lt;job:simple id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot;&gt;
+        &lt;job:listener class=&quot;xx.MySimpleJobListener&quot;/&gt;
+        &lt;job:distributed-listener class=&quot;xx.MyOnceSimpleJobListener&quot; started-timeout-milliseconds=&quot;1000&quot; completed-timeout-milliseconds=&quot;2000&quot; /&gt;
+    &lt;/job:simple&gt;
+    
+    &lt;!-- 配置带作业数据库事件追踪的简单作业--&gt;
+    &lt;job:simple id=&quot;listenerElasticJob&quot; class=&quot;xxx.MySimpleListenerElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot; sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; event-trace-rdb-data-source=&quot;yourDataSource&quot;&gt;
+    &lt;/job:simple&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p>配置项详细说明请参见<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/config-manual">配置手册</a></p>
+
+<h2 id="3-作业启动">3. 作业启动</h2>
+
+<h3 id="a-java启动方式">a. Java启动方式</h3>
+
+<pre><code class="language-java">public class JobDemo {
+    
+    public static void main(String[] args) {
+        new JobScheduler(createRegistryCenter(), createJobConfiguration()).init();
+    }
+    
+    private static CoordinatorRegistryCenter createRegistryCenter() {
+        CoordinatorRegistryCenter regCenter = new ZookeeperRegistryCenter(new ZookeeperConfiguration(&quot;zk_host:2181&quot;, &quot;elastic-job-demo&quot;));
+        regCenter.init();
+        return regCenter;
+    }
+    
+    private static LiteJobConfiguration createJobConfiguration() {
+        // 创建作业配置
+        ...
+    }
+}
+</code></pre>
+
+<h3 id="b-spring启动方式">b. Spring启动方式</h3>
+
+<p>将配置Spring命名空间的xml通过Spring启动，作业将自动加载。</p>
 
 
       
@@ -615,8 +632,8 @@
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release-notes"> <i class="fa fa-chevron-left"></i></a>
-        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/faq"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/deploy-guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

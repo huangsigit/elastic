@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/img/favicon.png" type="image/x-icon" />
 
     
-    <title>00-overviews</title>
+    <title>自诊断修复</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.8.0/styles/monokai-sublime.min.css">
 <link rel="stylesheet" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/style.css">
   </head>
-  <body class="" data-url="/00-overview/">
+  <body class="" data-url="/02-guide/job-reconcile/">
     
     <nav id="sidebar">
   <div id="header-wrapper">
@@ -98,7 +98,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
           <span>
             
@@ -206,7 +206,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/02-guide/index/">
+      <li class="dd-item  parent" data-nav-id="/02-guide/index/">
         <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/">
           <span>
             
@@ -261,7 +261,7 @@
               </a>
             </li>
           
-            <li class="dd-item " data-nav-id="/02-guide/job-reconcile/">
+            <li class="dd-item active" data-nav-id="/02-guide/job-reconcile/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/job-reconcile/">
                 <span>自诊断修复     </i></span>
               </a>
@@ -364,25 +364,66 @@
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/" itemprop="url"><span itemprop="title">概览</span></a> <i class="fa fa-angle-right"></i>
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/" itemprop="url"><span itemprop="title">使用指南</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> 00-overviews</span>
+                <span itemprop="title"> 自诊断修复</span>
               </div>
               
 
             </div>
             
-              <div id="chapter">
-            
               <div id="body-inner">
                 
+                <h1>自诊断修复</h1>
+                
+
+<p>在分布式的场景下由于网络、时钟等原因，可能导致Zookeeper的数据与真实运行的作业产生不一致，这种不一致通过正向的校验无法完全避免。需要另外启动一个线程定时校验注册中心数据与真实作业状态的一致性，即维持Elastic-Job的最终一致性。</p>
+
+<p>在2.0.6之前的版本中，网络不稳定的环境下Elastic-Job有可能有的作业分片并未执行，重启一下就能修复。在2.0.6，版本中Elastic-Job在提供reconcileIntervalMinutes设置修复状态服务执行间隔分钟数，用于修复作业服务器不一致状态，默认每10分钟检测并修复一次。</p>
+
+<p>支持两种配置方式</p>
+
+<ul>
+<li>Spring方式</li>
+</ul>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:reg=&quot;http://www.dangdang.com/schema/ddframe/reg&quot;
+    xmlns:job=&quot;http://www.dangdang.com/schema/ddframe/job&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://www.dangdang.com/schema/ddframe/reg 
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd 
+                        http://www.dangdang.com/schema/ddframe/job 
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd 
+                        &quot;&gt;
+    &lt;!--配置作业注册中心 --&gt;
+    &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot; yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
+    
+    &lt;!-- 配置作业--&gt;
+    &lt;job:simple id=&quot;oneOffElasticJob&quot; reconcile-interval-minutes=&quot;10&quot; class=&quot;xxx.MyElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<ul>
+<li>Java方式</li>
+</ul>
+
+<pre><code class="language-java">public class JobMain {
+    public static void main(final String[] args) {
+        // ...
+        LiteJobConfiguration.newBuilder(simpleJobConfig).reconcileIntervalMinutes(10).build();
+        // ...
+    }
+}
+</code></pre>
 
 
       
-      
-        </div> 
       
       </div>
     </div>
@@ -391,8 +432,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/job-listener"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/operation-manual" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

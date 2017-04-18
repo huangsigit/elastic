@@ -16,29 +16,18 @@
       <pubDate>Thu, 13 Apr 2017 16:06:17 +0800</pubDate>
       
       <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/</guid>
-      <description>简介 Elastic-Job是一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。
-Elastic-Job-Lite定位为轻量级无中心化解决方案，使用jar包的形式提供分布式任务的协调服务。 Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理、应用分发以及进程隔离等服务。
-Elastic-Job-Lite和Elastic-Job-Cloud提供同一套API开发作业，开发者仅需一次开发，然后可根据需要以Lite或Cloud的方式部署。
-    
-功能列表 1. Elastic-Job-Lite  分布式调度协调 弹性扩容缩容 失效转移 错过执行作业重触发 作业分片一致性，保证同一分片在分布式环境中仅一个执行实例 自诊断并修复分布式不稳定造成的问题 支持并行调度 支持作业生命周期操作 丰富的作业类型 Spring整合以及命名空间提供 运维平台  2. Elastic-Job-Cloud  包含Elastic-Job-Lite的全部功能 应用自动分发 基于Fenzo的弹性资源分配 基于Docker的进程隔离(TBD)  第三方文档  2017-04 InfoQ新闻：分布式调度中间件Elastic-Job 2.1.0发布：Cloud Native里程碑版本
- 2017-04 中国技术开放日分享：如何从0到1搭建弹性作业云Elastic-Job-Cloud
+      <description> 概述 &amp;nbsp; &amp;nbsp; &amp;nbsp; 
+Elastic-Job是一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。
+Elastic-Job-Lite定位为轻量级无中心化解决方案，使用jar包的形式提供分布式任务的协调服务。
+   
+功能列表  分布式调度协调 弹性扩容缩容 失效转移 错过执行作业重触发 作业分片一致性，保证同一分片在分布式环境中仅一个执行实例 自诊断并修复分布式不稳定造成的问题 支持并行调度 支持作业生命周期操作 丰富的作业类型 Spring整合以及命名空间提供 运维平台  第三方文档  2017-04 InfoQ新闻：分布式调度中间件Elastic-Job 2.1.0发布：Cloud Native里程碑版本
  2017-03 源码分析：Elastic-Job项目源码分析系列
- 2016-09 2016全球容器技术大会分享：基于Mesos的当当作业云Elastic-Job-Cloud
- 2016-09 InfoQ新闻：基于Mesos的当当作业云Elastic Job Cloud
  2015-12 InfoQ文章：详解当当网的分布式作业框架elastic-job
  2015-11 高可用架构群分享：新一代分布式任务调度框架，elastic-job开源项目的10项特性
  2015-11 CSDN专访：深度解读分布式作业调度框架elastic-job
  2015-09 InfoQ新闻：当当开源elastic-job，分布式作业调度框架
-  交流与参与  讨论QQ群： 430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。） 报告确定的bug，提交增强功能建议和提交补丁等，请阅读如何进行贡献。  采用公司 公司排名不分先后，按拼音顺序排名</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/roadmap/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/roadmap/</guid>
-      <description> Roadmap Core Unified Job Config API Core Config Type Config Root Config  Job Types Simple Dataflow Script Http  Event Trace Event Publisher Database Event Listener Other Event Listener  Unified Schedule API Unified Resource API  Elastic-Job-Lite Distributed Features High Availability Elastic scale in/out Failover Misfire Idempotency Reconcile  Registry Center Zookeeper Other Registry Center Supported  Lifecycle Management Add/Remove Pause/Resume Disable/Enable Shutdown Restful API Web Console  Job Dependency Listener Workflow DAG  Spring Integrate Namespace Bean Injection   Elastic-Job-Cloud Transient Job High Availability Elastic scale in/out Failover Misfire Idempotency  Daemon Job High Availability Elastic scale in/out Failover Misfire Idempotency  Mesos Scheduler High Availability Reconcile Redis Based Queue Improvement Http Driver  Mesos Executor Executor Reuse Pool Progress Reporting Health Detection Log Redirect  Lifecycle Management Job Add/Remove Job Pause/Resume Job Disable/Enable Job Shutdown App Add/Remove App Disable/Enable Restful API Web Console  Job Dependency Listener Workflow DAG  Job Distribution Mesos Based Distribution Docker Based Distribution  Resources Management Resources Allocate Cross Data Center A/B Test  Spring Integrate Bean Injection   </description>
+  交流与参与  讨论QQ群： 430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。） 报告确定的bug，提交增强功能建议和提交补丁等，请阅读如何进行贡献。  采用公司 公司排名不分先后，按拼音顺序排名
+36氪 E护通 PINTEC 畅移（上海）信息科技有限公司 当当 记健康 简理财 就医160 快钱 拉手网 懒人听书 米袋集团 全时 赛特斯 拓尔思 微盟 唯品会 网仓 文轩网 华图教育 亚信 一加手机 蚁坊软件 翼龙贷 翼支付 银狐财富 有货网 云猴网 浙江电子口岸 浙金网 中国平安 赚啦理财 </description>
     </item>
     
     <item>
@@ -47,71 +36,28 @@ Elastic-Job-Lite和Elastic-Job-Cloud提供同一套API开发作业，开发者�
       <pubDate>Tue, 06 Dec 2016 22:38:50 +0800</pubDate>
       
       <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/intro/</guid>
-      <description>为何使用Elastic-Job？ 定位 Elastic-Job-Lite以jar的形式提供最轻量级的服务，外部依赖仅Zookeeper。Elastic-Job-Cloud以私有云平台的方式提供集资源、调度以及分片为一体的全量级解决方案，依赖Mesos和Zookeeper。
-通用部分 1. 分片概念 任务的分布式执行，需要将一个任务拆分为多个独立的任务项，然后由分布式的服务器分别执行某一个或几个分片项。
+      <description>Elastic-Job-Lite以jar的形式提供最轻量级的服务，外部依赖仅Zookeeper。
+基本概念 1. 分片概念 任务的分布式执行，需要将一个任务拆分为多个独立的任务项，然后由分布式的服务器分别执行某一个或几个分片项。
 例如：有一个遍历数据库某张表的作业，现有2台服务器。为了快速的执行作业，那么每台服务器应执行作业的50%。 为满足此需求，可将作业分成2片，每台服务器执行1片。作业遍历数据的逻辑应为：服务器A遍历ID以奇数结尾的数据；服务器B遍历ID以偶数结尾的数据。 如果分成10片，则作业遍历数据的逻辑应为：每片分到的分片项应为ID%10，而服务器A被分配到分片项0,1,2,3,4；服务器B被分配到分片项5,6,7,8,9，直接的结果就是服务器A遍历ID以0-4结尾的数据；服务器B遍历ID以5-9结尾的数据。
 2. 分片项与业务处理解耦 Elastic-Job并不直接提供数据处理的功能，框架只会将分片项分配至各个运行中的作业服务器，开发者需要自行处理分片项与真实数据的对应关系。
 3. 个性化参数的适用场景 个性化参数即shardingItemParameter，可以和分片项匹配对应关系，用于将分片项的数字转换为更加可读的业务代码。
 例如：按照地区水平拆分数据库，数据库A是北京的数据；数据库B是上海的数据；数据库C是广州的数据。 如果仅按照分片项配置，开发者需要了解0表示北京；1表示上海；2表示广州。 合理使用个性化参数可以让代码更可读，如果配置为0=北京,1=上海,2=广州，那么代码中直接使用北京，上海，广州的枚举值即可完成分片项和业务逻辑的对应关系。
-Elastic-Job-Lite 1. 分布式调度 Elastic-Job-Lite并无作业调度中心节点，而是基于部署作业框架的程序在到达相应时间点时各自触发调度。
+核心理念 1. 分布式调度 Elastic-Job-Lite并无作业调度中心节点，而是基于部署作业框架的程序在到达相应时间点时各自触发调度。
 注册中心仅用于作业注册和监控信息存储。而主作业节点仅用于处理分片和清理等功能。
 2. 作业高可用 Elastic-Job-Lite提供最安全的方式执行作业。将分片总数设置为1，并使用多于1台的服务器执行作业，作业将会以1主n从的方式执行。
 一旦执行作业的服务器崩溃，等待执行的服务器将会在下次作业启动时替补执行。开启失效转移功能效果更好，可以保证在本次作业执行时崩溃，备机立即启动替补执行。
 3. 最大限度利用资源 Elastic-Job-Lite也提供最灵活的方式，最大限度的提高执行作业的吞吐量。将分片项设置为大于服务器的数量，最好是大于服务器倍数的数量，作业将会合理的利用分布式资源，动态的分配分片项。
 例如：3台服务器，分成10片，则分片项分配结果为服务器A=0,1,2;服务器B=3,4,5;服务器C=6,7,8,9。 如果服务器C崩溃，则分片项分配结果为服务器A=0,1,2,3,4;服务器B=5,6,7,8,9。在不丢失分片项的情况下，最大限度的利用现有资源提高吞吐量。
-Elastic-Job-Cloud 1. 分布式调度 Elastic-Job-Cloud采用Mesos Framework分片和协调作业调度。采用中心化调度实现难度小于Elastic-Job-Lite的无中心化调度，无需再考虑多线程并发的情况。
-2. 作业高可用 Elastic-Job-Cloud由Mesos Framework负责作业高可用和分片。作业丢失会由Mesos Framework自动在另外的Agent上重新启动作业分片实例。
-3. 弹性资源利用 Elastic-Job-Cloud分为2种作业运行模式：瞬时作业 和 常驻作业。
-瞬时作业会在每一次作业执行完毕后立刻释放资源，保证利用现有资源错峰执行。资源分配和容器启动均占用一定时长，且作业执行时资源不一定充足，因此作业执行会有延迟。瞬时作业适用于间隔时间长，资源消耗多且对执行时间无严格要求的作业。
-常驻作业无论在运行时还是等待运行时，均一直占用分配的资源，可节省过多容器启动和资源分配的开销，适用于间隔时间短，资源需求量稳定的作业。
-整体架构图 Elastic-Job-Lite Elastic-Job-Cloud 快速入门 Elastic-Job-Lite 引入maven依赖 &amp;lt;!-- 引入elastic-job-lite核心模块 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;elastic-job-lite-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;elastic-job-lite-spring&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${latest.</description>
+整体架构图 快速入门 引入maven依赖 &amp;lt;!-- 引入elastic-job-lite核心模块 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;elastic-job-lite-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;elastic-job-lite-spring&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;  作业开发 public class MyElasticJob implements SimpleJob { @Override public void execute(ShardingContext context) { switch (context.getShardingItem()) { case 0: // do something by sharding item 0 break; case 1: // do something by sharding item 1 break; case 2: // do something by sharding item 2 break; // case n: .</description>
     </item>
     
     <item>
       <title>Release Note</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release_notes/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release-notes/</link>
       <pubDate>Wed, 27 Jan 2016 22:38:50 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release_notes/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release-notes/</guid>
       <description>2.1.1 新功能  ISSUE #242 Elastic-Job-Cloud支持删除应用及作业功能 ISSUE #243 Elastic-Job-Cloud支持禁用/启用应用及作业功能  功能提升  ISSUE #268 精简POM依赖  缺陷修正  ISSUE #266 Elastic-Job-Lite启动脚本指定端口无效 ISSUE #269 EventTrace失败记录不受采样率影响并且记录失败时间 ISSUE #272 Elastic-Job-Lite界面作业维度，只有全部服务器被禁用时，才应显示为被禁用  2.1.0 新功能  ISSUE #195 Elastic-Job-Lite自诊断并修复分布式不稳定造成的问题 ISSUE #248 Elastic-Job-Lite同一台作业服务器可以行多个相同作业名称的JVM实例(Cloud Native) ISSUE #249 Elastic-Job-Lite运维界面支持事件追踪查询  功能提升  ISSUE #240 Elastic-Job-Lite运维界面重构 ISSUE #262 Elastic-Job-Lite控制台删除作业配置  缺陷修正  ISSUE #237 增加REST API对分片总数不小于1的校验 ISSUE #238 IP正则表达式错误 ISSUE #246 通过JobOperateAPI.remove()后，再JobScheduler.init()创建相同作业后多次触发执行 ISSUE #250 Misfire任务多触发一次  结构调整  ISSUE #263 Elastic-Job-Lite作业操作API重新梳理 ISSUE #264 Elastic-Job-Lite数据存储结构调整，但向前兼容  2.</description>
-    </item>
-    
-    <item>
-      <title>FAQ</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/faq/</link>
-      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/faq/</guid>
-      <description>1. 阅读源码时为什么会出现编译错误? 回答：
-Elastic-Job使用lombok实现极简代码。关于更多使用和安装细节，请参考lombok官网。
-2. 使用Spring命名空间时在网上相应地址找不到xsd? 回答：
-Spring命名空间使用规范并未强制要求将xsd文件部署至公网地址，因此我们并未将http://www.dangdang.com/schema/ddframe/reg/reg.xsd和http://www.dangdang.com/schema/ddframe/job/job.xsd部署至公网，但不影响正常使用。
-elastic-job-lite-spring的jar包中META-INF\spring.schemas配置了xsd文件的位置：http://www.dangdang.com/schema/ddframe/reg/reg.xsd=META-INF/namespace/reg.xsd http://www.dangdang.com/schema/ddframe/job/job.xsd=META-INF/namespace/job.xsd，需确保jar包中该文件存在。
-3. 为什么在代码或Spring配置文件中修改了作业配置，注册中心配置却没有更新? 回答：
-Elastic-Job-Lite采用无中心化设计，若每个客户端的配置不一致，不做控制的话，最后一个启动的客户端配置将会成为注册中心的最终配置。
-Elastic-Job-Lite提出了overwrite概念，可通过JobConfiguration或Spring命名空间配置。overwrite=true即允许客户端配置覆盖注册中心，反之则不允许。如果注册中心无相关作业的配置，则无论overwrite是否配置，客户端配置都将写入注册中心。
-4. 怀疑Elastic-Job-Lite在分布式环境中有问题，但无法重现又不能在线上环境调试，应该怎么做? 回答：
-分布式问题非常难于调试和重现，为此Elastic-Job-Lite提供了dump命令。
-如果您怀疑某些场景出现问题，可参照dump文档将作业运行时信息发给我们、提交issue或发至QQ群讨论。我们已将IP等敏感信息过滤，dump出来的信息可在公网安全传输。
-5. Elastic-Job有何使用限制? 回答：
-Elastic-Job-Lite和Elastic-Job-Cloud的共同使用限制：
- 作业启动成功后修改作业名称视为新作业，原作业废弃。  Elastic-Job-Lite的使用限制：
- 同一台作业服务器可以运行多个相同的作业实例，但每个作业实例必须使用不同的JobInstanceId，因为作业运行时是按照IP和JobInstanceId注册和管理的。JobInstanceId可在作业配置中设置。
- 一旦有服务器波动，或者修改分片项，将会触发重新分片；触发重新分片将会导致运行中的流式处理的作业在执行完本次作业后不再继续执行，等待分片结束后再恢复正常。
- 开启monitorExecution才能实现分布式作业幂等性（即不会在多个作业服务器运行同一个分片）的功能，但monitorExecution对短时间内执行的作业（如每5秒一触发）性能影响较大，建议关闭并自行实现幂等性。
-  6. 是否支持动态添加作业? 回答：
-动态添加作业这个概念每个人理解不尽相同。
-elastic-job-lite为jar包，由开发或运维人员负责启动。启动时自动向注册中心注册作业信息并进行分布式协调，因此并不需要手工在注册中心填写作业信息。 但注册中心与作业部署机无从属关系，注册中心并不能控制将单点的作业分发至其他作业机，也无法将远程服务器未启动的作业启动。elastic-job-lite并不会包含ssh免密管理等功能。
-elastic-job-cloud为mesos框架，由mesos负责作业启动和分发。 但需要将作业打包上传，并调用elastic-job-cloud提供的REST API写入注册中心。 打包上传属于部署系统的范畴elastic-job-cloud并未涉及。
-综上所述，elastic-job已做了基本动态添加功能，但无法做到真正意义的完全自动化添加。
-7. 使用Spring版本有何限制? 回答：
-Elastic-Job的Spring版本支持从3.1.0.RELEASE至4的任何版本。Spring 5由于仅支持JDK 8及其以上版本，因此目前并不支持。Spring 3.1.0之前的版本对占位符的使用与目前不同，因此不再支持。Elastic-Job并未包含Spring的maven依赖，请自行添加您需要的版本。
-8. Zookeeper版本不是3.4.6会有什么问题? 回答：
-根据测试，使用3.3.6版本的Zookeeper在使用Curator 2.10.0的CuratorTransactionFinal的commit时会导致死锁。
-9. 作业暂停(Pause)与作业失效(Disable)的区别是什么? 回答：
-作业暂停和失效都会停止当前节点作业的运行。但作业暂停和恢复不会触发重分片，而作业失效和生效将触发重分片。
-10. Elastic-Job 2.0.0版本API改动较大，升级时需要注意哪些问题? 回答：
-基于扩展性提升，概念明晰和命名规范化的考虑，elastic-job 2.0.0版本决定抛弃原有包袱的束缚，重新定义了JAVA API，Spring命名空间并且删除了已废弃的API。</description>
     </item>
     
     <item>
@@ -128,18 +74,6 @@ Elastic-Job的Spring版本支持从3.1.0.RELEASE至4的任何版本。Spring 5�
 提交一个功能增强建议之前  请先检查详细功能列表。 请确定这不是一个重复的功能增强建议。 查看Issue Page列表，搜索您要提交的功能增强建议是否已经被提交过。  如何提交一个好的功能增强建议 请在Issue Page页面中提交功能增强建议。
  使用一个清晰并有描述性的标题来定义增强建议。 详细描述增强功能的行为模式。 解释说明为什么该功能是对大多数用户是有用的。新功能应该具有广泛的适用性。 如有可能，可以列出其他数据库中间已经具备的类似功能。商用与开源软件均可。 使用enhancement标签(Label)来标记这个issue。  以下是功能增强建议的Markdown模板，请按照该模板填写issue。
 [简单的建议描述] **建议的新功能行为** [描述新功能应表现的行为模式] **为什么这个新功能是对大多数用户有用的** [解释这个功能为什么对大多数用户是有用的] [列出其他的数据库中间件是否包含该功能，且如何实现的]  贡献补丁(patch) 本章节向贡献者介绍开发规范、环境、示例和文档。</description>
-    </item>
-    
-    <item>
-      <title>使用限制</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/limitations/</link>
-      <pubDate>Tue, 06 Dec 2016 22:38:50 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/limitations/</guid>
-      <description> 作业一旦启动成功后不能修改作业名称，如果修改名称则视为新的作业。
- 一旦有服务器波动，或者修改分片项，将会触发重新分片；触发重新分片将会导致运行中的流式处理的作业在执行完本次作业后不再继续执行，等待分片结束后再恢复正常。
- 开启monitorExecution才能实现失效转移功能，但monitorExecution对短时间内执行的作业（如每5秒一触发）性能影响较大，建议这种类型作业关闭此功能，并自行实现幂等性功能。
-  </description>
     </item>
     
   </channel>
