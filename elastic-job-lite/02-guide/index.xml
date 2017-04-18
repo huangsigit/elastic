@@ -16,7 +16,13 @@
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
       <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/</guid>
-      <description> 本章导航  Elastic-Job提供了简单易用的运维平台，方便用户操作及查询作业。 使用配置文件介绍了如何通过Java Code和Spring两种方式配置。 一般情况Elastic-Job是通过平均分配算法的分片策略数据的，但也可以选择哈希及轮转等策略，或者自己定义作业分片策略。 为了便于记录、查询、统计及监控作业运行情况，Elastic-Job提供了事件追踪功能，也可自行对作业运行状态监控。 由于无法在生产环境调试，通过dump可以把作业运行相关信息dump出来，方便开发者debug分析。 最后，Elastic-Job还提供了其它扩展功能，如：[作业监听器]、[字诊断修复]、[定制化处理]及[操作手册]等。  </description>
+      <description> 本章导航  Elastic-Job提供了简单易用的运维平台，方便用户操作及查询作业。
+ 使用配置文件介绍了如何通过Java Code和Spring两种方式配置。
+ 一般情况Elastic-Job是通过平均分配算法的分片策略数据的，但也可以选择哈希及轮转等策略，或者自己定义作业分片策略。
+ 为了便于记录、查询、统计及监控作业运行情况，Elastic-Job提供了事件追踪功能，也可自行对作业运行状态监控。
+ 由于无法在生产环境调试，通过dump可以把作业运行相关信息dump出来，方便开发者debug分析。
+ 最后，Elastic-Job还提供了其它扩展功能，如：作业监听器、自诊断修复、定制化处理及操作手册等。
+  </description>
     </item>
     
     <item>
