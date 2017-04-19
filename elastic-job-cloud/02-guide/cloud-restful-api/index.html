@@ -451,9 +451,7 @@
 </tbody>
 </table>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;appName&quot;:&quot;foo_app&quot;,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;,&quot;appCacheEnable&quot;:true,&quot;eventTraceSamplingCount&quot;:0}' 
-http://elastic_job_cloud_host:8899/app
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;appName&quot;:&quot;foo_app&quot;,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;,&quot;appCacheEnable&quot;:true,&quot;eventTraceSamplingCount&quot;:0}' http://elastic_job_cloud_host:8899/api/app
 </code></pre>
 
 <h3 id="修改作业应用配置">修改作业应用配置</h3>
@@ -504,9 +502,7 @@ http://elastic_job_cloud_host:8899/app
 </tbody>
 </table>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X PUT -d 
-'{&quot;appName&quot;:&quot;foo_app&quot;,&quot;appCacheEnable&quot;:true}' 
-http://elastic_job_cloud_host:8899/app
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X PUT -d '{&quot;appName&quot;:&quot;foo_app&quot;,&quot;appCacheEnable&quot;:true}' http://elastic_job_cloud_host:8899/api/app
 </code></pre>
 
 <h3 id="注册作业">注册作业</h3>
@@ -707,17 +703,12 @@ http://elastic_job_cloud_host:8899/app
 
 <p><strong>Java启动方式作业注册</strong></p>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;appName&quot;:&quot;foo_app&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' 
-http://elastic_job_cloud_host:8899/job/register
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;appName&quot;:&quot;foo_app&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' http://elastic_job_cloud_host:8899/api/job/register
 </code></pre>
 
 <p><strong>Spring启动方式作业注册</strong></p>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;beanName&quot;:&quot;yourBeanName&quot;,&quot;applicationContext&quot;:&quot;applicationContext.xml&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,
-&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' 
-http://elastic_job_cloud_masterhost:8899/job/register
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;beanName&quot;:&quot;yourBeanName&quot;,&quot;applicationContext&quot;:&quot;applicationContext.xml&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://file_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:false,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' http://elastic_job_cloud_masterhost:8899/api/job/register
 </code></pre>
 
 <h3 id="修改作业配置">修改作业配置</h3>
@@ -731,8 +722,7 @@ http://elastic_job_cloud_masterhost:8899/job/register
 <p>参数：同注册作业</p>
 
 <pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X PUT -d 
-'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' 
-http://elastic_job_cloud_host:8899/job/update
+'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appURL&quot;:&quot;http://app_host:8080/foo-job.tar.gz&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' http://elastic_job_cloud_host:8899/api/job/update
 </code></pre>
 
 <h3 id="注销作业">注销作业</h3>
@@ -745,7 +735,7 @@ http://elastic_job_cloud_host:8899/job/update
 
 <p>参数：作业名称</p>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X DELETE -d 'foo_job' http://elastic_job_cloud_host:8899/job/deregister
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X DELETE -d 'foo_job' http://elastic_job_cloud_host:8899/api/job/deregister
 </code></pre>
 
 <h3 id="触发一次作业">触发一次作业</h3>
@@ -760,7 +750,7 @@ http://elastic_job_cloud_host:8899/job/update
 
 <p>说明：即事件驱动，通过调用API而非定时的触发作业。目前仅对Transient作业类型生效。</p>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 'foo_job' http://elastic_job_cloud_host:8899/job/trigger
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 'foo_job' http://elastic_job_cloud_host:8899/api/job/trigger
 </code></pre>
 
 

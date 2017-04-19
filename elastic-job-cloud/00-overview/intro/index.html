@@ -473,16 +473,12 @@
 
 <h2 id="发布app">发布APP</h2>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;appName&quot;:&quot;foo_app&quot;,&quot;appURL&quot;:&quot;http://app_host:8080/yourJobs.gz&quot;,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;,&quot;appCacheEnable&quot;:true,&quot;eventTraceSamplingCount&quot;:0}' 
-http://elastic_job_cloud_host:8899/app
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;appName&quot;:&quot;foo_app&quot;,&quot;appURL&quot;:&quot;http://app_host:8080/yourJobs.gz&quot;,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;,&quot;appCacheEnable&quot;:true,&quot;eventTraceSamplingCount&quot;:0}' http://elastic_job_cloud_host:8899/api/app
 </code></pre>
 
 <h2 id="发布作业">发布作业</h2>
 
-<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d 
-'{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appName&quot;:&quot;foo_app&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' 
-http://elastic_job_cloud_host:8899/job/register
+<pre><code class="language-shell">curl -l -H &quot;Content-type: application/json&quot; -X POST -d '{&quot;jobName&quot;:&quot;foo_job&quot;,&quot;jobClass&quot;:&quot;yourJobClass&quot;,&quot;jobType&quot;:&quot;SIMPLE&quot;,&quot;jobExecutionType&quot;:&quot;TRANSIENT&quot;,&quot;cron&quot;:&quot;0/5 * * * * ?&quot;,&quot;shardingTotalCount&quot;:5,&quot;cpuCount&quot;:0.1,&quot;memoryMB&quot;:64.0,&quot;appName&quot;:&quot;foo_app&quot;,&quot;failover&quot;:true,&quot;misfire&quot;:true,&quot;bootstrapScript&quot;:&quot;bin/start.sh&quot;}' http://elastic_job_cloud_host:8899/api/job/register
 </code></pre>
 
 
