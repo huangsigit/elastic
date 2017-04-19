@@ -19,10 +19,8 @@
       <description>Elastic-Job是ddframe中dd-job的作业模块中分离出来的分布式弹性作业框架。去掉了和dd-job中的监控和ddframe接入规范部分。该项目基于成熟的开源产品Quartz和Zookeeper及其客户端Curator进行二次开发。
 ddframe其他模块也有可独立开源的部分，之前当当曾开源过dd-soa的基石模块DubboX。
 elastic-job和ddframe关系见下图
-Release Notes  elastic-job&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; elastic-job-api&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; elastic-job-core&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; elastic-job-spring&amp;nbsp;&amp;nbsp;&amp;nbsp;  License 
-Build Status  
 讨论QQ群：430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。）
-Elastic-Job主要功能 主要功能  分布式： 重写Quartz基于数据库的分布式功能，改用Zookeeper实现注册中心。
+主要功能  分布式： 重写Quartz基于数据库的分布式功能，改用Zookeeper实现注册中心。
  并行调度： 采用任务分片方式实现。将一个任务拆分为多个独立的任务项，由分布式的服务器并行执行各自分配到的分片项。
  弹性扩容缩容： 将任务拆分为多个子任务项后，各个服务器分别执行各自分配到的任务项。一旦有新的服务器加入集群，或现有服务器下线，elastic-job将在保留本次任务执行不变的情况下，下次任务开始前触发任务重分片。
  集中管理： 采用基于Zookeeper的注册中心，集中管理和协调分布式作业的状态，分配和监听。外部系统可直接根据Zookeeper的数据管理和监控elastic-job。
@@ -35,7 +33,8 @@ Elastic-Job主要功能 主要功能  分布式： 重写Quartz基于数据库�
  灵活性： 所有在功能和性能之间的权衡，都可通过配置开启/关闭。如：elastic-job会将作业运行状态的必要信息更新到注册中心。如果作业执行频度很高，会造成大量Zookeeper写操作，而分布式Zookeeper同步数据可能引起网络风暴。因此为了考虑性能问题，可以牺牲一些功能，而换取性能的提升。
  一致性： elastic-job可牺牲部分性能用以保证同一分片项不会同时在两个服务器上运行。
  容错性： 作业服务器和Zookeeper断开连接则立即停止作业运行，用于防止分片已经重新分配，而脑裂的服务器仍在继续执行，导致重复执行。
-  Quick Start  引入maven依赖  elastic-job已经发布到中央仓库，可以在pom.</description>
+  Quick Start  引入maven依赖  elastic-job已经发布到中央仓库，可以在pom.xml文件中直接引入maven坐标。
+&amp;lt;!-- 引入elastic-job核心模块 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;elastic-job-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${lasted.release.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;!-- 使用springframework自定义命名空间时引入 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.</description>
     </item>
     
     <item>

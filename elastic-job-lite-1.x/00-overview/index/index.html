@@ -31,12 +31,12 @@
   <div id="header-wrapper">
     <div id="header">
       <svg width="226px" height="32px" viewBox="0 0 226 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Elastic Job</title>
+    <title>Elastic Job 1.x</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="32" font-family="Helvetica" font-weight="normal">
         <text id="Elastic-Job" fill="#000000">
-            <tspan x="27" y="27">Elastic Job</tspan>
+            <tspan x="27" y="27">Elastic Job 1.x</tspan>
         </text>
     </g>
 </svg>
@@ -351,29 +351,9 @@
 
 <p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/ddframe.jpg" alt="ddframe演进图" /></p>
 
-<h1 id="release-notes">Release Notes</h1>
-
-<ul>
-<li>elastic-job&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job"><img src="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job/badge.svg" alt="Maven Status" /></a></li>
-<li>elastic-job-api&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job-api"><img src="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job-api/badge.svg" alt="Maven Status" /></a></li>
-<li>elastic-job-core&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job-core"><img src="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job-core/badge.svg" alt="Maven Status" /></a></li>
-<li>elastic-job-spring&nbsp;&nbsp;&nbsp;<a href="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job-spring"><img src="https://maven-badges.herokuapp.com/maven-central/com.dangdang/elastic-job-spring/badge.svg" alt="Maven Status" /></a></li>
-</ul>
-
-<h1 id="license">License</h1>
-
-<p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://dangdangdotcom.github.io/elastic-job/img/license.svg" alt="Hex.pm" /></a></p>
-
-<h1 id="build-status">Build Status</h1>
-
-<p><a href="https://travis-ci.org/dangdangdotcom/elastic-job"><img src="https://secure.travis-ci.org/dangdangdotcom/elastic-job.png?branch=master" alt="Build Status" /></a>
-<a href="https://coveralls.io/github/dangdangdotcom/elastic-job?branch=master"><img src="https://coveralls.io/repos/dangdangdotcom/elastic-job/badge.svg?branch=master&amp;service=github" alt="Coverage Status" /></a></p>
-
 <p><strong>讨论QQ群：</strong>430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。）</p>
 
-<h2 id="elastic-job主要功能">Elastic-Job主要功能</h2>
-
-<h3 id="主要功能">主要功能</h3>
+<h2 id="主要功能">主要功能</h2>
 
 <ul>
 <li><p><strong>分布式：</strong> 重写Quartz基于数据库的分布式功能，改用Zookeeper实现注册中心。</p></li>
@@ -387,7 +367,7 @@
 <li><p><strong>定制化流程型任务：</strong> 作业可分为简单和数据流处理两种模式，数据流又分为高吞吐处理模式和顺序性处理模式，其中高吞吐处理模式可以开启足够多的线程快速的处理数据，而顺序性处理模式将每个分片项分配到一个独立线程，用于保证同一分片的顺序性，这点类似于Kafka的分区顺序性。</p></li>
 </ul>
 
-<h3 id="其他功能">其他功能</h3>
+<h2 id="其他功能">其他功能</h2>
 
 <ul>
 <li><p><strong>失效转移：</strong> 弹性扩容缩容在下次作业运行前重分片，但本次作业执行的过程中，下线的服务器所分配的作业将不会重新被分配。失效转移功能可以在本次作业运行中用空闲服务器抓取孤儿作业分片执行。同样失效转移功能也会牺牲部分性能。</p></li>
@@ -397,7 +377,7 @@
 <li><p><strong>运维平台：</strong> 提供web控制台用于管理作业。</p></li>
 </ul>
 
-<h3 id="非功能需求">非功能需求</h3>
+<h2 id="非功能需求">非功能需求</h2>
 
 <ul>
 <li><p><strong>稳定性：</strong> 在服务器无波动的情况下，并不会重新分片；即使服务器有波动，下次分片的结果也会根据服务器IP和作业名称哈希值算出稳定的分片顺序，尽量不做大的变动。</p></li>
