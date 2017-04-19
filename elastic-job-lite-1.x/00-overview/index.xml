@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>00-overviews on </title>
+    <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/</link>
+    <description>Recent content in 00-overviews on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 13 Apr 2017 16:06:17 +0800</lastBuildDate>
+    
+	<atom:link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>概览</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/</link>
+      <pubDate>Thu, 13 Apr 2017 16:06:17 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/</guid>
+      <description>Elastic-Job是ddframe中dd-job的作业模块中分离出来的分布式弹性作业框架。去掉了和dd-job中的监控和ddframe接入规范部分。该项目基于成熟的开源产品Quartz和Zookeeper及其客户端Curator进行二次开发。
+ddframe其他模块也有可独立开源的部分，之前当当曾开源过dd-soa的基石模块DubboX。
+elastic-job和ddframe关系见下图
+Release Notes  elastic-job&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; elastic-job-api&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; elastic-job-core&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; elastic-job-spring&amp;nbsp;&amp;nbsp;&amp;nbsp;  License 
+Build Status  
+讨论QQ群：430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。）
+Elastic-Job主要功能 主要功能  分布式： 重写Quartz基于数据库的分布式功能，改用Zookeeper实现注册中心。
+ 并行调度： 采用任务分片方式实现。将一个任务拆分为多个独立的任务项，由分布式的服务器并行执行各自分配到的分片项。
+ 弹性扩容缩容： 将任务拆分为多个子任务项后，各个服务器分别执行各自分配到的任务项。一旦有新的服务器加入集群，或现有服务器下线，elastic-job将在保留本次任务执行不变的情况下，下次任务开始前触发任务重分片。
+ 集中管理： 采用基于Zookeeper的注册中心，集中管理和协调分布式作业的状态，分配和监听。外部系统可直接根据Zookeeper的数据管理和监控elastic-job。
+ 定制化流程型任务： 作业可分为简单和数据流处理两种模式，数据流又分为高吞吐处理模式和顺序性处理模式，其中高吞吐处理模式可以开启足够多的线程快速的处理数据，而顺序性处理模式将每个分片项分配到一个独立线程，用于保证同一分片的顺序性，这点类似于Kafka的分区顺序性。
+  其他功能  失效转移： 弹性扩容缩容在下次作业运行前重分片，但本次作业执行的过程中，下线的服务器所分配的作业将不会重新被分配。失效转移功能可以在本次作业运行中用空闲服务器抓取孤儿作业分片执行。同样失效转移功能也会牺牲部分性能。
+ Spring命名空间支持： elastic-job可以不依赖于Spring直接运行，但是也提供了自定义的命名空间方便与Spring集成。
+ 运维平台： 提供web控制台用于管理作业。
+  非功能需求  稳定性： 在服务器无波动的情况下，并不会重新分片；即使服务器有波动，下次分片的结果也会根据服务器IP和作业名称哈希值算出稳定的分片顺序，尽量不做大的变动。
+ 高性能： 同一服务器的批量数据处理采用自动切割并多线程并行处理。
+ 灵活性： 所有在功能和性能之间的权衡，都可通过配置开启/关闭。如：elastic-job会将作业运行状态的必要信息更新到注册中心。如果作业执行频度很高，会造成大量Zookeeper写操作，而分布式Zookeeper同步数据可能引起网络风暴。因此为了考虑性能问题，可以牺牲一些功能，而换取性能的提升。
+ 一致性： elastic-job可牺牲部分性能用以保证同一分片项不会同时在两个服务器上运行。
+ 容错性： 作业服务器和Zookeeper断开连接则立即停止作业运行，用于防止分片已经重新分配，而脑裂的服务器仍在继续执行，导致重复执行。
+  Quick Start  引入maven依赖  elastic-job已经发布到中央仓库，可以在pom.</description>
+    </item>
+    
+    <item>
+      <title>简介</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/intro/</link>
+      <pubDate>Tue, 06 Dec 2016 22:38:50 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/intro/</guid>
+      <description>分片概念 任务的分布式执行，需要将一个任务拆分为n个独立的任务项，然后由分布式的服务器分别执行某一个或几个分片项。
+例如：有一个遍历数据库某张表的作业，现有2台服务器。为了快速的执行作业，那么每台服务器应执行作业的50%。 为满足此需求，可将作业分成2片，每台服务器执行1片。作业遍历数据的逻辑应为：服务器A遍历ID以奇数结尾的数据；服务器B遍历ID以偶数结尾的数据。 如果分成10片，则作业遍历数据的逻辑应为：每片分到的分片项应为ID%10，而服务器A被分配到分片项0,1,2,3,4；服务器B被分配到分片项5,6,7,8,9，直接的结果就是服务器A遍历ID以0-4结尾的数据；服务器B遍历ID以5-9结尾的数据。
+分片项与业务处理解耦 Elastic-job并不直接提供数据处理的功能，框架只会将分片项分配至各个运行中的作业服务器，开发者需要自行处理分片项与真实数据的对应关系。
+分布式作业的执行 Elastic-job并无作业调度中心节点，而是基于部署作业框架的程序在到达相应时间点时各自触发调度。
+注册中心仅用于作业注册和监控信息存储。而主作业节点仅用于处理分片和清理等功能。
+个性化参数的适用场景 个性化参数即shardingItemParameters，可以和分片项匹配对应关系，用于将分片项的数字转换为更加可读的业务代码。
+例如：按照地区水平拆分数据库，数据库A是北京的数据；数据库B是上海的数据；数据库C是广州的数据。 如果仅按照分片项配置，开发者需要了解0表示北京；1表示上海；2表示广州。 合理使用个性化参数可以让代码更可读，如果配置为0=北京,1=上海,2=广州，那么代码中直接使用北京，上海，广州的枚举值即可完成分片项和业务逻辑的对应关系。
+作业高可用 Elastic-job提供最安全的方式执行作业。将分片项设置为1，并使用多于1台的服务器执行作业，作业将会以1主n从的方式执行。
+一旦执行作业的服务器崩溃，等待执行的服务器将会在下次作业启动时替补执行。 开启失效转移功能效果更好，可以保证在本次作业执行时崩溃，备机立即启动替补执行。
+最大限度利用资源 Elastic-job也提供最灵活的方式，最大限度的提高执行作业的吞吐量。将分片项设置为大于服务器的数量，最好是大于服务器倍数的数量，作业将会合理的利用分布式资源，动态的分配分片项。
+例如：3台服务器，分成10片，则分片项分配结果为服务器A=0,1,2;服务器B=3,4,5;服务器C=6,7,8,9。 如果服务器C崩溃，则分片项分配结果为服务器A=0,1,2,3,4;服务器B=5,6,7,8,9。在不丢失分片项的情况下，最大限度的利用现有资源提高吞吐量。</description>
+    </item>
+    
+    <item>
+      <title>Release Note</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/release-notes/</link>
+      <pubDate>Wed, 27 Jan 2016 22:38:50 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/release-notes/</guid>
+      <description>1.1.1 结构调整  ISSUE #116 作业接口的handleJobExecutionException参数变更  功能提升  ISSUE #110 手动触发作业  缺陷修正  ISSUE #99 删除作业异步导致作业删除后, 还未结束的作业继续创建zk数据  1.1.0 结构调整  ISSUE #97 JobConfiguration重构为SimpleJobConfiguration，DataFlowJobConfiguration，ScriptJobConfiguration ISSUE #102 重新定义Java/Spring Config API，使用Factory+Builder模式代替原有的Constructor+Setter模式 ISSUE #104 移除@Deprecated代码 ISSUE #105 重构Spring命名空间驼峰式定义 ISSUE #106 isStreaming配置化 ISSUE #107 reg-center更名为registry-center-ref  1.0.8 新功能  ISSUE #95 增加脚本类型作业支持  1.0.7 结构调整  ISSUE #88 stop作业改名为pause  新功能  ISSUE #91 作业生命周期操作API  功能提升  ISSUE #84 控制台提供作业启用/禁用按钮操作 ISSUE #87 调整主节点选举流程，作业关闭，禁用和暂停将触发主节点选举 ISSUE #93 注册中心配置提供baseSleepTimeMilliseconds、maxSleepTimeMilliseconds和maxRetries的默认值  缺陷修正  ISSUE #92 修改分片总数参数导致仅单一节点执行的监听抛出超时异常  1.</description>
+    </item>
+    
+    <item>
+      <title>1.1.0版本升级说明</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/update-notes-1.1.0/</link>
+      <pubDate>Tue, 06 Dec 2016 22:38:50 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/update-notes-1.1.0/</guid>
+      <description>  基于扩展性提升，概念明晰和命名规范化的考虑，elastic-job 1.1.0版本决定抛弃原有包袱的束缚，重新定义了JAVA API，Spring命名空间并且删除了已废弃的API。
+ elastic-job 1.1.0作为里程碑版本发布，除了API改动并未做功能上的修改，希望通过标准化配置的方式为未来的新elastic-job功能的开发打下良好的基础。
+  重新定义JAVA API  变更JobConfiguration类为接口，通过工厂方法配合构建者模式为每种作业类型分别提供了配置实现类。
+ 取消DataFlowElasticJob接口中isStreamingProcess的方法签名，归入DataFlow型作业配置，默认值为false非流式处理。
+  重新定义Spring命名空间  删除&amp;lt;job:bean&amp;gt;，细化为&amp;lt;job:simple&amp;gt;, &amp;lt;job:dataflow&amp;gt;, &amp;lt;job:script&amp;gt;具体类型。
+ Spring命名空间属性由驼峰式修正为Spring命名空间标准命名规范(多单词以-分隔)。
+ 作业的Spring命名空间属性regCenter变更为registry-center-ref。
+  废弃过时API  删除废弃作业类，包括AbstractOneOffElasticJob，AbstractPerpetualElasticJob和AbstractSequencePerpetualElasticJob。
+ 删除废弃作业调度器类，包括com.dangdang.ddframe.job.schedule.JobController和com.dangdang.ddframe.job.spring.schedule.SpringJobController。
+ 不再支持非Spring命名空间通过xml方式配置bean，如有需要请使用Spring Java Config。
+  </description>
+    </item>
+    
+    <item>
+      <title>阅读源码编译问题说明</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/source-code-guide/</link>
+      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/source-code-guide/</guid>
+      <description>因为关注极简代码，Elastic-Job使用lombok。在阅读源码的过程中会遇到@Getter, @Setter等注解导致不能编译，请按照以下步骤安装lombok到你的IDE，只使用发布包请不用关注。
+lombok安装指南 Eclipse 首先配置好Eclipse环境，然后双击打开lombok.jar文件。
+确认Eclipse的安装路径，点击install/update按钮，即可完成安装，最后需要重启Eclipse。
+** 如何确认安装成功？**
+确认Eclipse安装路径下有lombok.jar包，并且配置文件eclipse.ini中是否已添加如下内容：
+-javaagent:lombok.jar -Xbootclasspath/a:lombok.jar  否则请自行将缺少的部分添加到相应的位置即可。
+安装完成后可直接使用元注解简化你的POJO。如：
+其它IDE 请参照lombok官方提供的解决方案。 Lombok还可以提供很多其他功能，如log变量自动生成等，可参阅lombok官网。</description>
+    </item>
+    
+  </channel>
+</rss>

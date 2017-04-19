@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>02-guides on </title>
+    <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/</link>
+    <description>Recent content in 02-guides on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 12 Dec 2016 16:06:17 +0800</lastBuildDate>
+    
+	<atom:link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用指南</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/index/</link>
+      <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/index/</guid>
+      <description> 本章导航  Elastic-Job提供了简单易用的运维平台，方便用户操作及查询作业。
+ 一般情况Elastic-Job是通过平均分配算法的分片策略数据的，但也可以选择哈希及轮转等策略，或者自己定义作业分片策略。
+ 由于无法在生产环境调试，通过dump可以把作业运行相关信息dump出来，方便开发者debug分析。
+ 为了便于监控作业运行情况，Elastic-Job提供作业运行状态监控功能。
+  </description>
+    </item>
+    
+    <item>
+      <title>运维平台</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/web-console/</link>
+      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/web-console/</guid>
+      <description> Elastic-Job运维平台以war包形式提供，可自行部署到tomcat或jetty等支持servlet的web容器中。
+elastic-job-console.war可以通过编译源码或从maven中央仓库获取。
+登录 默认用户名和密码是root/root，可以通过修改conf\auth.properties文件修改默认登录用户名和密码。
+主要功能  登录安全控制
+ 注册中心管理
+ 作业维度状态查看
+ 服务器维度状态查看
+ 快捷修改作业设置
+ 控制作业暂停，恢复运行，停止和删除
+  设计理念 运维平台和elastic-job并无直接关系，是通过读取作业注册中心数据展现作业状态，或更新注册中心数据修改全局配置。
+控制台只能控制作业本身是否运行，但不能控制作业进程的启停，因为控制台和作业本身服务器是完全分布式的，控制台并不能控制作业服务器。
+不支持项  添加作业。因为作业都是在首次运行时自动添加，使用运维平台添加作业并无必要。  主要界面  总览页   注册中心管理页   作业详细信息页   服务器详细信息页  </description>
+    </item>
+    
+    <item>
+      <title>作业分片策略</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/job-sharding-strategy/</link>
+      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/job-sharding-strategy/</guid>
+      <description>框架提供的分片策略 AverageAllocationJobShardingStrategy 全路径：
+com.dangdang.ddframe.job.plugin.sharding.strategy.AverageAllocationJobShardingStrategy
+策略说明：
+基于平均分配算法的分片策略，也是默认的分片策略。
+如果分片不能整除，则不能整除的多余分片将依次追加到序号小的服务器。如：
+如果有3台服务器，分成9片，则每台服务器分到的分片是：1=[0,1,2], 2=[3,4,5], 3=[6,7,8]
+如果有3台服务器，分成8片，则每台服务器分到的分片是：1=[0,1,6], 2=[2,3,7], 3=[4,5]
+如果有3台服务器，分成10片，则每台服务器分到的分片是：1=[0,1,2,9], 2=[3,4,5], 3=[6,7,8]
+OdevitySortByNameJobShardingStrategy 全路径：
+com.dangdang.ddframe.job.plugin.sharding.strategy.OdevitySortByNameJobShardingStrategy
+策略说明：
+根据作业名的哈希值奇偶数决定IP升降序算法的分片策略。
+作业名的哈希值为奇数则IP升序。
+作业名的哈希值为偶数则IP降序。
+用于不同的作业平均分配负载至不同的服务器。
+AverageAllocationJobShardingStrategy的缺点是，一旦分片数小于作业服务器数，作业将永远分配至IP地址靠前的服务器，导致IP地址靠后的服务器空闲。而OdevitySortByNameJobShardingStrategy则可以根据作业名称重新分配服务器负载。如：
+如果有3台服务器，分成2片，作业名称的哈希值为奇数，则每台服务器分到的分片是：1=[0], 2=[1], 3=[]
+如果有3台服务器，分成2片，作业名称的哈希值为偶数，则每台服务器分到的分片是：3=[0], 2=[1], 1=[]
+RotateServerByNameJobShardingStrategy 全路径：
+com.dangdang.ddframe.job.plugin.sharding.strategy.RotateServerByNameJobShardingStrategy
+策略说明：
+根据作业名的哈希值对服务器列表进行轮转的分片策略。
+自定义分片策略 实现JobShardingStrategy接口并实现sharding方法，接口方法参数为作业服务器IP列表和分片策略选项，分片策略选项包括作业名称，分片总数以及分片序列号和个性化参数对照表，可以根据需求定制化自己的分片策略。
+欢迎将分片策略以插件的形式贡献至com.dangdang.ddframe.job.plugin.sharding.strategy包。
+配置分片策略 与配置通常的作业属性相同，在spring命名空间或者JobConfiguration中配置jobShardingStrategyClass属性，属性值是作业分片策略类的全路径。</description>
+    </item>
+    
+    <item>
+      <title>作业运行状态监控</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/execution-monitor/</link>
+      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/execution-monitor/</guid>
+      <description>通过监听Elastic-Job的zookeeper注册中心的几个关键节点即可完成作业运行状态监控功能。
+监听作业服务器存活 监听job_name\servers\ip_address\status节点是否存在。该节点为临时节点，如果作业服务器下线，该节点将删除。
+监听近期数据处理成功 数据流类型作业，可通过监听近期数据处理成功数判断作业流量是否正常。
+监听job_name\servers\ip_address\processSuccessCount节点的值。如果小于作业正常处理的阀值，可选择报警。
+监听近期数据处理失败 数据流类型作业，可通过监听近期数据处理失败数判断作业处理结果。
+监听job_name\servers\ip_address\processFailureCount节点的值。如果大于0，可选择报警。</description>
+    </item>
+    
+    <item>
+      <title>dump作业运行信息</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/dump/</link>
+      <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/dump/</guid>
+      <description>由于在使用Elastic-Job中可能会碰到一些分布式问题，导致作业运行不稳定。由于无法在生产环境调试，通过dump命令可以把作业内部相关信息dump出来，方便开发者debug分析；另外为了不泄露隐私，已经把相关信息中的ip地址以ip1, ip2&amp;hellip;的形式过滤掉了，可以在互联网上公开传输环境信息，便于进一步完善Elastic-Job。
+如何使用 配置监听端口 支持两种配置方式
+ Spring方式  &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:reg=&amp;quot;http://www.dangdang.com/schema/ddframe/reg&amp;quot; xmlns:job=&amp;quot;http://www.dangdang.com/schema/ddframe/job&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.dangdang.com/schema/ddframe/reg http://www.dangdang.com/schema/ddframe/reg/reg.xsd http://www.dangdang.com/schema/ddframe/job http://www.dangdang.com/schema/ddframe/job/job.xsd &amp;quot;&amp;gt; &amp;lt;!--配置作业注册中心 --&amp;gt; &amp;lt;reg:zookeeper id=&amp;quot;regCenter&amp;quot; server-lists=&amp;quot; yourhost:2181&amp;quot; namespace=&amp;quot;dd-job&amp;quot; base-sleep-time-milliseconds=&amp;quot;1000&amp;quot; max-sleep-time-milliseconds=&amp;quot;3000&amp;quot; max-retries=&amp;quot;3&amp;quot; /&amp;gt; &amp;lt;!-- 配置作业--&amp;gt; &amp;lt;job:simple id=&amp;quot;oneOffElasticJob&amp;quot; monitor-port=&amp;quot;9888&amp;quot; class=&amp;quot;xxx.MyElasticJob&amp;quot; registry-center-ref=&amp;quot;regCenter&amp;quot; cron=&amp;quot;0/10 * * * * ?&amp;quot; sharding-total-count=&amp;quot;3&amp;quot; sharding-item-parameters=&amp;quot;0=A,1=B,2=C&amp;quot; /&amp;gt; &amp;lt;/beans&amp;gt;   Java方式  public class JobMain { public static void main(final String[] args) { // ... jobConfig.setMonitorPort(9888); // .</description>
+    </item>
+    
+  </channel>
+</rss>

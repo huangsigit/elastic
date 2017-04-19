@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.20" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/favicon.ico" type="image/x-icon" />
+
+    
+    <title>快速上手</title>
+    <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/nucleus.css" rel="stylesheet">
+    <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/hybrid.css" rel="stylesheet">
+    <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/featherlight.min.css" rel="stylesheet">
+    <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/horsey.css" rel="stylesheet">
+    <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/theme.css" rel="stylesheet">
+    <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/hugo-theme.css" rel="stylesheet">
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/jquery-2.x.min.js"></script>
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.8.0/styles/monokai-sublime.min.css">
+<link rel="stylesheet" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/style.css">
+  </head>
+  <body class="" data-url="/01-start/quick-start/">
+    
+    <nav id="sidebar">
+  <div id="header-wrapper">
+    <div id="header">
+      <svg width="226px" height="32px" viewBox="0 0 226 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Elastic Job</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="32" font-family="Helvetica" font-weight="normal">
+        <text id="Elastic-Job" fill="#000000">
+            <tspan x="27" y="27">Elastic Job</tspan>
+        </text>
+    </g>
+</svg>
+    </div>
+    
+</div>
+
+
+  <div class="highlightable">
+    <ul class="topics">
+      
+        
+        
+          
+          
+            
+          
+        
+          
+          
+            
+          
+        
+          
+          
+            
+          
+        
+          
+          
+            
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+      
+      
+
+      
+      
+      
+        
+          
+          
+            
+          
+        
+      
+      
+      
+
+      <li class="dd-item  " data-nav-id="/00-overview/index/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/">
+          <span>
+            
+              <b>0. </b>
+            
+             概览
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+            <li class="dd-item " data-nav-id="/00-overview/intro/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/intro/">
+                <span>简介     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/00-overview/release-notes/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/release-notes/">
+                <span>Release Note     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/00-overview/update-notes-1.1.0/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/update-notes-1.1.0/">
+                <span>1.1.0版本升级说明     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/00-overview/source-code-guide/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/source-code-guide/">
+                <span>阅读源码编译问题说明     </i></span>
+              </a>
+            </li>
+          
+        </ul>
+        
+      </li>
+      
+      
+      
+
+      
+      
+      
+        
+          
+          
+            
+          
+        
+      
+      
+      
+
+      <li class="dd-item  parent" data-nav-id="/01-start/index/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/index/">
+          <span>
+            
+              <b>1. </b>
+            
+             起航
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+            <li class="dd-item active" data-nav-id="/01-start/quick-start/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/quick-start/">
+                <span>快速上手     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/01-start/faq/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/faq/">
+                <span>FAQ     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/01-start/dev-guide/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/dev-guide/">
+                <span>开发指南     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/01-start/deploy-guide/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/deploy-guide/">
+                <span>部署指南     </i></span>
+              </a>
+            </li>
+          
+        </ul>
+        
+      </li>
+      
+      
+      
+
+      
+      
+      
+        
+          
+          
+            
+          
+        
+      
+      
+      
+
+      <li class="dd-item  " data-nav-id="/02-guide/index/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/index/">
+          <span>
+            
+              <b>2. </b>
+            
+             使用指南
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+            <li class="dd-item " data-nav-id="/02-guide/web-console/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/web-console/">
+                <span>运维平台     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/02-guide/job-sharding-strategy/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/job-sharding-strategy/">
+                <span>作业分片策略     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/02-guide/execution-monitor/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/execution-monitor/">
+                <span>作业运行状态监控     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/02-guide/dump/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/dump/">
+                <span>dump作业运行信息     </i></span>
+              </a>
+            </li>
+          
+        </ul>
+        
+      </li>
+      
+      
+      
+
+      
+      
+      
+        
+          
+          
+            
+          
+        
+      
+      
+      
+
+      <li class="dd-item  " data-nav-id="/03-design/index/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index/">
+          <span>
+            
+              <b>3. </b>
+            
+             设计
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+            <li class="dd-item " data-nav-id="/03-design/module/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/module/">
+                <span>目录结构说明     </i></span>
+              </a>
+            </li>
+          
+            <li class="dd-item " data-nav-id="/03-design/theory/">
+              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/theory/">
+                <span>实现原理     </i></span>
+              </a>
+            </li>
+          
+        </ul>
+        
+      </li>
+      
+      
+    </ul>
+    <hr>
+     
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+
+            <div id="top-bar">
+              
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
+                
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
+                
+                  
+                  
+                  
+                    
+                    
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/index/" itemprop="url"><span itemprop="title">起航</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
+                
+                <span itemprop="title"> 快速上手</span>
+              </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#下载源码和文档">下载源码和文档</a></li>
+<li><a href="#安装lombok">安装lombok</a></li>
+<li><a href="#zookeeper的安装和配置">Zookeeper的安装和配置</a>
+<ul>
+<li><a href="#快速配置">快速配置</a></li>
+<li><a href="#命令行工具的一些简单操作">命令行工具的一些简单操作</a></li>
+<li><a href="#伪集群配置">伪集群配置</a></li>
+</ul></li>
+<li><a href="#启动elastic-job-example">启动elastic-job-example</a></li>
+<li><a href="#启动elastic-job-console">启动elastic-job-console</a></li>
+<li><a href="#3种作业类型的区别">3种作业类型的区别</a>
+<ul>
+<li><a href="#simple类型作业">Simple类型作业</a></li>
+<li><a href="#throughputdataflow类型作业">ThroughputDataFlow类型作业</a></li>
+<li><a href="#sequencedataflow类型作业">SequenceDataFlow类型作业</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+              
+
+            </div>
+            
+              <div id="body-inner">
+                
+                <h1>快速上手</h1>
+                
+
+
+
+<h2 id="下载源码和文档">下载源码和文档</h2>
+
+<p><a href="https://github.com/dangdangdotcom/elastic-job">https://github.com/dangdangdotcom/elastic-job</a></p>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_01.png" alt="quick_start_01" /></p>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_02.png" alt="quick_start_02" /></p>
+
+<p>选择 tags\1.1.0 作为源码</p>
+
+<p>其中，需要用elastic-job-example来做应用例子，自行安装Zookeeper来做注册中心。</p>
+
+<h2 id="安装lombok">安装lombok</h2>
+
+<p>开发代码省略了 set get log等，需要安装此包才不会报错。</p>
+
+<p>lombok的官方网址：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
+
+<p><strong>lombok安装</strong></p>
+
+<p>使用lombok是需要安装的，如果不安装，IDE则无法解析lombok注解。先在官网下载最新版本的JAR包，现在是0.11.2版本，我用的是0.11.0。第一次使用的时候我下载的是最新版本的，也就是我现在用的0.11.0，到现在已经更新了两个版本，更新的好快啊……</p>
+
+<p>可以用以下两种方式安装：</p>
+
+<ul>
+<li>双击下载下来的JAR包安装lombok。</li>
+<li>eclipse/myeclipse手动安装lombok。
+
+<ol>
+<li>将lombok.jar复制到myeclipse.ini/eclipse.ini所在的文件夹目录下</li>
+<li>打开eclipse.ini/myeclipse.ini，在最后面插入以下两行并保存：</li>
+</ol></li>
+</ul>
+
+<pre><code>-Xbootclasspath/a:lombok.jar
+-javaagent:lombok.jar
+</code></pre>
+
+<p>最后重启eclipse/myeclipse</p>
+
+<h2 id="zookeeper的安装和配置">Zookeeper的安装和配置</h2>
+
+<p>参考资料：<a href="http://blog.csdn.net/shatelang/article/details/7596007">http://blog.csdn.net/shatelang/article/details/7596007</a></p>
+
+<h3 id="快速配置">快速配置</h3>
+
+<ul>
+<li>下载解压到指定目录</li>
+<li>配置bin：zkServer.cmd(zkServer.sh)，默认不需要修改，默认读zoo.cfg</li>
+<li>配置conf：zoo.cfg（注意log dataDir目录须先建）</li>
+</ul>
+
+<pre><code>tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=D:\\javawork\\zookeeper-3.4.6\\data
+dataLogDir=D:\\javawork\\zookeeper-3.4.6\\log
+clientPort=2181
+</code></pre>
+
+<ul>
+<li>启动：zkServer.cmd(zkServer.sh)，无报错。</li>
+<li>验证：JPS，存在QuorumPeerMain为已启动；验证端口netstat -ano|findstr 2181</li>
+</ul>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_03.png" alt="quick_start_03" /></p>
+
+<ul>
+<li>客户端命令</li>
+</ul>
+
+<pre><code class="language-bash">echo ruok|nc 127.0.0.1 2181
+zkCli –server 127.0.0.1:2181
+zkCli.cmd –server 127.0.0.1:2181
+zkCli.cmd –server 127.0.0.1:2182
+zkCli.cmd –server 127.0.0.1:2183
+zkCli.cmd –server 127.0.0.1:2181 连接
+zkCli.cmd
+</code></pre>
+
+<h3 id="命令行工具的一些简单操作">命令行工具的一些简单操作</h3>
+
+<ol>
+<li><p>显示根目录下文件： ls / 使用ls命令来查看当前ZooKeeper中所包含的内容。</p></li>
+
+<li><p>显示根目录下文件： ls2 / 查看当前节点数据并能看到更新次数等数据。</p></li>
+
+<li><p>创建文件，并设置初始内容： create /zk &ldquo;test&rdquo; 创建一个新的znode节点zk以及与它关联的字符串。</p></li>
+
+<li><p>获取文件内容： get /zk 确认znode是否包含我们所创建的字符串。</p></li>
+
+<li><p>修改文件内容： set /zk &ldquo;zkbak&rdquo; 对zk所关联的字符串进行设置。</p></li>
+
+<li><p>删除文件： delete /zk 将刚才创建的znode删除。</p></li>
+
+<li><p>退出客户端： quit</p></li>
+
+<li><p>帮助命令： help</p></li>
+</ol>
+
+<h3 id="伪集群配置">伪集群配置</h3>
+
+<ul>
+<li><p>cmd配置3个zkServer1.cmd zkServer2.cmd zkServer3.cmd，各自增加set ZOOCFG=..\conf\zoo1.cfg读不同配置文件</p></li>
+
+<li><p>配置conf</p></li>
+</ul>
+
+<pre><code>tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=D:\\javawork\\zookeeper-3.4.6\\data\\1
+dataLogDir=D:\\javawork\\zookeeper-3.4.6\\log\\1
+clientPort=2181
+server.1=127.0.0.1:2887:3887
+server.2=127.0.0.1:2888:3888
+server.3=127.0.0.1:2889:3889
+</code></pre>
+
+<pre><code>tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=D:\\javawork\\zookeeper-3.4.6\\data\\2
+dataLogDir=D:\\javawork\\zookeeper-3.4.6\\log\\2
+clientPort=2182
+server.1=127.0.0.1:2887:3887
+server.2=127.0.0.1:2888:3888
+server.3=127.0.0.1:2889:3889
+</code></pre>
+
+<pre><code>tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=D:\\javawork\\zookeeper-3.4.6\\data\\3
+dataLogDir=D:\\javawork\\zookeeper-3.4.6\\log\\3
+clientPort=2183
+server.1=127.0.0.1:2887:3887
+server.2=127.0.0.1:2888:3888
+server.3=127.0.0.1:2889:3889
+</code></pre>
+
+<ul>
+<li>dataDir目录 需要建myid文件，内容对应为服务器序列。</li>
+</ul>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_04.png" alt="quick_start_04" /></p>
+
+<ul>
+<li>启动3个服务，zkServer1.cmd zkServer2.cmd zkServer3.cmd，过程会有报错，等3个全启就不会报错了。</li>
+</ul>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_05.png" alt="quick_start_05" /></p>
+
+<h2 id="启动elastic-job-example">启动elastic-job-example</h2>
+
+<p>其中reg.properties为注册服务配置</p>
+
+<pre><code>serverLists=localhost:2181               #对应各自服务器的zookeeper ip端口
+namespace=elasticjob-dexotrip            #命名空间，用于注册的时候连接
+baseSleepTimeMilliseconds=1000
+maxSleepTimeMilliseconds=3000
+maxRetries=3
+</code></pre>
+
+<p>job.properties为作业配置</p>
+
+<p>启动应用：SpringJobMainWthNamespace或者SpringJobMainWithoutNamespace</p>
+
+<h2 id="启动elastic-job-console">启动elastic-job-console</h2>
+
+<p>访问<a href="http://localhost:8080/elastic-job-console/，用户名密码为root/root">http://localhost:8080/elastic-job-console/，用户名密码为root/root</a></p>
+
+<p>注册连接信息，对应各自应用服务的配置</p>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_web_console_01.png" alt="quick_start_web_console_01" /></p>
+
+<p>连接上，自动把当前的相关服务和作业信息加载。可以在里面启停服务，启停作业，修改作业参数，查看服务，作业状态等。</p>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_web_console_02.png" alt="quick_start_web_console_02" /></p>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_web_console_03.png" alt="quick_start_web_console_03" /></p>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_web_console_04.png" alt="quick_start_web_console_04" /></p>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_web_console_05.png" alt="quick_start_web_console_05" /></p>
+
+<h2 id="3种作业类型的区别">3种作业类型的区别</h2>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/quick_start_06.png" alt="quick_start_06" /></p>
+
+<h3 id="simple类型作业">Simple类型作业</h3>
+
+<p>Simple类型作业意为简单实现，未经任何封装的类型。需要继承AbstractSimpleElasticJob，该类只提供了一个方法用于覆盖，此方法将被定时执行。用于执行普通的定时任务，与Quartz原生接口相似，只是增加了弹性扩缩容和分片等功能。</p>
+
+<h3 id="throughputdataflow类型作业">ThroughputDataFlow类型作业</h3>
+
+<p>ThroughputDataFlow类型作业意为高吞吐的数据流作业。需要继承AbstractThroughputDataFlowElasticJob并可以指定返回值泛型，该类提供3个方法可覆盖，分别用于抓取数据，处理数据和指定是否流式处理数据。可以获取数据处理成功失败次数等辅助监控信息。如果流式处理数据，fetchData方法的返回值只有为null或长度为空时，作业才会停止执行，否则作业会一直运行下去；非流式处理数据则只会在每次作业执行过程中执行一次fetchData方法和processData方法，即完成本次作业。流式数据处理参照TbSchedule设计，适用于不间歇的数据处理。</p>
+
+<p>作业执行时会将fetchData的数据传递给processData处理，其中processData得到的数据是通过多线程（线程池大小可配）拆分的。如果采用流式作业处理方式，建议processData处理数据后更新其状态，避免fetchData再次抓取到，从而使得作业永远不会停止。processData的返回值用于表示数据是否处理成功，抛出异常或者返回false将会在统计信息中归入失败次数，返回true则归入成功次数。</p>
+
+<h3 id="sequencedataflow类型作业">SequenceDataFlow类型作业</h3>
+
+<p>SequenceDataFlow类型作业和ThroughputDataFlow作业类型极为相似，所不同的是ThroughputDataFlow作业类型可以将获取到的数据多线程处理，但不会保证多线程处理数据的顺序。如：从2个分片共获取到100条数据，第1个分片40条，第2个分片60条，配置为2个线程处理，则第1个线程处理前50条数据，第2个线程处理后50条数据，无视分片项；SequenceDataFlow类型作业则根据当前服务器所分配的分片项数量进行多线程处理，每个分片项使用同一线程处理，防止了同一分片的数据被多线程处理，从而导致的顺序问题。如：从2个分片共获取到100条数据，第1个分片40条，第2个分片60条，则系统自动分配2个线程处理，第1个线程处理第1个分片的40条数据，第2个线程处理第2个分片的60条数据。由于ThroughputDataFlow作业可以使用多于分片项的任意线程数处理，所以性能调优的可能会优于SequenceDataFlow作业。</p>
+
+<p>分数据处理，需要自己实现，可以根据分片的ID位数，对应数据的位数进行处理。</p>
+
+
+      
+      
+      </div>
+    </div>
+
+    
+
+    <div id="navigation">
+        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/index/"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/faq/" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+    </div>
+
+    </section>
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/clipboard.min.js"></script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/perfect-scrollbar.min.js"></script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/jquery.sticky-kit.min.js"></script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/featherlight.min.js"></script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/html5shiv-printshiv.min.js"></script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/modernizr.custom.71422.js"></script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/learn.js"></script>
+    <script src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/js/hugo-learn.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+  </body>
+</html>
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>03-designs on </title>
+    <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/</link>
+    <description>Recent content in 03-designs on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 12 Dec 2016 16:06:17 +0800</lastBuildDate>
+    
+	<atom:link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>设计</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index/</link>
+      <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index/</guid>
+      <description> 本章导航  想了解架构设计及项目模块设计的概念，请阅读实现原理及目录结构说明。  </description>
+    </item>
+    
+    <item>
+      <title>目录结构说明</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/module/</link>
+      <pubDate>Tue, 06 Dec 2016 22:38:50 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/module/</guid>
+      <description>elastic-job-core elastic-job核心模块，只通过Quartz和Curator就可执行分布式作业。
+elastic-job-api elastic-job生命周期操作的API，可独立使用。
+elastic-job-spring elastic-job对spring支持的模块，包括命名空间，依赖注入，占位符等。
+elastic-job-console elastic-job web控制台，可将编译之后的war放入tomcat等servlet容器中使用。
+elastic-job-example 使用示例。
+elastic-job-doc 使用markdown生成文档的项目，使用方无需关注。</description>
+    </item>
+    
+    <item>
+      <title>实现原理</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/theory/</link>
+      <pubDate>Tue, 06 Dec 2016 22:38:50 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/theory/</guid>
+      <description>弹性分布式实现  第一台服务器上线触发主服务器选举。主服务器一旦下线，则重新触发选举，选举过程中阻塞，只有主服务器选举完成，才会执行其他任务。
+ 某作业服务器上线时会自动将服务器信息注册到注册中心，下线时会自动更新服务器状态。
+ 主节点选举，服务器上下线，分片总数变更均更新重新分片标记。
+ 定时任务触发时，如需重新分片，则通过主服务器分片，分片过程中阻塞，分片结束后才可执行任务。如分片过程中主服务器下线，则先选举主服务器，再分片。
+ 通过上一项说明可知，为了维持作业运行时的稳定性，运行过程中只会标记分片状态，不会重新分片。分片仅可能发生在下次任务触发前。
+ 每次分片都会按服务器IP排序，保证分片结果不会产生较大波动。
+ 实现失效转移功能，在某台服务器执行完毕后主动抓取未分配的分片，并且在某台服务器下线后主动寻找可用的服务器执行任务。
+  注册中心数据结构 注册中心在定义的命名空间下，创建作业名称节点，用于区分不同作业，所以作业一旦创建则不能修改作业名称，如果修改名称将视为新的作业。作业名称节点下又包含4个数据子节点，分别是config, servers, execution和leader。
+概览 config节点 作业全局配置信息
+   子节点名 临时节点 描述     jobClass 否 作业实现类名称   shardingTotalCount 否 作业分片总数   cron 否 作业启动时间的cron表达式   shardingItemParameters 否 分片序列号和个性化参数对照表   jobParameter 否 作业自定义参数   monitorExecution 否 监控作业执行时状态   processCountIntervalSeconds 否 统计作业处理数据数量的间隔时间   concurrentDataProcessThreadCount 否 同时处理数据的并发线程数   fetchDataCount 否 每次抓取的数据量   streaming-process 否 是否流式处理数据</description>
+    </item>
+    
+  </channel>
+</rss>
