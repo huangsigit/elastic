@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.20" />
+    <meta name="generator" content="Hugo 0.20.7" />
     <meta name="description" content="">
 
 
@@ -98,8 +98,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/00-overview/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/">
           <span>
             
               <b>0. </b>
@@ -114,12 +114,6 @@
             <li class="dd-item " data-nav-id="/00-overview/intro/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/intro/">
                 <span>简介     </i></span>
-              </a>
-            </li>
-          
-            <li class="dd-item " data-nav-id="/00-overview/release-notes/">
-              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release-notes/">
-                <span>Release Note     </i></span>
               </a>
             </li>
           
@@ -149,8 +143,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/01-start/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/">
+      <li class="dd-item  " data-nav-id="/01-start/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/">
           <span>
             
               <b>1. </b>
@@ -206,8 +200,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/02-guide/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/">
+      <li class="dd-item  " data-nav-id="/02-guide/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/">
           <span>
             
               <b>2. </b>
@@ -299,8 +293,8 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/03-design/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/">
+      <li class="dd-item  parent" data-nav-id="/03-design/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/">
           <span>
             
               <b>3. </b>
@@ -366,7 +360,7 @@
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/" itemprop="url"><span itemprop="title">设计规划</span></a> <i class="fa fa-angle-right"></i>
+                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/" itemprop="url"><span itemprop="title">设计规划</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
@@ -464,13 +458,7 @@
 <tr>
 <td>running</td>
 <td align="left">是</td>
-<td align="left">分片项正在运行的状态<br />如果没有此节点，并且没有completed节点，表示该分片未运行<br />仅配置monitorExecution时有效</td>
-</tr>
-
-<tr>
-<td>completed</td>
-<td align="left">否</td>
-<td align="left">分片项运行完成的状态<br />下次作业开始执行时会清理<br />仅配置monitorExecution时有效</td>
+<td align="left">分片项正在运行的状态<br />仅配置monitorExecution时有效</td>
 </tr>
 
 <tr>
@@ -536,12 +524,6 @@
 <td>sharding\processing</td>
 <td align="left">是</td>
 <td align="left">主节点在分片时持有的节点<br />如果有此节点，所有的作业执行都将阻塞，直至分片结束<br />主节点分片结束或主节点崩溃会删除此临时节点</td>
-</tr>
-
-<tr>
-<td>sharding\cleaning</td>
-<td align="left">是</td>
-<td align="left">主节点在清理上次作业运行时状态时所持有的节点<br />每次开始新作业都需要清理上次运行完成的作业信息<br />如果有此节点，所有的作业执行都将阻塞，直至清理结束<br />主节点分片结束或主节点崩溃会删除此临时节点</td>
 </tr>
 
 <tr>

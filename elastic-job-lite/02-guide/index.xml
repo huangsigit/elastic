@@ -12,10 +12,10 @@
     
     <item>
       <title>使用指南</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/</guid>
       <description> 本章导航  Elastic-Job提供了简单易用的运维平台，方便用户操作及查询作业。
  配置手册介绍了如何通过Java Code和Spring两种方式配置。
  一般情况Elastic-Job是通过平均分配算法的分片策略数据的，但也可以选择哈希及轮转等策略，或者自己定义作业分片策略。

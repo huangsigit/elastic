@@ -50,15 +50,6 @@
     </item>
     
     <item>
-      <title>Release Note</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release-notes/</link>
-      <pubDate>Wed, 27 Jan 2016 22:38:50 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release-notes/</guid>
-      <description>2.1.1 新功能  ISSUE #242 Elastic-Job-Cloud支持删除应用及作业功能 ISSUE #243 Elastic-Job-Cloud支持禁用/启用应用及作业功能  功能提升  ISSUE #268 精简POM依赖  缺陷修正  ISSUE #266 Elastic-Job-Lite启动脚本指定端口无效 ISSUE #269 EventTrace失败记录不受采样率影响并且记录失败时间 ISSUE #270 控制台点击按钮后发起两次请求 ISSUE #272 Elastic-Job-Lite界面作业维度，只有全部服务器被禁用时，才应显示为被禁用 ISSUE #275 停掉Zookeeper后，再重启Zookeeper，任务不会继续执行 ISSUE #276 开启失效转移且分片任务执行后，任务会重复执行 ISSUE #279 添加事件追踪数据源,数据库连接地址不能带参数 ISSUE #280 作业历史页面的历史状态显示不正确 ISSUE #283 作业不设置overwrite且本地配置与注册中心不一致时，作业启动的cron应以注册中心为准 ISSUE #290 Elastic-Job-Cloud删除被禁用的APP或JOB时，对应的disabled节点数据无法删除  2.1.0 新功能  ISSUE #195 Elastic-Job-Lite自诊断并修复分布式不稳定造成的问题 ISSUE #248 Elastic-Job-Lite同一台作业服务器可以行多个相同作业名称的JVM实例(Cloud Native) ISSUE #249 Elastic-Job-Lite运维界面支持事件追踪查询  功能提升  ISSUE #240 Elastic-Job-Lite运维界面重构 ISSUE #262 Elastic-Job-Lite控制台删除作业配置  缺陷修正  ISSUE #237 增加REST API对分片总数不小于1的校验 ISSUE #238 IP正则表达式错误 ISSUE #246 通过JobOperateAPI.</description>
-    </item>
-    
-    <item>
       <title>FAQ</title>
       <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/faq/</link>
       <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
@@ -130,9 +121,6 @@ config节点 作业配置信息，以JSON格式存储
 instances节点 作业运行实例信息，子节点是当前作业运行实例的主键。作业运行实例主键由作业运行服务器的IP地址和UUID构成。作业运行实例主键均为临时节点，当作业实例上线时注册，下线时自动清理。注册中心监控这些节点的变化来协调分布式作业的分片以及高可用。 可在作业运行实例节点写入TRIGGER表示该实例立即执行一次。
 sharding节点 作业分片信息，子节点是分片项序号，从零开始，至分片总数减一。分片项序号的子节点存储详细信息。每个分片项下的子节点用于控制和记录分片运行状态。节点详细信息说明：
    子节点名 临时节点 描述     instance 否 执行该分片项的作业运行实例主键   running 是 分片项正在运行的状态
-如果没有此节点，并且没有completed节点，表示该分片未运行
-仅配置monitorExecution时有效   completed 否 分片项运行完成的状态
-下次作业开始执行时会清理
 仅配置monitorExecution时有效   failover 是 如果该分片项被失效转移分配给其他作业服务器，则此节点值记录执行此分片的作业服务器IP   misfire 否 是否开启错过任务重新执行   disabled 否 是否禁用此分片项    servers节点 作业服务器信息，子节点是作业服务器的IP地址。可在IP地址节点写入DISABLED表示该服务器禁用。 在新的cloud native架构下，servers节点大幅弱化，仅包含控制服务器是否可以禁用这一功能。为了更加纯粹的实现job核心，servers功能未来可能删除，控制服务器是否禁用的能力应该下放至自动化部署系统。</description>
     </item>
     
@@ -328,10 +316,10 @@ JOB_EXECUTION_LOG字段含义
     
     <item>
       <title>概览</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/</link>
       <pubDate>Thu, 13 Apr 2017 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/</guid>
       <description> 概述 &amp;nbsp; &amp;nbsp; &amp;nbsp; 
 Elastic-Job是一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。
 Elastic-Job-Lite定位为轻量级无中心化解决方案，使用jar包的形式提供分布式任务的协调服务。
@@ -348,10 +336,10 @@ Elastic-Job-Lite定位为轻量级无中心化解决方案，使用jar包的形�
     
     <item>
       <title>使用指南</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/</guid>
       <description> 本章导航  Elastic-Job提供了简单易用的运维平台，方便用户操作及查询作业。
  配置手册介绍了如何通过Java Code和Spring两种方式配置。
  一般情况Elastic-Job是通过平均分配算法的分片策略数据的，但也可以选择哈希及轮转等策略，或者自己定义作业分片策略。
@@ -363,19 +351,19 @@ Elastic-Job-Lite定位为轻量级无中心化解决方案，使用jar包的形�
     
     <item>
       <title>设计规划</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/</guid>
       <description> 本章导航  想了解架构设计及项目模块设计的概念，请阅读实现原理及目录结构说明。 Elastic-Job未来规划有哪些呢？请阅读未来规划。  </description>
     </item>
     
     <item>
       <title>起航</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/</link>
       <pubDate>Fri, 02 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/</guid>
       <description> 本章导航  如果想快速体验Elastic-Job-Lite的强大功能，请阅读快速入门。 如果在使用中遇到什么问题，请首先在FAQ中寻找解决问题的答案。 想要在自己的项目中集成Elastic-Job-Lite,您一定很关心它如何开发及如何部署。  </description>
     </item>
     

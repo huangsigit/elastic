@@ -1,16 +1,19 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en" class="js csstransforms3d">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.20" />
+    <meta name="generator" content="Hugo 0.20.7" />
     <meta name="description" content="">
 
 
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/img/favicon.ico" type="image/x-icon" />
 
     
-    <title>02-guides</title>
+    <title>使用指南</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/css/hybrid.css" rel="stylesheet">
@@ -98,8 +101,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/00-overview/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/index/">
+      <li class="dd-item  " data-nav-id="/00-overview/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/">
           <span>
             
               <b>0. </b>
@@ -114,12 +117,6 @@
             <li class="dd-item " data-nav-id="/00-overview/intro/">
               <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/intro/">
                 <span>简介     </i></span>
-              </a>
-            </li>
-          
-            <li class="dd-item " data-nav-id="/00-overview/release-notes/">
-              <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/00-overview/release-notes/">
-                <span>Release Note     </i></span>
               </a>
             </li>
           
@@ -149,8 +146,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/01-start/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/index/">
+      <li class="dd-item  " data-nav-id="/01-start/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/">
           <span>
             
               <b>1. </b>
@@ -206,8 +203,8 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/02-guide/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/">
+      <li class="dd-item active parent" data-nav-id="/02-guide/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/">
           <span>
             
               <b>2. </b>
@@ -299,8 +296,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/03-design/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/">
+      <li class="dd-item  " data-nav-id="/03-design/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/">
           <span>
             
               <b>3. </b>
@@ -364,11 +361,9 @@
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/index/" itemprop="url"><span itemprop="title">使用指南</span></a> <i class="fa fa-angle-right"></i>
-                    
                   
                 
-                <span itemprop="title"> 02-guides</span>
+                <span itemprop="title"> 使用指南</span>
               </div>
               
 
@@ -378,6 +373,24 @@
             
               <div id="body-inner">
                 
+
+
+
+<h1 id="本章导航">本章导航</h1>
+
+<ul>
+<li><p>Elastic-Job提供了简单易用的<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/web-console/">运维平台</a>，方便用户操作及查询作业。</p></li>
+
+<li><p><a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/config-manual/">配置手册</a>介绍了如何通过Java Code和Spring两种方式配置。</p></li>
+
+<li><p>一般情况Elastic-Job是通过平均分配算法的分片策略数据的，但也可以选择哈希及轮转等策略，或者自己定义<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/job-sharding-strategy/">作业分片策略</a>。</p></li>
+
+<li><p>为了便于记录、查询、统计及监控作业运行情况，Elastic-Job提供了<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/event-trace/">事件追踪</a>功能，也可自行对<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/execution-monitor/">作业运行状态监控</a>。</p></li>
+
+<li><p>由于无法在生产环境调试，通过<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/dump/">dump</a>可以把作业运行相关信息dump出来，方便开发者debug分析。</p></li>
+
+<li><p>最后，Elastic-Job还提供了其它扩展功能，如：<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/job-listener/">作业监听器</a>、<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/job-reconcile/">自诊断修复</a>、<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/customized-hook/">定制化处理</a>及<a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/operation-manual/">操作手册</a>等。</p></li>
+</ul>
 
 
       
@@ -391,8 +404,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/01-start/deploy-guide/"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/02-guide/web-console/" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>
@@ -415,4 +428,7 @@
 
   </body>
 </html>
+
+
+
 

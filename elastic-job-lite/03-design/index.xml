@@ -12,10 +12,10 @@
     
     <item>
       <title>设计规划</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite/03-design/</guid>
       <description> 本章导航  想了解架构设计及项目模块设计的概念，请阅读实现原理及目录结构说明。 Elastic-Job未来规划有哪些呢？请阅读未来规划。  </description>
     </item>
     
@@ -46,9 +46,6 @@ config节点 作业配置信息，以JSON格式存储
 instances节点 作业运行实例信息，子节点是当前作业运行实例的主键。作业运行实例主键由作业运行服务器的IP地址和UUID构成。作业运行实例主键均为临时节点，当作业实例上线时注册，下线时自动清理。注册中心监控这些节点的变化来协调分布式作业的分片以及高可用。 可在作业运行实例节点写入TRIGGER表示该实例立即执行一次。
 sharding节点 作业分片信息，子节点是分片项序号，从零开始，至分片总数减一。分片项序号的子节点存储详细信息。每个分片项下的子节点用于控制和记录分片运行状态。节点详细信息说明：
    子节点名 临时节点 描述     instance 否 执行该分片项的作业运行实例主键   running 是 分片项正在运行的状态
-如果没有此节点，并且没有completed节点，表示该分片未运行
-仅配置monitorExecution时有效   completed 否 分片项运行完成的状态
-下次作业开始执行时会清理
 仅配置monitorExecution时有效   failover 是 如果该分片项被失效转移分配给其他作业服务器，则此节点值记录执行此分片的作业服务器IP   misfire 否 是否开启错过任务重新执行   disabled 否 是否禁用此分片项    servers节点 作业服务器信息，子节点是作业服务器的IP地址。可在IP地址节点写入DISABLED表示该服务器禁用。 在新的cloud native架构下，servers节点大幅弱化，仅包含控制服务器是否可以禁用这一功能。为了更加纯粹的实现job核心，servers功能未来可能删除，控制服务器是否禁用的能力应该下放至自动化部署系统。</description>
     </item>
     
