@@ -12,10 +12,10 @@
     
     <item>
       <title>概览</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/</link>
       <pubDate>Thu, 13 Apr 2017 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/</guid>
       <description>Elastic-Job是ddframe中dd-job的作业模块中分离出来的分布式弹性作业框架。去掉了和dd-job中的监控和ddframe接入规范部分。该项目基于成熟的开源产品Quartz和Zookeeper及其客户端Curator进行二次开发。
 ddframe其他模块也有可独立开源的部分，之前当当曾开源过dd-soa的基石模块DubboX。
 elastic-job和ddframe关系见下图

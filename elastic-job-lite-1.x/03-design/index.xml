@@ -12,10 +12,10 @@
     
     <item>
       <title>设计</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/</guid>
       <description> 本章导航  想了解架构设计及项目模块设计的概念，请阅读实现原理及目录结构说明。  </description>
     </item>
     

@@ -31,10 +31,10 @@ Zookeeper的安装和配置 参考资料：http://blog.csdn.net/shatelang/articl
     
     <item>
       <title>设计</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/</guid>
       <description> 本章导航  想了解架构设计及项目模块设计的概念，请阅读实现原理及目录结构说明。  </description>
     </item>
     
@@ -271,10 +271,10 @@ lombok安装指南 Eclipse 首先配置好Eclipse环境，然后双击打开lomb
     
     <item>
       <title>概览</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/</link>
       <pubDate>Thu, 13 Apr 2017 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/</guid>
       <description>Elastic-Job是ddframe中dd-job的作业模块中分离出来的分布式弹性作业框架。去掉了和dd-job中的监控和ddframe接入规范部分。该项目基于成熟的开源产品Quartz和Zookeeper及其客户端Curator进行二次开发。
 ddframe其他模块也有可独立开源的部分，之前当当曾开源过dd-soa的基石模块DubboX。
 elastic-job和ddframe关系见下图
@@ -298,10 +298,10 @@ elastic-job和ddframe关系见下图
     
     <item>
       <title>使用指南</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/</guid>
       <description> 本章导航  Elastic-Job提供了简单易用的运维平台，方便用户操作及查询作业。
  一般情况Elastic-Job是通过平均分配算法的分片策略数据的，但也可以选择哈希及轮转等策略，或者自己定义作业分片策略。
  由于无法在生产环境调试，通过dump可以把作业运行相关信息dump出来，方便开发者debug分析。
@@ -311,10 +311,10 @@ elastic-job和ddframe关系见下图
     
     <item>
       <title>起航</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/</link>
       <pubDate>Fri, 02 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/</guid>
       <description> 本章导航  如果想快速体验Elastic-Job的强大功能，请阅读快速入门。 如果在使用中遇到什么问题，请首先在FAQ中寻找解决问题的答案。 想要在自己的项目中集成Elastic-Job,您一定很关心它如何开发及如何部署。  </description>
     </item>
     

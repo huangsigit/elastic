@@ -1,16 +1,19 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en" class="js csstransforms3d">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.20" />
+    <meta name="generator" content="Hugo 0.20.7" />
     <meta name="description" content="">
 
 
     <link rel="shortcut icon" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/favicon.ico" type="image/x-icon" />
 
     
-    <title>00-overviews</title>
+    <title>概览</title>
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/nucleus.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/css/hybrid.css" rel="stylesheet">
@@ -98,8 +101,8 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/00-overview/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/">
+      <li class="dd-item active parent" data-nav-id="/00-overview/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/">
           <span>
             
               <b>0. </b>
@@ -155,8 +158,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/01-start/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/index/">
+      <li class="dd-item  " data-nav-id="/01-start/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/01-start/">
           <span>
             
               <b>1. </b>
@@ -212,8 +215,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/02-guide/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/index/">
+      <li class="dd-item  " data-nav-id="/02-guide/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/02-guide/">
           <span>
             
               <b>2. </b>
@@ -269,8 +272,8 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/03-design/index/">
-        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/index/">
+      <li class="dd-item  " data-nav-id="/03-design/">
+        <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/">
           <span>
             
               <b>3. </b>
@@ -328,11 +331,9 @@
                   
                     
                     
-                <a href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/index/" itemprop="url"><span itemprop="title">概览</span></a> <i class="fa fa-angle-right"></i>
-                    
                   
                 
-                <span itemprop="title"> 00-overviews</span>
+                <span itemprop="title"> 概览</span>
               </div>
               
 
@@ -342,6 +343,116 @@
             
               <div id="body-inner">
                 
+
+
+
+<p>Elastic-Job是ddframe中dd-job的作业模块中分离出来的分布式弹性作业框架。去掉了和dd-job中的监控和ddframe接入规范部分。该项目基于成熟的开源产品Quartz和Zookeeper及其客户端Curator进行二次开发。</p>
+
+<p>ddframe其他模块也有可独立开源的部分，之前当当曾开源过dd-soa的基石模块DubboX。</p>
+
+<p>elastic-job和ddframe关系见下图</p>
+
+<p><img src="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/img/1.x/ddframe.jpg" alt="ddframe演进图" /></p>
+
+<p><strong>讨论QQ群：</strong>430066234（不限于Elastic-Job，包括分布式，定时任务相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。）</p>
+
+<h2 id="主要功能">主要功能</h2>
+
+<ul>
+<li><p><strong>分布式：</strong> 重写Quartz基于数据库的分布式功能，改用Zookeeper实现注册中心。</p></li>
+
+<li><p><strong>并行调度：</strong> 采用任务分片方式实现。将一个任务拆分为多个独立的任务项，由分布式的服务器并行执行各自分配到的分片项。</p></li>
+
+<li><p><strong>弹性扩容缩容：</strong> 将任务拆分为多个子任务项后，各个服务器分别执行各自分配到的任务项。一旦有新的服务器加入集群，或现有服务器下线，elastic-job将在保留本次任务执行不变的情况下，下次任务开始前触发任务重分片。</p></li>
+
+<li><p><strong>集中管理：</strong> 采用基于Zookeeper的注册中心，集中管理和协调分布式作业的状态，分配和监听。外部系统可直接根据Zookeeper的数据管理和监控elastic-job。</p></li>
+
+<li><p><strong>定制化流程型任务：</strong> 作业可分为简单和数据流处理两种模式，数据流又分为高吞吐处理模式和顺序性处理模式，其中高吞吐处理模式可以开启足够多的线程快速的处理数据，而顺序性处理模式将每个分片项分配到一个独立线程，用于保证同一分片的顺序性，这点类似于Kafka的分区顺序性。</p></li>
+</ul>
+
+<h2 id="其他功能">其他功能</h2>
+
+<ul>
+<li><p><strong>失效转移：</strong> 弹性扩容缩容在下次作业运行前重分片，但本次作业执行的过程中，下线的服务器所分配的作业将不会重新被分配。失效转移功能可以在本次作业运行中用空闲服务器抓取孤儿作业分片执行。同样失效转移功能也会牺牲部分性能。</p></li>
+
+<li><p><strong>Spring命名空间支持：</strong> elastic-job可以不依赖于Spring直接运行，但是也提供了自定义的命名空间方便与Spring集成。</p></li>
+
+<li><p><strong>运维平台：</strong> 提供web控制台用于管理作业。</p></li>
+</ul>
+
+<h2 id="非功能需求">非功能需求</h2>
+
+<ul>
+<li><p><strong>稳定性：</strong> 在服务器无波动的情况下，并不会重新分片；即使服务器有波动，下次分片的结果也会根据服务器IP和作业名称哈希值算出稳定的分片顺序，尽量不做大的变动。</p></li>
+
+<li><p><strong>高性能：</strong> 同一服务器的批量数据处理采用自动切割并多线程并行处理。</p></li>
+
+<li><p><strong>灵活性：</strong> 所有在功能和性能之间的权衡，都可通过配置开启/关闭。如：elastic-job会将作业运行状态的必要信息更新到注册中心。如果作业执行频度很高，会造成大量Zookeeper写操作，而分布式Zookeeper同步数据可能引起网络风暴。因此为了考虑性能问题，可以牺牲一些功能，而换取性能的提升。</p></li>
+
+<li><p><strong>一致性：</strong> elastic-job可牺牲部分性能用以保证同一分片项不会同时在两个服务器上运行。</p></li>
+
+<li><p><strong>容错性：</strong> 作业服务器和Zookeeper断开连接则立即停止作业运行，用于防止分片已经重新分配，而脑裂的服务器仍在继续执行，导致重复执行。</p></li>
+</ul>
+
+<h2 id="quick-start">Quick Start</h2>
+
+<ul>
+<li><strong>引入maven依赖</strong></li>
+</ul>
+
+<p>elastic-job已经发布到中央仓库，可以在pom.xml文件中直接引入maven坐标。</p>
+
+<pre><code class="language-xml">&lt;!-- 引入elastic-job核心模块 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.dangdang&lt;/groupId&gt;
+    &lt;artifactId&gt;elastic-job-core&lt;/artifactId&gt;
+    &lt;version&gt;${lasted.release.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- 使用springframework自定义命名空间时引入 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.dangdang&lt;/groupId&gt;
+    &lt;artifactId&gt;elastic-job-spring&lt;/artifactId&gt;
+    &lt;version&gt;${lasted.release.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<ul>
+<li><strong>作业开发</strong></li>
+</ul>
+
+<pre><code class="language-java">public class MyElasticJob extends AbstractSimpleElasticJob {
+
+    @Override
+    public void process(JobExecutionMultipleShardingContext context) {
+        // do something by sharding items
+    }
+}
+</code></pre>
+
+<ul>
+<li><strong>作业配置</strong></li>
+</ul>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:reg=&quot;http://www.dangdang.com/schema/ddframe/reg&quot;
+    xmlns:job=&quot;http://www.dangdang.com/schema/ddframe/job&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd
+                        &quot;&gt;
+    &lt;!--配置作业注册中心 --&gt;
+    &lt;reg:zookeeper id=&quot;regCenter&quot; server-lists=&quot;yourhost:2181&quot; namespace=&quot;dd-job&quot; base-sleep-time-milliseconds=&quot;1000&quot; max-sleep-time-milliseconds=&quot;3000&quot; max-retries=&quot;3&quot; /&gt;
+
+    &lt;!-- 配置作业--&gt;
+    &lt;job:simple id=&quot;myElasticJob&quot; class=&quot;xxx.MyElasticJob&quot; registry-center-ref=&quot;regCenter&quot; cron=&quot;0/10 * * * * ?&quot;   sharding-total-count=&quot;3&quot; sharding-item-parameters=&quot;0=A,1=B,2=C&quot; /&gt;
+&lt;/beans&gt;
+</code></pre>
 
 
       
@@ -355,8 +466,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/03-design/theory/"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="http://dangdangdotcom.github.io/elastic-job/elastic-job-lite-1.x/00-overview/intro/" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>
@@ -379,4 +490,7 @@
 
   </body>
 </html>
+
+
+
 
