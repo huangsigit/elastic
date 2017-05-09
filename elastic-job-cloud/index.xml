@@ -63,15 +63,6 @@ Elastic-Job-Cloud-Scheduler Elastic-Job-Cloud-Scheduler表示基于Mesos的Frame
     </item>
     
     <item>
-      <title>Release Note</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/release-notes/</link>
-      <pubDate>Wed, 27 Jan 2016 22:38:50 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/release-notes/</guid>
-      <description>2.1.1 新功能  ISSUE #242 Elastic-Job-Cloud支持删除应用及作业功能 ISSUE #243 Elastic-Job-Cloud支持禁用/启用应用及作业功能  功能提升  ISSUE #268 精简POM依赖  缺陷修正  ISSUE #266 Elastic-Job-Lite启动脚本指定端口无效 ISSUE #269 EventTrace失败记录不受采样率影响并且记录失败时间 ISSUE #270 控制台点击按钮后发起两次请求 ISSUE #272 Elastic-Job-Lite界面作业维度，只有全部服务器被禁用时，才应显示为被禁用 ISSUE #275 停掉Zookeeper后，再重启Zookeeper，任务不会继续执行 ISSUE #276 开启失效转移且分片任务执行后，任务会重复执行 ISSUE #279 添加事件追踪数据源,数据库连接地址不能带参数 ISSUE #280 作业历史页面的历史状态显示不正确 ISSUE #283 作业不设置overwrite且本地配置与注册中心不一致时，作业启动的cron应以注册中心为准 ISSUE #290 Elastic-Job-Cloud删除被禁用的APP或JOB时，对应的disabled节点数据无法删除  2.1.0 新功能  ISSUE #195 Elastic-Job-Lite自诊断并修复分布式不稳定造成的问题 ISSUE #248 Elastic-Job-Lite同一台作业服务器可以行多个相同作业名称的JVM实例(Cloud Native) ISSUE #249 Elastic-Job-Lite运维界面支持事件追踪查询  功能提升  ISSUE #240 Elastic-Job-Lite运维界面重构 ISSUE #262 Elastic-Job-Lite控制台删除作业配置  缺陷修正  ISSUE #237 增加REST API对分片总数不小于1的校验 ISSUE #238 IP正则表达式错误 ISSUE #246 通过JobOperateAPI.</description>
-    </item>
-    
-    <item>
       <title>FAQ</title>
       <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/faq/</link>
       <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
@@ -210,10 +201,10 @@ JOB_EXECUTION_LOG字段含义
     
     <item>
       <title>概览</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/</link>
       <pubDate>Thu, 13 Apr 2017 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/</guid>
       <description> 概述 &amp;nbsp; &amp;nbsp; &amp;nbsp; 
 Elastic-Job是一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。
 Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理、应用分发以及进程隔离等服务。
@@ -226,10 +217,10 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
     
     <item>
       <title>使用指南</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/</guid>
       <description> 本章导航  想要了解Elastic-Job-Cloud是什么？请先了解这些核心概念
  Elastic-Job-Cloud提供了简单易用的运维平台，方便用户操作及查询作业。
  RESTful API介绍了如何通过RESTful API操作应用及作业。
@@ -240,10 +231,10 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
     
     <item>
       <title>设计规划</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/03-design/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/03-design/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/03-design/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/03-design/</guid>
       <description> 本章导航  想了解模块设计，请阅读目录结构说明。
  Elastic-Job-Cloud未来规划有哪些呢？请阅读未来规划。
   </description>
@@ -251,10 +242,10 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
     
     <item>
       <title>起航</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/</link>
       <pubDate>Fri, 02 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/</guid>
       <description> 本章导航  如果想快速体验Elastic-Job-Cloud的强大功能，请阅读快速入门。 如果在使用中遇到什么问题，请首先在FAQ中寻找解决问题的答案。 想要在自己的项目中集成Elastic-Job-Cloud,您一定很关心它如何开发及如何部署。  </description>
     </item>
     

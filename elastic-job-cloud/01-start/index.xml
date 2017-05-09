@@ -12,10 +12,10 @@
     
     <item>
       <title>起航</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/</link>
       <pubDate>Fri, 02 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/</guid>
       <description> 本章导航  如果想快速体验Elastic-Job-Cloud的强大功能，请阅读快速入门。 如果在使用中遇到什么问题，请首先在FAQ中寻找解决问题的答案。 想要在自己的项目中集成Elastic-Job-Cloud,您一定很关心它如何开发及如何部署。  </description>
     </item>
     

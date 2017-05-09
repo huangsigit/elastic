@@ -12,10 +12,10 @@
     
     <item>
       <title>使用指南</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/</link>
       <pubDate>Mon, 12 Dec 2016 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/</guid>
       <description> 本章导航  想要了解Elastic-Job-Cloud是什么？请先了解这些核心概念
  Elastic-Job-Cloud提供了简单易用的运维平台，方便用户操作及查询作业。
  RESTful API介绍了如何通过RESTful API操作应用及作业。

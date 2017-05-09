@@ -12,10 +12,10 @@
     
     <item>
       <title>概览</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/index/</link>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/</link>
       <pubDate>Thu, 13 Apr 2017 16:06:17 +0800</pubDate>
       
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/index/</guid>
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/</guid>
       <description> 概述 &amp;nbsp; &amp;nbsp; &amp;nbsp; 
 Elastic-Job是一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。
 Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理、应用分发以及进程隔离等服务。
@@ -44,15 +44,6 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
 瞬时作业会在每一次作业执行完毕后立刻释放资源，保证利用现有资源错峰执行。资源分配和容器启动均占用一定时长，且作业执行时资源不一定充足，因此作业执行会有延迟。瞬时作业适用于间隔时间长，资源消耗多且对执行时间无严格要求的作业。
 常驻作业无论在运行时还是等待运行时，均一直占用分配的资源，可节省过多容器启动和资源分配的开销，适用于间隔时间短，资源需求量稳定的作业。
 整体架构图 快速入门 引入maven依赖 &amp;lt;!-- 引入elastic-job-cloud执行器模块 --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.dangdang&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;elastic-job-cloud-executor&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${latest.release.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;  作业开发 public class MyElasticJob implements SimpleJob { @Override public void execute(ShardingContext context) { switch (context.getShardingItem()) { case 0: // do something by sharding item 0 break; case 1: // do something by sharding item 1 break; case 2: // do something by sharding item 2 break; // case n: .</description>
-    </item>
-    
-    <item>
-      <title>Release Note</title>
-      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/release-notes/</link>
-      <pubDate>Wed, 27 Jan 2016 22:38:50 +0800</pubDate>
-      
-      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/00-overview/release-notes/</guid>
-      <description>2.1.1 新功能  ISSUE #242 Elastic-Job-Cloud支持删除应用及作业功能 ISSUE #243 Elastic-Job-Cloud支持禁用/启用应用及作业功能  功能提升  ISSUE #268 精简POM依赖  缺陷修正  ISSUE #266 Elastic-Job-Lite启动脚本指定端口无效 ISSUE #269 EventTrace失败记录不受采样率影响并且记录失败时间 ISSUE #270 控制台点击按钮后发起两次请求 ISSUE #272 Elastic-Job-Lite界面作业维度，只有全部服务器被禁用时，才应显示为被禁用 ISSUE #275 停掉Zookeeper后，再重启Zookeeper，任务不会继续执行 ISSUE #276 开启失效转移且分片任务执行后，任务会重复执行 ISSUE #279 添加事件追踪数据源,数据库连接地址不能带参数 ISSUE #280 作业历史页面的历史状态显示不正确 ISSUE #283 作业不设置overwrite且本地配置与注册中心不一致时，作业启动的cron应以注册中心为准 ISSUE #290 Elastic-Job-Cloud删除被禁用的APP或JOB时，对应的disabled节点数据无法删除  2.1.0 新功能  ISSUE #195 Elastic-Job-Lite自诊断并修复分布式不稳定造成的问题 ISSUE #248 Elastic-Job-Lite同一台作业服务器可以行多个相同作业名称的JVM实例(Cloud Native) ISSUE #249 Elastic-Job-Lite运维界面支持事件追踪查询  功能提升  ISSUE #240 Elastic-Job-Lite运维界面重构 ISSUE #262 Elastic-Job-Lite控制台删除作业配置  缺陷修正  ISSUE #237 增加REST API对分片总数不小于1的校验 ISSUE #238 IP正则表达式错误 ISSUE #246 通过JobOperateAPI.</description>
     </item>
     
     <item>
