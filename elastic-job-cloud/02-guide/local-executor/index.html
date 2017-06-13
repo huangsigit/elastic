@@ -371,11 +371,11 @@
 <p>使用<code>com.dangdang.ddframe.job.cloud.executor.local.LocalCloudJobConfiguration</code>配置本地作业。</p>
 
 <pre><code class="language-java">LocalCloudJobConfiguration config = new LocalCloudJobConfiguration(
-        new SimpleJobConfiguration(JobCoreConfiguration.newBuilder(&quot;FooJob&quot;, &quot;*/2 * * * * ?&quot;, 3) //1
-                .shardingItemParameters(&quot;0=Beijing,1=Shanghai,2=Guangzhou&quot;)
-                .jobParameter(&quot;dbName=dangdang&quot;).build(), &quot;com.dangdang.foo.FooJob&quot;), 
-                1,                                                                               //2
-                &quot;testSimpleJob&quot; , &quot;applicationContext.xml&quot;);                                     //3
+    new SimpleJobConfiguration(JobCoreConfiguration.newBuilder(&quot;FooJob&quot;, &quot;*/2 * * * * ?&quot;, 3) //1
+        .shardingItemParameters(&quot;0=Beijing,1=Shanghai,2=Guangzhou&quot;)
+        .jobParameter(&quot;dbName=dangdang&quot;).build(), &quot;com.dangdang.foo.FooJob&quot;), 
+        1,                                                                               //2
+        &quot;testSimpleJob&quot; , &quot;applicationContext.xml&quot;);                                     //3
 </code></pre>
 
 <ol>
