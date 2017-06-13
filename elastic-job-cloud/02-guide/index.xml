@@ -21,6 +21,7 @@
  RESTful API介绍了如何通过RESTful API操作应用及作业。
  Elastic-Job-Cloud的Scheduler如何保证高可用？请阅读高可用。
  为了便于记录、查询、统计及监控作业运行情况，Elastic-Job提供了事件追踪功能。
+ 为了方便在开发机上调试，运行作业，Elastic-Job提供了本地运行作业功能。
   </description>
     </item>
     
@@ -88,6 +89,19 @@ Elastic-Job-Cloud-Scheduler Elastic-Job-Cloud-Scheduler表示基于Mesos的Frame
 事件追踪的event_trace_rdb_url属性对应库自动创建JOB_EXECUTION_LOG和JOB_STATUS_TRACE_LOG两张表以及若干索引。
 JOB_EXECUTION_LOG字段含义
    字段名称 字段类型 是否必填 描述     id VARCHAR(40) 是 主键   job_name VARCHAR(100) 是 作业名称   task_id VARCHAR(1000) 是 任务名称,每次作业运行生成新任务   hostname VARCHAR(255) 是 主机名称   ip VARCHAR(50) 是 主机IP   sharding_item INT 是 分片项   execution_source VARCHAR(20) 是 作业执行来源。可选值为NORMAL_TRIGGER, MISFIRE, FAILOVER   failure_cause VARCHAR(2000) 否 执行失败原因   is_success BIT 是 是否执行成功   start_time TIMESTAMP 是 作业开始执行时间   complete_time TIMESTAMP 否 作业结束执行时间    JOB_EXECUTION_LOG记录每次作业的执行历史。分为两个步骤：</description>
+    </item>
+    
+    <item>
+      <title>本地运行模式</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/local-executor/</link>
+      <pubDate>Mon, 05 Jun 2017 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/local-executor/</guid>
+      <description> 在开发Elastic-Job-Cloud作业时，开发人员可以脱离Mesos环境，在本地运行和调试作业。可以利用本地运行模式充分的调试业务功能以及单元测试，完成之后再部署至Mesos集群。
+本地运行作业无需安装Mesos环境。
+配置 使用com.dangdang.ddframe.job.cloud.executor.local.LocalCloudJobConfiguration配置本地作业。
+LocalCloudJobConfiguration config = new LocalCloudJobConfiguration( new SimpleJobConfiguration(JobCoreConfiguration.newBuilder(&amp;quot;FooJob&amp;quot;, &amp;quot;*/2 * * * * ?&amp;quot;, 3) //1 .shardingItemParameters(&amp;quot;0=Beijing,1=Shanghai,2=Guangzhou&amp;quot;) .jobParameter(&amp;quot;dbName=dangdang&amp;quot;).build(), &amp;quot;com.dangdang.foo.FooJob&amp;quot;), 1, //2 &amp;quot;testSimpleJob&amp;quot; , &amp;quot;applicationContext.xml&amp;quot;); //3   配置作业类型和作业基本信息。 配置当前运行的作业是第几个分片。 配置Spring相关参数。  运行 使用com.dangdang.ddframe.job.cloud.executor.local.LocalTaskExecutor运行作业。
+new LocalTaskExecutor(localJobConfig).execute();  </description>
     </item>
     
   </channel>

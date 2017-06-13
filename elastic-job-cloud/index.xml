@@ -185,6 +185,19 @@ JOB_EXECUTION_LOG字段含义
     </item>
     
     <item>
+      <title>本地运行模式</title>
+      <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/local-executor/</link>
+      <pubDate>Mon, 05 Jun 2017 16:14:21 +0800</pubDate>
+      
+      <guid>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/02-guide/local-executor/</guid>
+      <description> 在开发Elastic-Job-Cloud作业时，开发人员可以脱离Mesos环境，在本地运行和调试作业。可以利用本地运行模式充分的调试业务功能以及单元测试，完成之后再部署至Mesos集群。
+本地运行作业无需安装Mesos环境。
+配置 使用com.dangdang.ddframe.job.cloud.executor.local.LocalCloudJobConfiguration配置本地作业。
+LocalCloudJobConfiguration config = new LocalCloudJobConfiguration( new SimpleJobConfiguration(JobCoreConfiguration.newBuilder(&amp;quot;FooJob&amp;quot;, &amp;quot;*/2 * * * * ?&amp;quot;, 3) //1 .shardingItemParameters(&amp;quot;0=Beijing,1=Shanghai,2=Guangzhou&amp;quot;) .jobParameter(&amp;quot;dbName=dangdang&amp;quot;).build(), &amp;quot;com.dangdang.foo.FooJob&amp;quot;), 1, //2 &amp;quot;testSimpleJob&amp;quot; , &amp;quot;applicationContext.xml&amp;quot;); //3   配置作业类型和作业基本信息。 配置当前运行的作业是第几个分片。 配置Spring相关参数。  运行 使用com.dangdang.ddframe.job.cloud.executor.local.LocalTaskExecutor运行作业。
+new LocalTaskExecutor(localJobConfig).execute();  </description>
+    </item>
+    
+    <item>
       <title>部署指南</title>
       <link>http://dangdangdotcom.github.io/elastic-job/elastic-job-cloud/01-start/deploy-guide/</link>
       <pubDate>Wed, 27 Jan 2016 16:14:21 +0800</pubDate>
@@ -227,6 +240,7 @@ Elastic-Job-Cloud使用Mesos + Docker的解决方案，额外提供资源治理�
  RESTful API介绍了如何通过RESTful API操作应用及作业。
  Elastic-Job-Cloud的Scheduler如何保证高可用？请阅读高可用。
  为了便于记录、查询、统计及监控作业运行情况，Elastic-Job提供了事件追踪功能。
+ 为了方便在开发机上调试，运行作业，Elastic-Job提供了本地运行作业功能。
   </description>
     </item>
     
