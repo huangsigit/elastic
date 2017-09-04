@@ -2,10 +2,21 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link href="http://ovfqtdb4e.bkt.clouddn.com/css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/style.min.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="favicon.ico">
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-	<script src="http://ovfqtdb4e.bkt.clouddn.com/js/index.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() { 
+			var outTimer;
+			$('div [data-index]').hover(function() {
+				var $this = $(this);
+				clearTimeout(outTimer);
+		        hoverTimer = setTimeout(function(){
+					$this.addClass("qc-unit-active").siblings().removeClass("qc-unit-active");
+				}, 150);
+			});
+		}); 
+	</script>
 	<title>Elastic-Job - Distributed scheduled job solution</title>
 </head>
 <body>
@@ -17,18 +28,18 @@
 				<a href="#">Docs</a>
 				<ul class="children-list">
 					<li>
-						<a href="http://elasticjob.io/docs/elastic-job-lite/00-overview" target="_blank">Lite</a>
+						<a href="https://elasticjob.io/docs/elastic-job-lite/00-overview" target="_blank">Lite</a>
 					</li>
 					<li>
-						<a href="http://elasticjob.io/docs/elastic-job-cloud/00-overview" target="_blank">Cloud</a>
+						<a href="https://elasticjob.io/docs/elastic-job-cloud/00-overview" target="_blank">Cloud</a>
 					</li>
 				</ul>
 			</li>
 			<li class="item">
-				<a href="http://elasticjob.io/docs/elastic-job-lite/00-overview/news" target="_blank">News</a>
+				<a href="https://elasticjob.io/docs/elastic-job-lite/00-overview/news" target="_blank">News</a>
 			</li>
 			<li class="item">
-				<a href="http://elasticjob.io/docs/elastic-job-lite/00-overview/company" target="_blank">Company</a>
+				<a href="https://elasticjob.io/docs/elastic-job-lite/00-overview/company" target="_blank">Company</a>
 			</li>
 			<li class="item">
 				<a href="#" target="_blank">SCM</a>
@@ -54,7 +65,7 @@
 			<p class="first"><img src="http://ovfqtdb4e.bkt.clouddn.com/images/elastic-job.png" width="50%" /></p>
 			<p class="second">Elastic-Job is a distributed scheduling solution consisting of two separate projects, Lite and Cloud.</p>
 			<p class="second">Elastic-Job-Lite is a lightweight, decentralized solution that provides distributed task sharding services. Elastic-Job-Cloud is a Mesos Framework which provides additional resource management, App distribution, process isolation and task aggregation features.</p>
-			<a class="more_btn" href="http://github.com/dangdangdotcom/elastic-job">Learn More</a>
+			<a class="more_btn" href="https://github.com/dangdangdotcom/elastic-job">Learn More</a>
 		</div>
 	</div>
 </div>
